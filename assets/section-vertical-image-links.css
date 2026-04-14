@@ -1,0 +1,186 @@
+/* =============================================================================
+   Vertical Image Links Section
+   Two-column layout: text content left, sticky-scroll image card carousel right.
+   ============================================================================= */
+
+/* Outer custom element — JS sets min-height to drive scroll progress */
+vertical-image-links-component {
+  display: block;
+  position: relative;
+}
+
+/* Inner sticky layout — stays fixed in viewport while outer section scrolls */
+.vertical-image-links__inner {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: stretch;
+}
+
+/* -----------------------------------------------------------------------
+   Left column: text content
+   ----------------------------------------------------------------------- */
+
+.vertical-image-links__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4rem calc(4rem / var(--font-body-scale));
+  gap: 2rem;
+}
+
+@media screen and (min-width: 990px) {
+  .vertical-image-links__content {
+    padding: 6rem 7rem;
+  }
+}
+
+.vertical-image-links__content > * + * {
+  margin-top: 0;
+}
+
+.vertical-image-links__heading {
+  margin: 0;
+}
+
+.vertical-image-links__text {
+  margin: 0;
+}
+
+.vertical-image-links__text p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.vertical-image-links__text p:last-child {
+  margin-bottom: 0;
+}
+
+.vertical-image-links__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+  margin-top: 1rem;
+}
+
+/* -----------------------------------------------------------------------
+   Right column: carousel
+   ----------------------------------------------------------------------- */
+
+.vertical-image-links__carousel-outer {
+  position: relative;
+  overflow: hidden;
+  height: 100vh;
+}
+
+/* The moving track — translateY is driven by JS scroll progress */
+.vertical-image-links__carousel-track {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  padding: 1.6rem;
+  list-style: none;
+  margin: 0;
+  will-change: transform;
+}
+
+/* -----------------------------------------------------------------------
+   Individual image-link card
+   ----------------------------------------------------------------------- */
+
+.vertical-image-links__card {
+  position: relative;
+  flex-shrink: 0;
+  border-radius: var(--media-radius);
+  overflow: hidden;
+  aspect-ratio: 3 / 4;
+}
+
+.vertical-image-links__card-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  text-decoration: none;
+  position: relative;
+}
+
+/* Placeholder background when no image is set */
+.vertical-image-links__card-link--placeholder {
+  background-color: rgba(var(--color-foreground), 0.04);
+}
+
+/* Hover overlay using main theme button colour */
+.vertical-image-links__card-link::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(var(--color-button), 0.7);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+  border-radius: inherit;
+}
+
+.vertical-image-links__card-link:hover::before {
+  opacity: 1;
+}
+
+/* Logo wrapper — centred over the card, above the overlay */
+.vertical-image-links__card-logo {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.vertical-image-links__card-logo img {
+  max-width: 60%;
+  max-height: 40%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
+/* -----------------------------------------------------------------------
+   Mobile: stack layout, no sticky scroll effect
+   ----------------------------------------------------------------------- */
+
+@media screen and (max-width: 749px) {
+  .vertical-image-links__inner {
+    position: static;
+    height: auto;
+    overflow: visible;
+    grid-template-columns: 1fr;
+  }
+
+  .vertical-image-links__content {
+    padding: 3rem 1.5rem;
+  }
+
+  .vertical-image-links__carousel-outer {
+    height: auto;
+    overflow: visible;
+    padding: 0 1.5rem 3rem;
+  }
+
+  .vertical-image-links__carousel-track {
+    transform: none !important;
+    padding: 0;
+  }
+
+  .vertical-image-links__card {
+    aspect-ratio: 3 / 4;
+    max-width: 100%;
+  }
+}
