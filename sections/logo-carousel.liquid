@@ -34,7 +34,7 @@
   assign carousel_enabled = section.settings.enable_carousel
 -%}
 
-<div class="logo-carousel color-{{ section.settings.color_scheme }} gradient">
+<div class="logo-carousel color-scheme-1 gradient">
   <div class="page-width section-{{ section.id }}-padding">
 
     {%- unless section.settings.title == blank -%}
@@ -271,12 +271,6 @@
       "default": 6,
       "label": "Logos per row (desktop)",
       "info": "Applies when carousel is disabled."
-    },
-    {
-      "type": "color_scheme",
-      "id": "color_scheme",
-      "label": "Color scheme",
-      "default": "scheme-1"
     },
     {
       "type": "header",
