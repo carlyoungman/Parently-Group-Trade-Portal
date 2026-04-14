@@ -1,0 +1,304 @@
+{{ 'section-vertical-image-links.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'section-vertical-image-links.js' | asset_url }}" defer="defer"></script>
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{%- liquid
+  assign has_image_links = false
+  for block in section.blocks
+    if block.type == 'image_link'
+      assign has_image_links = true
+      break
+    endif
+  endfor
+-%}
+
+<vertical-image-links-component class="vertical-image-links color-scheme-1 gradient section-{{ section.id }}-padding">
+  <div class="vertical-image-links__inner page-width">
+
+    {%- comment -%} LEFT COLUMN — heading, text, buttons {%- endcomment -%}
+    <div class="vertical-image-links__content">
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+
+          {%- when 'heading' -%}
+            {%- if block.settings.heading != blank -%}
+              <h2
+                class="vertical-image-links__heading inline-richtext {{ block.settings.heading_size }}"
+                {{ block.shopify_attributes }}
+              >
+                {{ block.settings.heading }}
+              </h2>
+            {%- endif -%}
+
+          {%- when 'text' -%}
+            {%- if block.settings.text != blank -%}
+              <div
+                class="vertical-image-links__text rte"
+                {{ block.shopify_attributes }}
+              >
+                {{ block.settings.text }}
+              </div>
+            {%- endif -%}
+
+          {%- when 'buttons' -%}
+            {%- if block.settings.button_label_1 != blank or block.settings.button_label_2 != blank -%}
+              <div class="vertical-image-links__buttons" {{ block.shopify_attributes }}>
+                {%- if block.settings.button_label_1 != blank -%}
+                  <a
+                    {% if block.settings.button_link_1 == blank %}
+                      role="link" aria-disabled="true"
+                    {% else %}
+                      href="{{ block.settings.button_link_1 }}"
+                    {% endif %}
+                    class="button{% if block.settings.button_style_secondary_1 %} button--secondary{% else %} button--primary{% endif %}"
+                  >
+                    {{ block.settings.button_label_1 | escape }}
+                  </a>
+                {%- endif -%}
+                {%- if block.settings.button_label_2 != blank -%}
+                  <a
+                    {% if block.settings.button_link_2 == blank %}
+                      role="link" aria-disabled="true"
+                    {% else %}
+                      href="{{ block.settings.button_link_2 }}"
+                    {% endif %}
+                    class="button{% if block.settings.button_style_secondary_2 %} button--secondary{% else %} button--primary{% endif %}"
+                  >
+                    {{ block.settings.button_label_2 | escape }}
+                  </a>
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+
+    {%- comment -%} RIGHT COLUMN — scrollable image-link cards {%- endcomment -%}
+    <div class="vertical-image-links__carousel-outer">
+      <ul
+        class="vertical-image-links__carousel-track"
+        role="list"
+        aria-label="Image links"
+      >
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'image_link' -%}
+            {%- liquid
+              assign bg_image = block.settings.background_image
+              assign logo_image = block.settings.logo_image
+              assign card_link = block.settings.link
+            -%}
+            <li
+              class="vertical-image-links__card"
+              {{ block.shopify_attributes }}
+            >
+              <a
+                {% if card_link != blank %}
+                  href="{{ card_link }}"
+                {% else %}
+                  role="link" aria-disabled="true"
+                {% endif %}
+                class="vertical-image-links__card-link{% if bg_image == blank %} vertical-image-links__card-link--placeholder{% endif %}"
+                {% if bg_image != blank %}
+                  style="background-image: url('{{ bg_image | image_url: width: 800 }}');"
+                {% endif %}
+                aria-label="{{ logo_image.alt | default: 'Image link' | escape }}"
+              >
+                {%- if logo_image != blank -%}
+                  <div class="vertical-image-links__card-logo">
+                    {{
+                      logo_image
+                      | image_url: width: 400
+                      | image_tag:
+                        widths: '100, 150, 200, 300, 400',
+                        sizes: '200px',
+                        loading: 'lazy',
+                        alt: logo_image.alt | default: ''
+                    }}
+                  </div>
+                {%- endif -%}
+              </a>
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+    </div>
+
+  </div>
+</vertical-image-links-component>
+
+{% schema %}
+{
+  "name": "Vertical image links",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "max_blocks": 12,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "name": "Heading",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "default": "Your heading here",
+          "label": "Heading"
+        },
+        {
+          "type": "select",
+          "id": "heading_size",
+          "label": "Heading size",
+          "default": "h1",
+          "options": [
+            { "value": "h2", "label": "Small" },
+            { "value": "h1", "label": "Medium" },
+            { "value": "h0", "label": "Large" },
+            { "value": "hxl", "label": "Extra large" },
+            { "value": "hxxl", "label": "Extra extra large" }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "Text",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "default": "<p>Use this section to describe your brand partners or highlight featured categories.</p>",
+          "label": "Content"
+        }
+      ]
+    },
+    {
+      "type": "buttons",
+      "name": "Buttons",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "header",
+          "content": "Button 1"
+        },
+        {
+          "type": "text",
+          "id": "button_label_1",
+          "label": "Button label",
+          "default": "Explore brands",
+          "info": "Leave blank to hide this button."
+        },
+        {
+          "type": "url",
+          "id": "button_link_1",
+          "label": "Button link"
+        },
+        {
+          "type": "checkbox",
+          "id": "button_style_secondary_1",
+          "label": "Use outline style",
+          "default": false
+        },
+        {
+          "type": "header",
+          "content": "Button 2"
+        },
+        {
+          "type": "text",
+          "id": "button_label_2",
+          "label": "Button label",
+          "info": "Leave blank to hide this button."
+        },
+        {
+          "type": "url",
+          "id": "button_link_2",
+          "label": "Button link"
+        },
+        {
+          "type": "checkbox",
+          "id": "button_style_secondary_2",
+          "label": "Use outline style",
+          "default": true
+        }
+      ]
+    },
+    {
+      "type": "image_link",
+      "name": "Image link",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "background_image",
+          "label": "Background image"
+        },
+        {
+          "type": "image_picker",
+          "id": "logo_image",
+          "label": "Logo image"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Vertical image links",
+      "blocks": [
+        { "type": "heading" },
+        { "type": "text" },
+        { "type": "buttons" },
+        { "type": "image_link" },
+        { "type": "image_link" },
+        { "type": "image_link" }
+      ]
+    }
+  ]
+}
+{% endschema %}
