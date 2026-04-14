@@ -1,0 +1,51 @@
+@use 'abstracts' as *;
+
+// =============================================================================
+// FOCUS RING STYLES
+// Accessibility focus styles from base.css (base-focus section).
+// Uses CSS custom properties set in _reset.scss :root block.
+// =============================================================================
+
+// Reset browser default focus (replaced by :focus-visible below)
+*:focus {
+  outline: 0;
+  box-shadow: none;
+}
+
+// Modern focus ring via :focus-visible
+*:focus-visible {
+  outline: var(--focused-base-outline);
+  outline-offset: var(--focused-base-outline-offset);
+  box-shadow: var(--focused-base-box-shadow);
+}
+
+// .focused — fallback for browsers without :focus-visible support
+.focused {
+  outline: var(--focused-base-outline);
+  outline-offset: var(--focused-base-outline-offset);
+  box-shadow: var(--focused-base-box-shadow);
+}
+
+// Inset focus ring variant
+.focus-inset:focus-visible,
+.focused.focus-inset {
+  outline: 0.2rem solid rgba(var(--color-foreground), 0.5);
+  outline-offset: -0.2rem;
+  box-shadow: 0 0 0.2rem 0 rgba(var(--color-foreground), 0.3);
+}
+
+// No focus ring — use with care (a11y risk)
+.focus-none {
+  box-shadow: none !important;
+  outline: 0 !important;
+}
+
+// Offset focus ring variant (for elements that need extra breathing room)
+.focus-offset:focus-visible,
+.focus-offset.focused {
+  outline: 0.2rem solid rgba(var(--color-foreground), 0.5);
+  outline-offset: 1rem;
+  box-shadow:
+    0 0 0 1rem rgb(var(--color-background)),
+    0 0 0.2rem 1.2rem rgba(var(--color-foreground), 0.3);
+}

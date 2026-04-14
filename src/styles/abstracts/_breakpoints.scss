@@ -1,0 +1,59 @@
+// =============================================================================
+// BREAKPOINT MIXINS
+// Centralises all media queries. Dawn uses 4 breakpoints consistently:
+//   mobile-only  ≤ 749px
+//   tablet-up    ≥ 750px
+//   tablet-only  750–989px
+//   desktop-up   ≥ 990px
+//
+// Variables are injected globally via Vite's additionalData (from _variables.scss).
+// Do NOT add @use statements here — they conflict with the additionalData prepend.
+// =============================================================================
+
+// Convenience mixins for the most common Dawn patterns
+@mixin mobile-only {
+  @media screen and (max-width: 749px) {
+    @content;
+  }
+}
+
+@mixin tablet-up {
+  @media screen and (min-width: 750px) {
+    @content;
+  }
+}
+
+@mixin tablet-only {
+  @media screen and (min-width: 750px) and (max-width: 989px) {
+    @content;
+  }
+}
+
+@mixin tablet-down {
+  @media screen and (max-width: 989px) {
+    @content;
+  }
+}
+
+@mixin desktop-up {
+  @media screen and (min-width: 990px) {
+    @content;
+  }
+}
+
+// Generic breakpoint mixin: @include bp('desktop') { ... }
+@mixin bp($name) {
+  @if $name == 'mobile-only' {
+    @include mobile-only { @content; }
+  } @else if $name == 'tablet' or $name == 'tablet-up' {
+    @include tablet-up { @content; }
+  } @else if $name == 'tablet-only' {
+    @include tablet-only { @content; }
+  } @else if $name == 'tablet-down' {
+    @include tablet-down { @content; }
+  } @else if $name == 'desktop' or $name == 'desktop-up' {
+    @include desktop-up { @content; }
+  } @else {
+    @warn "Breakpoint `#{$name}` not recognised.";
+  }
+}
