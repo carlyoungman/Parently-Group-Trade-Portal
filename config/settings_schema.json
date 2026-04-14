@@ -123,24 +123,62 @@
     "name": "t:settings_schema.typography.name",
     "settings": [
       {
-        "type": "range",
-        "id": "heading_scale",
-        "min": 100,
-        "max": 150,
-        "step": 5,
-        "unit": "%",
-        "label": "t:settings_schema.typography.settings.heading_scale.label",
-        "default": 100
+        "type": "header",
+        "content": "t:settings_schema.typography.settings.header__font_sizes.content"
       },
       {
-        "type": "range",
-        "id": "body_scale",
-        "min": 100,
-        "max": 130,
-        "step": 5,
-        "unit": "%",
-        "label": "t:settings_schema.typography.settings.body_scale.label",
-        "default": 100
+        "type": "number",
+        "id": "body_font_size",
+        "label": "t:settings_schema.typography.settings.body_font_size.label",
+        "default": 1.6
+      },
+      {
+        "type": "number",
+        "id": "supersize_font_size",
+        "label": "t:settings_schema.typography.settings.supersize_font_size.label",
+        "default": 7.2
+      },
+      {
+        "type": "number",
+        "id": "h1_font_size",
+        "label": "t:settings_schema.typography.settings.h1_font_size.label",
+        "default": 4.0
+      },
+      {
+        "type": "number",
+        "id": "h2_font_size",
+        "label": "t:settings_schema.typography.settings.h2_font_size.label",
+        "default": 2.4
+      },
+      {
+        "type": "number",
+        "id": "h3_font_size",
+        "label": "t:settings_schema.typography.settings.h3_font_size.label",
+        "default": 1.8
+      },
+      {
+        "type": "number",
+        "id": "h4_font_size",
+        "label": "t:settings_schema.typography.settings.h4_font_size.label",
+        "default": 1.5
+      },
+      {
+        "type": "number",
+        "id": "h5_font_size",
+        "label": "t:settings_schema.typography.settings.h5_font_size.label",
+        "default": 1.3
+      },
+      {
+        "type": "number",
+        "id": "h6_font_size",
+        "label": "t:settings_schema.typography.settings.h6_font_size.label",
+        "default": 1.2
+      },
+      {
+        "type": "number",
+        "id": "small_font_size",
+        "label": "t:settings_schema.typography.settings.small_font_size.label",
+        "default": 1.0
       }
     ]
   },

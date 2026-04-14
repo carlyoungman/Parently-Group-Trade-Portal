@@ -197,9 +197,6 @@
         "type_header_font": {
           "label": "Font"
         },
-        "heading_scale": {
-          "label": "Scale"
-        },
         "header__1": {
           "content": "Headings"
         },
@@ -209,8 +206,35 @@
         "type_body_font": {
           "label": "Font"
         },
-        "body_scale": {
-          "label": "Scale"
+        "header__font_sizes": {
+          "content": "Font sizes"
+        },
+        "body_font_size": {
+          "label": "Body font size (rem)"
+        },
+        "supersize_font_size": {
+          "label": "Supersize font size (rem)"
+        },
+        "h1_font_size": {
+          "label": "H1 font size (rem)"
+        },
+        "h2_font_size": {
+          "label": "H2 font size (rem)"
+        },
+        "h3_font_size": {
+          "label": "H3 font size (rem)"
+        },
+        "h4_font_size": {
+          "label": "H4 font size (rem)"
+        },
+        "h5_font_size": {
+          "label": "H5 font size (rem)"
+        },
+        "h6_font_size": {
+          "label": "H6 font size (rem)"
+        },
+        "small_font_size": {
+          "label": "Small font size (rem)"
         }
       }
     },
@@ -414,19 +438,28 @@
       "heading_size": {
         "label": "Heading size",
         "options__1": {
-          "label": "Small"
+          "label": "Supersize"
         },
         "options__2": {
-          "label": "Medium"
+          "label": "H1"
         },
         "options__3": {
-          "label": "Large"
+          "label": "H2"
         },
         "options__4": {
-          "label": "Extra large"
+          "label": "H3"
         },
         "options__5": {
-          "label": "Extra extra large"
+          "label": "H4"
+        },
+        "options__6": {
+          "label": "H5"
+        },
+        "options__7": {
+          "label": "H6"
+        },
+        "options__8": {
+          "label": "Small"
         }
       },
       "image_shape": {
