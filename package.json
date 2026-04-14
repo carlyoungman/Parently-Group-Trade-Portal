@@ -12,8 +12,6 @@
     "lint": "eslint . && stylelint 'src/styles/**/*.scss'",
     "lint:js": "eslint .",
     "lint:css": "stylelint 'src/styles/**/*.scss'",
-    "format": "prettier --write .",
-    "format:check": "prettier --check ."
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.3.1",
