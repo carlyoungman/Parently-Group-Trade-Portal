@@ -98,8 +98,17 @@
         --font-heading-style: normal;
         --font-heading-weight: 700;
 
-        --font-body-scale: {{ settings.body_scale | divided_by: 100.0 }};
-        --font-heading-scale: {{ settings.heading_scale | times: 1.0 | divided_by: settings.body_scale }};
+        --font-supersize: {{ settings.supersize_font_size }}rem;
+        --font-h1: {{ settings.h1_font_size }}rem;
+        --font-h2: {{ settings.h2_font_size }}rem;
+        --font-h3: {{ settings.h3_font_size }}rem;
+        --font-h4: {{ settings.h4_font_size }}rem;
+        --font-h5: {{ settings.h5_font_size }}rem;
+        --font-h6: {{ settings.h6_font_size }}rem;
+        --font-small: {{ settings.small_font_size }}rem;
+
+        --font-body-scale: 1;
+        --font-heading-scale: 1;
 
         --media-padding: {{ settings.media_padding }}px;
         --media-border-opacity: {{ settings.media_border_opacity | divided_by: 100.0 }};
@@ -219,7 +228,7 @@
 
       html {
         box-sizing: border-box;
-        font-size: calc(var(--font-body-scale) * 62.5%);
+        font-size: 62.5%;
         height: 100%;
       }
 
@@ -229,18 +238,12 @@
         grid-template-columns: 100%;
         min-height: 100%;
         margin: 0;
-        font-size: 1.5rem;
+        font-size: {{ settings.body_font_size }}rem;
         letter-spacing: 0.06rem;
-        line-height: calc(1 + 0.8 / var(--font-body-scale));
+        line-height: 1.5;
         font-family: var(--font-body-family);
         font-style: var(--font-body-style);
         font-weight: var(--font-body-weight);
-      }
-
-      @media screen and (min-width: 750px) {
-        body {
-          font-size: 1.6rem;
-        }
       }
     {% endstyle %}
 
