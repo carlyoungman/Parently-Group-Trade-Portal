@@ -1269,7 +1269,7 @@
         "unit": "px",
         "label": "t:settings_schema.global.settings.corner_radius.label",
         "default": 40
-      },
+      }
     ]
   },
   {
@@ -1449,7 +1449,7 @@
         "id": "cart_drawer_collection",
         "label": "t:settings_schema.cart.settings.cart_drawer.collection.label",
         "info": "t:settings_schema.cart.settings.cart_drawer.collection.info"
-      },
+      }
     ]
   }
 ]
