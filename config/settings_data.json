@@ -18,9 +18,12 @@
             "background": "#FFFFFF",
             "background_gradient": "",
             "text": "#121212",
+            "heading_color": "#121212",
             "button": "#121212",
             "button_label": "#FFFFFF",
+            "button_hover": "#363636",
             "secondary_button_label": "#121212",
+            "secondary_button_hover": "#f4f4f4",
             "shadow": "#121212"
           }
         }
