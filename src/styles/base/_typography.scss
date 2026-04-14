@@ -9,7 +9,7 @@
 .text-body {
   font-size: 1.5rem;
   letter-spacing: 0.06rem;
-  line-height: calc(1 + 0.8 / var(--font-body-scale));
+  line-height: 1.5;
   font-family: var(--font-body-family);
   font-style: var(--font-body-style);
   font-weight: var(--font-body-weight);
@@ -21,103 +21,72 @@ h2,
 h3,
 h4,
 h5,
-.h0,
+h6,
+.supersize,
 .h1,
 .h2,
 .h3,
 .h4,
-.h5 {
+.h5,
+.h6,
+.small {
   font-family: var(--font-heading-family);
   font-style: var(--font-heading-style);
   font-weight: var(--font-heading-weight);
-  letter-spacing: calc(var(--font-heading-scale) * 0.06rem);
+  letter-spacing: 0.06rem;
   color: rgb(var(--color-heading));
-  line-height: calc(1 + 0.3 / max(1, var(--font-heading-scale)));
+  line-height: 1.3;
   word-break: break-word;
 }
 
 // Heading size scale
-.hxxl {
-  font-size: clamp(
-    calc(var(--font-heading-scale) * 5.6rem),
-    14vw,
-    calc(var(--font-heading-scale) * 7.2rem)
-  );
+.supersize {
+  font-size: var(--font-supersize);
   line-height: 1.1;
-}
-
-.hxl {
-  font-size: calc(var(--font-heading-scale) * 5rem);
-  line-height: calc(1 + 0.3 / max(1, var(--font-heading-scale)));
-
-  @include tablet-up {
-    font-size: calc(var(--font-heading-scale) * 6.2rem);
-  }
-}
-
-.h0 {
-  font-size: calc(var(--font-heading-scale) * 4rem);
-
-  @include tablet-up {
-    font-size: calc(var(--font-heading-scale) * 5.2rem);
-  }
 }
 
 h1,
 .h1 {
-  font-size: calc(var(--font-heading-scale) * 3rem);
-
-  @include tablet-up {
-    font-size: calc(var(--font-heading-scale) * 4rem);
-  }
+  font-size: var(--font-h1);
 }
 
 h2,
 .h2 {
-  font-size: calc(var(--font-heading-scale) * 2rem);
-
-  @include tablet-up {
-    font-size: calc(var(--font-heading-scale) * 2.4rem);
-  }
+  font-size: var(--font-h2);
 }
 
 h3,
 .h3 {
-  font-size: calc(var(--font-heading-scale) * 1.7rem);
-
-  @include tablet-up {
-    font-size: calc(var(--font-heading-scale) * 1.8rem);
-  }
+  font-size: var(--font-h3);
 }
 
 h4,
 .h4 {
-  font-family: var(--font-heading-family);
-  font-style: var(--font-heading-style);
-  font-size: calc(var(--font-heading-scale) * 1.5rem);
+  font-size: var(--font-h4);
 }
 
 h5,
 .h5 {
-  font-size: calc(var(--font-heading-scale) * 1.2rem);
-
-  @include tablet-up {
-    font-size: calc(var(--font-heading-scale) * 1.3rem);
-  }
+  font-size: var(--font-h5);
 }
 
 h6,
 .h6 {
+  font-size: var(--font-h6);
   color: rgba(var(--color-foreground), 0.75);
   margin-block-start: 1.67em;
   margin-block-end: 1.67em;
+}
+
+.small {
+  font-size: var(--font-small);
 }
 
 // Captions
 .caption {
   font-size: 1rem;
   letter-spacing: 0.07rem;
-  line-height: calc(1 + 0.7 / var(--font-body-scale));
+  line-height: 1.5;
 
   @include tablet-up {
     font-size: 1.2rem;
@@ -127,7 +96,7 @@ h6,
 .caption-with-letter-spacing {
   font-size: 1rem;
   letter-spacing: 0.13rem;
-  line-height: calc(1 + 0.2 / var(--font-body-scale));
+  line-height: 1.2;
   text-transform: uppercase;
 }
 
@@ -141,6 +110,14 @@ h6,
   letter-spacing: 0.18rem;
 }
 
+// Font-size modifiers for text_size blocks (supersize, h1–h6, small)
+@each $size in supersize, h1, h2, h3, h4, h5, h6, small {
+  .caption-with-letter-spacing--#{$size},
+  .subtitle--#{$size} {
+    font-size: var(--font-#{$size});
+  }
+}
+
 .caption-large,
 .customer .field input,
 .customer select,
@@ -148,7 +125,7 @@ h6,
 .form__label,
 .select__select {
   font-size: 1.3rem;
-  line-height: calc(1 + 0.5 / var(--font-body-scale));
+  line-height: 1.5;
   letter-spacing: 0.04rem;
 }
 
@@ -264,7 +241,7 @@ blockquote {
 
 h3 .icon-arrow,
 .h3 .icon-arrow {
-  width: calc(var(--font-heading-scale) * 1.5rem);
+  width: 1.5rem;
 }
 
 // Arrow animation
