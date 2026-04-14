@@ -133,14 +133,23 @@
         "text": {
           "label": "Text"
         },
+        "heading_color": {
+          "label": "Heading text"
+        },
         "button_background": {
           "label": "Solid button background"
         },
         "button_label": {
           "label": "Solid button label"
         },
+        "button_hover": {
+          "label": "Solid button hover/active background"
+        },
         "secondary_button_label": {
           "label": "Outline button"
+        },
+        "secondary_button_hover": {
+          "label": "Outline button hover/active background"
         },
         "shadow": {
           "label": "Shadow"
