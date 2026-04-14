@@ -60,6 +60,12 @@
           },
           {
             "type": "color",
+            "id": "heading_color",
+            "label": "t:settings_schema.colors.settings.heading_color.label",
+            "default": "#121212"
+          },
+          {
+            "type": "color",
             "id": "button",
             "label": "t:settings_schema.colors.settings.button_background.label",
             "default": "#121212"
@@ -72,9 +78,21 @@
           },
           {
             "type": "color",
+            "id": "button_hover",
+            "label": "t:settings_schema.colors.settings.button_hover.label",
+            "default": "#363636"
+          },
+          {
+            "type": "color",
             "id": "secondary_button_label",
             "label": "t:settings_schema.colors.settings.secondary_button_label.label",
             "default": "#121212"
+          },
+          {
+            "type": "color",
+            "id": "secondary_button_hover",
+            "label": "t:settings_schema.colors.settings.secondary_button_hover.label",
+            "default": "#f4f4f4"
           },
           {
             "type": "color",
