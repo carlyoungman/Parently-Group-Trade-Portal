@@ -1,0 +1,53 @@
+{
+  "extends": ["stylelint-config-standard-scss"],
+  "plugins": ["stylelint-order"],
+  "rules": {
+    "order/order": [
+      "custom-properties",
+      "declarations"
+    ],
+    "order/properties-alphabetical-order": null,
+
+    "scss/at-rule-no-unknown": true,
+    "color-no-invalid-hex": true,
+    "unit-no-unknown": true,
+    "property-no-unknown": true,
+    "declaration-block-no-duplicate-properties": true,
+
+    "selector-pseudo-class-no-unknown": [
+      true,
+      { "ignorePseudoClasses": ["global", "local"] }
+    ],
+    "selector-pseudo-element-no-unknown": true,
+
+    "scss/dollar-variable-pattern": "^[a-z][a-z0-9-]*$",
+    "scss/percent-placeholder-pattern": "^[a-z][a-z0-9-]*$",
+
+    "custom-property-pattern": null,
+    "selector-class-pattern": null,
+    "keyframes-name-pattern": null,
+    "no-duplicate-selectors": null,
+
+    "alpha-value-notation": null,
+    "color-function-notation": null,
+
+    "scss/at-use-no-unnamespaced": null,
+    "scss/comment-no-empty": null,
+
+    "media-feature-range-notation": null,
+    "selector-not-notation": null,
+    "no-descending-specificity": null,
+    "declaration-block-no-redundant-longhand-properties": null,
+    "selector-pseudo-element-colon-notation": null,
+    "length-zero-no-unit": null,
+
+    "shorthand-property-no-redundant-values": null,
+    "scss/no-global-function-names": null,
+    "value-keyword-case": null,
+    "font-family-name-quotes": null
+  },
+  "ignoreFiles": [
+    "assets/**",
+    "node_modules/**"
+  ]
+}

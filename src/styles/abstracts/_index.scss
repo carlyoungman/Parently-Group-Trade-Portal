@@ -1,0 +1,13 @@
+// =============================================================================
+// ABSTRACTS INDEX
+// Used as the target for @use 'abstracts' as * in partials.
+// Import order: variables → functions → breakpoints → mixins
+//
+// All files forwarded here must have NO @use statements of their own
+// (they receive variables/mixins via the global scope from this module).
+// =============================================================================
+
+@forward 'variables';
+@forward 'functions';
+@forward 'breakpoints';
+@forward 'mixins';
