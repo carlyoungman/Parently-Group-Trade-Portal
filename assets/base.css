@@ -2938,7 +2938,7 @@ details-disclosure > details {
   word-break: break-word;
 }
 
-.gradient {
+.secondary-background {
   background: rgb(var(--color-background));
   background: var(--gradient-background);
   background-attachment: fixed;

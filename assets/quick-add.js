@@ -50,7 +50,7 @@ if (!customElements.get('quick-add-modal')) {
 
       preprocessHTML(productElement) {
         productElement.classList.forEach((classApplied) => {
-          if (classApplied.startsWith('color-') || classApplied === 'gradient')
+          if (classApplied.startsWith('color-') || classApplied === 'secondary-background')
             this.modalContent.classList.add(classApplied);
         });
         this.preventDuplicatedIDs(productElement);
