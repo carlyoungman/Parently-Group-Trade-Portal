@@ -51,9 +51,9 @@
         {% assign scheme = settings.color_schemes | first %}
         --color-background: {{ scheme.settings.background.red }},{{ scheme.settings.background.green }},{{ scheme.settings.background.blue }};
         {% if scheme.settings.background_gradient != empty -%}
-          --gradient-background: {{ scheme.settings.background_gradient }};
+          --secondary-background-background: {{ scheme.settings.background_gradient }};
         {%- else -%}
-          --gradient-background: {{ scheme.settings.background }};
+          --secondary-background-background: {{ scheme.settings.background }};
         {%- endif %}
         --color-foreground: {{ scheme.settings.text.red }},{{ scheme.settings.text.green }},{{ scheme.settings.text.blue }};
         --color-button: {{ scheme.settings.button.red }},{{ scheme.settings.button.green }},{{ scheme.settings.button.blue }};
@@ -101,7 +101,7 @@
     {{ 'template-giftcard.css' | asset_url | stylesheet_tag }}
   </head>
 
-  <body class="gradient gift-card">
+  <body class="secondary-background gift-card">
     <header>
       <div class="gift-card__price">
         <h1>

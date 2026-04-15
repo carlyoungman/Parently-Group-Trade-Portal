@@ -42,9 +42,9 @@
 
 /* === Absolute Header Mode === */
 
-/* Transparent base — override both background-color and the .gradient shorthand */
+/* Transparent base — override both background-color and the .secondary-background shorthand */
 .header-wrapper.header-wrapper--absolute,
-.header-wrapper.header-wrapper--absolute.gradient {
+.header-wrapper.header-wrapper--absolute.secondary-background {
   background-color: transparent;
   background: transparent;
   transition: background-color 0.3s ease, background 0.3s ease, border-bottom-color 0.3s ease;
@@ -56,7 +56,7 @@
 
 /* Sticky state — solid background using the merchant-chosen colour */
 .scrolled-past-header .header-wrapper--absolute,
-.scrolled-past-header .header-wrapper--absolute.gradient {
+.scrolled-past-header .header-wrapper--absolute.secondary-background {
   background-color: var(--sticky-header-bg, rgb(var(--color-background)));
   background: var(--sticky-header-bg, rgb(var(--color-background)));
   border-bottom-color: rgba(var(--color-foreground), 0.08);
@@ -662,7 +662,7 @@ details-disclosure > details {
   word-break: break-word;
 }
 
-.gradient {
+.secondary-background {
   background: rgb(var(--color-secondary-background));
 }
 

@@ -472,7 +472,7 @@
       </summary>
       <facet-filters-form>
         <form id="FacetFiltersFormMobile" class="mobile-facets">
-          <div class="mobile-facets__inner gradient">
+          <div class="mobile-facets__inner secondary-background">
             <div class="mobile-facets__header">
               <div class="mobile-facets__header-inner">
                 <h2 class="mobile-facets__heading medium-hide large-up-hide">
@@ -505,7 +505,7 @@
             </div>
             <div
               id="FacetsWrapperMobile"
-              class="mobile-facets__main has-submenu gradient"
+              class="mobile-facets__main has-submenu secondary-background"
             >
               {%- if enable_filtering -%}
                 {%- for filter in results.filters -%}
@@ -535,7 +535,7 @@
                         </summary>
                         <div
                           id="FacetMobile-{{ forloop.index }}-{{ section.id }}"
-                          class="mobile-facets__submenu gradient"
+                          class="mobile-facets__submenu secondary-background"
                         >
                           <button
                             class="mobile-facets__close-button link link--text focus-inset"
@@ -645,7 +645,7 @@
                             {%- endfor -%}
                           </ul>
 
-                          <div class="mobile-facets__footer gradient">
+                          <div class="mobile-facets__footer secondary-background">
                             <facet-remove class="mobile-facets__clear-wrapper">
                               <a href="{{ filter.url_to_remove }}" class="mobile-facets__clear underlined-link">
                                 {{- 'products.facets.clear' | t -}}
@@ -677,7 +677,7 @@
                         </summary>
                         <div
                           id="FacetMobile-{{ forloop.index }}-{{ section.id }}"
-                          class="mobile-facets__submenu gradient"
+                          class="mobile-facets__submenu secondary-background"
                         >
                           <button
                             class="mobile-facets__close-button link link--text focus-inset"
