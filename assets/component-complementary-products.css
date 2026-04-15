@@ -70,9 +70,9 @@ product-recommendations.is-accordion + .accordion {
 
 .complementary-products > .summary__title .icon-accordion {
   fill: rgb(var(--color-foreground));
-  height: calc(var(--font-heading-scale) * 2rem);
-  margin-right: calc(var(--font-heading-scale) * 1rem);
-  width: calc(var(--font-heading-scale) * 2rem);
+  height: 2rem;
+  margin-right: 1rem;
+  width: 2rem;
 }
 
 .complementary-products__container .card--card .card__content,

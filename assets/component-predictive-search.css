@@ -200,7 +200,7 @@ predictive-search[loading] .predictive-search__results-groups-wrapper ~ .predict
   align-items: center;
   padding: 1.3rem 2rem;
   word-break: break-all;
-  line-height: calc(1 + 0.4 / var(--font-body-scale));
+  line-height: 1.4;
 }
 
 @media screen and (min-width: 750px) {
@@ -211,10 +211,10 @@ predictive-search[loading] .predictive-search__results-groups-wrapper ~ .predict
 }
 
 .predictive-search__item--term .icon-arrow {
-  width: calc(var(--font-heading-scale) * 1.4rem);
-  height: calc(var(--font-heading-scale) * 1.4rem);
+  width: 1.4rem;
+  height: 1.4rem;
   flex-shrink: 0;
-  margin-left: calc(var(--font-heading-scale) * 2rem);
+  margin-left: 2rem;
   color: rgb(var(--color-link));
 }
 
