@@ -3,16 +3,6 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "scripts": {
-    "dev": "sass --watch src/styles/entries:assets --load-path src/styles --no-source-map",
-    "dev:react": "concurrently \"sass --watch src/styles/entries:assets --load-path src/styles --no-source-map\" \"vite build --watch\"",
-    "build": "npm run build:css",
-    "build:css": "sass src/styles/entries:assets --load-path src/styles --no-source-map --style=compressed",
-    "build:react": "npm run build:css && vite build",
-    "lint": "eslint . && stylelint 'src/styles/**/*.scss'",
-    "lint:js": "eslint .",
-    "lint:css": "stylelint 'src/styles/**/*.scss'",
-  },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.3.1",
     "concurrently": "^9.2.1",
