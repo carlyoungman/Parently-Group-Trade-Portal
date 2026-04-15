@@ -318,10 +318,6 @@
   background: transparent;
 }
 
-/* Needed for gradient continuity with or without animation, the transform scopes the gradient to its container which happens already when animation are turned on */
-.image-with-text .secondary-background {
-  transform: perspective(0);
-}
 
 .image-with-text__content {
   border-radius: var(--text-boxes-radius);

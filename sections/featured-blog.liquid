@@ -24,7 +24,7 @@
     assign posts_displayed = section.settings.post_limit
   endif
 -%}
-<div class="blog color-scheme-1 secondary-background{% if section.settings.heading == blank %} no-heading{% endif %}">
+<div class="blog color-scheme-1{% if section.settings.heading == blank %} no-heading{% endif %}">
   <div class="page-width-desktop isolate{% if posts_displayed < 3 %} page-width-tablet{% endif %} section-{{ section.id }}-padding">
     {%- unless section.settings.heading == blank -%}
       <div class="title-wrapper-with-link{% if posts_displayed > 2 %} title-wrapper--self-padded-tablet-down{% else %} title-wrapper--self-padded-mobile{% endif %} title-wrapper--no-top-margin">
@@ -95,13 +95,13 @@
                 <div
                   class="
                     card article-card card--{{ settings.blog_card_style }}
-                    {% if settings.blog_card_style == 'card' %} color-scheme-1 secondary-background{% endif %}
+                    {% if settings.blog_card_style == 'card' %} color-scheme-1{% endif %}
                     {% if section.settings.show_image %} card--media{% else %} card--text{% endif %}
                   "
                   style=" {% if settings.blog_card_style == 'standard' %} --ratio-percent: 100%;{% elsif settings.blog_card_style == 'card' %} --ratio-percent: 0%;{% endif %}"
                 >
                   <div
-                    class="card__inner{% if settings.blog_card_style == 'standard' %} color-scheme-1 secondary-background{% endif %} ratio"
+                    class="card__inner{% if settings.blog_card_style == 'standard' %} color-scheme-1{% endif %} ratio"
                     style="--ratio-percent: 80%;"
                   >
                     {%- if section.settings.show_image == true -%}

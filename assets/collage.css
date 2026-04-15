@@ -118,10 +118,6 @@
   padding: var(--image-padding);
 }
 
-/* Needed for gradient continuity with or without animation, background-attachment: local scopes the gradient to its container which happens automatically when a transform is applied (animation on scroll) */
-.collage-card.secondary-background {
-  transform: perspective(0);
-}
 
 .collage-card:after {
   content: '';

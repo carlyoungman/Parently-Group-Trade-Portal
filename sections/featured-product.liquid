@@ -68,16 +68,16 @@
 
   {% assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' %}
 
-  <section class="color-scheme-1 {% if section.settings.secondary_background %}background-secondary{% else %}secondary-background{% endif %}">
+  <section class="color-scheme-1 {% if section.settings.secondary_background %}background-secondary{% else %}{% endif %}">
     <div class="page-width section-{{ section.id }}-padding{% if section.settings.secondary_background %} isolate{% endif %}">
-      <div class="featured-product product product--{{ section.settings.media_size }} grid grid--1-col secondary-background color-scheme-1 product--{{ section.settings.media_position }}{% if section.settings.secondary_background == false %} isolate{% endif %} {% if product.media.size > 0 or section.settings.product == blank %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
+      <div class="featured-product product product--{{ section.settings.media_size }} grid grid--1-col color-scheme-1 product--{{ section.settings.media_position }}{% if section.settings.secondary_background == false %} isolate{% endif %} {% if product.media.size > 0 or section.settings.product == blank %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
         <div class="grid__item product__media-wrapper">
           {%- unless placeholder -%}
             {% render 'product-media-gallery', product: product, variant_images: variant_images, limit: 1 %}
           {%- else -%}
             <div class="product__media-item">
               <div
-                class="product-media-container global-media-settings secondary-background{% if section.settings.constrain_to_viewport %} constrain-height{% endif %}"
+                class="product-media-container global-media-settings{% if section.settings.constrain_to_viewport %} constrain-height{% endif %}"
                 style="--ratio: 1.0; --preview-ratio: 1.0;"
               >
                 {{ 'product-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
