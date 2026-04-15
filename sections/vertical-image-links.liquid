@@ -13,6 +13,10 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+
+  .section-{{ section.id }} .vertical-image-links__card {
+    aspect-ratio: {{ section.settings.card_aspect_ratio }};
+  }
 {%- endstyle -%}
 
 {%- liquid
@@ -25,7 +29,7 @@
   endfor
 -%}
 
-<vertical-image-links-component class="vertical-image-links color-scheme-1 gradient section-{{ section.id }}-padding">
+<vertical-image-links-component class="vertical-image-links color-scheme-1 gradient section-{{ section.id }}-padding section-{{ section.id }}">
   <div class="vertical-image-links__inner page-width">
 
     {%- comment -%} LEFT COLUMN — heading, text, buttons {%- endcomment -%}
@@ -150,6 +154,20 @@
   },
   "max_blocks": 12,
   "settings": [
+    {
+      "type": "select",
+      "id": "card_aspect_ratio",
+      "label": "Card aspect ratio",
+      "info": "Controls how many cards are visible at once. Wider ratios show more cards.",
+      "default": "16 / 9",
+      "options": [
+        { "value": "3 / 4", "label": "Portrait (3:4) — ~1 card" },
+        { "value": "1 / 1", "label": "Square (1:1) — ~2 cards" },
+        { "value": "4 / 3", "label": "Landscape (4:3) — ~2 cards" },
+        { "value": "16 / 9", "label": "Widescreen (16:9) — ~3 cards" },
+        { "value": "2 / 1", "label": "Ultra-wide (2:1) — ~3–4 cards" }
+      ]
+    },
     {
       "type": "header",
       "content": "Section padding"
