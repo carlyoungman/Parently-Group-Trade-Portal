@@ -148,7 +148,8 @@
       "scheme-1": {
         "settings": {
           "background": "#ffffff",
-          "background_gradient": "",
+          "secondary_background": "#f5f5f5",
+          "header_background": "#ffffff",
           "text": "#585858",
           "heading_color": "#000000",
           "button": "#73ae70",
@@ -168,7 +169,8 @@
         "scheme-1": {
           "settings": {
             "background": "#FFFFFF",
-            "background_gradient": "",
+            "secondary_background": "#f5f5f5",
+            "header_background": "#ffffff",
             "text": "#121212",
             "heading_color": "#121212",
             "button": "#121212",
