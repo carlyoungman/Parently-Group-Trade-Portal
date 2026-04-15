@@ -3,6 +3,14 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
+  "scripts": {
+    "build:css": "npx sass assets/styles/theme.scss assets/theme.css --style=compressed --no-source-map",
+    "build:css:dev": "npx sass assets/styles/theme.scss assets/theme.css --style=expanded --source-map",
+    "watch:css": "npx sass --watch assets/styles/theme.scss:assets/theme.css --style=expanded --source-map",
+    "build": "npm run build:css",
+    "lint:css": "stylelint 'assets/styles/**/*.scss'",
+    "format:css": "prettier --write 'assets/styles/**/*.scss'"
+  },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.3.1",
     "concurrently": "^9.2.1",

@@ -1,0 +1,222 @@
+// =============================================================================
+// SCSS Mixins
+// =============================================================================
+@use 'variables' as *;
+
+// -----------------------------------------------------------------------------
+// Responsive breakpoints
+// -----------------------------------------------------------------------------
+
+/// Apply styles at small (tablet+) breakpoint and above
+@mixin breakpoint-sm {
+  @media screen and (min-width: #{$bp-small}) {
+    @content;
+  }
+}
+
+/// Apply styles at medium (desktop+) breakpoint and above
+@mixin breakpoint-md {
+  @media screen and (min-width: #{$bp-medium}) {
+    @content;
+  }
+}
+
+/// Apply styles at large breakpoint and above
+@mixin breakpoint-lg {
+  @media screen and (min-width: #{$bp-large}) {
+    @content;
+  }
+}
+
+/// Apply styles below small breakpoint (mobile only)
+@mixin mobile-only {
+  @media screen and (max-width: #{$bp-small - 1px}) {
+    @content;
+  }
+}
+
+/// Apply styles below medium breakpoint (tablet and below)
+@mixin tablet-down {
+  @media screen and (max-width: #{$bp-medium - 1px}) {
+    @content;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Accessibility
+// -----------------------------------------------------------------------------
+
+/// Visually hide an element while keeping it accessible to screen readers
+@mixin visually-hidden {
+  position: absolute !important;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0 0 0 0);
+  word-wrap: normal !important;
+}
+
+/// Reset visually-hidden (reveal the element)
+@mixin visually-shown($position: relative) {
+  position: $position !important;
+  overflow: auto;
+  width: auto;
+  height: auto;
+  margin: 0;
+  clip: auto;
+}
+
+// -----------------------------------------------------------------------------
+// Focus styles (matching Dawn's focus system)
+// -----------------------------------------------------------------------------
+
+/// Standard focus ring using CSS custom properties
+@mixin focus-ring {
+  outline: var(--focused-base-outline, 0.2rem solid rgba(var(--color-foreground), 0.5));
+  outline-offset: var(--focused-base-outline-offset, 0.3rem);
+  box-shadow: var(--focused-base-box-shadow, 0 0 0 0.3rem rgb(var(--color-background)), 0 0 0.5rem 0.4rem rgba(var(--color-foreground), 0.3));
+}
+
+/// Remove focus ring (e.g. for mouse users via :focus:not(:focus-visible))
+@mixin no-focus-ring {
+  box-shadow: none;
+  outline: 0;
+}
+
+// -----------------------------------------------------------------------------
+// Card shadow (reusable drop-shadow pattern)
+// -----------------------------------------------------------------------------
+
+/// Apply the themed card/component shadow using CSS custom properties
+@mixin component-shadow {
+  box-shadow:
+    var(--shadow-horizontal-offset)
+    var(--shadow-vertical-offset)
+    var(--shadow-blur-radius)
+    rgba(var(--color-shadow), var(--shadow-opacity));
+}
+
+/// Apply themed media drop-shadow (used for image shapes)
+@mixin media-drop-shadow {
+  filter: drop-shadow(
+    var(--shadow-horizontal-offset)
+    var(--shadow-vertical-offset)
+    var(--shadow-blur-radius)
+    rgba(var(--color-shadow), var(--shadow-opacity))
+  );
+}
+
+// -----------------------------------------------------------------------------
+// Card border (reusable border pattern)
+// -----------------------------------------------------------------------------
+
+/// Apply the themed card border using CSS custom properties
+@mixin component-border {
+  border-radius: var(--border-radius);
+  border: var(--border-width) solid rgba(var(--color-foreground), var(--border-opacity));
+}
+
+// -----------------------------------------------------------------------------
+// Typography
+// -----------------------------------------------------------------------------
+
+/// Responsive font size that scales with CSS custom property
+@mixin fluid-type($var) {
+  font-size: calc(var(#{$var}) * var(--font-heading-scale));
+}
+
+/// Small/caption text style
+@mixin caption-text {
+  font-size: var(--font-small);
+  letter-spacing: 0.07rem;
+}
+
+// -----------------------------------------------------------------------------
+// Layout
+// -----------------------------------------------------------------------------
+
+/// Full-bleed section with page-width content container
+@mixin section-container {
+  max-width: var(--page-width);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+
+  @include breakpoint-sm {
+    padding: 0 5rem;
+  }
+}
+
+/// Flex row with gap
+@mixin flex-row($gap: $spacing-md, $align: center) {
+  display: flex;
+  align-items: $align;
+  gap: $gap;
+}
+
+/// CSS Grid with equal columns
+@mixin grid-columns($cols: 2, $gap: null) {
+  display: grid;
+  grid-template-columns: repeat(#{$cols}, 1fr);
+
+  @if $gap {
+    gap: $gap;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Buttons
+// -----------------------------------------------------------------------------
+
+/// Base button reset / shared button styles
+@mixin button-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 0;
+  text-decoration: none;
+  appearance: none;
+}
+
+// -----------------------------------------------------------------------------
+// Hover effects (matching Dawn animation settings)
+// -----------------------------------------------------------------------------
+
+/// Image scale on hover (Dawn's default product image hover)
+@mixin hover-image-scale($scale: 1.03, $duration: var(--duration-long)) {
+  transition: transform #{$duration} ease;
+
+  &:hover {
+    transform: scale($scale);
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Truncation
+// -----------------------------------------------------------------------------
+
+/// Single-line text truncation with ellipsis
+@mixin truncate {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+// -----------------------------------------------------------------------------
+// Ratio / aspect-ratio box (legacy padding-bottom trick)
+// -----------------------------------------------------------------------------
+
+@mixin aspect-ratio($width: 1, $height: 1) {
+  position: relative;
+
+  &::before {
+    content: '';
+    display: block;
+    padding-bottom: percentage(math.div($height, $width));
+  }
+}
