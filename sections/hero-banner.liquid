@@ -37,6 +37,19 @@
   }
 {%- endstyle -%}
 
+{%- if section.settings.white_text -%}
+  {%- style -%}
+    #Banner-{{ section.id }} .banner__heading,
+    #Banner-{{ section.id }} .banner__text,
+    #Banner-{{ section.id }} .banner__text p {
+      color: #ffffff;
+    }
+    #Banner-{{ section.id }} .banner__buttons .button {
+      color: #ffffff;
+    }
+  {%- endstyle -%}
+{%- endif -%}
+
 {%- liquid
   assign full_width = '100vw'
   assign widths = '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840'
@@ -286,6 +299,12 @@
     {
       "type": "header",
       "content": "t:sections.image-banner.settings.content.content"
+    },
+    {
+      "type": "checkbox",
+      "id": "white_text",
+      "default": false,
+      "label": "t:sections.hero-banner.settings.white_text.label"
     },
     {
       "type": "select",
