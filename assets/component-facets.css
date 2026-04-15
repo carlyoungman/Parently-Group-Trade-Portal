@@ -109,7 +109,7 @@
   border-radius: 0;
   font-size: 1.4rem;
   height: auto;
-  line-height: calc(1 + 0.5 / var(--font-body-scale));
+  line-height: 1.5;
   margin: 0;
   padding-left: 0;
   padding-right: 1.75rem;
@@ -231,14 +231,14 @@
 
 .facets__and-helptext {
   color: rgba(var(--color-foreground), 0.5);
-  font-size: calc(var(--font-heading-scale) * 1.2rem);
-  line-height: calc(var(--font-heading-scale) * 1.2rem);
+  font-size: var(--font-h6);
+  line-height: 1.2rem;
 }
 
 @media only screen and (min-width: 750px) {
   .facets__and-helptext {
-    font-size: calc(var(--font-heading-scale) * 1.3rem);
-    line-height: calc(var(--font-heading-scale) * 1.3rem);
+    font-size: var(--font-h5);
+    line-height: 1.3rem;
   }
 }
 
@@ -257,7 +257,7 @@
 }
 
 .facets__summary > span {
-  line-height: calc(1 + 0.3 / var(--font-body-scale));
+  line-height: 1.3;
 }
 
 .facets__summary .icon-caret {
@@ -815,7 +815,7 @@ a.active-facets__button.focused .active-facets__button-inner {
 }
 
 .mobile-facets__heading {
-  font-size: calc(var(--font-heading-scale) * 1.4rem);
+  font-size: 1.4rem;
   margin: 0;
 }
 
@@ -1104,7 +1104,7 @@ input.mobile-facets__checkbox {
 
 .product-count__text {
   font-size: 1.4rem;
-  line-height: calc(1 + 0.5 / var(--font-body-scale));
+  line-height: 1.5;
   margin: 0;
 }
 

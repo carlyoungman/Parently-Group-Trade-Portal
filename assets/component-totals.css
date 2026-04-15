@@ -10,7 +10,7 @@
 }
 
 .totals > h2 {
-  font-size: calc(var(--font-heading-scale) * 1.6rem);
+  font-size: 1.6rem;
 }
 
 .totals * {
