@@ -36,9 +36,58 @@
         "padding_top": 44,
         "padding_bottom": 36
       }
+    },
+    "hero_banner_KjxajN": {
+      "type": "hero-banner",
+      "blocks": {
+        "text_WcJJU7": {
+          "type": "text",
+          "settings": {
+            "text": "Welcome to The Parently Group Trade Porta",
+            "text_style": "body"
+          }
+        },
+        "heading_3AFj7W": {
+          "type": "heading",
+          "settings": {
+            "heading": "We're passionate about growing brands that fit family lifestyles",
+            "heading_size": "supersize"
+          }
+        },
+        "buttons_L3Re7V": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "Login",
+            "button_link_1": "",
+            "button_style_secondary_1": false,
+            "button_label_2": "Become a retailer",
+            "button_link_2": "",
+            "button_style_secondary_2": true
+          }
+        }
+      },
+      "block_order": [
+        "text_WcJJU7",
+        "heading_3AFj7W",
+        "buttons_L3Re7V"
+      ],
+      "name": "t:sections.hero-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/hero.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "large",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-left",
+        "desktop_content_alignment": "left",
+        "show_text_box": false,
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "left",
+        "show_text_below": false
+      }
     }
   },
   "order": [
-    "featured_collection"
+    "featured_collection",
+    "hero_banner_KjxajN"
   ]
 }

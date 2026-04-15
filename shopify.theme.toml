@@ -1,0 +1,7 @@
+[environments.dev]
+store = "parentlygroup.myshopify.com"
+theme = "195693969672"
+ignore = [
+    "config/settings_data.json",  # Never overwrite settings accidentally
+    "templates/*.json"            # Optional: if admin may change layouts
+]
