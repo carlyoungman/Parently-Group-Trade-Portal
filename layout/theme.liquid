@@ -38,7 +38,7 @@
 
     {{ content_for_header }}
 
-    {{- 'theme.scss.liquid' | asset_url | stylesheet_tag -}}
+    {{- 'theme-settings.css.liquid' | asset_url | stylesheet_tag -}}
     {{- 'theme.css' | asset_url | stylesheet_tag -}}
 
     {%- if localization.available_countries.size > 1 or localization.available_languages.size > 1 -%}
