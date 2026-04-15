@@ -127,94 +127,58 @@
         "content": "t:settings_schema.typography.settings.header__font_sizes.content"
       },
       {
-        "type": "range",
+        "type": "text",
         "id": "body_font_size",
-        "min": 0.8,
-        "max": 3.0,
-        "step": 0.1,
-        "unit": "rem",
         "label": "t:settings_schema.typography.settings.body_font_size.label",
-        "default": 1.6
+        "default": "1.6"
       },
       {
-        "type": "range",
+        "type": "text",
         "id": "supersize_font_size",
-        "min": 2.0,
-        "max": 15.0,
-        "step": 0.1,
-        "unit": "rem",
         "label": "t:settings_schema.typography.settings.supersize_font_size.label",
-        "default": 7.2
+        "default": "7.2"
       },
       {
-        "type": "range",
+        "type": "text",
         "id": "h1_font_size",
-        "min": 1.5,
-        "max": 8.0,
-        "step": 0.1,
-        "unit": "rem",
         "label": "t:settings_schema.typography.settings.h1_font_size.label",
-        "default": 4.0
+        "default": "4.0"
       },
       {
-        "type": "range",
+        "type": "text",
         "id": "h2_font_size",
-        "min": 1.2,
-        "max": 6.0,
-        "step": 0.1,
-        "unit": "rem",
         "label": "t:settings_schema.typography.settings.h2_font_size.label",
-        "default": 2.4
+        "default": "2.4"
       },
       {
-        "type": "range",
+        "type": "text",
         "id": "h3_font_size",
-        "min": 1.0,
-        "max": 4.0,
-        "step": 0.1,
-        "unit": "rem",
         "label": "t:settings_schema.typography.settings.h3_font_size.label",
-        "default": 1.8
+        "default": "1.8"
       },
       {
-        "type": "range",
+        "type": "text",
         "id": "h4_font_size",
-        "min": 0.9,
-        "max": 3.0,
-        "step": 0.1,
-        "unit": "rem",
         "label": "t:settings_schema.typography.settings.h4_font_size.label",
-        "default": 1.5
+        "default": "1.5"
       },
       {
-        "type": "range",
+        "type": "text",
         "id": "h5_font_size",
-        "min": 0.8,
-        "max": 2.5,
-        "step": 0.1,
-        "unit": "rem",
         "label": "t:settings_schema.typography.settings.h5_font_size.label",
-        "default": 1.3
+        "default": "1.3"
       },
       {
-        "type": "range",
+        "type": "text",
         "id": "h6_font_size",
-        "min": 0.7,
-        "max": 2.0,
-        "step": 0.1,
-        "unit": "rem",
         "label": "t:settings_schema.typography.settings.h6_font_size.label",
-        "default": 1.2
+        "default": "1.2"
       },
       {
-        "type": "range",
+        "type": "text",
         "id": "small_font_size",
-        "min": 0.6,
-        "max": 1.5,
-        "step": 0.1,
-        "unit": "rem",
         "label": "t:settings_schema.typography.settings.small_font_size.label",
-        "default": 1.0
+        "default": "1.0"
       }
     ]
   },

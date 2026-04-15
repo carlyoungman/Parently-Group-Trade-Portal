@@ -4,12 +4,12 @@ quick-order-list {
 }
 
 quick-order-list .quantity {
-  width: calc(11rem / var(--font-body-scale) + var(--inputs-border-width) * 2);
+  width: calc(11rem + var(--inputs-border-width) * 2);
   min-height: calc((var(--inputs-border-width) * 2) + 3.5rem);
 }
 
 quick-order-list .quantity__button {
-  width: calc(3.5rem / var(--font-body-scale));
+  width: 3.5rem;
 }
 
 quick-order-list .pagination-wrapper {
@@ -143,7 +143,7 @@ quick-order-list .pagination-wrapper {
 
 .variant-item__details {
   font-size: 1.6rem;
-  line-height: calc(1 + 0.4 / var(--font-body-scale));
+  line-height: 1.4;
 }
 
 .variant-item__details > * {
@@ -160,7 +160,7 @@ quick-order-list .pagination-wrapper {
   display: block;
   font-size: 1.6rem;
   letter-spacing: 0.06rem;
-  line-height: calc(1 + 0.5 / var(--font-body-scale));
+  line-height: 1.5;
 }
 
 .variant-item__sku {
@@ -240,7 +240,7 @@ quick-order-list .pagination-wrapper {
 }
 
 .quick-order-list-remove-button .button {
-  min-width: calc(1.5rem / var(--font-body-scale));
+  min-width: 1.5rem;
   min-height: 1.5rem;
   padding: 0;
   margin: 0 0.1rem 0.1rem 0;
@@ -353,7 +353,7 @@ quick-order-list .pagination-wrapper {
 
 .variant-item__error-text {
   font-size: 1.2rem;
-  line-height: calc(1 + 0.2 / var(--font-body-scale));
+  line-height: 1.2;
   order: 1;
 }
 
@@ -527,7 +527,7 @@ quick-order-list .pagination-wrapper {
   }
 
   .quick-order-list__total-items {
-    width: calc(((11rem / var(--font-body-scale) + var(--inputs-border-width) * 2)));
+    width: calc(11rem + var(--inputs-border-width) * 2);
     margin-left: calc(15px + 3.4rem);
     flex-direction: column;
   }

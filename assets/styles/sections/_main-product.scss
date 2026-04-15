@@ -119,7 +119,7 @@ product-info {
   background-color: rgba(var(--color-button), var(--alpha-button-background));
   color: rgb(var(--color-button-text));
   font-size: 1.4rem;
-  line-height: calc(1 + 0.2 / var(--font-body-scale));
+  line-height: 1.2;
   letter-spacing: 0.07rem;
 }
 
@@ -135,7 +135,7 @@ product-info {
 .shopify-payment-button__more-options {
   margin: 1.6rem 0 1rem;
   font-size: 1.2rem;
-  line-height: calc(1 + 0.5 / var(--font-body-scale));
+  line-height: 1.5;
   letter-spacing: 0.05rem;
   text-decoration: underline;
   text-underline-offset: 0.3rem;
@@ -1215,8 +1215,8 @@ a.product__text {
 
 /* Icon with text */
 .icon-with-text {
-  --icon-size: calc(var(--font-heading-scale) * 3rem);
-  --icon-spacing: calc(var(--font-heading-scale) * 1rem);
+  --icon-size: 3rem;
+  --icon-spacing: 1rem;
 }
 
 .icon-with-text--horizontal {
@@ -1227,7 +1227,7 @@ a.product__text {
 }
 
 .icon-with-text--vertical {
-  --icon-size: calc(var(--font-heading-scale) * 2rem);
+  --icon-size: 2rem;
 }
 
 .icon-with-text .svg-wrapper {
@@ -1466,7 +1466,7 @@ a.product__text {
 }
 
 .recipient-form ul {
-  line-height: calc(1 + 0.6 / var(--font-body-scale));
+  line-height: 1.6;
   padding-left: 4.4rem;
   text-align: left;
 }

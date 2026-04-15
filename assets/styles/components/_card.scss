@@ -146,7 +146,7 @@
 
 .card-information .card__information-volume-pricing-note {
   margin-top: 0.6rem;
-  line-height: calc(0.5 + 0.4 / var(--font-body-scale));
+  line-height: 0.9;
   color: rgba(var(--color-foreground), 0.75);
 }
 
@@ -197,7 +197,7 @@
   }
 
   .grid--6-col-desktop .card__content quick-add-bulk .quantity__button {
-    width: calc(3rem / var(--font-body-scale));
+    width: 3rem;
   }
 
   .grid--6-col-desktop .card__information-volume-pricing-note--button + .global-settings-popup.quantity-popover__info {
@@ -216,7 +216,7 @@
 
 @media screen and (max-width: 749px) {
   .grid--2-col-tablet-down .card__content quick-add-bulk .quantity__button {
-    width: calc(3.5rem / var(--font-body-scale));
+    width: 3.5rem;
   }
 
   .grid--2-col-tablet-down
@@ -313,7 +313,7 @@
 .card--horizontal .card__heading,
 .card--horizontal .price__container .price-item,
 .card--horizontal__quick-add {
-  font-size: calc(var(--font-heading-scale) * 1.2rem);
+  font-size: var(--font-h6);
 }
 
 .card--horizontal
@@ -331,7 +331,7 @@
   .card--horizontal .card__heading,
   .card--horizontal .price__container .price-item,
   .card--horizontal__quick-add {
-    font-size: calc(var(--font-heading-scale) * 1.3rem);
+    font-size: var(--font-h5);
   }
 }
 
@@ -471,7 +471,7 @@
 }
 
 .card-information > * {
-  line-height: calc(1 + 0.4 / var(--font-body-scale));
+  line-height: 1.4;
   color: rgb(var(--color-foreground));
 }
 

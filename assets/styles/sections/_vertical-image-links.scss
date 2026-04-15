@@ -29,7 +29,7 @@ vertical-image-links-component {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 4rem calc(4rem / var(--font-body-scale));
+  padding: 4rem;
   gap: 2rem;
 }
 
