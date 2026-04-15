@@ -14,7 +14,7 @@
 {% # theme-check-disable %}
 {%- assign items_in_cart = cart | line_items_for: product | sum: 'quantity' -%}
 {% # theme-check-enable %}
-<div class="quick-order-list-container color-scheme-1{% unless is_modal %} secondary-background{% endunless %}">
+<div class="quick-order-list-container color-scheme-1{% unless is_modal %}{% endunless %}">
   <quick-order-list
     class="page-width section-{{ section.id }}-padding"
     id="{{ section.id }}-{{ product.id }}"
@@ -127,7 +127,7 @@
       </span>
     {%- else -%}
       <div
-        class="quick-order-list__total{% unless is_modal %} secondary-background{% endunless %}"
+        class="quick-order-list__total{% unless is_modal %}{% endunless %}"
         id="quick-order-list-total-{{ product.id }}-{{ section.id }}"
       >
         <div class="quick-order-list-total__info">

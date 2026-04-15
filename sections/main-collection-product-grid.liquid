@@ -36,7 +36,7 @@
   }
 {%- endstyle -%}
 
-<div class="section-{{ section.id }}-padding secondary-background color-scheme-1">
+<div class="section-{{ section.id }}-padding color-scheme-1">
   {%- paginate collection.products by section.settings.products_per_page -%}
     {% comment %} Sort is the first tabbable element when filter type is vertical {% endcomment %}
     {%- if section.settings.enable_sorting and section.settings.filter_type == 'vertical' -%}
@@ -126,7 +126,7 @@
       >
         {%- if collection.products.size == 0 -%}
           <div class="collection collection--empty page-width" id="product-grid" data-id="{{ section.id }}">
-            <div class="loading-overlay secondary-background"></div>
+            <div class="loading-overlay"></div>
             <div class="title-wrapper center">
               <h2 class="title title--primary">
                 {{ 'sections.collection_template.empty' | t -}}
@@ -142,7 +142,7 @@
           <div
             class="collection{% if section.settings.filter_type != 'vertical' %} page-width{% endif %}"
           >
-            <div class="loading-overlay secondary-background"></div>
+            <div class="loading-overlay"></div>
             <ul
               id="product-grid"
               data-id="{{ section.id }}"
