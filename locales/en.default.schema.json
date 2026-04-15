@@ -126,9 +126,11 @@
         "background": {
           "label": "Background"
         },
-        "background_gradient": {
-          "label": "Background gradient",
-          "info": "Background gradient replaces background where possible."
+        "secondary_background": {
+          "label": "Secondary background"
+        },
+        "header_background": {
+          "label": "Header background"
         },
         "text": {
           "label": "Text"

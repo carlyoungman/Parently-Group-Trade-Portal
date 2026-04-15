@@ -62,10 +62,16 @@
             "default": "#FFFFFF"
           },
           {
-            "type": "color_background",
-            "id": "background_gradient",
-            "label": "t:settings_schema.colors.settings.background_gradient.label",
-            "info": "t:settings_schema.colors.settings.background_gradient.info"
+            "type": "color",
+            "id": "secondary_background",
+            "label": "t:settings_schema.colors.settings.secondary_background.label",
+            "default": "#f5f5f5"
+          },
+          {
+            "type": "color",
+            "id": "header_background",
+            "label": "t:settings_schema.colors.settings.header_background.label",
+            "default": "#ffffff"
           },
           {
             "type": "color",
@@ -118,10 +124,7 @@
         ],
         "role": {
           "text": "text",
-          "background": {
-            "solid": "background",
-            "gradient": "background_gradient"
-          },
+          "background": "background",
           "links": "secondary_button_label",
           "icons": "text",
           "primary_button": "button",
