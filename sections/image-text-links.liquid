@@ -1,0 +1,334 @@
+{{ 'section-image-text-links.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  #ImageTextLinks-{{ section.id }}::after {
+    opacity: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};
+  }
+{%- endstyle -%}
+
+{%- liquid
+  assign has_link_items = false
+  for block in section.blocks
+    if block.type == 'link_item'
+      assign has_link_items = true
+      break
+    endif
+  endfor
+-%}
+
+<div
+  id="ImageTextLinks-{{ section.id }}"
+  class="image-text-links image-text-links--{{ section.settings.section_height }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
+>
+  {%- if section.settings.image != blank -%}
+    <div class="image-text-links__media media{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}">
+      {{
+        section.settings.image
+        | image_url: width: 3840
+        | image_tag:
+          width: section.settings.image.width,
+          height: section.settings.image.height,
+          sizes: '100vw',
+          widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840',
+          fetchpriority: 'auto'
+      }}
+    </div>
+  {%- else -%}
+    <div class="image-text-links__media media placeholder">
+      {{ 'hero-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+    </div>
+  {%- endif -%}
+
+  <div class="image-text-links__inner page-width">
+
+    {%- comment -%} LEFT COLUMN — subheading, heading, text, buttons {%- endcomment -%}
+    <div class="image-text-links__content">
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+
+          {%- when 'subheading' -%}
+            {%- if block.settings.text != blank -%}
+              <p class="image-text-links__subheading caption-with-letter-spacing" {{ block.shopify_attributes }}>
+                {{- block.settings.text | escape -}}
+              </p>
+            {%- endif -%}
+
+          {%- when 'heading' -%}
+            {%- if block.settings.heading != blank -%}
+              <h2
+                class="image-text-links__heading inline-richtext {{ block.settings.heading_size }}"
+                {{ block.shopify_attributes }}
+              >
+                {{ block.settings.heading }}
+              </h2>
+            {%- endif -%}
+
+          {%- when 'text' -%}
+            {%- if block.settings.text != blank -%}
+              <div class="image-text-links__text rte" {{ block.shopify_attributes }}>
+                {{ block.settings.text }}
+              </div>
+            {%- endif -%}
+
+          {%- when 'buttons' -%}
+            {%- if block.settings.button_label_1 != blank or block.settings.button_label_2 != blank -%}
+              <div class="image-text-links__buttons" {{ block.shopify_attributes }}>
+                {%- if block.settings.button_label_1 != blank -%}
+                  <a
+                    {% if block.settings.button_link_1 == blank %}
+                      role="link" aria-disabled="true"
+                    {% else %}
+                      href="{{ block.settings.button_link_1 }}"
+                    {% endif %}
+                    class="button{% if block.settings.button_style_secondary_1 %} button--secondary{% else %} button--primary{% endif %}"
+                  >
+                    {{- block.settings.button_label_1 | escape -}}
+                  </a>
+                {%- endif -%}
+                {%- if block.settings.button_label_2 != blank -%}
+                  <a
+                    {% if block.settings.button_link_2 == blank %}
+                      role="link" aria-disabled="true"
+                    {% else %}
+                      href="{{ block.settings.button_link_2 }}"
+                    {% endif %}
+                    class="button{% if block.settings.button_style_secondary_2 %} button--secondary{% else %} button--primary{% endif %}"
+                  >
+                    {{- block.settings.button_label_2 | escape -}}
+                  </a>
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+
+    {%- comment -%} RIGHT COLUMN — link items {%- endcomment -%}
+    {%- if has_link_items -%}
+      <nav class="image-text-links__links" aria-label="Resource links">
+        <ul class="image-text-links__links-list" role="list">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'link_item' -%}
+              <li {{ block.shopify_attributes }}>
+                <a
+                  {% if block.settings.link != blank %}
+                    href="{{ block.settings.link }}"
+                  {% else %}
+                    role="link" aria-disabled="true"
+                  {% endif %}
+                  class="image-text-links__link-item"
+                >
+                  <span class="image-text-links__link-label">
+                    {{- block.settings.label | escape -}}
+                  </span>
+                  <span class="image-text-links__link-arrow" aria-hidden="true">
+                    {{- 'icon-arrow.svg' | inline_asset_content -}}
+                  </span>
+                </a>
+              </li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      </nav>
+    {%- endif -%}
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Image & text links",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Background image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "range",
+      "id": "image_overlay_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 10,
+      "unit": "%",
+      "label": "Image overlay opacity",
+      "default": 40
+    },
+    {
+      "type": "select",
+      "id": "image_behavior",
+      "label": "Image behavior",
+      "options": [
+        { "value": "none", "label": "t:sections.all.animation.image_behavior.options__1.label" },
+        { "value": "ambient", "label": "t:sections.all.animation.image_behavior.options__2.label" },
+        { "value": "fixed", "label": "t:sections.all.animation.image_behavior.options__3.label" },
+        { "value": "zoom-in", "label": "t:sections.all.animation.image_behavior.options__4.label" }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "section_height",
+      "label": "Section height",
+      "options": [
+        { "value": "small", "label": "Small" },
+        { "value": "medium", "label": "Medium" },
+        { "value": "large", "label": "Large" }
+      ],
+      "default": "medium"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "subheading",
+      "name": "Subheading",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "default": "Retailer resources",
+          "label": "Text"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "name": "Heading",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "default": "Everything you need at the Media Hub",
+          "label": "Heading"
+        },
+        {
+          "type": "select",
+          "id": "heading_size",
+          "label": "t:sections.all.heading_size.label",
+          "default": "h2",
+          "options": [
+            { "value": "supersize", "label": "t:sections.all.heading_size.options__1.label" },
+            { "value": "h1", "label": "t:sections.all.heading_size.options__2.label" },
+            { "value": "h2", "label": "t:sections.all.heading_size.options__3.label" },
+            { "value": "h3", "label": "t:sections.all.heading_size.options__4.label" },
+            { "value": "h5", "label": "t:sections.all.heading_size.options__6.label" },
+            { "value": "h6", "label": "t:sections.all.heading_size.options__7.label" },
+            { "value": "small", "label": "t:sections.all.heading_size.options__8.label" }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "Text",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Content"
+        }
+      ]
+    },
+    {
+      "type": "buttons",
+      "name": "Buttons",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "header",
+          "content": "Button 1"
+        },
+        {
+          "type": "text",
+          "id": "button_label_1",
+          "label": "Button label",
+          "default": "Find out more",
+          "info": "Leave blank to hide this button."
+        },
+        {
+          "type": "url",
+          "id": "button_link_1",
+          "label": "Button link"
+        },
+        {
+          "type": "checkbox",
+          "id": "button_style_secondary_1",
+          "label": "Use outline style",
+          "default": false
+        },
+        {
+          "type": "header",
+          "content": "Button 2"
+        },
+        {
+          "type": "text",
+          "id": "button_label_2",
+          "label": "Button label",
+          "info": "Leave blank to hide this button."
+        },
+        {
+          "type": "url",
+          "id": "button_link_2",
+          "label": "Button link"
+        },
+        {
+          "type": "checkbox",
+          "id": "button_style_secondary_2",
+          "label": "Use outline style",
+          "default": true
+        }
+      ]
+    },
+    {
+      "type": "link_item",
+      "name": "Link item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Image Downloads"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image & text links",
+      "blocks": [
+        { "type": "subheading" },
+        { "type": "heading" },
+        { "type": "buttons" },
+        { "type": "link_item", "settings": { "label": "Image Downloads" } },
+        { "type": "link_item", "settings": { "label": "Price Lists" } },
+        { "type": "link_item", "settings": { "label": "Point of Sale" } },
+        { "type": "link_item", "settings": { "label": "Eco Resources" } },
+        { "type": "link_item", "settings": { "label": "Marketing" } },
+        { "type": "link_item", "settings": { "label": "Videos" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
