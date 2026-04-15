@@ -96,7 +96,7 @@ vertical-image-links-component {
   flex-shrink: 0;
   border-radius: var(--media-radius);
   overflow: hidden;
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 16 / 9;
 }
 
 .vertical-image-links__card-link {
@@ -180,7 +180,7 @@ vertical-image-links-component {
   }
 
   .vertical-image-links__card {
-    aspect-ratio: 3 / 4;
+    aspect-ratio: 16 / 9;
     max-width: 100%;
   }
 }
