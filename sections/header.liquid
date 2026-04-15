@@ -28,7 +28,7 @@
     }
   {%- endif -%}
 
-  {%- if section.settings.enable_overlay_header and section.settings.sticky_header_type != 'none' and settings.secondary_logo != blank -%}
+  {%- if section.settings.sticky_header_type == 'absolute' -%}
     .section-header {
       margin-bottom: calc(-1 * var(--header-height, 0px));
     }
@@ -92,8 +92,8 @@
     margin-bottom: {{ section.settings.margin_bottom | times: 0.75 | round: 0 }}px;
   }
 
-  {%- if section.settings.enable_overlay_header and section.settings.sticky_header_bg_color != blank -%}
-    .header-wrapper--overlay {
+  {%- if section.settings.sticky_header_bg_color != blank -%}
+    .header-wrapper {
       --sticky-header-bg: {{ section.settings.sticky_header_bg_color }};
     }
   {%- endif -%}
@@ -134,7 +134,7 @@
   {% if header_tag == 'sticky-header' %}
     data-sticky-type="{{ section.settings.sticky_header_type }}"
   {% endif %}
-  class="header-wrapper color-scheme-1 gradient{% if section.settings.show_line_separator %} header-wrapper--border-bottom{% endif %}{% if section.settings.enable_overlay_header and section.settings.sticky_header_type != 'none' and settings.secondary_logo != blank %} header-wrapper--overlay{% endif %}"
+  class="header-wrapper color-scheme-1 gradient{% if section.settings.show_line_separator %} header-wrapper--border-bottom{% endif %}{% if section.settings.sticky_header_type == 'absolute' %} header-wrapper--absolute{% endif %}"
 >
   {%- liquid
     assign social_links = false
@@ -182,7 +182,7 @@
                 sizes: sizes,
                 preload: true
             }}
-            {%- if settings.secondary_logo != blank and section.settings.enable_overlay_header -%}
+            {%- if settings.secondary_logo != blank -%}
               {%- assign secondary_logo_alt = settings.secondary_logo.alt | default: shop.name | escape -%}
               {%- assign secondary_logo_height = settings.secondary_logo_width | divided_by: settings.secondary_logo.aspect_ratio -%}
               {% capture secondary_sizes %}(max-width: {{ settings.secondary_logo_width | times: 2 }}px) 50vw, {{ settings.secondary_logo_width }}px{% endcapture %}
@@ -243,7 +243,7 @@
                 sizes: sizes,
                 preload: true
             }}
-            {%- if settings.secondary_logo != blank and section.settings.enable_overlay_header -%}
+            {%- if settings.secondary_logo != blank -%}
               {%- assign secondary_logo_alt = settings.secondary_logo.alt | default: shop.name | escape -%}
               {%- assign secondary_logo_height = settings.secondary_logo_width | divided_by: settings.secondary_logo.aspect_ratio -%}
               {% capture secondary_sizes %}(min-width: 750px) {{ settings.secondary_logo_width }}px, 50vw{% endcapture %}
@@ -370,7 +370,8 @@
       this.header = document.querySelector('.section-header');
       this.headerIsAlwaysSticky =
         this.getAttribute('data-sticky-type') === 'always' ||
-        this.getAttribute('data-sticky-type') === 'reduce-logo-size';
+        this.getAttribute('data-sticky-type') === 'reduce-logo-size' ||
+        this.getAttribute('data-sticky-type') === 'absolute';
       this.headerBounds = {};
 
       this.setHeaderHeight();
@@ -606,33 +607,26 @@
         {
           "value": "reduce-logo-size",
           "label": "t:sections.header.settings.sticky_header_type.options__4.label"
+        },
+        {
+          "value": "absolute",
+          "label": "t:sections.header.settings.sticky_header_type.options__5.label"
         }
       ],
       "default": "on-scroll-up",
       "label": "t:sections.header.settings.sticky_header_type.label"
     },
     {
-      "type": "checkbox",
-      "id": "show_line_separator",
-      "default": true,
-      "label": "t:sections.header.settings.show_line_separator.label"
-    },
-    {
-      "type": "header",
-      "content": "t:sections.header.settings.header__overlay.content"
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_overlay_header",
-      "default": false,
-      "label": "t:sections.header.settings.enable_overlay_header.label",
-      "info": "t:sections.header.settings.enable_overlay_header.info"
-    },
-    {
       "type": "color",
       "id": "sticky_header_bg_color",
       "label": "t:sections.header.settings.sticky_header_bg_color.label",
       "default": "#ffffff"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_line_separator",
+      "default": true,
+      "label": "t:sections.header.settings.show_line_separator.label"
     },
     {
       "type": "header",
