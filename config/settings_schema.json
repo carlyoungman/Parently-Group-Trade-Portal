@@ -142,7 +142,7 @@
         "type": "number",
         "id": "h1_font_size",
         "label": "t:settings_schema.typography.settings.h1_font_size.label",
-        "default": 4.0
+        "default": 4
       },
       {
         "type": "number",
@@ -178,7 +178,7 @@
         "type": "number",
         "id": "small_font_size",
         "label": "t:settings_schema.typography.settings.small_font_size.label",
-        "default": 1.0
+        "default": 1
       }
     ]
   },
