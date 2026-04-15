@@ -1235,6 +1235,9 @@
         },
         "image_behavior": {
           "info": "Image animation only applies when no video is selected."
+        },
+        "white_text": {
+          "label": "Use white text"
         }
       },
       "blocks": {
