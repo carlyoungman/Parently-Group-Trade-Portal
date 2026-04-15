@@ -1,0 +1,114 @@
+// =============================================================================
+// Parently Group Trade Portal – Main SCSS Entry Point
+// =============================================================================
+// Build: sass assets/styles/theme.scss assets/theme.css --style=compressed
+//
+// Structure:
+//   utilities/   → SCSS variables, mixins, functions (no CSS output)
+//   base/        → Foundational styles from base.css (split into partials)
+//   components/  → Reusable UI components (cards, buttons, forms, cart, etc.)
+//   sections/    → Page-section styles (header, footer, product, etc.)
+//   templates/   → Template-specific overrides (collection, giftcard)
+//
+// Dynamic CSS (theme settings from Shopify admin) lives in:
+//   assets/theme.scss.liquid  → loaded separately via Shopify's Liquid pipeline
+// =============================================================================
+
+// -----------------------------------------------------------------------------
+// 1. Utilities (no output – variables, mixins, functions only)
+// -----------------------------------------------------------------------------
+@use 'utilities/variables' as *;
+@use 'utilities/functions'  as *;
+@use 'utilities/mixins'     as *;
+
+// -----------------------------------------------------------------------------
+// 2. Base – foundational rules split from Dawn's base.css
+// -----------------------------------------------------------------------------
+@use 'base/tokens';       // CSS custom property mappings for cards/media/content
+@use 'base/layout';       // page-width, section spacing, accessibility, typography
+@use 'base/grid';         // grid system
+@use 'base/media';        // .media component
+@use 'base/buttons';      // button variants and states
+@use 'base/forms';        // fields, selects, quantity inputs
+@use 'base/ui';           // modal, cart bubble, utility-bar, announcement-bar
+@use 'base/header';       // header layout, icons, navigation
+@use 'base/utilities';    // animations, hover effects, spinner, progress bar
+
+// -----------------------------------------------------------------------------
+// 3. Components
+// -----------------------------------------------------------------------------
+@use 'components/accordion';
+@use 'components/article-card';
+@use 'components/card';
+@use 'components/cart';
+@use 'components/cart-drawer';
+@use 'components/cart-items';
+@use 'components/cart-notification';
+@use 'components/collection-hero';
+@use 'components/complementary-products';
+@use 'components/deferred-media';
+@use 'components/discounts';
+@use 'components/facets';
+@use 'components/image-with-text';
+@use 'components/list-menu';
+@use 'components/list-payment';
+@use 'components/list-social';
+@use 'components/localization-form';
+@use 'components/mega-menu';
+@use 'components/menu-drawer';
+@use 'components/modal-video';
+@use 'components/model-viewer-ui';
+@use 'components/newsletter';
+@use 'components/pagination';
+@use 'components/pickup-availability';
+@use 'components/predictive-search';
+@use 'components/price';
+@use 'components/product-model';
+@use 'components/product-variant-picker';
+@use 'components/progress-bar';
+@use 'components/quantity-popover';
+@use 'components/quick-add';
+@use 'components/quick-order-list';
+@use 'components/rating';
+@use 'components/search';
+@use 'components/show-more';
+@use 'components/slider';
+@use 'components/slideshow';
+@use 'components/swatch';
+@use 'components/swatch-input';
+@use 'components/totals';
+@use 'components/volume-pricing';
+
+// -----------------------------------------------------------------------------
+// 4. Sections
+// -----------------------------------------------------------------------------
+@use 'sections/blog-post';
+@use 'sections/collage';
+@use 'sections/collapsible-content';
+@use 'sections/collection-list';
+@use 'sections/contact-form';
+@use 'sections/customer';
+@use 'sections/email-signup-banner';
+@use 'sections/featured-blog';
+@use 'sections/featured-product';
+@use 'sections/footer';
+@use 'sections/image-banner';
+@use 'sections/key-points-list';
+@use 'sections/logo-carousel';
+@use 'sections/main-blog';
+@use 'sections/main-page';
+@use 'sections/main-product';
+@use 'sections/mask-blobs';
+@use 'sections/multicolumn';
+@use 'sections/newsletter-section';
+@use 'sections/password';
+@use 'sections/related-products';
+@use 'sections/rich-text';
+@use 'sections/vertical-image-links';
+@use 'sections/video-section';
+
+// -----------------------------------------------------------------------------
+// 5. Templates
+// -----------------------------------------------------------------------------
+@use 'templates/collection';
+@use 'templates/giftcard';

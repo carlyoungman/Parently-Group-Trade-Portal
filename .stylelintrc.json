@@ -47,7 +47,8 @@
     "font-family-name-quotes": null
   },
   "ignoreFiles": [
-    "assets/**",
+    "assets/*.css",
+    "assets/theme.css",
     "node_modules/**"
   ]
 }

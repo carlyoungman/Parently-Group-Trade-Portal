@@ -1,0 +1,22 @@
+// =============================================================================
+// SCSS Functions
+// =============================================================================
+@use 'sass:math';
+
+/// Convert px to rem (base 10 since html font-size is 62.5%)
+/// Usage: rem(16) → 1.6rem
+@function rem($px, $base: 10) {
+  @return math.div($px, $base) * 1rem;
+}
+
+/// Strip unit from a number
+/// Usage: strip-unit(16px) → 16
+@function strip-unit($number) {
+  @return math.div($number, $number * 0 + 1);
+}
+
+/// Clamp a value between a min and max
+/// Usage: clamp-val(1rem, 2vw, 3rem) → clamp(1rem, 2vw, 3rem)
+@function clamp-val($min, $preferred, $max) {
+  @return clamp(#{$min}, #{$preferred}, #{$max});
+}
