@@ -165,6 +165,12 @@
         "logo_width": {
           "label": "Width"
         },
+        "secondary_logo_image": {
+          "label": "Secondary logo"
+        },
+        "secondary_logo_width": {
+          "label": "Secondary logo width"
+        },
         "favicon": {
           "label": "Favicon",
           "info": "Displayed at 32 x 32px"
@@ -1199,6 +1205,16 @@
         "enable_customer_avatar": {
           "label": "Customer account avatar",
           "info": "Only visible when customers are signed in with Shop. [Manage customer accounts](/admin/settings/customer_accounts)"
+        },
+        "header__overlay": {
+          "content": "Overlay header"
+        },
+        "enable_overlay_header": {
+          "label": "Enable overlay header",
+          "info": "Displays the header over the first section. Requires a sticky header type other than 'None'. A secondary logo must also be uploaded."
+        },
+        "sticky_header_bg_color": {
+          "label": "Sticky header background color"
         }
       }
     },
