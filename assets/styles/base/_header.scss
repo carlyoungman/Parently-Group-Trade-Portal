@@ -40,26 +40,31 @@
   border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.08);
 }
 
-/* === Overlay Header Mode === */
+/* === Absolute Header Mode === */
 
 /* Transparent base — override both background-color and the .gradient shorthand */
-.header-wrapper.header-wrapper--overlay,
-.header-wrapper.header-wrapper--overlay.gradient {
+.header-wrapper.header-wrapper--absolute,
+.header-wrapper.header-wrapper--absolute.gradient {
   background-color: transparent;
   background: transparent;
   transition: background-color 0.3s ease, background 0.3s ease, border-bottom-color 0.3s ease;
 }
 
-.header-wrapper.header-wrapper--overlay.header-wrapper--border-bottom {
+.header-wrapper.header-wrapper--absolute.header-wrapper--border-bottom {
   border-bottom-color: transparent;
 }
 
 /* Sticky state — solid background using the merchant-chosen colour */
-.scrolled-past-header .header-wrapper--overlay,
-.scrolled-past-header .header-wrapper--overlay.gradient {
+.scrolled-past-header .header-wrapper--absolute,
+.scrolled-past-header .header-wrapper--absolute.gradient {
   background-color: var(--sticky-header-bg, rgb(var(--color-background)));
   background: var(--sticky-header-bg, rgb(var(--color-background)));
   border-bottom-color: rgba(var(--color-foreground), 0.08);
+}
+
+/* Sticky header background colour — applied on scroll for any sticky mode when set */
+.scrolled-past-header .shopify-section-header-sticky .header-wrapper:not(.header-wrapper--absolute) {
+  background-color: var(--sticky-header-bg);
 }
 
 /* Secondary logo: hidden by default */
@@ -67,12 +72,12 @@
   display: none;
 }
 
-/* When sticky in overlay mode: hide primary, show secondary */
-.scrolled-past-header .header-wrapper--overlay .header__heading-logo--primary {
+/* When sticky in absolute mode: hide primary, show secondary */
+.scrolled-past-header .header-wrapper--absolute .header__heading-logo--primary {
   display: none;
 }
 
-.scrolled-past-header .header-wrapper--overlay .header__heading-logo--secondary {
+.scrolled-past-header .header-wrapper--absolute .header__heading-logo--secondary {
   display: block;
 }
 
