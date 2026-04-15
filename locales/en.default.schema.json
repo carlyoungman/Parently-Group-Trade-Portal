@@ -1202,6 +1202,38 @@
         }
       }
     },
+    "hero-banner": {
+      "name": "Hero banner",
+      "settings": {
+        "header_video": {
+          "content": "Video background"
+        },
+        "video": {
+          "label": "Video"
+        },
+        "header_image": {
+          "content": "Image background"
+        },
+        "image_2_video_note": {
+          "content": "Image 2 is only shown when no video is selected."
+        },
+        "image_behavior": {
+          "info": "Image animation only applies when no video is selected."
+        }
+      },
+      "blocks": {
+        "heading": {
+          "settings": {
+            "heading": {
+              "default": "Hero banner"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Hero banner"
+      }
+    },
     "image-banner": {
       "name": "Image banner",
       "settings": {
