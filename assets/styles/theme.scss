@@ -30,8 +30,11 @@
 @use 'base/media';        // .media component
 @use 'base/buttons';      // button variants and states
 @use 'base/forms';        // fields, selects, quantity inputs
-@use 'base/ui';           // modal, cart bubble, utility-bar, announcement-bar
-@use 'base/header';       // header layout, icons, navigation
+@use 'base/modal';              // .modal, .media-modal
+@use 'base/cart-count-bubble';  // .cart-count-bubble
+@use 'base/utility-bar';        // .utility-bar, .announcement-bar, .localization-wrapper
+@use 'base/header';         // header layout, icons, navigation menu
+@use 'base/header-search';  // .header__search, .search-modal
 @use 'base/utilities';    // animations, hover effects, spinner, progress bar
 
 // -----------------------------------------------------------------------------
@@ -49,6 +52,8 @@
 @use 'components/deferred-media';
 @use 'components/discounts';
 @use 'components/facets';
+@use 'components/active-facets';
+@use 'components/facets-mobile';
 @use 'components/image-with-text';
 @use 'components/list-menu';
 @use 'components/list-payment';
@@ -69,6 +74,7 @@
 @use 'components/quantity-popover';
 @use 'components/quick-add';
 @use 'components/quick-order-list';
+@use 'components/variant-item';
 @use 'components/rating';
 @use 'components/search';
 @use 'components/show-more';
@@ -88,6 +94,7 @@
 @use 'sections/collection-list';
 @use 'sections/contact-form';
 @use 'sections/customer';
+@use 'sections/customer-addresses';
 @use 'sections/email-signup-banner';
 @use 'sections/featured-blog';
 @use 'sections/featured-product';
@@ -99,6 +106,7 @@
 @use 'sections/main-blog';
 @use 'sections/main-page';
 @use 'sections/main-product';
+@use 'sections/product-form';
 @use 'sections/mask-blobs';
 @use 'sections/multicolumn';
 @use 'sections/newsletter-section';
