@@ -1,0 +1,291 @@
+/* =============================================================================
+   Image with Content Carousel Section
+   Two-column layout: image left, content right.
+   The coloured background panel stays static; image + content slide together.
+   ============================================================================= */
+
+/* -----------------------------------------------------------------------
+   Section header (heading, optional content, optional buttons)
+   ----------------------------------------------------------------------- */
+
+.image-content-carousel__header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.image-content-carousel__heading {
+  margin: 0 0 1.6rem;
+}
+
+.image-content-carousel__section-content {
+  max-width: 64rem;
+  margin: 0 auto 2rem;
+}
+
+.image-content-carousel__section-content p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.image-content-carousel__section-content p:last-child {
+  margin-bottom: 0;
+}
+
+.image-content-carousel__section-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+  justify-content: center;
+}
+
+/* -----------------------------------------------------------------------
+   Stage — wraps the static coloured bg + slider
+   ----------------------------------------------------------------------- */
+
+.image-content-carousel__stage {
+  position: relative;
+}
+
+/* Static coloured background panel (right side, desktop) */
+.image-content-carousel__bg {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 58%;
+  border-radius: 2rem 0 0 2rem;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* -----------------------------------------------------------------------
+   Slider component wrapper
+   ----------------------------------------------------------------------- */
+
+.image-content-carousel__slider-component {
+  position: relative;
+  z-index: 1;
+  display: block;
+}
+
+/* Scrollable track — hides scrollbar, snap per slide */
+.image-content-carousel__track {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  /* Override component-slider.css margin-bottom */
+  margin-bottom: 0 !important;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.image-content-carousel__track::-webkit-scrollbar {
+  display: none;
+}
+
+/* -----------------------------------------------------------------------
+   Individual slide
+   ----------------------------------------------------------------------- */
+
+.image-content-carousel__slide {
+  display: grid;
+  grid-template-columns: 42% 58%;
+  min-width: 100%;
+  width: 100%;
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+  align-items: stretch;
+}
+
+/* -----------------------------------------------------------------------
+   Left column — slide image
+   ----------------------------------------------------------------------- */
+
+.image-content-carousel__slide-image {
+  position: relative;
+  border-radius: 1.6rem;
+  overflow: hidden;
+  min-height: 36rem;
+}
+
+.image-content-carousel__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.image-content-carousel__placeholder {
+  width: 100%;
+  height: 100%;
+  min-height: 36rem;
+  display: block;
+}
+
+/* -----------------------------------------------------------------------
+   Right column — slide content (sits on top of static bg)
+   On desktop: transparent so the abs-positioned bg shows through.
+   On mobile: gets the bg colour directly.
+   ----------------------------------------------------------------------- */
+
+.image-content-carousel__slide-content {
+  background-color: var(--ic-carousel-bg, transparent);
+  padding: 4rem 4rem 5.6rem 4.8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.image-content-carousel__slide-heading {
+  margin: 0;
+  color: #ffffff;
+  font-size: 2.4rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.image-content-carousel__slide-text {
+  margin: 0;
+  color: #ffffff;
+}
+
+.image-content-carousel__slide-text p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.image-content-carousel__slide-text p:last-child {
+  margin-bottom: 0;
+}
+
+/* Optional in-content image (e.g. award badge / logo) */
+.image-content-carousel__slide-badge {
+  display: flex;
+  align-items: flex-start;
+}
+
+.image-content-carousel__badge-image {
+  max-height: 9rem;
+  width: auto;
+  display: block;
+}
+
+/* Slide buttons */
+.image-content-carousel__slide-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+  margin-top: 0.4rem;
+}
+
+/* -----------------------------------------------------------------------
+   Navigation arrows — positioned at bottom-right of content column
+   ----------------------------------------------------------------------- */
+
+.image-content-carousel__nav {
+  position: absolute;
+  right: 2rem;
+  bottom: 2rem;
+  display: flex;
+  gap: 0.8rem;
+  z-index: 2;
+  /* Override component-slider.css justify-content */
+  justify-content: flex-end;
+}
+
+.image-content-carousel__nav .slider-button {
+  width: 4.4rem;
+  height: 4.4rem;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.92);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: rgb(var(--color-foreground));
+  transition: background-color 0.2s ease, transform 0.15s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.image-content-carousel__nav .slider-button:not([disabled]):hover {
+  background-color: #ffffff;
+  transform: scale(1.05);
+  color: rgb(var(--color-foreground));
+}
+
+.image-content-carousel__nav .slider-button[disabled] {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+/* Caret icon sizing */
+.image-content-carousel__nav .slider-button .icon {
+  height: 0.7rem;
+}
+
+/* -----------------------------------------------------------------------
+   Separator line above nav (matching screenshot)
+   ----------------------------------------------------------------------- */
+
+.image-content-carousel__slide-content::after {
+  content: '';
+  display: block;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.3);
+  margin-top: auto;
+}
+
+/* -----------------------------------------------------------------------
+   Desktop — make content div transparent so the abs bg shows through
+   ----------------------------------------------------------------------- */
+
+@media screen and (min-width: 750px) {
+  .image-content-carousel__slide-content {
+    background-color: transparent;
+  }
+}
+
+/* -----------------------------------------------------------------------
+   Mobile — stack image above content, bg colour on content directly
+   ----------------------------------------------------------------------- */
+
+@media screen and (max-width: 749px) {
+  .image-content-carousel__bg {
+    display: none;
+  }
+
+  .image-content-carousel__slide {
+    grid-template-columns: 1fr;
+  }
+
+  .image-content-carousel__slide-image {
+    min-height: 26rem;
+    border-radius: 1.6rem 1.6rem 0 0;
+  }
+
+  .image-content-carousel__slide-content {
+    padding: 3.2rem 2.4rem 5.6rem;
+    border-radius: 0 0 1.6rem 1.6rem;
+    /* bg colour comes from the CSS custom property set inline on the stage */
+  }
+
+  .image-content-carousel__slide-heading {
+    font-size: 2rem;
+  }
+
+  .image-content-carousel__header {
+    margin-bottom: 3rem;
+  }
+
+  .image-content-carousel__nav {
+    right: 1.6rem;
+    bottom: 1.6rem;
+  }
+}
