@@ -4,11 +4,15 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build:css": "npx sass assets/styles/theme.scss assets/theme.css --style=compressed --no-source-map",
-    "build:css:dev": "npx sass assets/styles/theme.scss assets/theme.css --style=expanded --source-map",
-    "watch:css": "npx sass --watch assets/styles/theme.scss:assets/theme.css --style=expanded --source-map",
+    "dev": "concurrently --names \"shopify,sass\" --prefix-colors \"cyan,magenta\" --kill-others-on-fail \"shopify theme dev --environment=dev\" \"npm run watch:css\"",
     "build": "npm run build:css",
+    "build:css": "sass assets/styles/theme.scss assets/theme.css --style=compressed --no-source-map",
+    "build:css:dev": "sass assets/styles/theme.scss assets/theme.css --style=expanded --source-map",
+    "watch:css": "sass --watch assets/styles/theme.scss:assets/theme.css --style=expanded --source-map",
+    "lint": "stylelint 'assets/styles/**/*.scss' && eslint .",
     "lint:css": "stylelint 'assets/styles/**/*.scss'",
+    "lint:js": "eslint .",
+    "format": "prettier --write 'assets/styles/**/*.scss' 'assets/**/*.js' 'sections/**/*.liquid' 'snippets/**/*.liquid'",
     "format:css": "prettier --write 'assets/styles/**/*.scss'"
   },
   "devDependencies": {
