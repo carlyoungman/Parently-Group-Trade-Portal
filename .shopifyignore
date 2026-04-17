@@ -8,3 +8,4 @@ eslint.config.js
 .prettierrc.json
 .prettierignore
 *.md
+assets/*.map
