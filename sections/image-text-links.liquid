@@ -69,34 +69,16 @@
             {%- endif -%}
 
           {%- when 'buttons' -%}
-            {%- if block.settings.button_label_1 != blank or block.settings.button_label_2 != blank -%}
-              <div class="image-text-links__buttons" {{ block.shopify_attributes }}>
-                {%- if block.settings.button_label_1 != blank -%}
-                  <a
-                    {% if block.settings.button_link_1 == blank %}
-                      role="link" aria-disabled="true"
-                    {% else %}
-                      href="{{ block.settings.button_link_1 }}"
-                    {% endif %}
-                    class="button{% if block.settings.button_style_secondary_1 %} button--secondary{% else %} button--primary{% endif %}"
-                  >
-                    {{- block.settings.button_label_1 | escape -}}
-                  </a>
-                {%- endif -%}
-                {%- if block.settings.button_label_2 != blank -%}
-                  <a
-                    {% if block.settings.button_link_2 == blank %}
-                      role="link" aria-disabled="true"
-                    {% else %}
-                      href="{{ block.settings.button_link_2 }}"
-                    {% endif %}
-                    class="button{% if block.settings.button_style_secondary_2 %} button--secondary{% else %} button--primary{% endif %}"
-                  >
-                    {{- block.settings.button_label_2 | escape -}}
-                  </a>
-                {%- endif -%}
-              </div>
-            {%- endif -%}
+            {%- render 'button-pair',
+              button_label_1: block.settings.button_label_1,
+              button_link_1: block.settings.button_link_1,
+              button_style_secondary_1: block.settings.button_style_secondary_1,
+              button_label_2: block.settings.button_label_2,
+              button_link_2: block.settings.button_link_2,
+              button_style_secondary_2: block.settings.button_style_secondary_2,
+              container_class: 'image-text-links__buttons',
+              shopify_attributes: block.shopify_attributes
+            -%}
 
         {%- endcase -%}
       {%- endfor -%}

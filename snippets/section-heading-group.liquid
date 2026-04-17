@@ -1,0 +1,30 @@
+{%- unless heading == blank
+  and content == blank
+  and button_label_1 == blank
+  and button_label_2 == blank -%}
+  <div class="{{ wrapper_class }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+
+    {%- unless heading == blank -%}
+      <h2 class="{{ heading_class }} inline-richtext {{ heading_size }}">
+        {{ heading }}
+      </h2>
+    {%- endunless -%}
+
+    {%- unless content == blank -%}
+      <div class="{{ content_text_class }} rte">
+        {{ content }}
+      </div>
+    {%- endunless -%}
+
+    {%- render 'button-pair',
+      button_label_1: button_label_1,
+      button_link_1: button_link_1,
+      button_style_secondary_1: button_style_secondary_1,
+      button_label_2: button_label_2,
+      button_link_2: button_link_2,
+      button_style_secondary_2: button_style_secondary_2,
+      container_class: button_container_class
+    -%}
+
+  </div>
+{%- endunless -%}

@@ -1,16 +1,4 @@
-{%- style -%}
-  .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
-  }
-
-  @media screen and (min-width: 750px) {
-    .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
-    }
-  }
-{%- endstyle -%}
+{%- render 'section-padding-style' -%}
 
 <div class="key-points-list color-scheme-1 section-{{ section.id }}-padding">
   <div class="key-points-list__inner page-width">
@@ -41,34 +29,16 @@
             {%- endif -%}
 
           {%- when 'buttons' -%}
-            {%- if block.settings.button_label_1 != blank or block.settings.button_label_2 != blank -%}
-              <div class="key-points-list__buttons" {{ block.shopify_attributes }}>
-                {%- if block.settings.button_label_1 != blank -%}
-                  <a
-                    {% if block.settings.button_link_1 == blank %}
-                      role="link" aria-disabled="true"
-                    {% else %}
-                      href="{{ block.settings.button_link_1 }}"
-                    {% endif %}
-                    class="button{% if block.settings.button_style_secondary_1 %} button--secondary{% else %} button--primary{% endif %}"
-                  >
-                    {{ block.settings.button_label_1 | escape }}
-                  </a>
-                {%- endif -%}
-                {%- if block.settings.button_label_2 != blank -%}
-                  <a
-                    {% if block.settings.button_link_2 == blank %}
-                      role="link" aria-disabled="true"
-                    {% else %}
-                      href="{{ block.settings.button_link_2 }}"
-                    {% endif %}
-                    class="button{% if block.settings.button_style_secondary_2 %} button--secondary{% else %} button--primary{% endif %}"
-                  >
-                    {{ block.settings.button_label_2 | escape }}
-                  </a>
-                {%- endif -%}
-              </div>
-            {%- endif -%}
+            {%- render 'button-pair',
+              button_label_1: block.settings.button_label_1,
+              button_link_1: block.settings.button_link_1,
+              button_style_secondary_1: block.settings.button_style_secondary_1,
+              button_label_2: block.settings.button_label_2,
+              button_link_2: block.settings.button_link_2,
+              button_style_secondary_2: block.settings.button_style_secondary_2,
+              container_class: 'key-points-list__buttons',
+              shopify_attributes: block.shopify_attributes
+            -%}
 
         {%- endcase -%}
       {%- endfor -%}
@@ -237,6 +207,9 @@
           "default": true
         }
       ]
+    },
+    {
+      "type": "@app"
     },
     {
       "type": "key_point",

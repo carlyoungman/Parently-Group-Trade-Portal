@@ -1,0 +1,26 @@
+{%- if link != blank -%}
+  <a href="{{ link }}" class="{{ link_class }}">
+{%- endif -%}
+
+{%- if image != blank -%}
+  <div class="{{ wrapper_class }}">
+    {{
+      image
+      | image_url: width: image_url_width
+      | image_tag:
+        widths: image_tag_widths,
+        sizes: image_tag_sizes,
+        class: image_class,
+        alt: image_alt,
+        loading: 'lazy'
+    }}
+  </div>
+{%- else -%}
+  <div class="{{ wrapper_class }} {{ placeholder_class }}">
+    {{ placeholder_name | placeholder_svg_tag: 'placeholder-svg logo-carousel__placeholder' }}
+  </div>
+{%- endif -%}
+
+{%- if link != blank -%}
+  </a>
+{%- endif -%}
