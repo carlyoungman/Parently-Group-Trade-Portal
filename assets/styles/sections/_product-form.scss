@@ -30,7 +30,7 @@
   background-color: rgba(var(--color-button), var(--alpha-button-background));
   color: rgb(var(--color-button-text));
   font-size: inherit;
-  line-height: 1.2;
+  line-height: var(--font-body-line-height);
   letter-spacing: 0.07rem;
 }
 
@@ -46,7 +46,7 @@
 .shopify-payment-button__more-options {
   margin: 1.6rem 0 1rem;
   font-size: var(--font-small);
-  line-height: 1.5;
+  line-height: var(--font-body-line-height);
   letter-spacing: 0.05rem;
   text-decoration: underline;
   text-underline-offset: 0.3rem;
@@ -76,7 +76,7 @@
   display: flex;
   align-items: flex-start;
   font-size: var(--font-small);
-  line-height: 1.4;
+  line-height: var(--font-body-line-height);
   letter-spacing: 0.04rem;
   margin-bottom: 1.5rem;
 }
@@ -223,7 +223,7 @@
 }
 
 .recipient-form ul {
-  line-height: 1.6;
+  line-height: var(--font-body-line-height);
   padding-left: 4.4rem;
   text-align: left;
 }

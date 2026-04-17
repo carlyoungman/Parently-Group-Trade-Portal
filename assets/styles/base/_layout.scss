@@ -197,7 +197,7 @@ h6,
 
 .supersize {
   font-size: var(--font-supersize);
-  line-height: 1.1;
+  line-height: var(--font-heading-line-height);
 }
 
 h1,
@@ -253,7 +253,7 @@ blockquote {
 .caption {
   font-size: 1rem;
   letter-spacing: 0.07rem;
-  line-height: 1.5;
+  line-height: var(--font-body-line-height);
 }
 
 @media screen and (min-width: 750px) {
@@ -265,7 +265,7 @@ blockquote {
 .caption-with-letter-spacing {
   font-size: 1rem;
   letter-spacing: 0.13rem;
-  line-height: 1.2;
+  line-height: var(--font-heading-line-height);
   text-transform: uppercase;
 }
 
@@ -326,7 +326,7 @@ blockquote {
 .form__label,
 .select__select {
   font-size: inherit;
-  line-height: 1.5;
+  line-height: var(--font-body-line-height);
   letter-spacing: 0.04rem;
 }
 
@@ -428,7 +428,7 @@ h6:empty {
 .link-with-icon {
   display: inline-flex;
   font-size: inherit;
-  font-weight: 600;
+  font-weight: var(--font-body-weight-semibold);
   letter-spacing: 0.1rem;
   text-decoration: none;
   margin-bottom: 4.5rem;
@@ -782,7 +782,7 @@ summary::-webkit-details-marker {
 
 .subtitle {
   font-size: var(--font-h3);
-  line-height: 1.8;
+  line-height: var(--font-body-line-height);
   letter-spacing: 0.06rem;
   color: rgba(var(--color-foreground), 0.7);
 }

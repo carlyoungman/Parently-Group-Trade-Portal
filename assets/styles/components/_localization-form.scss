@@ -313,7 +313,7 @@
   gap: 0.5rem;
   padding: 0.9rem 1.5rem;
   text-decoration: none;
-  line-height: 1.8;
+  line-height: var(--font-body-line-height);
   color: rgba(var(--color-foreground), 0.75);
   word-break: break-word;
 }

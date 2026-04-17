@@ -176,7 +176,7 @@
 }
 
 .header__heading-link .h2 {
-  line-height: 1;
+  line-height: var(--font-heading-line-height);
   color: rgba(var(--color-foreground), 0.75);
 }
 
@@ -530,7 +530,7 @@ details-disclosure > details {
   display: inline-block;
   font-size: var(--font-small);
   letter-spacing: 0.1rem;
-  line-height: 1;
+  line-height: var(--font-body-line-height);
   padding: 0.5rem 1.3rem 0.6rem 1.3rem;
   text-align: center;
   background-color: rgb(var(--color-badge-background));

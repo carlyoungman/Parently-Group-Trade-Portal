@@ -132,7 +132,7 @@ cart-drawer-items.is-empty + .drawer__footer {
 .drawer__footer summary {
   display: flex;
   position: relative;
-  line-height: 1;
+  line-height: var(--font-body-line-height);
   padding: 1.5rem 2.8rem 1.5rem 0;
 }
 
@@ -315,7 +315,7 @@ cart-drawer-items {
 }
 
 .cart-drawer .price {
-  line-height: 1;
+  line-height: var(--font-body-line-height);
 }
 
 .cart-drawer .tax-note {

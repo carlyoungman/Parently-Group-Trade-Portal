@@ -91,7 +91,7 @@ cart-items {
   display: flex;
   align-items: flex-end;
   position: absolute;
-  line-height: 1;
+  line-height: var(--font-body-line-height);
   height: 1.8rem;
   top: -3rem;
   color: rgba(var(--color-foreground), 0.75);
@@ -180,7 +180,7 @@ cart-items {
 .cart-note__label {
   display: inline-block;
   margin-bottom: 1rem;
-  line-height: 2;
+  line-height: var(--font-body-line-height);
 }
 
 .tax-note {

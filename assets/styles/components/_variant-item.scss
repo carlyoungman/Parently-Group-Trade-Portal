@@ -88,7 +88,7 @@
 
 .variant-item__details {
   font-size: inherit;
-  line-height: 1.4;
+  line-height: var(--font-body-line-height);
 }
 
 .variant-item__details > * {
@@ -105,7 +105,7 @@
   display: block;
   font-size: inherit;
   letter-spacing: 0.06rem;
-  line-height: 1.5;
+  line-height: var(--font-body-line-height);
 }
 
 .variant-item__sku {
@@ -139,7 +139,7 @@
 }
 
 .variant-item__final-price {
-  font-weight: 400;
+  font-weight: var(--font-body-weight);
 }
 
 .variant-item__sold-out {
@@ -206,7 +206,7 @@
 
 .variant-item__error-text {
   font-size: var(--font-small);
-  line-height: 1.2;
+  line-height: var(--font-body-line-height);
   order: 1;
 }
 

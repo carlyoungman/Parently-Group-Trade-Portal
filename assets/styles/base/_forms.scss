@@ -127,7 +127,7 @@
 .select__select,
 .customer select {
   cursor: pointer;
-  line-height: 1.6;
+  line-height: var(--font-body-line-height);
   padding: 0 calc(var(--inputs-border-width) + 3rem) 0 2rem;
   margin: var(--inputs-border-width);
   min-height: calc(var(--inputs-border-width) * 2);
@@ -170,7 +170,7 @@
   transition: top var(--duration-short) ease, font-size var(--duration-short) ease;
   color: rgba(var(--color-foreground), 0.75);
   letter-spacing: 0.1rem;
-  line-height: 1.5;
+  line-height: var(--font-body-line-height);
 }
 
 .field__input:focus ~ .field__label,
@@ -260,7 +260,7 @@ input[type='checkbox'] {
   align-items: center;
   display: flex;
   font-size: inherit;
-  line-height: 1;
+  line-height: var(--font-body-line-height);
   margin-top: 1rem;
 }
 
@@ -356,7 +356,6 @@ input[type='checkbox'] {
   font-style: var(--font-body-style);
   font-weight: var(--font-body-weight);
   font-size: inherit;
-  font-weight: 500;
   opacity: 0.85;
   text-align: center;
   background-color: transparent;

@@ -51,7 +51,7 @@
 
 .footer__slogan {
   font-size: inherit;
-  line-height: 1.65;
+  line-height: var(--font-body-line-height);
   color: rgba(var(--color-foreground), 0.7);
   margin: 0 0 2rem;
 }
@@ -85,7 +85,7 @@
   margin-bottom: 1.6rem;
   margin-top: 0;
   font-size: 1.4rem;
-  font-weight: 700;
+  font-weight: var(--font-body-weight-bold);
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: rgb(var(--color-foreground));

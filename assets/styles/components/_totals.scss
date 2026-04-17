@@ -15,7 +15,7 @@
 }
 
 .totals * {
-  line-height: 1;
+  line-height: var(--font-body-line-height);
 }
 
 .totals > * + * {

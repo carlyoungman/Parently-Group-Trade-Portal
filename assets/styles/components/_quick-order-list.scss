@@ -51,7 +51,7 @@ quick-order-list .pagination-wrapper {
   text-align: left;
   padding-bottom: 2rem;
   opacity: 0.85;
-  font-weight: normal;
+  font-weight: var(--font-body-weight);
   font-size: var(--font-small);
 }
 

@@ -13,7 +13,7 @@ cart-items .title-wrapper-with-link {
   text-align: left;
   padding-bottom: 1.8rem;
   opacity: 0.85;
-  font-weight: normal;
+  font-weight: var(--font-body-weight);
 }
 
 .cart-item__quantity-wrapper {
@@ -58,7 +58,7 @@ cart-items .title-wrapper-with-link {
 
 .cart-item__details {
   font-size: inherit;
-  line-height: 1.4;
+  line-height: var(--font-body-line-height);
 }
 
 .cart-item__details > * {
@@ -115,13 +115,13 @@ cart-items .title-wrapper-with-link {
 }
 
 .cart-item__final-price {
-  font-weight: 400;
+  font-weight: var(--font-body-weight);
 }
 
 .product-option {
   font-size: inherit;
   word-break: break-word;
-  line-height: 1.5;
+  line-height: var(--font-body-line-height);
 }
 
 .cart-item cart-remove-button {
@@ -194,7 +194,7 @@ cart-remove-button .icon-remove {
 
 .cart-item__error-text {
   font-size: var(--font-small);
-  line-height: 1.4;
+  line-height: var(--font-body-line-height);
   letter-spacing: 0.04rem;
   order: 1;
 }

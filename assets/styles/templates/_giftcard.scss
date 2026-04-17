@@ -33,7 +33,7 @@ body {
   color: rgb(var(--color-foreground));
   font-size: var(--font-body-size);
   letter-spacing: 0.07rem;
-  line-height: 1.8;
+  line-height: var(--font-body-line-height);
   //max-width: var(--page-width);
   margin: 0 auto;
   flex: 1 0 auto;
@@ -44,7 +44,7 @@ body {
 
 @media only screen and (min-width: 750px) {
   body {
-    line-height: 1.8;
+    line-height: var(--font-body-line-height);
   }
 }
 
@@ -60,7 +60,7 @@ h2,
   font-style: var(--font-heading-style);
   font-weight: var(--font-heading-weight);
   letter-spacing: 0.06rem;
-  line-height: 1.3;
+  line-height: var(--font-heading-line-height);
 }
 
 h1,
@@ -90,7 +90,7 @@ h2,
   height: auto;
   font-size: inherit;
   letter-spacing: 0.1rem;
-  line-height: 1.2;
+  line-height: var(--font-body-line-height);
 }
 
 .button::selection {
@@ -170,7 +170,7 @@ h2,
 .gift-card__number {
   color: rgb(var(--color-foreground));
   font-size: var(--font-h3);
-  line-height: 1.6;
+  line-height: var(--font-body-line-height);
   text-align: center;
   letter-spacing: 0.25rem;
   opacity: 0.8;
@@ -187,7 +187,7 @@ h2,
   font-size: inherit;
   opacity: 0.6;
   margin: 0;
-  line-height: 1.5;
+  line-height: var(--font-body-line-height);
 }
 
 .badge {
@@ -196,7 +196,7 @@ h2,
   display: inline-block;
   font-size: var(--font-small);
   letter-spacing: 0.1rem;
-  line-height: 1;
+  line-height: var(--font-body-line-height);
   padding: 0.6rem 1.3rem;
   text-align: center;
   background-color: rgb(var(--color-background));
@@ -285,7 +285,7 @@ h2,
   align-items: center;
   display: flex;
   font-size: var(--font-small);
-  line-height: 1.5rem;
+  line-height: var(--font-body-line-height);
   justify-content: center;
   margin-bottom: 0.5rem;
   opacity: 0.8;
