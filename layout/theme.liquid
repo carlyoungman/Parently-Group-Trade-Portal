@@ -40,6 +40,13 @@
 
     {%- render 'css-variables' -%}
     {{- 'theme.css' | asset_url | stylesheet_tag -}}
+    {%- comment -%}
+      CSS ownership: all global, component, and section styles are compiled into
+      theme.css via assets/styles/theme.scss. Do not add per-section stylesheet_tag
+      calls for styles already in the SCSS pipeline. Only load CSS separately when
+      it is intentionally isolated for route or feature reasons (e.g. password page,
+      custom sections without SCSS counterparts).
+    {%- endcomment -%}
 
     {%- if localization.available_countries.size > 1 or localization.available_languages.size > 1 -%}
       <script src="{{ 'localization-form.js' | asset_url }}" defer="defer"></script>
