@@ -1,16 +1,6 @@
+{%- render 'section-padding-style' -%}
+
 {%- style -%}
-  .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
-  }
-
-  @media screen and (min-width: 750px) {
-    .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
-    }
-  }
-
   #shopify-section-{{ section.id }} .logo-carousel__image-wrapper {
     height: {{ section.settings.logo_height }}px;
     {%- if section.settings.image_ratio == 'landscape' -%}
@@ -55,33 +45,20 @@
               class="logo-carousel__item slider__slide"
               {{ block.shopify_attributes }}
             >
-              {%- if block.settings.link != blank -%}
-                <a href="{{ block.settings.link }}" class="logo-carousel__link">
-              {%- endif -%}
-
-              {%- if block.settings.image != blank -%}
-                <div class="logo-carousel__image-wrapper">
-                  {%- assign alt_text = block.settings.image_alt | default: block.settings.image.alt | escape -%}
-                  {{
-                    block.settings.image
-                    | image_url: width: 400
-                    | image_tag:
-                      widths: '100, 150, 200, 300, 400',
-                      sizes: '200px',
-                      class: 'logo-carousel__image',
-                      alt: alt_text,
-                      loading: 'lazy'
-                  }}
-                </div>
-              {%- else -%}
-                <div class="logo-carousel__image-wrapper logo-carousel__image-wrapper--placeholder">
-                  {{ 'image' | placeholder_svg_tag: 'placeholder-svg logo-carousel__placeholder' }}
-                </div>
-              {%- endif -%}
-
-              {%- if block.settings.link != blank -%}
-                </a>
-              {%- endif -%}
+              {%- assign alt_text = block.settings.image_alt | default: block.settings.image.alt | escape -%}
+              {%- render 'link-card',
+                link: block.settings.link,
+                link_class: 'logo-carousel__link',
+                image: block.settings.image,
+                image_url_width: 400,
+                image_tag_widths: '100, 150, 200, 300, 400',
+                image_tag_sizes: '200px',
+                image_class: 'logo-carousel__image',
+                image_alt: alt_text,
+                wrapper_class: 'logo-carousel__image-wrapper',
+                placeholder_class: 'logo-carousel__image-wrapper--placeholder',
+                placeholder_name: 'image'
+              -%}
             </li>
           {%- endfor -%}
         </ul>
@@ -130,33 +107,20 @@
               style="--animation-order: {{ forloop.index }};"
             {% endif %}
           >
-            {%- if block.settings.link != blank -%}
-              <a href="{{ block.settings.link }}" class="logo-carousel__link">
-            {%- endif -%}
-
-            {%- if block.settings.image != blank -%}
-              <div class="logo-carousel__image-wrapper">
-                {%- assign alt_text = block.settings.image_alt | default: block.settings.image.alt | escape -%}
-                {{
-                  block.settings.image
-                  | image_url: width: 400
-                  | image_tag:
-                    widths: '100, 150, 200, 300, 400',
-                    sizes: '200px',
-                    class: 'logo-carousel__image',
-                    alt: alt_text,
-                    loading: 'lazy'
-                }}
-              </div>
-            {%- else -%}
-              <div class="logo-carousel__image-wrapper logo-carousel__image-wrapper--placeholder">
-                {{ 'image' | placeholder_svg_tag: 'placeholder-svg logo-carousel__placeholder' }}
-              </div>
-            {%- endif -%}
-
-            {%- if block.settings.link != blank -%}
-              </a>
-            {%- endif -%}
+            {%- assign alt_text = block.settings.image_alt | default: block.settings.image.alt | escape -%}
+            {%- render 'link-card',
+              link: block.settings.link,
+              link_class: 'logo-carousel__link',
+              image: block.settings.image,
+              image_url_width: 400,
+              image_tag_widths: '100, 150, 200, 300, 400',
+              image_tag_sizes: '200px',
+              image_class: 'logo-carousel__image',
+              image_alt: alt_text,
+              wrapper_class: 'logo-carousel__image-wrapper',
+              placeholder_class: 'logo-carousel__image-wrapper--placeholder',
+              placeholder_name: 'image'
+            -%}
           </li>
         {%- endfor -%}
       </ul>

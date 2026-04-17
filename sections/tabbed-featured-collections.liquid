@@ -1,16 +1,4 @@
-{%- style -%}
-  .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
-  }
-
-  @media screen and (min-width: 750px) {
-    .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
-    }
-  }
-{%- endstyle -%}
+{%- render 'section-padding-style' -%}
 
 {%- liquid
   assign columns_mobile_int = section.settings.columns_mobile | plus: 0
@@ -85,7 +73,10 @@
     id="TabbedCollections-{{ section.id }}"
   >
     {%- if section.blocks.size == 0 -%}
-      <p class="tabbed-collections__empty">Add tab blocks in the theme editor to get started.</p>
+      {%- render 'empty-state-message',
+        message: 'Add tab blocks in the theme editor to get started.',
+        class: 'tabbed-collections__empty'
+      -%}
     {%- else -%}
 
       <div
@@ -145,7 +136,10 @@
             </ul>
 
           {%- elsif tab_collection != blank and tab_collection.products.size == 0 -%}
-            <p class="tabbed-collections__panel-empty">This collection has no products yet.</p>
+            {%- render 'empty-state-message',
+              message: 'This collection has no products yet.',
+              class: 'tabbed-collections__panel-empty'
+            -%}
 
           {%- else -%}
             <ul
@@ -334,7 +328,7 @@
       "max": 100,
       "step": 4,
       "unit": "px",
-      "label": "Top padding",
+      "label": "Padding top",
       "default": 36
     },
     {
@@ -344,11 +338,14 @@
       "max": 100,
       "step": 4,
       "unit": "px",
-      "label": "Bottom padding",
+      "label": "Padding bottom",
       "default": 36
     }
   ],
   "blocks": [
+    {
+      "type": "@app"
+    },
     {
       "type": "tab",
       "name": "Tab",
