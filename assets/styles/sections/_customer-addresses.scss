@@ -25,7 +25,7 @@
 label[for='AddressCountryNew'],
 label[for='AddressProvinceNew'] {
   display: block;
-  font-size: 1.4rem;
+  font-size: inherit;
   margin-bottom: 0.6rem;
 }
 
@@ -69,7 +69,7 @@ li[data-address] > h2 {
 
 @media only screen and (min-width: 750px) {
   li[data-address] > h2 {
-    font-size: 2.2rem;
+    font-size: var(--font-h2);
   }
 }
 

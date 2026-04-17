@@ -56,7 +56,7 @@ cart-items .title-wrapper-with-link {
 }
 
 .cart-item__details {
-  font-size: 1.6rem;
+  font-size: inherit;
   line-height: 1.4;
 }
 
@@ -106,7 +106,7 @@ cart-items .title-wrapper-with-link {
 }
 
 .cart-item__discounted-prices .cart-item__old-price {
-  font-size: 1.4rem;
+  font-size: var(--font-small);
 }
 
 .cart-item__old-price {
@@ -118,7 +118,7 @@ cart-items .title-wrapper-with-link {
 }
 
 .product-option {
-  font-size: 1.4rem;
+  font-size: inherit;
   word-break: break-word;
   line-height: 1.5;
 }
@@ -192,7 +192,7 @@ cart-remove-button .icon-remove {
 }
 
 .cart-item__error-text {
-  font-size: 1.3rem;
+  font-size: var(--font-small);
   line-height: 1.4;
   letter-spacing: 0.04rem;
   order: 1;

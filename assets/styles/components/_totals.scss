@@ -6,12 +6,12 @@
 }
 
 .totals > * {
-  font-size: 1.6rem;
+  font-size: inherit;
   margin: 0;
 }
 
 .totals > h2 {
-  font-size: 1.6rem;
+  font-size: inherit;
 }
 
 .totals * {
@@ -27,7 +27,7 @@
 }
 
 .totals__total-value {
-  font-size: 1.8rem;
+  font-size: var(--font-h4);
 }
 
 .cart__ctas + .totals {

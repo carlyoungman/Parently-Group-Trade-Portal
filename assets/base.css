@@ -239,7 +239,7 @@ body:has(.section-header .drawer-menu) .announcement-bar-section .page-width {
 }
 
 .text-body {
-  font-size: 1.5rem;
+  font-size: inherit;
   letter-spacing: 0.06rem;
   line-height: 1.5;
   font-family: var(--font-body-family);
@@ -400,7 +400,7 @@ blockquote {
 .field__input,
 .form__label,
 .select__select {
-  font-size: 1.3rem;
+  font-size: inherit;
   line-height: 1.5;
   letter-spacing: 0.04rem;
 }
@@ -412,7 +412,7 @@ blockquote {
 table:not([class]) {
   table-layout: fixed;
   border-collapse: collapse;
-  font-size: 1.4rem;
+  font-size: inherit;
   border-style: hidden;
   box-shadow: 0 0 0 0.1rem rgba(var(--color-foreground), 0.2);
   /* draws the table border  */
@@ -488,7 +488,7 @@ h6:empty {
   text-underline-offset: 0.3rem;
   color: rgb(var(--color-link));
   background-color: transparent;
-  font-size: 1.4rem;
+  font-size: inherit;
   font-family: inherit;
 }
 
@@ -502,7 +502,7 @@ h6:empty {
 
 .link-with-icon {
   display: inline-flex;
-  font-size: 1.4rem;
+  font-size: inherit;
   font-weight: 600;
   letter-spacing: 0.1rem;
   text-decoration: none;
@@ -856,19 +856,19 @@ summary::-webkit-details-marker {
 }
 
 .subtitle {
-  font-size: 1.8rem;
+  font-size: inherit;
   line-height: 1.8;
   letter-spacing: 0.06rem;
   color: rgba(var(--color-foreground), 0.7);
 }
 
 .subtitle--small {
-  font-size: 1.4rem;
+  font-size: inherit;
   letter-spacing: 0.1rem;
 }
 
 .subtitle--medium {
-  font-size: 1.6rem;
+  font-size: inherit;
   letter-spacing: 0.08rem;
 }
 
@@ -1216,7 +1216,7 @@ button.shopify-payment-button__button--unbranded {
   padding: 0 3rem;
   cursor: pointer;
   font: inherit;
-  font-size: 1.5rem;
+  font-size: inherit;
   text-decoration: none;
   color: rgb(var(--color-button-text));
   transition: box-shadow var(--duration-short) ease;
@@ -1307,13 +1307,13 @@ button.shopify-payment-button__button--unbranded {
 .button-label,
 .shopify-challenge__button,
 .customer button {
-  font-size: 1.5rem;
+  font-size: inherit;
   letter-spacing: 0.1rem;
   line-height: 1.2;
 }
 
 .button--tertiary {
-  font-size: 1.2rem;
+  font-size: var(--font-small);
   padding: 1rem 1.5rem;
   min-width: calc(9rem + var(--buttons-border-width) * 2);
   min-height: calc(3.5rem + var(--buttons-border-width) * 2);
@@ -1396,7 +1396,7 @@ shopify-accelerated-checkout-cart {
 }
 
 .share-button__button {
-  font-size: 1.4rem;
+  font-size: inherit;
   display: flex;
   align-items: center;
   color: rgb(var(--color-link));
@@ -1581,7 +1581,7 @@ details[open] > .share-button__fallback {
   font-family: var(--font-body-family);
   font-style: var(--font-body-style);
   font-weight: var(--font-body-weight);
-  font-size: 1.6rem;
+  font-size: inherit;
   width: 100%;
   box-sizing: border-box;
   transition: box-shadow var(--duration-short) ease;
@@ -1634,7 +1634,7 @@ details[open] > .share-button__fallback {
   font-family: var(--font-body-family);
   font-style: var(--font-body-style);
   font-weight: var(--font-body-weight);
-  font-size: 1.2rem;
+  font-size: inherit;
   color: rgba(var(--color-foreground), 0.75);
 }
 
@@ -1731,7 +1731,7 @@ details[open] > .share-button__fallback {
 
 .field__label,
 .customer .field label {
-  font-size: 1.6rem;
+  font-size: inherit;
   left: calc(var(--inputs-border-width) + 2rem);
   top: calc(1rem + var(--inputs-border-width));
   margin-bottom: 0;
@@ -1829,17 +1829,17 @@ input[type='checkbox'] {
 .form__message {
   align-items: center;
   display: flex;
-  font-size: 1.4rem;
+  font-size: inherit;
   line-height: 1;
   margin-top: 1rem;
 }
 
 .form__message--large {
-  font-size: 1.6rem;
+  font-size: inherit;
 }
 
 .customer .field .form__message {
-  font-size: 1.4rem;
+  font-size: inherit;
   text-align: left;
 }
 
@@ -1864,7 +1864,7 @@ input[type='checkbox'] {
 
 .form-status {
   margin: 0;
-  font-size: 1.6rem;
+  font-size: inherit;
 }
 
 .form-status-list {
@@ -1925,7 +1925,7 @@ input[type='checkbox'] {
   font-family: var(--font-body-family);
   font-style: var(--font-body-style);
   font-weight: var(--font-body-weight);
-  font-size: 1.6rem;
+  font-size: inherit;
   font-weight: 500;
   opacity: 0.85;
   text-align: center;
@@ -1941,7 +1941,7 @@ input[type='checkbox'] {
 .quantity__button {
   width: 4.5rem;
   flex-shrink: 0;
-  font-size: 1.8rem;
+  font-size: inherit;
   border: 0;
   background-color: transparent;
   cursor: pointer;
@@ -2003,7 +2003,7 @@ input[type='checkbox'] {
 .quantity__rules {
   margin-top: 0.5rem;
   position: relative;
-  font-size: 1.2rem;
+  font-size: var(--font-small);
 }
 
 .quantity__rules .caption {
@@ -2212,7 +2212,7 @@ input[type='checkbox'] {
 
 .utility-bar .localization-wrapper .disclosure .localization-form__select,
 .utility-bar .localization-wrapper .disclosure__link {
-  font-size: 1.3rem;
+  font-size: inherit;
 }
 
 @media screen and (min-width: 990px) {
@@ -2927,7 +2927,7 @@ details-disclosure > details {
   border: 1px solid transparent;
   border-radius: var(--badge-corner-radius);
   display: inline-block;
-  font-size: 1.2rem;
+  font-size: var(--font-small);
   letter-spacing: 0.1rem;
   line-height: 1;
   padding: 0.5rem 1.3rem 0.6rem 1.3rem;

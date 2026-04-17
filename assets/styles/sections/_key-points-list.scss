@@ -70,7 +70,7 @@
 .key-points-list__point-heading {
   color: rgb(var(--color-button));
   margin: 0 0 0.8rem;
-  font-size: 1.8rem;
+  font-size: var(--font-h3);
 }
 
 .key-points-list__point-body {
