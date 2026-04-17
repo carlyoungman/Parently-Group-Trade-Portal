@@ -203,16 +203,16 @@
         "content": "t:settings_schema.typography.settings.header__line_heights.content"
       },
       {
-        "type": "number",
+        "type": "text",
         "id": "body_line_height",
         "label": "t:settings_schema.typography.settings.body_line_height.label",
-        "default": 2
+        "default": "1.5"
       },
       {
-        "type": "number",
+        "type": "text",
         "id": "heading_line_height",
         "label": "t:settings_schema.typography.settings.heading_line_height.label",
-        "default": 1
+        "default": "1.3"
       },
       {
         "type": "header",
