@@ -206,7 +206,7 @@
         "type": "number",
         "id": "body_line_height",
         "label": "t:settings_schema.typography.settings.body_line_height.label",
-        "default": 1.5
+        "default": 2
       },
       {
         "type": "number",
