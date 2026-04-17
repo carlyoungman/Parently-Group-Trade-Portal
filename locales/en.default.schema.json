@@ -243,6 +243,24 @@
         },
         "small_font_size": {
           "label": "Small font size (rem)"
+        },
+        "header__line_heights": {
+          "content": "Line heights"
+        },
+        "body_line_height": {
+          "label": "Body line height"
+        },
+        "heading_line_height": {
+          "label": "Heading line height"
+        },
+        "header__font_weights": {
+          "content": "Font weights"
+        },
+        "body_font_weight": {
+          "label": "Body font weight"
+        },
+        "heading_font_weight": {
+          "label": "Heading font weight"
         }
       }
     },

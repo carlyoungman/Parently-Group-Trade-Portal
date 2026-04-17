@@ -59,12 +59,15 @@
   :root {
     --font-body-family: 'nexa', sans-serif;
     --font-body-style: normal;
-    --font-body-weight: 400;
+    --font-body-weight: {{ settings.body_font_weight }};
     --font-body-weight-bold: 700;
 
     --font-heading-family: 'nexa', sans-serif;
     --font-heading-style: normal;
-    --font-heading-weight: 700;
+    --font-heading-weight: {{ settings.heading_font_weight }};
+    --font-body-line-height: {{ settings.body_line_height }};
+    --font-heading-line-height: {{ settings.heading_line_height }};
+    --font-body-size: {{ settings.body_font_size }}rem;
 
     --font-supersize: {{ settings.supersize_font_size }}rem;
     --font-h1: {{ settings.h1_font_size }}rem;
@@ -205,7 +208,7 @@
     margin: 0;
     font-size: {{ settings.body_font_size }}rem;
     letter-spacing: 0.06rem;
-    line-height: 1.5;
+    line-height: var(--font-body-line-height);
     font-family: var(--font-body-family);
     font-style: var(--font-body-style);
     font-weight: var(--font-body-weight);

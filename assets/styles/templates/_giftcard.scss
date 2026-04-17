@@ -31,6 +31,7 @@ html {
 body {
   background-color: rgb(var(--color-background));
   color: rgb(var(--color-foreground));
+  font-size: var(--font-body-size);
   letter-spacing: 0.07rem;
   line-height: 1.8;
   //max-width: var(--page-width);
@@ -64,26 +65,12 @@ h2,
 
 h1,
 .h1 {
-  font-size: 3rem;
-}
-
-@media only screen and (min-width: 750px) {
-  h1,
-  .h1 {
-    font-size: var(--font-h1);
-  }
+  font-size: var(--font-h1);
 }
 
 h2,
 .h2 {
-  font-size: 2rem;
-}
-
-@media only screen and (min-width: 750px) {
-  h2,
-  .h2 {
-    font-size: var(--font-h2);
-  }
+  font-size: var(--font-h2);
 }
 
 .button {
@@ -101,7 +88,7 @@ h2,
   color: rgb(var(--color-button-label));
   min-width: 12rem;
   height: auto;
-  font-size: 1.5rem;
+  font-size: inherit;
   letter-spacing: 0.1rem;
   line-height: 1.2;
 }
@@ -182,7 +169,7 @@ h2,
 
 .gift-card__number {
   color: rgb(var(--color-foreground));
-  font-size: 1.8rem;
+  font-size: var(--font-h3);
   line-height: 1.6;
   text-align: center;
   letter-spacing: 0.25rem;
@@ -197,7 +184,7 @@ h2,
 
 .gift-card__text {
   text-align: center;
-  font-size: 1.7rem;
+  font-size: inherit;
   opacity: 0.6;
   margin: 0;
   line-height: 1.5;
@@ -207,7 +194,7 @@ h2,
   border: 1px solid transparent;
   border-radius: 4rem;
   display: inline-block;
-  font-size: 1.2rem;
+  font-size: var(--font-small);
   letter-spacing: 0.1rem;
   line-height: 1;
   padding: 0.6rem 1.3rem;
@@ -297,7 +284,7 @@ h2,
 .form__message {
   align-items: center;
   display: flex;
-  font-size: 1.2rem;
+  font-size: var(--font-small);
   line-height: 1.5rem;
   justify-content: center;
   margin-bottom: 0.5rem;

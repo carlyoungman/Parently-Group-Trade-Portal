@@ -29,7 +29,7 @@
 .shopify-payment-button__button--unbranded {
   background-color: rgba(var(--color-button), var(--alpha-button-background));
   color: rgb(var(--color-button-text));
-  font-size: 1.4rem;
+  font-size: inherit;
   line-height: 1.2;
   letter-spacing: 0.07rem;
 }
@@ -45,7 +45,7 @@
 
 .shopify-payment-button__more-options {
   margin: 1.6rem 0 1rem;
-  font-size: 1.2rem;
+  font-size: var(--font-small);
   line-height: 1.5;
   letter-spacing: 0.05rem;
   text-decoration: underline;
@@ -62,7 +62,7 @@
 }
 
 .shopify-payment-button__button {
-  font-size: 1.5rem;
+  font-size: inherit;
   letter-spacing: 0.1rem;
 }
 
@@ -75,7 +75,7 @@
 .product-form__error-message-wrapper:not([hidden]) {
   display: flex;
   align-items: flex-start;
-  font-size: 1.3rem;
+  font-size: var(--font-small);
   line-height: 1.4;
   letter-spacing: 0.04rem;
   margin-bottom: 1.5rem;
@@ -149,7 +149,7 @@
 
 .recipient-checkbox {
   flex-grow: 1;
-  font-size: 1.6rem;
+  font-size: inherit;
   display: flex;
   word-break: break-word;
   align-items: flex-start;

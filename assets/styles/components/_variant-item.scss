@@ -87,7 +87,7 @@
 }
 
 .variant-item__details {
-  font-size: 1.6rem;
+  font-size: inherit;
   line-height: 1.4;
 }
 
@@ -103,13 +103,13 @@
 
 .variant-item__name {
   display: block;
-  font-size: 1.6rem;
+  font-size: inherit;
   letter-spacing: 0.06rem;
   line-height: 1.5;
 }
 
 .variant-item__sku {
-  font-size: 1.1rem;
+  font-size: var(--font-small);
   letter-spacing: 0.04rem;
   margin-top: 0.2rem;
 }
@@ -131,7 +131,7 @@
 }
 
 .variant-item__discounted-prices .variant-item__old-price {
-  font-size: 1.4rem;
+  font-size: var(--font-small);
 }
 
 .variant-item__old-price {
@@ -144,7 +144,7 @@
 
 .variant-item__sold-out {
   opacity: 0.7;
-  font-size: 1.6rem;
+  font-size: inherit;
   color: rgb(var(--color-foreground));
 }
 
@@ -205,7 +205,7 @@
 }
 
 .variant-item__error-text {
-  font-size: 1.2rem;
+  font-size: var(--font-small);
   line-height: 1.2;
   order: 1;
 }

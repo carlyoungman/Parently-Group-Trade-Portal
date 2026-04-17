@@ -164,9 +164,9 @@ body:has(.section-header .drawer-menu) .announcement-bar-section .page-width {
 }
 
 .text-body {
-  font-size: 1.5rem;
+  font-size: inherit;
   letter-spacing: 0.06rem;
-  line-height: 1.5;
+  line-height: var(--font-body-line-height);
   font-family: var(--font-body-family);
   font-style: var(--font-body-style);
   font-weight: var(--font-body-weight);
@@ -191,7 +191,7 @@ h6,
   font-weight: var(--font-heading-weight);
   letter-spacing: 0.06rem;
   color: rgb(var(--color-heading));
-  line-height: 1.3;
+  line-height: var(--font-heading-line-height);
   word-break: break-word;
 }
 
@@ -325,7 +325,7 @@ blockquote {
 .field__input,
 .form__label,
 .select__select {
-  font-size: 1.3rem;
+  font-size: inherit;
   line-height: 1.5;
   letter-spacing: 0.04rem;
 }
@@ -337,7 +337,7 @@ blockquote {
 table:not([class]) {
   table-layout: fixed;
   border-collapse: collapse;
-  font-size: 1.4rem;
+  font-size: inherit;
   border-style: hidden;
   box-shadow: 0 0 0 0.1rem rgba(var(--color-foreground), 0.2);
   /* draws the table border  */
@@ -413,7 +413,7 @@ h6:empty {
   text-underline-offset: 0.3rem;
   color: rgb(var(--color-link));
   background-color: transparent;
-  font-size: 1.4rem;
+  font-size: inherit;
   font-family: inherit;
 }
 
@@ -427,7 +427,7 @@ h6:empty {
 
 .link-with-icon {
   display: inline-flex;
-  font-size: 1.4rem;
+  font-size: inherit;
   font-weight: 600;
   letter-spacing: 0.1rem;
   text-decoration: none;
@@ -781,19 +781,19 @@ summary::-webkit-details-marker {
 }
 
 .subtitle {
-  font-size: 1.8rem;
+  font-size: var(--font-h3);
   line-height: 1.8;
   letter-spacing: 0.06rem;
   color: rgba(var(--color-foreground), 0.7);
 }
 
 .subtitle--small {
-  font-size: 1.4rem;
+  font-size: inherit;
   letter-spacing: 0.1rem;
 }
 
 .subtitle--medium {
-  font-size: 1.6rem;
+  font-size: inherit;
   letter-spacing: 0.08rem;
 }
 

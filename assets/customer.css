@@ -47,7 +47,7 @@
 
 @media only screen and (min-width: 750px) {
   .customer h2.form__message {
-    font-size: 2.2rem;
+    font-size: var(--font-h2);
   }
 }
 
@@ -66,7 +66,7 @@
   border-bottom: 0.01rem solid rgba(var(--color-foreground), 0.08);
   box-shadow: none;
   width: 100%;
-  font-size: 1.6rem;
+  font-size: inherit;
   position: relative;
 }
 
@@ -112,7 +112,7 @@
 }
 
 .customer thead th {
-  font-size: 1.2rem;
+  font-size: var(--font-small);
   letter-spacing: 0.07rem;
   text-transform: uppercase;
 }
@@ -242,7 +242,7 @@
   .customer td::before {
     color: rgba(var(--color-foreground), 0.75);
     content: attr(data-label);
-    font-size: 1.4rem;
+    font-size: inherit;
     padding-right: 2rem;
     text-transform: uppercase;
     flex-grow: 1;
@@ -351,7 +351,7 @@
 .login h3 {
   margin-top: 1.5rem;
   text-align: left;
-  font-size: 1.6rem;
+  font-size: inherit;
 }
 
 #customer_login_guest button {
@@ -440,7 +440,7 @@
 
 :is(.account, .order) p {
   margin: 0 0 2rem;
-  font-size: 1.6rem;
+  font-size: inherit;
 }
 
 :is(.account, .order) h1 {
@@ -486,7 +486,7 @@
   text-decoration: none;
   box-shadow: 0 0 0 0.1rem rgba(var(--color-link), 0.2);
   border: 0.1rem solid transparent;
-  font-size: 1.2rem;
+  font-size: var(--font-small);
 }
 
 .account table td:first-of-type a:hover {
@@ -506,7 +506,7 @@
 
 .order tfoot tr:last-of-type td,
 .order tfoot tr:last-of-type th {
-  font-size: 2.2rem;
+  font-size: var(--font-h2);
   padding-top: 1.5rem;
   padding-bottom: 4rem;
 }
@@ -519,7 +519,7 @@
 }
 
 .order tfoot tr:last-of-type td:before {
-  font-size: 2.2rem;
+  font-size: var(--font-h2);
 }
 
 .order table p,
@@ -530,7 +530,7 @@
 
 .order > div:nth-of-type(2) > div:first-of-type h2 ~ p {
   margin-bottom: 0;
-  font-size: 1.4rem;
+  font-size: inherit;
 }
 
 .order > div:nth-of-type(2) > div:first-of-type h2 ~ p:last-of-type {
@@ -538,7 +538,7 @@
 }
 
 .order .item-props {
-  font-size: 1.4rem;
+  font-size: inherit;
   margin-top: 0.05px;
   display: flex;
   flex-direction: column;
@@ -554,7 +554,7 @@
   border: 0.01rem solid rgba(var(--color-foreground), 0.2);
   padding: 1rem;
   margin-top: 1rem;
-  font-size: 1.4rem;
+  font-size: inherit;
   text-align: left;
 }
 
@@ -570,7 +570,7 @@
   display: block;
   margin-top: 1rem;
   margin-bottom: 0.5rem;
-  font-size: 1.2rem;
+  font-size: var(--font-small);
 }
 
 @media screen and (min-width: 750px) {
@@ -581,7 +581,7 @@
 
 .order tbody ul {
   list-style: none;
-  font-size: 1.2rem;
+  font-size: var(--font-small);
   text-align: right;
   padding-left: 0;
   margin-top: 1rem;
@@ -611,7 +611,7 @@
 }
 
 .order .properties {
-  font-size: 1.4rem;
+  font-size: inherit;
   margin-top: 1rem;
 }
 
@@ -640,7 +640,7 @@
 }
 
 .order .unit-price {
-  font-size: 1.1rem;
+  font-size: var(--font-small);
   letter-spacing: 0.07rem;
   line-height: 1.2;
   margin-top: 0.2rem;
@@ -648,7 +648,7 @@
 }
 
 .order .regular-price {
-  font-size: 1.3rem;
+  font-size: inherit;
 }
 
 /* Addresses */
@@ -675,7 +675,7 @@
 label[for='AddressCountryNew'],
 label[for='AddressProvinceNew'] {
   display: block;
-  font-size: 1.4rem;
+  font-size: inherit;
   margin-bottom: 0.6rem;
 }
 
@@ -719,7 +719,7 @@ li[data-address] > h2 {
 
 @media only screen and (min-width: 750px) {
   li[data-address] > h2 {
-    font-size: 2.2rem;
+    font-size: var(--font-h2);
   }
 }
 

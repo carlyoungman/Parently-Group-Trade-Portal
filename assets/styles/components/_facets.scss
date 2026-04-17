@@ -51,7 +51,7 @@
 .facet-filters__label {
   display: block;
   color: rgba(var(--color-foreground), 0.85);
-  font-size: 1.4rem;
+  font-size: inherit;
   margin: 0 2rem 0 0;
 }
 
@@ -59,7 +59,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 1.4rem;
+  font-size: inherit;
   cursor: pointer;
   height: 4.5rem;
   padding: 0 1.5rem;
@@ -110,7 +110,7 @@
   background-color: transparent;
   border: 0;
   border-radius: 0;
-  font-size: 1.4rem;
+  font-size: inherit;
   height: auto;
   line-height: 1.5;
   margin: 0;
@@ -183,7 +183,7 @@
 .facets__heading {
   display: block;
   color: rgba(var(--color-foreground), 0.85);
-  font-size: 1.4rem;
+  font-size: inherit;
   margin: -1.5rem 2rem 0 0;
 }
 
@@ -197,7 +197,7 @@
 
 .facets__summary {
   color: rgba(var(--color-foreground), 0.75);
-  font-size: 1.4rem;
+  font-size: inherit;
   padding: 0 1.75rem 0 0;
   margin-bottom: 1.5rem;
 }
@@ -288,7 +288,7 @@
   padding: 1.5rem 2rem;
   display: flex;
   justify-content: space-between;
-  font-size: 1.4rem;
+  font-size: inherit;
   position: sticky;
   top: 0;
   background-color: rgb(var(--color-background));
@@ -342,7 +342,7 @@
   flex-direction: column;
   padding: 0;
   height: 100%;
-  font-size: 1.3rem;
+  font-size: inherit;
 }
 
 /* Image filter specific styles */
@@ -448,7 +448,7 @@
   padding: 1rem 2rem 1rem 0;
   flex-grow: 1;
   position: relative;
-  font-size: 1.4rem;
+  font-size: inherit;
   display: flex;
   word-break: break-word;
 }
@@ -584,7 +584,7 @@ button.facets__button {
 }
 
 .product-count__text {
-  font-size: 1.4rem;
+  font-size: inherit;
   line-height: 1.5;
   margin: 0;
 }
@@ -636,12 +636,12 @@ button.facets__button {
 
   .facets__heading--vertical {
     margin: 0 0 1.5rem 0;
-    font-size: 1.5rem;
+    font-size: inherit;
   }
 
   .facets__header-vertical {
     padding: 1.5rem 2rem 1.5rem 0;
-    font-size: 1.4rem;
+    font-size: inherit;
   }
 
   .facets__display-vertical {
