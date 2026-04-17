@@ -59,7 +59,7 @@ product-recommendations:not(.is-accordion) .complementary-products__container {
 
 .complementary-products > .summary__title {
   display: flex;
-  line-height: 1;
+  line-height: var(--font-body-line-height);
   padding: 1.5rem 0;
 }
 

@@ -45,7 +45,7 @@
 .mega-menu__link {
   color: rgba(var(--color-foreground), 0.75);
   display: block;
-  line-height: 1.3;
+  line-height: var(--font-heading-line-height);
   padding-bottom: 0.6rem;
   padding-top: 0.6rem;
   text-decoration: none;
@@ -54,7 +54,7 @@
 }
 
 .mega-menu__link--level-2 {
-  font-weight: bold;
+  font-weight: var(--font-body-weight-bold);
 }
 
 .header--top-center .mega-menu__list {
@@ -84,5 +84,5 @@
 }
 
 .mega-menu__list--condensed .mega-menu__link {
-  font-weight: normal;
+  font-weight: var(--font-body-weight);
 }

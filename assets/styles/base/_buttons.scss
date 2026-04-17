@@ -139,7 +139,7 @@ button.shopify-payment-button__button--unbranded {
 .customer button {
   font-size: inherit;
   letter-spacing: 0.1rem;
-  line-height: 1.2;
+  line-height: var(--font-body-line-height);
 }
 
 .button--tertiary {

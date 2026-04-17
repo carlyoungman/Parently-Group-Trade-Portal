@@ -140,7 +140,7 @@
 
 .card-information .card__information-volume-pricing-note {
   margin-top: 0.6rem;
-  line-height: 0.9;
+  line-height: var(--font-body-line-height);
   color: rgba(var(--color-foreground), 0.75);
 }
 
@@ -465,7 +465,7 @@
 }
 
 .card-information > * {
-  line-height: 1.4;
+  line-height: var(--font-body-line-height);
   color: rgb(var(--color-foreground));
 }
 

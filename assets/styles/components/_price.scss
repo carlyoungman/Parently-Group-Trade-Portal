@@ -2,7 +2,7 @@
 .price {
   font-size: inherit;
   letter-spacing: 0.1rem;
-  line-height: 1.5;
+  line-height: var(--font-body-line-height);
   color: rgb(var(--color-foreground));
 }
 
@@ -40,7 +40,7 @@
 
 .price--large {
   font-size: inherit;
-  line-height: 1.5;
+  line-height: var(--font-body-line-height);
   letter-spacing: 0.13rem;
 }
 
@@ -95,7 +95,7 @@
   display: block;
   font-size: var(--font-small);
   letter-spacing: 0.04rem;
-  line-height: 1.2;
+  line-height: var(--font-body-line-height);
   margin-top: 0.2rem;
   color: rgba(var(--color-foreground), 0.7);
 }

@@ -201,7 +201,7 @@ predictive-search[loading] .predictive-search__results-groups-wrapper ~ .predict
   align-items: center;
   padding: 1.3rem 2rem;
   word-break: break-all;
-  line-height: 1.4;
+  line-height: var(--font-body-line-height);
 }
 
 @media screen and (min-width: 750px) {

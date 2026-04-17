@@ -6,7 +6,7 @@
 .discounts__discount {
   display: flex;
   align-items: center;
-  line-height: 1.5;
+  line-height: var(--font-body-line-height);
 }
 
 .discounts__discount svg {

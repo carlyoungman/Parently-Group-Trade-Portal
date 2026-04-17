@@ -178,7 +178,7 @@ a.product__text {
 }
 
 .product__description-title {
-  font-weight: 600;
+  font-weight: var(--font-body-weight-semibold);
 }
 
 .product--no-media .product__title,

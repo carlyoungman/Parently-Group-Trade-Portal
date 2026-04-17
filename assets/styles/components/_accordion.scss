@@ -2,7 +2,7 @@
 .accordion summary {
   display: flex;
   position: relative;
-  line-height: 1;
+  line-height: var(--font-body-line-height);
   padding: 1.5rem 0;
 }
 
