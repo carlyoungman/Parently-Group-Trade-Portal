@@ -18,25 +18,8 @@
   id="ImageTextLinks-{{ section.id }}"
   class="image-text-links image-text-links--{{ section.settings.section_height }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
 >
-  {%- if section.settings.image != blank -%}
-    <div class="image-text-links__media media{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}">
-      {{
-        section.settings.image
-        | image_url: width: 3840
-        | image_tag:
-          width: section.settings.image.width,
-          height: section.settings.image.height,
-          sizes: '100vw',
-          widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840',
-          fetchpriority: 'auto'
-      }}
-    </div>
-  {%- else -%}
-    <div class="image-text-links__media media placeholder">
-      {{ 'hero-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
-    </div>
-  {%- endif -%}
-
+`
+    `
   <div class="image-text-links__inner page-width">
 
     {%- comment -%} LEFT COLUMN — subheading, heading, text, buttons {%- endcomment -%}

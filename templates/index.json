@@ -154,8 +154,8 @@
         "logo_height": 100,
         "image_ratio": "wide",
         "logos_per_row_desktop": 6,
-        "padding_top": 32,
-        "padding_bottom": 32
+        "padding_top": 36,
+        "padding_bottom": 36
       }
     },
     "vertical_image_links_DkXcji": {
@@ -251,12 +251,317 @@
         "padding_top": 0,
         "padding_bottom": 0
       }
+    },
+    "image_text_links_cY3zdE": {
+      "type": "image-text-links",
+      "blocks": {
+        "subheading_BPr6U6": {
+          "type": "subheading",
+          "settings": {
+            "text": "Retailer Resources"
+          }
+        },
+        "heading_7azPW4": {
+          "type": "heading",
+          "settings": {
+            "heading": "Everything you need at the Media Hub",
+            "heading_size": "h1"
+          }
+        },
+        "buttons_cbK8LK": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "Find out more",
+            "button_link_1": "shopify://pages/retailer-support",
+            "button_style_secondary_1": true,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        },
+        "link_item_9UfMeL": {
+          "type": "link_item",
+          "settings": {
+            "label": "Image Downloads",
+            "link": "#"
+          }
+        },
+        "link_item_8WhpiE": {
+          "type": "link_item",
+          "settings": {
+            "label": "Price Lists",
+            "link": ""
+          }
+        },
+        "link_item_W8FbFc": {
+          "type": "link_item",
+          "settings": {
+            "label": "Point of Sale",
+            "link": ""
+          }
+        },
+        "link_item_RdRfnb": {
+          "type": "link_item",
+          "settings": {
+            "label": "Eco Resources",
+            "link": ""
+          }
+        },
+        "link_item_VrTxPc": {
+          "type": "link_item",
+          "settings": {
+            "label": "Marketing",
+            "link": ""
+          }
+        },
+        "link_item_AUdJNm": {
+          "type": "link_item",
+          "settings": {
+            "label": "Videos",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "subheading_BPr6U6",
+        "heading_7azPW4",
+        "buttons_cbK8LK",
+        "link_item_9UfMeL",
+        "link_item_8WhpiE",
+        "link_item_W8FbFc",
+        "link_item_RdRfnb",
+        "link_item_VrTxPc",
+        "link_item_AUdJNm"
+      ],
+      "name": "Image & text links",
+      "settings": {
+        "image": "shopify://shop_images/Rectangle_2699.jpg",
+        "image_overlay_opacity": 50,
+        "image_behavior": "none",
+        "section_height": "large"
+      }
+    },
+    "tabbed_featured_collections_Wy7b9B": {
+      "type": "tabbed-featured-collections",
+      "blocks": {
+        "tab_tYE7NL": {
+          "type": "tab",
+          "settings": {
+            "tab_title": "New Arrivals",
+            "collection": "new-arrivals"
+          }
+        },
+        "tab_rrTed8": {
+          "type": "tab",
+          "settings": {
+            "tab_title": "Best Sellers",
+            "collection": "best-sellers"
+          }
+        }
+      },
+      "block_order": [
+        "tab_tYE7NL",
+        "tab_rrTed8"
+      ],
+      "name": "Tabbed Featured Collections",
+      "settings": {
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": true,
+        "show_rating": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "image_banner_Cc8dQy": {
+      "type": "image-banner",
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/Rectangle_2699.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "medium",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    },
+    "key_points_list_6kGEjj": {
+      "type": "key-points-list",
+      "blocks": {
+        "heading_DQeqzC": {
+          "type": "heading",
+          "settings": {
+            "heading": "Why the Parently Group...",
+            "heading_size": "h1"
+          }
+        },
+        "text_MayeRd": {
+          "type": "text",
+          "settings": {
+            "text": "<p>What we can bring to every partnership, across every brand.</p>"
+          }
+        },
+        "buttons_8yfGwz": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "Become a retailer",
+            "button_link_1": "shopify://pages/retailer-support",
+            "button_style_secondary_1": true,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": true
+          }
+        },
+        "key_point_zFRTYg": {
+          "type": "key_point",
+          "settings": {
+            "heading": "One partner,  multiple categories",
+            "content": "<p>One account, one order process, one relationship, a complete kidswear + footwear offer.</p>",
+            "button_label": "",
+            "button_link": "",
+            "button_style_secondary": false
+          }
+        },
+        "key_point_TPfyyw": {
+          "type": "key_point",
+          "settings": {
+            "heading": "Providing support that feels persona",
+            "content": "<p>Collaborative planning, marketing support and campaign assets to help sell-through.</p>",
+            "button_label": "",
+            "button_link": "",
+            "button_style_secondary": false
+          }
+        },
+        "key_point_PhHQXg": {
+          "type": "key_point",
+          "settings": {
+            "heading": "Stock reliability",
+            "content": "<p>Strong availability and dependable replenishment  to keep sales flowing.</p>",
+            "button_label": "",
+            "button_link": "",
+            "button_style_secondary": false
+          }
+        },
+        "key_point_xxVzTW": {
+          "type": "key_point",
+          "settings": {
+            "heading": "Proven brands",
+            "content": "<p>Trusted names with loyal followings - from heritage schoolwear to playful fashion.</p>",
+            "button_label": "",
+            "button_link": "",
+            "button_style_secondary": false
+          }
+        },
+        "key_point_e3VbJQ": {
+          "type": "key_point",
+          "settings": {
+            "heading": "Commercial focus",
+            "content": "<p>Clear pricing architecture and margin-friendly ranges.</p>",
+            "button_label": "",
+            "button_link": "",
+            "button_style_secondary": false
+          }
+        },
+        "key_point_6jtM4j": {
+          "type": "key_point",
+          "settings": {
+            "heading": "Key point heading",
+            "content": "<p>Shop multiple brands in one place, explore product diversification with reduced risk.</p>",
+            "button_label": "",
+            "button_link": "",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_DQeqzC",
+        "text_MayeRd",
+        "buttons_8yfGwz",
+        "key_point_zFRTYg",
+        "key_point_TPfyyw",
+        "key_point_PhHQXg",
+        "key_point_xxVzTW",
+        "key_point_e3VbJQ",
+        "key_point_6jtM4j"
+      ],
+      "name": "Key points list",
+      "settings": {
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "image_content_carousel_b63H9U": {
+      "type": "image-content-carousel",
+      "blocks": {
+        "slide_jhnNEg": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_5299.png",
+            "heading": "Ethical Trading Initiative Member",
+            "content": "<p>100% Ethical Trading Transparency. The Parently Group is a founding member of the Ethical Trading Initiative since 2019. Our ambition is achieve full transparency throughout our supply-chain. We are currently benchmarked at 75%<br/><br/></p>",
+            "content_image": "shopify://shop_images/ETI_Member_Standard_Logo_white_1.svg",
+            "button_label_1": "",
+            "button_link_1": "",
+            "button_style_secondary_1": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": true
+          }
+        },
+        "slide_7dgCQq": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_5299.png",
+            "heading": "Ethical Trading Initiative Member",
+            "content": "<p>00% Ethical Trading Transparency. The Parently Group is a founding member of the Ethical Trading Initiative since 2019. Our ambition is achieve full transparency throughout our supply-chain. We are currently benchmarked at 75%</p>",
+            "content_image": "shopify://shop_images/ETI_Member_Standard_Logo_white_1.svg",
+            "button_label_1": "",
+            "button_link_1": "",
+            "button_style_secondary_1": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": true
+          }
+        }
+      },
+      "block_order": [
+        "slide_jhnNEg",
+        "slide_7dgCQq"
+      ],
+      "name": "Image with content carousel",
+      "settings": {
+        "heading": "Awards & Accolades",
+        "heading_size": "h1",
+        "content": "",
+        "button_label_1": "",
+        "button_link_1": "",
+        "button_style_secondary_1": false,
+        "button_label_2": "",
+        "button_link_2": "",
+        "button_style_secondary_2": true,
+        "content_bg_color": "#73ae70",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
     "featured_collection",
     "hero_banner_KjxajN",
     "logo_carousel_AciGQL",
-    "vertical_image_links_DkXcji"
+    "vertical_image_links_DkXcji",
+    "image_text_links_cY3zdE",
+    "tabbed_featured_collections_Wy7b9B",
+    "image_banner_Cc8dQy",
+    "key_points_list_6kGEjj",
+    "image_content_carousel_b63H9U"
   ]
 }
