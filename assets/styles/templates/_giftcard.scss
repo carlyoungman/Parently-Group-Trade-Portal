@@ -73,53 +73,12 @@ h2,
   font-size: var(--font-h2);
 }
 
-.button {
-  font-family: inherit;
-  cursor: pointer;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  border: none;
-  padding: 1.5rem 3rem;
-  text-decoration: none;
-  background-color: rgb(var(--color-button));
-  box-shadow: 0 0 0 0.1rem rgb(var(--color-button));
-  color: rgb(var(--color-button-label));
-  min-width: 12rem;
-  height: auto;
-  font-size: inherit;
-  letter-spacing: 0.1rem;
-  line-height: var(--font-body-line-height);
-}
 
-.button::selection {
-  background-color: rgba(var(--color-button-label), 0.3);
-}
 
-.button:hover {
-  box-shadow: 0 0 0 0.2rem rgb(var(--color-button));
-}
 
-.button--secondary {
-  color: rgb(var(--color-secondary-button-label));
-  box-shadow: 0 0 0 0.1rem rgb(var(--color-secondary-button-label));
-  background-color: transparent;
-}
 
-.button--secondary::selection {
-  background-color: rgba(var(--color-secondary-button-label), 0.3);
-}
 
-.button--secondary:hover {
-  box-shadow: 0 0 0 0.2rem rgb(var(--color-secondary-button-label));
-}
 
-@media (forced-colors: active) {
-  .button {
-    border: transparent solid 1px;
-  }
-}
 
 .gift-card {
   padding: 3rem;

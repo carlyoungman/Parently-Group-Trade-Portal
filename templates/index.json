@@ -44,7 +44,7 @@
           "type": "text",
           "settings": {
             "text": "Welcome to The Parently Group Trade Porta",
-            "text_style": "body"
+            "text_style": "caption-with-letter-spacing"
           }
         },
         "heading_3AFj7W": {
@@ -58,10 +58,10 @@
           "type": "buttons",
           "settings": {
             "button_label_1": "Login",
-            "button_link_1": "",
+            "button_link_1": "shopify://pages/dashboard",
             "button_style_secondary_1": false,
             "button_label_2": "Become a retailer",
-            "button_link_2": "",
+            "button_link_2": "shopify://pages/price-lists",
             "button_style_secondary_2": true
           }
         }

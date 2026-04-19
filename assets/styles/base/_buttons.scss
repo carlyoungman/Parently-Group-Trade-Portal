@@ -1,401 +1,313 @@
-// Converted from base.css: Button component
-/* component-button */
-/* Button - default */
+/* =========================
+   Button
+========================= */
 
-.button--secondary,
-.button--tertiary {
-  --color-button: var(--color-secondary-button);
-  --color-button-text: var(--color-secondary-button-text);
-  --color-button-hover: var(--color-secondary-button-hover);
-}
+.button {
+  font-family: inherit;
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border: none;
+  padding: 1.5rem 3rem;
+  text-decoration: none;
+  background-color: rgb(var(--color-button));
+  color: rgb(var(--color-button-label));
+  min-width: 12rem;
+  height: auto;
+  font-size: inherit;
+  letter-spacing: 0.1rem;
+  line-height: var(--font-body-line-height);
+  position: relative;
 
-.button--tertiary {
-  --alpha-button-background: 0;
-  --alpha-button-border: 0.2;
-}
-
-.button,
-.shopify-challenge__button,
-.customer button,
-button.shopify-payment-button__button--unbranded {
+  /* shared vars */
   --shadow-horizontal-offset: var(--buttons-shadow-horizontal-offset);
   --shadow-vertical-offset: var(--buttons-shadow-vertical-offset);
   --shadow-blur-radius: var(--buttons-shadow-blur-radius);
   --shadow-opacity: var(--buttons-shadow-opacity);
   --shadow-visible: var(--buttons-shadow-visible);
-  --border-offset: var(--buttons-border-offset); /* reduce radius edge artifacts */
+  --border-offset: var(--buttons-border-offset);
   --border-opacity: calc(1 - var(--buttons-border-opacity));
-  border-radius: var(--buttons-radius-outset);
-  position: relative;
-}
 
-.button,
-.shopify-challenge__button,
-.customer button,
-button.shopify-payment-button__button--unbranded {
+  border-radius: var(--buttons-radius-outset);
   min-width: calc(12rem + var(--buttons-border-width) * 2);
   min-height: calc(4.5rem + var(--buttons-border-width) * 2);
-}
 
-.button,
-.shopify-challenge__button,
-.customer button {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  border: 0;
-  padding: 0 3rem;
-  cursor: pointer;
-  font: inherit;
-  text-decoration: none;
-  color: rgb(var(--color-button-text));
-  transition: box-shadow var(--duration-short) ease;
   -webkit-appearance: none;
   appearance: none;
   background-color: rgba(var(--color-button), var(--alpha-button-background));
-}
+  color: rgb(var(--color-button-text));
 
-.button:before,
-.shopify-challenge__button:before,
-.customer button:before,
-.shopify-payment-button__button--unbranded:before {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: -1;
-  border-radius: var(--buttons-radius-outset);
-  box-shadow: var(--shadow-horizontal-offset) var(--shadow-vertical-offset) var(--shadow-blur-radius)
-    rgba(var(--color-shadow), var(--shadow-opacity));
-}
+  &::selection {
+    background-color: rgba(var(--color-button-text), 0.3);
+  }
 
-.button:after,
-.shopify-challenge__button:after,
-.customer button:after,
-.shopify-payment-button__button--unbranded:after {
-  content: '';
-  position: absolute;
-  top: var(--buttons-border-width);
-  right: var(--buttons-border-width);
-  bottom: var(--buttons-border-width);
-  left: var(--buttons-border-width);
-  z-index: 1;
-  border-radius: var(--buttons-radius);
-  box-shadow: 0 0 0 calc(var(--buttons-border-width) + var(--border-offset))
-      rgba(var(--color-button-text), var(--border-opacity)),
-    0 0 0 var(--buttons-border-width) rgba(var(--color-button), var(--alpha-button-background));
-  transition: box-shadow var(--duration-short) ease;
-}
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: var(--buttons-radius-outset);
+  }
 
-.button:not([disabled]):hover,
-.button:not([disabled]):active,
-.shopify-challenge__button:hover,
-.shopify-challenge__button:active,
-.customer button:hover,
-.customer button:active {
-  background-color: rgb(var(--color-button-hover));
-}
+  &::after {
+    content: '';
+    position: absolute;
+    inset: var(--buttons-border-width);
+    z-index: 1;
+    border-radius: var(--buttons-radius);
+  }
 
-.button:not([disabled]):hover::after,
-.shopify-challenge__button:hover::after,
-.customer button:hover::after,
-.shopify-payment-button__button--unbranded:hover::after {
-  --border-offset: 1.3px;
-  box-shadow: 0 0 0 calc(var(--buttons-border-width) + var(--border-offset))
-      rgba(var(--color-button-text), var(--border-opacity)),
-    0 0 0 calc(var(--buttons-border-width) + 1px) rgba(var(--color-button), var(--alpha-button-background));
-}
+  &:not([disabled]):hover,
+  &:not([disabled]):active {
+    background-color: rgb(var(--color-button-hover));
+  }
 
-.button--secondary:after {
-  --border-opacity: var(--buttons-border-opacity);
-}
+  &:not([disabled]):hover::after {
+    --border-offset: 1.3px;
+  }
 
-.button:focus-visible,
-.button:focus,
-.button.focused,
-.shopify-payment-button__button--unbranded:focus-visible,
-.shopify-payment-button__button--unbranded:focus {
-  outline: 0;
-  box-shadow: 0 0 0 0.3rem rgb(var(--color-background)), 0 0 0 0.5rem rgba(var(--color-foreground), 0.5),
-    0 0 0.5rem 0.4rem rgba(var(--color-foreground), 0.3);
-}
+  &:focus,
+  &:focus-visible,
+  &.focused {
+    outline: 0;
+  }
 
-.button:focus:not(:focus-visible):not(.focused),
-.shopify-payment-button__button--unbranded:focus:not(:focus-visible):not(.focused) {
-  box-shadow: inherit;
-}
+  &:disabled,
+  &[aria-disabled='true'],
+  &.disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
 
-.button::selection,
-.shopify-challenge__button::selection,
-.customer button::selection {
-  background-color: rgba(var(--color-button-text), 0.3);
-}
+  /* =========================
+     Modifiers
+  ========================= */
 
-.button,
-.button-label,
-.shopify-challenge__button,
-.customer button {
-  font-size: inherit;
-  letter-spacing: 0.1rem;
-  line-height: var(--font-body-line-height);
-}
+  &--secondary {
+    color: rgb(var(--color-secondary-button-text));
+    background-color: transparent;
+    border: var(--buttons-border-width) solid rgba(var(--color-secondary-button-text), var(--buttons-border-opacity));
 
-.button--tertiary {
-  font-size: var(--font-small);
-  padding: 1rem 1.5rem;
-  min-width: calc(9rem + var(--buttons-border-width) * 2);
-  min-height: calc(3.5rem + var(--buttons-border-width) * 2);
-}
+    --color-button: var(--color-secondary-button);
+    --color-button-text: var(--color-secondary-button-text);
+    --color-button-hover: var(--color-secondary-button-hover);
 
-.button--small {
-  padding: 1.2rem 2.6rem;
-}
+    &::after {
+      --border-opacity: var(--buttons-border-opacity);
+    }
+  }
 
-/* Shopify Accelerated Checkout */
+  &--tertiary {
+    --color-button: var(--color-secondary-button);
+    --color-button-text: var(--color-secondary-button-text);
+    --color-button-hover: var(--color-secondary-button-hover);
 
-shopify-accelerated-checkout {
-  --shopify-accelerated-checkout-button-border-radius: var(--buttons-radius-outset);
-  --shopify-accelerated-checkout-button-box-shadow: var(--shadow-horizontal-offset) var(--shadow-vertical-offset) var(--shadow-blur-radius)
-  rgba(var(--color-shadow), var(--shadow-opacity));
-}
-shopify-accelerated-checkout-cart {
-  --shopify-accelerated-checkout-button-border-radius: var(--buttons-radius-outset);
-  --shopify-accelerated-checkout-button-box-shadow: var(--shadow-horizontal-offset) var(--shadow-vertical-offset) var(--shadow-blur-radius)
-  rgba(var(--color-shadow), var(--shadow-opacity));
-}
+    --alpha-button-background: 0;
+    --alpha-button-border: 0.2;
 
+    font-size: var(--font-small);
+    padding: 1rem 1.5rem;
+    min-width: calc(9rem + var(--buttons-border-width) * 2);
+    min-height: calc(3.5rem + var(--buttons-border-width) * 2);
+  }
 
-/* Button - other */
+  &--small {
+    padding: 1.2rem 2.6rem;
+  }
 
-.button:disabled,
-.button[aria-disabled='true'],
-.button.disabled,
-.customer button:disabled,
-.customer button[aria-disabled='true'],
-.customer button.disabled,
-.quantity__button.disabled {
-  cursor: not-allowed;
-  opacity: 0.5;
-}
+  &--full-width {
+    display: flex;
+    width: 100%;
+  }
 
-.button--full-width {
-  display: flex;
-  width: 100%;
-}
+  &.loading {
+    color: transparent;
 
-.button.loading {
-  color: transparent;
-  position: relative;
-}
+    > .loading__spinner {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      height: 100%;
+      display: flex;
+      align-items: center;
 
-@media screen and (forced-colors: active) {
-  .button.loading {
-    color: rgb(var(--color-foreground));
+      .spinner {
+        width: fit-content;
+      }
+
+      .path {
+        stroke: rgb(var(--color-button-text));
+      }
+    }
   }
 }
 
-.button.loading > .loading__spinner {
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  position: absolute;
-  height: 100%;
-  display: flex;
-  align-items: center;
+/* forced colors */
+@media (forced-colors: active) {
+  .button {
+    border: transparent solid 1px;
+
+    &.loading {
+      color: rgb(var(--color-foreground));
+    }
+  }
 }
 
-.button.loading > .loading__spinner .spinner {
-  width: fit-content;
+
+/* =========================
+   Shopify Accelerated Checkout
+========================= */
+
+shopify-accelerated-checkout,
+shopify-accelerated-checkout-cart {
+  --shopify-accelerated-checkout-button-border-radius: var(--buttons-radius-outset);
+  --shopify-accelerated-checkout-button-box-shadow:
+          var(--shadow-horizontal-offset)
+          var(--shadow-vertical-offset)
+          var(--shadow-blur-radius)
+          rgba(var(--color-shadow), var(--shadow-opacity));
 }
 
-.button.loading > .loading__spinner .path {
-  stroke: rgb(var(--color-button-text));
-}
 
-/* Button - social share */
+/* =========================
+   Share Button
+========================= */
 
 .share-button {
   display: block;
   position: relative;
-}
 
-.share-button details {
-  width: fit-content;
-}
+  details {
+    width: fit-content;
+  }
 
-.share-button__button {
-  font-size: inherit;
-  display: flex;
-  align-items: center;
-  color: rgb(var(--color-link));
-  margin-left: 0;
-  padding-left: 0;
-  min-height: 4.4rem;
-}
+  &__button {
+    font-size: inherit;
+    display: flex;
+    align-items: center;
+    color: rgb(var(--color-link));
+    padding-left: 0;
+    min-height: 4.4rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
 
-details[open] > .share-button__fallback {
-  animation: animateMenuOpen var(--duration-default) ease;
-}
+    &:hover {
+      text-decoration: underline;
+      text-underline-offset: 0.3rem;
+    }
 
-.share-button__button:hover {
-  text-decoration: underline;
-  text-underline-offset: 0.3rem;
-}
+    .icon-share {
+      height: 1.2rem;
+      margin-right: 1rem;
+      min-width: 1.3rem;
+    }
+  }
 
-.share-button__button,
-.share-button__fallback button {
-  cursor: pointer;
-  background-color: transparent;
-  border: none;
-}
+  &__fallback {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 3rem;
+    left: 0.1rem;
+    z-index: 3;
+    width: 100%;
+    min-width: max-content;
+    border-radius: var(--inputs-radius);
 
-.share-button__button .icon-share {
-  height: 1.2rem;
-  margin-right: 1rem;
-  min-width: 1.3rem;
-}
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgb(var(--color-background));
+      border-radius: var(--inputs-radius-outset);
+      z-index: -1;
+    }
 
-.share-button__fallback {
-  display: flex;
-  align-items: center;
-  position: absolute;
-  top: 3rem;
-  left: 0.1rem;
-  z-index: 3;
-  width: 100%;
-  min-width: max-content;
-  border-radius: var(--inputs-radius);
-  border: 0;
-}
+    &::after {
+      content: '';
+      position: absolute;
+      inset: var(--inputs-border-width);
+      border: 0.1rem solid transparent;
+      border-radius: var(--inputs-radius);
+      z-index: 1;
+    }
 
-.share-button__fallback:after {
-  pointer-events: none;
-  content: '';
-  position: absolute;
-  top: var(--inputs-border-width);
-  right: var(--inputs-border-width);
-  bottom: var(--inputs-border-width);
-  left: var(--inputs-border-width);
-  border: 0.1rem solid transparent;
-  border-radius: var(--inputs-radius);
-  box-shadow: 0 0 0 var(--inputs-border-width) rgba(var(--color-foreground), var(--inputs-border-opacity));
-  transition: box-shadow var(--duration-short) ease;
-  z-index: 1;
-}
+    button {
+      width: 4.4rem;
+      height: 4.4rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: transparent;
+      border: none;
+      cursor: pointer;
 
-.share-button__fallback:before {
-  background: rgb(var(--color-background));
-  pointer-events: none;
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  border-radius: var(--inputs-radius-outset);
-  box-shadow: var(--inputs-shadow-horizontal-offset) var(--inputs-shadow-vertical-offset)
-    var(--inputs-shadow-blur-radius) rgba(var(--color-shadow), var(--inputs-shadow-opacity));
-  z-index: -1;
-}
+      &:hover {
+        color: rgba(var(--color-foreground), 0.75);
 
-.share-button__fallback button {
-  width: 4.4rem;
-  height: 4.4rem;
-  padding: 0;
-  flex-shrink: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  right: var(--inputs-border-width);
-}
+        .svg-wrapper {
+          transform: scale(1.07);
+        }
+      }
+    }
 
-.share-button__fallback button:hover {
-  color: rgba(var(--color-foreground), 0.75);
-}
+    .field {
+      border-radius: 0;
+      min-width: auto;
+      min-height: auto;
 
-.share-button__fallback button:hover .svg-wrapper {
-  transform: scale(1.07);
-}
+      &::before,
+      &::after {
+        content: none;
+      }
 
-.share-button__close:not(.hidden) + .share-button__copy {
-  display: none;
-}
+      &__input {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
 
-.share-button__close,
-.share-button__copy {
-  background-color: transparent;
-  color: rgb(var(--color-foreground));
-}
+        &:focus,
+        &:-webkit-autofill {
+          outline: 0.2rem solid rgba(var(--color-foreground), 0.5);
+          outline-offset: 0.1rem;
+        }
+      }
+    }
 
-.share-button__copy:focus-visible,
-.share-button__close:focus-visible {
-  background-color: rgb(var(--color-background));
-  z-index: 2;
-}
+    .icon {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+  }
 
-.share-button__copy:focus,
-.share-button__close:focus {
-  background-color: rgb(var(--color-background));
-  z-index: 2;
-}
+  &__close,
+  &__copy {
+    background: transparent;
+    color: rgb(var(--color-foreground));
 
-.field:not(:focus-visible):not(.focused) + .share-button__copy:not(:focus-visible):not(.focused),
-.field:not(:focus-visible):not(.focused) + .share-button__close:not(:focus-visible):not(.focused) {
-  background-color: inherit;
-}
+    &:focus,
+    &:focus-visible {
+      background-color: rgb(var(--color-background));
+      z-index: 2;
+    }
+  }
 
-.share-button__fallback .field:after,
-.share-button__fallback .field:before {
-  content: none;
-}
+  &__message {
+    &:not(:empty) {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      padding: 0.8rem 0 0.8rem 1.5rem;
+      margin: var(--inputs-border-width);
+    }
 
-.share-button__fallback .field {
-  border-radius: 0;
-  min-width: auto;
-  min-height: auto;
-  transition: none;
+    &:not(:empty):not(.hidden) ~ * {
+      display: none;
+    }
+  }
 }
-
-.share-button__fallback .field__input:focus,
-.share-button__fallback .field__input:-webkit-autofill {
-  outline: 0.2rem solid rgba(var(--color-foreground), 0.5);
-  outline-offset: 0.1rem;
-  box-shadow: 0 0 0 0.1rem rgb(var(--color-background)), 0 0 0.5rem 0.4rem rgba(var(--color-foreground), 0.3);
-}
-
-.share-button__fallback .field__input {
-  box-shadow: none;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-  filter: none;
-  min-width: auto;
-  min-height: auto;
-}
-
-.share-button__fallback .field__input:hover {
-  box-shadow: none;
-}
-
-.share-button__fallback .icon {
-  width: 1.5rem;
-  height: 1.5rem;
-}
-
-.share-button__message:not(:empty) {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  margin-top: 0;
-  padding: 0.8rem 0 0.8rem 1.5rem;
-  margin: var(--inputs-border-width);
-}
-
-.share-button__message:not(:empty):not(.hidden) ~ * {
-  display: none;
-}
-

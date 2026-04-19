@@ -263,9 +263,6 @@ blockquote {
 }
 
 .caption-with-letter-spacing {
-  font-size: 1rem;
-  letter-spacing: 0.13rem;
-  line-height: var(--font-heading-line-height);
   text-transform: uppercase;
 }
 
@@ -314,10 +311,6 @@ blockquote {
   font-size: var(--font-h6);
 }
 
-.caption-with-letter-spacing--small,
-.subtitle--small {
-  font-size: var(--font-small);
-}
 
 .caption-large,
 .customer .field input,
@@ -578,9 +571,10 @@ summary {
 
 summary .icon-caret {
   position: absolute;
-  height: 0.6rem;
-  right: 1.5rem;
-  top: calc(50% - 0.2rem);
+  height: 0.8rem;
+  right: 1rem;
+  top: calc(45%);
+  color: rgb(var(--color-secondary-background));
 }
 
 summary::-webkit-details-marker {
