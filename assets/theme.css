@@ -1179,9 +1179,6 @@ deferred-media {
 .button--secondary::after {
   --border-opacity: var(--buttons-border-opacity);
 }
-.button--secondary:hover {
-  color: #fff;
-}
 .button--tertiary {
   --color-button: var(--color-secondary-button);
   --color-button-text: var(--color-secondary-button-text);
@@ -13043,31 +13040,71 @@ li[data-address] > h2 {
    Image & Text Links Section
    Full-bleed background image with left content column and right link list.
    ============================================================================= */
-/* -----------------------------------------------------------------------
-   Section wrapper — positions the background image and overlay
-   ----------------------------------------------------------------------- */
 .image-text-links {
-  position: relative;
   display: flex;
   z-index: auto;
-  isolation: isolate;
+  /* Height variants */
 }
-
-/* Height variants */
 .image-text-links--small {
   min-height: 42rem;
 }
-
 .image-text-links--medium {
   min-height: 56rem;
 }
-
 .image-text-links--large {
   min-height: 78rem;
 }
-
-/* Dark overlay — opacity driven via inline style set in Liquid */
-.image-text-links::after {
+.image-text-links {
+  /* -----------------------------------------------------------------------
+     Background image
+     ----------------------------------------------------------------------- */
+}
+.image-text-links__media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+}
+.image-text-links__media img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.image-text-links__media.placeholder {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+.image-text-links__media {
+  /* Zoom-in animation support */
+}
+.image-text-links__media.animate--zoom-in {
+  clip-path: inset(0px);
+}
+.image-text-links__media.animate--zoom-in > img {
+  position: fixed;
+  height: 100vh;
+}
+.image-text-links {
+  /* -----------------------------------------------------------------------
+     Inner two-column grid
+     ----------------------------------------------------------------------- */
+}
+.image-text-links__inner {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem 8rem;
+  align-items: center;
+  width: 100%;
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+  border-radius: var(--buttons-radius-outset);
+  /* Dark overlay — opacity driven via inline style set in Liquid */
+}
+.image-text-links__inner::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -13076,73 +13113,27 @@ li[data-address] > h2 {
   z-index: 1;
   pointer-events: none;
 }
-
-/* -----------------------------------------------------------------------
-   Background image
-   ----------------------------------------------------------------------- */
-.image-text-links__media {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+.image-text-links {
+  /* -----------------------------------------------------------------------
+     Left column — content
+     ----------------------------------------------------------------------- */
 }
-
-.image-text-links__media img {
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
-.image-text-links__media.placeholder {
-  background-color: rgba(0, 0, 0, 0.04);
-}
-
-/* Zoom-in animation support */
-.image-text-links__media.animate--zoom-in {
-  clip-path: inset(0px);
-}
-
-.image-text-links__media.animate--zoom-in > img {
-  position: fixed;
-  height: 100vh;
-}
-
-/* -----------------------------------------------------------------------
-   Inner two-column grid
-   ----------------------------------------------------------------------- */
-.image-text-links__inner {
+.image-text-links__content {
   position: relative;
   z-index: 2;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem 8rem;
-  align-items: center;
-  width: 100%;
-  padding-top: 6rem;
-  padding-bottom: 6rem;
-}
-
-/* -----------------------------------------------------------------------
-   Left column — content
-   ----------------------------------------------------------------------- */
-.image-text-links__content {
   display: flex;
   flex-direction: column;
   gap: 1.6rem;
   color: #ffffff;
 }
-
 .image-text-links__subheading {
   margin: 0;
   opacity: 0.85;
 }
-
 .image-text-links__heading {
   margin: 0;
   color: #ffffff;
 }
-
 .image-text-links__text {
   margin: 0;
   color: #ffffff;
@@ -13154,21 +13145,22 @@ li[data-address] > h2 {
 .image-text-links__text p:last-child {
   margin-bottom: 0;
 }
-
 .image-text-links__buttons {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
   margin-top: 0.8rem;
 }
-
-/* -----------------------------------------------------------------------
-   Right column — link list
-   ----------------------------------------------------------------------- */
+.image-text-links {
+  /* -----------------------------------------------------------------------
+     Right column — link list
+     ----------------------------------------------------------------------- */
+}
 .image-text-links__links {
+  position: relative;
+  z-index: 2;
   color: #ffffff;
 }
-
 .image-text-links__links-list {
   list-style: none;
   margin: 0;
@@ -13178,8 +13170,9 @@ li[data-address] > h2 {
 .image-text-links__links-list li {
   display: block;
 }
-
-/* Individual link row */
+.image-text-links {
+  /* Individual link row */
+}
 .image-text-links__link-item {
   display: flex;
   align-items: center;
@@ -13190,8 +13183,19 @@ li[data-address] > h2 {
   text-decoration: none;
   color: inherit;
 }
-
-/* Link label with animated green underline */
+.image-text-links__link-item:hover .image-text-links__link-label::after, .image-text-links__link-item:focus-visible .image-text-links__link-label::after {
+  width: 100%;
+}
+.image-text-links__link-item:hover .image-text-links__link-arrow, .image-text-links__link-item:focus-visible .image-text-links__link-arrow {
+  border-color: #5cae58;
+  background-color: rgba(92, 174, 88, 0.15);
+}
+.image-text-links__link-item:hover .image-text-links__link-arrow .icon-arrow, .image-text-links__link-item:focus-visible .image-text-links__link-arrow .icon-arrow {
+  transform: translateX(0.3rem);
+}
+.image-text-links {
+  /* Link label with animated green underline */
+}
 .image-text-links__link-label {
   font-size: var(--font-h3);
   font-weight: var(--font-body-weight-semibold);
@@ -13209,13 +13213,9 @@ li[data-address] > h2 {
   background-color: #5cae58;
   transition: width 0.3s ease;
 }
-
-.image-text-links__link-item:hover .image-text-links__link-label::after,
-.image-text-links__link-item:focus-visible .image-text-links__link-label::after {
-  width: 100%;
+.image-text-links {
+  /* Arrow in a circle */
 }
-
-/* Arrow in a circle */
 .image-text-links__link-arrow {
   display: flex;
   align-items: center;
@@ -13234,24 +13234,11 @@ li[data-address] > h2 {
   transition: transform 0.3s ease;
 }
 
-.image-text-links__link-item:hover .image-text-links__link-arrow,
-.image-text-links__link-item:focus-visible .image-text-links__link-arrow {
-  border-color: #5cae58;
-  background-color: rgba(92, 174, 88, 0.15);
-}
-
-.image-text-links__link-item:hover .image-text-links__link-arrow .icon-arrow,
-.image-text-links__link-item:focus-visible .image-text-links__link-arrow .icon-arrow {
-  transform: translateX(0.3rem);
-}
-
 /* -----------------------------------------------------------------------
    Mobile — single column, stacked layout
    ----------------------------------------------------------------------- */
 @media screen and (max-width: 749px) {
-  .image-text-links--small,
-  .image-text-links--medium,
-  .image-text-links--large {
+  .image-text-links--small, .image-text-links--medium, .image-text-links--large {
     min-height: 0;
   }
   .image-text-links__inner {

@@ -1,244 +1,241 @@
 // Converted from section-image-text-links.css
+
 /* =============================================================================
    Image & Text Links Section
    Full-bleed background image with left content column and right link list.
    ============================================================================= */
 
-/* -----------------------------------------------------------------------
-   Section wrapper — positions the background image and overlay
-   ----------------------------------------------------------------------- */
-
 .image-text-links {
   display: flex;
   z-index: auto;
-}
 
-/* Height variants */
-.image-text-links--small {
-  min-height: 42rem;
-}
+  /* Height variants */
+  &--small {
+    min-height: 42rem;
+  }
 
-.image-text-links--medium {
-  min-height: 56rem;
-}
+  &--medium {
+    min-height: 56rem;
+  }
 
-.image-text-links--large {
-  min-height: 78rem;
-}
+  &--large {
+    min-height: 78rem;
+  }
 
-/* Dark overlay — opacity driven via inline style set in Liquid */
-.image-text-links__inner::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: #000000;
-  opacity: 0;
-  z-index: 1;
-  pointer-events: none;
-}
+  /* -----------------------------------------------------------------------
+     Background image
+     ----------------------------------------------------------------------- */
+  &__media {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
 
-/* -----------------------------------------------------------------------
-   Background image
-   ----------------------------------------------------------------------- */
 
-.image-text-links__media {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  width: 100%;
-  height: 100%;
-}
+    img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
 
-.image-text-links__media img {
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-  display: block;
-}
+    &.placeholder {
+      background-color: rgba(0, 0, 0, 0.04);
+    }
 
-.image-text-links__media.placeholder {
-  background-color: rgba(0, 0, 0, 0.04);
-}
+    /* Zoom-in animation support */
+    &.animate--zoom-in {
+      clip-path: inset(0px);
 
-/* Zoom-in animation support */
-.image-text-links__media.animate--zoom-in {
-  clip-path: inset(0px);
-}
-
-.image-text-links__media.animate--zoom-in > img {
-  position: fixed;
-  height: 100vh;
-}
-
-/* -----------------------------------------------------------------------
-   Inner two-column grid
-   ----------------------------------------------------------------------- */
-
-.image-text-links__inner {
-  position: relative;
-  overflow: hidden;
-  isolation: isolate;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem 8rem;
-  align-items: center;
-  width: 100%;
-  padding-top: 6rem;
-  padding-bottom: 6rem;
-}
-
-/* -----------------------------------------------------------------------
-   Left column — content
-   ----------------------------------------------------------------------- */
-
-.image-text-links__content {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  gap: 1.6rem;
-  color: #ffffff;
-}
-
-.image-text-links__subheading {
-  margin: 0;
-  opacity: 0.85;
-}
-
-.image-text-links__heading {
-  margin: 0;
-  color: #ffffff;
-}
-
-.image-text-links__text {
-  margin: 0;
-  color: #ffffff;
-
-  p {
-    margin-top: 0;
-    margin-bottom: 1rem;
-
-    &:last-child {
-      margin-bottom: 0;
+      > img {
+        position: fixed;
+        height: 100vh;
+      }
     }
   }
-}
 
-.image-text-links__buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-top: 0.8rem;
-}
-
-/* -----------------------------------------------------------------------
-   Right column — link list
-   ----------------------------------------------------------------------- */
-
-.image-text-links__links {
-  position: relative;
-  z-index: 2;
-  color: #ffffff;
-}
-
-.image-text-links__links-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.25);
-
-  li {
-    display: block;
+  /* -----------------------------------------------------------------------
+     Inner two-column grid
+     ----------------------------------------------------------------------- */
+  &__inner {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem 8rem;
+    align-items: center;
+    width: 100%;
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+    border-radius: var(--buttons-radius-outset);
+    /* Dark overlay — opacity driven via inline style set in Liquid */
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: #000000;
+      opacity: 0;
+      z-index: 1;
+      pointer-events: none;
+    }
   }
-}
 
-/* Individual link row */
-.image-text-links__link-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1.6rem;
-  padding: 1.8rem 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
-  text-decoration: none;
-  color: inherit;
-}
-
-/* Link label with animated green underline */
-.image-text-links__link-label {
-  font-size: var(--font-h3);
-  font-weight: var(--font-body-weight-semibold);
-  line-height: var(--font-heading-line-height);
-  position: relative;
-  padding-bottom: 0.2rem;
-
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 0.2rem;
-    background-color: #5cae58;
-    transition: width 0.3s ease;
+  /* -----------------------------------------------------------------------
+     Left column — content
+     ----------------------------------------------------------------------- */
+  &__content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+    color: #ffffff;
   }
-}
 
-.image-text-links__link-item:hover .image-text-links__link-label::after,
-.image-text-links__link-item:focus-visible .image-text-links__link-label::after {
-  width: 100%;
-}
-
-/* Arrow in a circle */
-.image-text-links__link-arrow {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 3.6rem;
-  height: 3.6rem;
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  border-radius: 50%;
-  flex-shrink: 0;
-  transition: border-color 0.3s ease, background-color 0.3s ease;
-
-  .icon-arrow {
-    width: 1.4rem;
-    height: auto;
-    display: block;
-    transition: transform 0.3s ease;
+  &__subheading {
+    margin: 0;
+    opacity: 0.85;
   }
-}
 
-.image-text-links__link-item:hover .image-text-links__link-arrow,
-.image-text-links__link-item:focus-visible .image-text-links__link-arrow {
-  border-color: #5cae58;
-  background-color: rgba(92, 174, 88, 0.15);
-}
+  &__heading {
+    margin: 0;
+    color: #ffffff;
+  }
 
-.image-text-links__link-item:hover .image-text-links__link-arrow .icon-arrow,
-.image-text-links__link-item:focus-visible .image-text-links__link-arrow .icon-arrow {
-  transform: translateX(0.3rem);
+  &__text {
+    margin: 0;
+    color: #ffffff;
+
+    p {
+      margin-top: 0;
+      margin-bottom: 1rem;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 0.8rem;
+  }
+
+  /* -----------------------------------------------------------------------
+     Right column — link list
+     ----------------------------------------------------------------------- */
+  &__links {
+    position: relative;
+    z-index: 2;
+    color: #ffffff;
+  }
+
+  &__links-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
+
+    li {
+      display: block;
+    }
+  }
+
+  /* Individual link row */
+  &__link-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.6rem;
+    padding: 1.8rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+    text-decoration: none;
+    color: inherit;
+
+    &:hover,
+    &:focus-visible {
+      .image-text-links__link-label {
+        &::after {
+          width: 100%;
+        }
+      }
+
+      .image-text-links__link-arrow {
+        border-color: #5cae58;
+        background-color: rgba(92, 174, 88, 0.15);
+
+        .icon-arrow {
+          transform: translateX(0.3rem);
+        }
+      }
+    }
+  }
+
+  /* Link label with animated green underline */
+  &__link-label {
+    font-size: var(--font-h3);
+    font-weight: var(--font-body-weight-semibold);
+    line-height: var(--font-heading-line-height);
+    position: relative;
+    padding-bottom: 0.2rem;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 0.2rem;
+      background-color: #5cae58;
+      transition: width 0.3s ease;
+    }
+  }
+
+  /* Arrow in a circle */
+  &__link-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.6rem;
+    height: 3.6rem;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    flex-shrink: 0;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+
+    .icon-arrow {
+      width: 1.4rem;
+      height: auto;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+  }
 }
 
 /* -----------------------------------------------------------------------
    Mobile — single column, stacked layout
    ----------------------------------------------------------------------- */
-
 @media screen and (max-width: 749px) {
-  .image-text-links--small,
-  .image-text-links--medium,
-  .image-text-links--large {
-    min-height: 0;
-  }
+  .image-text-links {
+    &--small,
+    &--medium,
+    &--large {
+      min-height: 0;
+    }
 
-  .image-text-links__inner {
-    grid-template-columns: 1fr;
-    padding-top: 4rem;
-    padding-bottom: 4rem;
-    gap: 3rem;
-  }
+    &__inner {
+      grid-template-columns: 1fr;
+      padding-top: 4rem;
+      padding-bottom: 4rem;
+      gap: 3rem;
+    }
 
-  .image-text-links__link-label {
-    font-size: inherit;
+    &__link-label {
+      font-size: inherit;
+    }
   }
 }
