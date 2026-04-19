@@ -15656,6 +15656,68 @@ password-modal {
   justify-content: flex-end;
 }
 
+.tabbed-collections__tab-bar {
+  display: flex;
+  gap: 3rem;
+  margin-bottom: 3.2rem;
+  align-items: center;
+  justify-content: center;
+}
+@media screen and (min-width: 750px) {
+  .tabbed-collections__tab-bar {
+    gap: 6rem;
+  }
+}
+.tabbed-collections__tab {
+  position: relative;
+  background: transparent;
+  border: none;
+  color: rgb(var(--color-foreground));
+  cursor: pointer;
+  font: inherit;
+  min-width: unset;
+  min-height: unset;
+  font-size: var(--font-h1);
+}
+.tabbed-collections__tab::after {
+  content: "";
+  position: absolute;
+  bottom: -0.1rem;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: rgb(var(--color-secondary-background));
+  transform: scaleX(0);
+  transform-origin: left;
+  opacity: 0;
+  transition: transform 200ms ease, opacity 200ms ease;
+}
+.tabbed-collections__tab {
+  /* Hover preview */
+}
+.tabbed-collections__tab:hover::after {
+  transform: scaleX(1);
+}
+.tabbed-collections__tab--active {
+  color: rgb(var(--color-heading));
+}
+.tabbed-collections__tab--active::after {
+  transform: scaleX(1);
+  opacity: 1;
+}
+.tabbed-collections__tab:focus-visible {
+  outline: var(--focused-base-outline);
+  outline-offset: var(--focused-base-outline-offset);
+}
+.tabbed-collections__panel[hidden] {
+  display: none;
+}
+.tabbed-collections__panel-empty, .tabbed-collections__empty {
+  padding: 4rem 0;
+  color: rgba(var(--color-foreground), 0.6);
+  font-size: 1.5rem;
+}
+
 /* =============================================================================
    Vertical Image Links Section
    Two-column layout: text content left, sticky-scroll image card carousel right.

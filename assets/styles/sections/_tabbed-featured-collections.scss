@@ -1,58 +1,73 @@
-.tabbed-collections__tab-bar {
-  display: flex;
-  gap: 2.4rem;
-  border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.2);
-  margin-bottom: 3.2rem;
-}
+.tabbed-collections {
+  &__tab-bar {
+    display: flex;
+    gap: 3rem;
+    margin-bottom: 3.2rem;
+    align-items: center;
+    justify-content: center;
+    @media screen and (min-width: 750px) {
+      gap: 6rem;
+    }
+  }
 
-.tabbed-collections__tab {
-  position: relative;
-  padding: 0 0 1.2rem;
-  background: transparent;
-  border: none;
-  border-radius: 0;
-  color: rgb(var(--color-foreground));
-  cursor: pointer;
-  font: inherit;
-  font-size: 1.5rem;
-  letter-spacing: 0.06rem;
-  opacity: 0.5;
-  min-width: unset;
-  min-height: unset;
-}
+  &__tab {
+    position: relative;
+    background: transparent;
+    border: none;
+    color: rgb(var(--color-foreground));
+    cursor: pointer;
+    font: inherit;
+    min-width: unset;
+    min-height: unset;
+    font-size: var(--font-h1);
 
-.tabbed-collections__tab::after {
-  content: '';
-  position: absolute;
-  bottom: -0.1rem;
-  left: 0;
-  right: 0;
-  height: 0.2rem;
-  background-color: rgb(var(--color-foreground));
-  transform: scaleX(0);
-  transition: transform 200ms ease;
-}
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -0.1rem;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: rgb(var(--color-secondary-background));
+      transform: scaleX(0);
+      transform-origin: left;
+      opacity: 0;
+      transition: transform 200ms ease, opacity 200ms ease;
+    }
 
-.tabbed-collections__tab--active {
-  opacity: 1;
-}
+    /* Hover preview */
+    &:hover {
 
-.tabbed-collections__tab--active::after {
-  transform: scaleX(1);
-}
+      &::after {
+        transform: scaleX(1);
+      }
+    }
 
-.tabbed-collections__tab:focus-visible {
-  outline: var(--focused-base-outline);
-  outline-offset: var(--focused-base-outline-offset);
-}
+    &--active {
+      color: rgb(var(--color-heading));
 
-.tabbed-collections__panel[hidden] {
-  display: none;
-}
+      &::after {
+        transform: scaleX(1);
+        opacity: 1;
+      }
+    }
 
-.tabbed-collections__panel-empty,
-.tabbed-collections__empty {
-  padding: 4rem 0;
-  color: rgba(var(--color-foreground), 0.6);
-  font-size: 1.5rem;
+    &:focus-visible {
+      outline: var(--focused-base-outline);
+      outline-offset: var(--focused-base-outline-offset);
+    }
+  }
+
+  &__panel {
+    &[hidden] {
+      display: none;
+    }
+  }
+
+  &__panel-empty,
+  &__empty {
+    padding: 4rem 0;
+    color: rgba(var(--color-foreground), 0.6);
+    font-size: 1.5rem;
+  }
 }
