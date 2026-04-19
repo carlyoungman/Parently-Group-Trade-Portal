@@ -69,9 +69,10 @@
 
 <div class="color-scheme-1 isolate">
   <tabbed-featured-collections
-    class="tabbed-collections page-width section-{{ section.id }}-padding"
+    class="tabbed-collections section-{{ section.id }}-padding"
     id="TabbedCollections-{{ section.id }}"
   >
+    <div class="tabbed-collections__inner page-width">
     {%- if section.blocks.size == 0 -%}
       {%- render 'empty-state-message',
         message: 'Add tab blocks in the theme editor to get started.',
@@ -169,6 +170,7 @@
       {%- endfor -%}
 
     {%- endif -%}
+    </div>
   </tabbed-featured-collections>
 </div>
 
