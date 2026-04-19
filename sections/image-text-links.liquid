@@ -1,5 +1,5 @@
 {%- style -%}
-  #ImageTextLinks-{{ section.id }}::after {
+  #ImageTextLinks-{{ section.id }} .image-text-links__inner::after {
     opacity: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};
   }
 {%- endstyle -%}
@@ -18,9 +18,21 @@
   id="ImageTextLinks-{{ section.id }}"
   class="image-text-links image-text-links--{{ section.settings.section_height }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
 >
-`
-    `
   <div class="image-text-links__inner page-width">
+
+    {%- if section.settings.image != blank -%}
+      <div
+        class="image-text-links__media{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% if settings.animations_reveal_on_scroll %} scroll-trigger{% endif %}{% endif %}"
+      >
+        {{- section.settings.image | image_url: width: 3840 | image_tag:
+          loading: 'lazy',
+          sizes: '(min-width: 1200px) 1200px, 100vw',
+          widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840'
+        -}}
+      </div>
+    {%- else -%}
+      <div class="image-text-links__media placeholder"></div>
+    {%- endif -%}
 
     {%- comment -%} LEFT COLUMN — subheading, heading, text, buttons {%- endcomment -%}
     <div class="image-text-links__content">
