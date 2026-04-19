@@ -78,6 +78,7 @@
       background-color: var(--sticky-header-bg, rgb(var(--color-background)));
       background: var(--sticky-header-bg, rgb(var(--color-background)));
       border-bottom-color: rgba(var(--color-foreground), 0.08);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 
       .header__heading-logo {
         &--primary {
@@ -87,6 +88,13 @@
         &--secondary {
           display: block;
         }
+      }
+      .list-menu__item{
+        color: rgb(var(--color-foreground));
+      }
+
+      .svg-wrapper .icon{
+        color: rgb(var(--color-foreground));
       }
     }
   }

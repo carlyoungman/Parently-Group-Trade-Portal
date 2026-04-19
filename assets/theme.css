@@ -1179,6 +1179,9 @@ deferred-media {
 .button--secondary::after {
   --border-opacity: var(--buttons-border-opacity);
 }
+.button--secondary:hover {
+  color: #fff;
+}
 .button--tertiary {
   --color-button: var(--color-secondary-button);
   --color-button-text: var(--color-secondary-button-text);
@@ -2137,12 +2140,19 @@ input[type=checkbox] {
   background-color: var(--sticky-header-bg, rgb(var(--color-background)));
   background: var(--sticky-header-bg, rgb(var(--color-background)));
   border-bottom-color: rgba(var(--color-foreground), 0.08);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 .scrolled-past-header .header-wrapper--absolute .header__heading-logo--primary {
   display: none;
 }
 .scrolled-past-header .header-wrapper--absolute .header__heading-logo--secondary {
   display: block;
+}
+.scrolled-past-header .header-wrapper--absolute .list-menu__item {
+  color: rgb(var(--color-foreground));
+}
+.scrolled-past-header .header-wrapper--absolute .svg-wrapper .icon {
+  color: rgb(var(--color-foreground));
 }
 .scrolled-past-header .shopify-section-header-sticky .header-wrapper:not(.header-wrapper--absolute) {
   background-color: var(--sticky-header-bg);
@@ -15619,7 +15629,9 @@ vertical-image-links-component {
   position: relative;
 }
 
-/* Inner sticky layout — stays fixed in viewport while outer section scrolls */
+.vertical-image-links {
+  /* Inner sticky layout — stays fixed in viewport while outer section scrolls */
+}
 .vertical-image-links__inner {
   position: sticky;
   top: 0;
@@ -15629,10 +15641,11 @@ vertical-image-links-component {
   grid-template-columns: 1fr 1fr;
   align-items: stretch;
 }
-
-/* -----------------------------------------------------------------------
-   Left column: text content
-   ----------------------------------------------------------------------- */
+.vertical-image-links {
+  /* -----------------------------------------------------------------------
+     Left column: text content
+     ----------------------------------------------------------------------- */
+}
 .vertical-image-links__content {
   display: flex;
   flex-direction: column;
@@ -15640,50 +15653,46 @@ vertical-image-links-component {
   padding: 4rem;
   gap: 2rem;
 }
-
+.vertical-image-links__content > * + * {
+  margin-top: 0;
+}
 @media screen and (min-width: 990px) {
   .vertical-image-links__content {
     padding: 6rem 7rem;
   }
 }
-.vertical-image-links__content > * + * {
-  margin-top: 0;
-}
-
 .vertical-image-links__heading {
   margin: 0;
 }
-
 .vertical-image-links__text {
   margin: 0;
 }
-
 .vertical-image-links__text p {
   margin-top: 0;
   margin-bottom: 1rem;
 }
-
 .vertical-image-links__text p:last-child {
   margin-bottom: 0;
 }
-
 .vertical-image-links__buttons {
   display: flex;
   flex-wrap: wrap;
   gap: 1.2rem;
   margin-top: 1rem;
 }
-
-/* -----------------------------------------------------------------------
-   Right column: carousel
-   ----------------------------------------------------------------------- */
+.vertical-image-links {
+  /* -----------------------------------------------------------------------
+     Right column: carousel
+     ----------------------------------------------------------------------- */
+}
 .vertical-image-links__carousel-outer {
   position: relative;
   overflow: hidden;
   height: 100vh;
 }
-
-/* The moving track — translateY is driven by JS scroll progress */
+.vertical-image-links {
+  /* The moving track — translateY is driven by JS scroll progress */
+}
 .vertical-image-links__carousel-track {
   display: flex;
   flex-direction: column;
@@ -15693,18 +15702,18 @@ vertical-image-links-component {
   margin: 0;
   will-change: transform;
 }
-
-/* -----------------------------------------------------------------------
-   Individual image-link card
-   ----------------------------------------------------------------------- */
+.vertical-image-links {
+  /* -----------------------------------------------------------------------
+     Individual image-link card
+     ----------------------------------------------------------------------- */
+}
 .vertical-image-links__card {
   position: relative;
   flex-shrink: 0;
-  border-radius: var(--media-radius);
+  border-radius: var(--buttons-radius-outset);
   overflow: hidden;
   aspect-ratio: 16/9;
 }
-
 .vertical-image-links__card-link {
   display: block;
   width: 100%;
@@ -15715,13 +15724,9 @@ vertical-image-links-component {
   text-decoration: none;
   position: relative;
 }
-
-/* Placeholder background when no image is set */
 .vertical-image-links__card-link--placeholder {
   background-color: rgba(var(--color-foreground), 0.04);
 }
-
-/* Hover overlay using main theme button colour */
 .vertical-image-links__card-link::before {
   content: "";
   position: absolute;
@@ -15732,12 +15737,12 @@ vertical-image-links-component {
   z-index: 1;
   border-radius: inherit;
 }
-
 .vertical-image-links__card-link:hover::before {
   opacity: 1;
 }
-
-/* Logo wrapper — centred over the card, above the overlay */
+.vertical-image-links {
+  /* Logo wrapper — centred over the card, above the overlay */
+}
 .vertical-image-links__card-logo {
   position: absolute;
   inset: 0;
@@ -15748,7 +15753,6 @@ vertical-image-links-component {
   z-index: 2;
   pointer-events: none;
 }
-
 .vertical-image-links__card-logo img {
   max-width: 60%;
   max-height: 40%;

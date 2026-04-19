@@ -1,4 +1,5 @@
 // Converted from section-vertical-image-links.css
+
 /* =============================================================================
    Vertical Image Links Section
    Two-column layout: text content left, sticky-scroll image card carousel right.
@@ -10,178 +11,174 @@ vertical-image-links-component {
   position: relative;
 }
 
-/* Inner sticky layout — stays fixed in viewport while outer section scrolls */
-.vertical-image-links__inner {
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  overflow: hidden;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: stretch;
-}
-
-/* -----------------------------------------------------------------------
-   Left column: text content
-   ----------------------------------------------------------------------- */
-
-.vertical-image-links__content {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 4rem;
-  gap: 2rem;
-}
-
-@media screen and (min-width: 990px) {
-  .vertical-image-links__content {
-    padding: 6rem 7rem;
+.vertical-image-links {
+  /* Inner sticky layout — stays fixed in viewport while outer section scrolls */
+  &__inner {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
   }
-}
 
-.vertical-image-links__content > * + * {
-  margin-top: 0;
-}
+  /* -----------------------------------------------------------------------
+     Left column: text content
+     ----------------------------------------------------------------------- */
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4rem;
+    gap: 2rem;
 
-.vertical-image-links__heading {
-  margin: 0;
-}
+    > * + * {
+      margin-top: 0;
+    }
 
-.vertical-image-links__text {
-  margin: 0;
-}
+    @media screen and (min-width: 990px) {
+      padding: 6rem 7rem;
+    }
+  }
 
-.vertical-image-links__text p {
-  margin-top: 0;
-  margin-bottom: 1rem;
-}
+  &__heading {
+    margin: 0;
+  }
 
-.vertical-image-links__text p:last-child {
-  margin-bottom: 0;
-}
+  &__text {
+    margin: 0;
 
-.vertical-image-links__buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.2rem;
-  margin-top: 1rem;
-}
+    p {
+      margin-top: 0;
+      margin-bottom: 1rem;
 
-/* -----------------------------------------------------------------------
-   Right column: carousel
-   ----------------------------------------------------------------------- */
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
 
-.vertical-image-links__carousel-outer {
-  position: relative;
-  overflow: hidden;
-  height: 100vh;
-}
+  &__buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    margin-top: 1rem;
+  }
 
-/* The moving track — translateY is driven by JS scroll progress */
-.vertical-image-links__carousel-track {
-  display: flex;
-  flex-direction: column;
-  gap: 1.6rem;
-  padding: 1.6rem;
-  list-style: none;
-  margin: 0;
-  will-change: transform;
-}
+  /* -----------------------------------------------------------------------
+     Right column: carousel
+     ----------------------------------------------------------------------- */
+  &__carousel-outer {
+    position: relative;
+    overflow: hidden;
+    height: 100vh;
+  }
 
-/* -----------------------------------------------------------------------
-   Individual image-link card
-   ----------------------------------------------------------------------- */
+  /* The moving track — translateY is driven by JS scroll progress */
+  &__carousel-track {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+    padding: 1.6rem;
+    list-style: none;
+    margin: 0;
+    will-change: transform;
+  }
 
-.vertical-image-links__card {
-  position: relative;
-  flex-shrink: 0;
-  border-radius: var(--media-radius);
-  overflow: hidden;
-  aspect-ratio: 16 / 9;
-}
+  /* -----------------------------------------------------------------------
+     Individual image-link card
+     ----------------------------------------------------------------------- */
+  &__card {
+    position: relative;
+    flex-shrink: 0;
+    border-radius: var(--buttons-radius-outset);
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+  }
 
-.vertical-image-links__card-link {
-  display: block;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  text-decoration: none;
-  position: relative;
-}
+  &__card-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    text-decoration: none;
+    position: relative;
 
-/* Placeholder background when no image is set */
-.vertical-image-links__card-link--placeholder {
-  background-color: rgba(var(--color-foreground), 0.04);
-}
+    &--placeholder {
+      background-color: rgba(var(--color-foreground), 0.04);
+    }
 
-/* Hover overlay using main theme button colour */
-.vertical-image-links__card-link::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: rgba(var(--color-button), 0.7);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  z-index: 1;
-  border-radius: inherit;
-}
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(var(--color-button), 0.7);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 1;
+      border-radius: inherit;
+    }
 
-.vertical-image-links__card-link:hover::before {
-  opacity: 1;
-}
+    &:hover::before {
+      opacity: 1;
+    }
+  }
 
-/* Logo wrapper — centred over the card, above the overlay */
-.vertical-image-links__card-logo {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem;
-  z-index: 2;
-  pointer-events: none;
-}
+  /* Logo wrapper — centred over the card, above the overlay */
+  &__card-logo {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    z-index: 2;
+    pointer-events: none;
 
-.vertical-image-links__card-logo img {
-  max-width: 60%;
-  max-height: 40%;
-  width: auto;
-  height: auto;
-  object-fit: contain;
-  filter: brightness(0) invert(1);
+    img {
+      max-width: 60%;
+      max-height: 40%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+    }
+  }
 }
 
 /* -----------------------------------------------------------------------
    Mobile: stack layout, no sticky scroll effect
    ----------------------------------------------------------------------- */
-
 @media screen and (max-width: 749px) {
-  .vertical-image-links__inner {
-    position: static;
-    height: auto;
-    overflow: visible;
-    grid-template-columns: 1fr;
-  }
+  .vertical-image-links {
+    &__inner {
+      position: static;
+      height: auto;
+      overflow: visible;
+      grid-template-columns: 1fr;
+    }
 
-  .vertical-image-links__content {
-    padding: 3rem 1.5rem;
-  }
+    &__content {
+      padding: 3rem 1.5rem;
+    }
 
-  .vertical-image-links__carousel-outer {
-    height: auto;
-    overflow: visible;
-    padding: 0 1.5rem 3rem;
-  }
+    &__carousel-outer {
+      height: auto;
+      overflow: visible;
+      padding: 0 1.5rem 3rem;
+    }
 
-  .vertical-image-links__carousel-track {
-    transform: none !important;
-    padding: 0;
-  }
+    &__carousel-track {
+      transform: none !important;
+      padding: 0;
+    }
 
-  .vertical-image-links__card {
-    aspect-ratio: 16 / 9;
-    max-width: 100%;
+    &__card {
+      aspect-ratio: 16 / 9;
+      max-width: 100%;
+    }
   }
 }

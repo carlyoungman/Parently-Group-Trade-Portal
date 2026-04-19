@@ -93,31 +93,31 @@
           "type": "logo",
           "settings": {
             "image": "shopify://shop_images/David_Luke_Colour.png",
-            "image_alt": "",
-            "link": ""
+            "image_alt": "David Luke",
+            "link": "https://www.davidluke.com/"
           }
         },
         "logo_hzWPbP": {
           "type": "logo",
           "settings": {
             "image": "shopify://shop_images/Grass_Air_Colour.png",
-            "image_alt": "",
-            "link": ""
+            "image_alt": "Grass and air",
+            "link": "https://www.grassandair.com/"
           }
         },
         "logo_WQkqpf": {
           "type": "logo",
           "settings": {
             "image": "shopify://shop_images/Juco_Colour.png",
-            "image_alt": "",
-            "link": ""
+            "image_alt": "JUCO",
+            "link": "https://parentlygroup.com/our-brands/juco/"
           }
         },
         "logo_XJCcCh": {
           "type": "logo",
           "settings": {
             "image": "shopify://shop_images/Term_Footwear_Colour.png",
-            "image_alt": "",
+            "image_alt": "Term Footwear",
             "link": ""
           }
         },
@@ -125,15 +125,15 @@
           "type": "logo",
           "settings": {
             "image": "shopify://shop_images/Lelli_Kelly_Colour.png",
-            "image_alt": "",
-            "link": ""
+            "image_alt": "Lelli Kelly",
+            "link": "https://lellikellyshop.co.uk/"
           }
         },
         "logo_PAycdL": {
           "type": "logo",
           "settings": {
             "image": "shopify://shop_images/Little_Classmate_Colour.png",
-            "image_alt": "",
+            "image_alt": "Little Classmates",
             "link": ""
           }
         }
@@ -154,14 +154,109 @@
         "logo_height": 100,
         "image_ratio": "wide",
         "logos_per_row_desktop": 6,
-        "padding_top": 36,
-        "padding_bottom": 36
+        "padding_top": 32,
+        "padding_bottom": 32
+      }
+    },
+    "vertical_image_links_DkXcji": {
+      "type": "vertical-image-links",
+      "blocks": {
+        "heading_74PFpa": {
+          "type": "heading",
+          "settings": {
+            "heading": "Your trusted B2B partner for premium children's and schoolwear brands.",
+            "heading_size": "h1"
+          }
+        },
+        "text_U39hRc": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Access exclusive wholesale pricing, streamlined ordering, and dedicated retailer support<br/><br/></p>"
+          }
+        },
+        "buttons_CafG9b": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "Become a retailer",
+            "button_link_1": "shopify://pages/retailer-support",
+            "button_style_secondary_1": true,
+            "button_label_2": "About us",
+            "button_link_2": "shopify://pages/about-us",
+            "button_style_secondary_2": true
+          }
+        },
+        "image_link_mtif4K": {
+          "type": "image_link",
+          "settings": {
+            "background_image": "shopify://shop_images/David_Luke_background.png",
+            "logo_image": "shopify://shop_images/David_Luke_logo_white.png",
+            "link": "https://www.davidluke.com/"
+          }
+        },
+        "image_link_KiMaTC": {
+          "type": "image_link",
+          "settings": {
+            "background_image": "shopify://shop_images/Grass_and_Air_background.png",
+            "logo_image": "shopify://shop_images/Grass_and_Air_logo.png",
+            "link": "https://www.grassandair.com/"
+          }
+        },
+        "image_link_tQdfhG": {
+          "type": "image_link",
+          "settings": {
+            "background_image": "shopify://shop_images/Juco_background.jpg",
+            "logo_image": "shopify://shop_images/Juco_logo_white.png",
+            "link": ""
+          }
+        },
+        "image_link_DEa9xR": {
+          "type": "image_link",
+          "settings": {
+            "background_image": "shopify://shop_images/Team_footwear_background.png",
+            "logo_image": "shopify://shop_images/Team_footwear_logo.png",
+            "link": "https://termfootwear.com/"
+          }
+        },
+        "image_link_zEQTCM": {
+          "type": "image_link",
+          "settings": {
+            "background_image": "shopify://shop_images/Lelli_Kelly_background.png",
+            "logo_image": "shopify://shop_images/Lelli_Kelly_logo_white.png",
+            "link": ""
+          }
+        },
+        "image_link_twjnEk": {
+          "type": "image_link",
+          "settings": {
+            "background_image": "shopify://shop_images/Little_Christmas_background.png",
+            "logo_image": "shopify://shop_images/Little_Christmas_logo_white.png",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "heading_74PFpa",
+        "text_U39hRc",
+        "buttons_CafG9b",
+        "image_link_mtif4K",
+        "image_link_KiMaTC",
+        "image_link_tQdfhG",
+        "image_link_DEa9xR",
+        "image_link_zEQTCM",
+        "image_link_twjnEk"
+      ],
+      "name": "Vertical image links",
+      "settings": {
+        "card_aspect_ratio": "16 / 9",
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     }
   },
   "order": [
     "featured_collection",
     "hero_banner_KjxajN",
-    "logo_carousel_AciGQL"
+    "logo_carousel_AciGQL",
+    "vertical_image_links_DkXcji"
   ]
 }
