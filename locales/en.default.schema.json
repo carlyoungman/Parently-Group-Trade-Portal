@@ -147,8 +147,11 @@
         "button_hover": {
           "label": "Solid button hover/active background"
         },
+        "secondary_button_background": {
+          "label": "Outline button background"
+        },
         "secondary_button_label": {
-          "label": "Outline button"
+          "label": "Outline button label"
         },
         "secondary_button_hover": {
           "label": "Outline button hover/active background"
