@@ -62,7 +62,8 @@
   &:not([disabled]):hover,
   &:not([disabled]):active {
     background-color: rgb(var(--color-button-hover));
-    border-color: rgb(var(--color-button-hover));
+    color: rgb(var(--color-button-text-hover));
+    border-color: rgb(var(--color-button-border-hover));
   }
 
   &:not([disabled]):hover::after {
@@ -89,11 +90,19 @@
   &--secondary {
     color: rgb(var(--color-secondary-button-text));
     background-color: transparent;
-    border: var(--buttons-border-width) solid rgba(var(--color-secondary-button-text), var(--buttons-border-opacity));
+    border: var(--buttons-border-width) solid rgba(var(--color-secondary-button-border), var(--buttons-border-opacity));
 
     --color-button: var(--color-secondary-button);
     --color-button-text: var(--color-secondary-button-text);
     --color-button-hover: var(--color-secondary-button-hover);
+    --color-button-text-hover: var(--color-secondary-button-text-hover);
+    --color-button-border-hover: var(--color-secondary-button-border-hover);
+
+    &:not([disabled]):hover,
+    &:not([disabled]):active {
+      color: rgb(var(--color-secondary-button-text-hover));
+      border-color: rgba(var(--color-secondary-button-border-hover), var(--buttons-border-opacity));
+    }
 
     &::after {
       --border-opacity: var(--buttons-border-opacity);
