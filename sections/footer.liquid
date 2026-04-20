@@ -105,7 +105,7 @@
         {%- if has_useful_links -%}
           <div class="footer__menu-column">
             {%- if section.settings.menu_useful_links_heading != blank -%}
-              <h2 class="footer-block__heading">{{ section.settings.menu_useful_links_heading }}</h2>
+              <h6 class="footer-block__heading">{{ section.settings.menu_useful_links_heading }}</h6>
             {%- endif -%}
             <ul class="footer-block__details-content list-unstyled">
               {%- for link in section.settings.menu_useful_links.links -%}
@@ -125,7 +125,7 @@
         {%- if has_resources -%}
           <div class="footer__menu-column">
             {%- if section.settings.menu_resources_heading != blank -%}
-              <h2 class="footer-block__heading">{{ section.settings.menu_resources_heading }}</h2>
+              <h6 class="footer-block__heading">{{ section.settings.menu_resources_heading }}</h6>
             {%- endif -%}
             <ul class="footer-block__details-content list-unstyled">
               {%- for link in section.settings.menu_resources.links -%}
@@ -145,7 +145,7 @@
         {%- if has_support -%}
           <div class="footer__menu-column">
             {%- if section.settings.menu_support_heading != blank -%}
-              <h2 class="footer-block__heading">{{ section.settings.menu_support_heading }}</h2>
+              <h6 class="footer-block__heading">{{ section.settings.menu_support_heading }}</h6>
             {%- endif -%}
             <ul class="footer-block__details-content list-unstyled">
               {%- for link in section.settings.menu_support.links -%}
@@ -217,16 +217,16 @@
     </div>
     <div class="footer__content-bottom-wrapper page-width{% if section.settings.enable_country_selector == false and section.settings.enable_language_selector == false %} footer__content-bottom-wrapper--center{% endif %}">
       <div class="footer__copyright">
-        <small class="copyright__content"
+        <p class="copyright__content"
           >&copy; {{ 'now' | date: '%Y' }}, {{ shop.name | link_to: routes.root_url -}}
-        </small>
+        </p>
         {%- if section.settings.show_policy -%}
           <ul class="policies list-unstyled">
             {%- for policy in shop.policies -%}
               {%- if policy != blank -%}
                 <li>
-                  <small class="copyright__content"
-                    ><a href="{{ policy.url }}">{{ policy.title | escape }}</a></small
+                  <p class="copyright__content"
+                    ><a href="{{ policy.url }}">{{ policy.title | escape }}</a></p
                   >
                 </li>
               {%- endif -%}

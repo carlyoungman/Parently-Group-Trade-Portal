@@ -3,7 +3,7 @@
 .footer {
   background: #585858;
   color:#fff;
-  border-bottom: 1.5rem solid rgb(var(--color-secondary-background));
+  border-bottom: 3rem solid rgb(var(--color-secondary-background));
 
   * {
     color:#fff;
@@ -22,7 +22,7 @@
 
     @media screen and (min-width: 750px) {
       flex-direction: row;
-      gap: 5rem;
+      gap: 6rem;
       align-items: flex-start;
     }
   }
@@ -33,13 +33,12 @@
     width: 100%;
 
     @media screen and (min-width: 750px) {
-      width: 22rem;
-      min-width: 18rem;
+      width: 28em;
     }
   }
 
   &__logo-wrapper {
-    margin-bottom: 1.6rem;
+    margin-bottom: 3rem;
     overflow: hidden;
   }
 
@@ -50,9 +49,7 @@
   }
 
   &__slogan {
-    font-size: inherit;
-    line-height: var(--font-body-line-height);
-    margin: 0 0 2rem;
+    max-width: 30rem;
   }
 
   &__brand-social {
@@ -67,7 +64,7 @@
     flex: 1 1 auto;
 
     @media screen and (min-width: 990px) {
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 2rem 3.2rem;
     }
   }
@@ -181,15 +178,19 @@
     }
   }
 
-  &__copyright {
-    text-align: center;
-    margin-top: 1.5rem;
-  }
-
   &__list-social {
     &:empty {
       display: none;
     }
+  }
+
+  &__copyright{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content:space-between;
+    width: 100%;
+    text-align: center;
   }
 }
 
@@ -198,16 +199,8 @@
 
 .footer-block {
   &__heading {
-    margin: 0 0 1.6rem;
-    font-size: 1.4rem;
     font-weight: var(--font-body-weight-bold);
-    letter-spacing: 0.06em;
     text-transform: uppercase;
-
-
-    @media screen and (min-width: 990px) {
-      font-size: 1.3rem;
-    }
   }
 
   &__details-content {
@@ -224,6 +217,7 @@
         &:hover {
           text-decoration: underline;
           text-underline-offset: 0.3rem;
+          color: #73AE70
         }
       }
     }
@@ -242,8 +236,10 @@
 // ── Copyright & policies ─────────────────────────────────────
 
 .copyright {
+  display: flex;
+  flex-wrap: wrap;
   &__content {
-    font-size: var(--font-small);
+
 
     a {
 
@@ -260,26 +256,13 @@
 }
 
 .policies {
-  display: inline;
-
-  li {
-    display: inline-flex;
-    align-items: center;
-
-    &::before {
-      content: '\00B7';
-      padding: 0 0.8rem;
-    }
-
-    a {
-      padding: 0.6rem 0;
-      display: block;
-
-      @media screen and (min-width: 750px) {
-        padding: 0;
-      }
-    }
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem;
+  a:hover{
+    color: #73AE70;
   }
+
 }
 
 

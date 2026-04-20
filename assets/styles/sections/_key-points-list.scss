@@ -1,117 +1,117 @@
 // Converted from section-key-points-list.css
+
 /* =============================================================================
    Key Points List Section
    Two-column layout: text content left, key points grid right.
    ============================================================================= */
 
-/* -----------------------------------------------------------------------
-   Inner grid — left content column + right key points column
-   ----------------------------------------------------------------------- */
-
-.key-points-list__inner {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-  gap: 4rem;
-}
-
-/* -----------------------------------------------------------------------
-   Left column: heading, text, buttons
-   ----------------------------------------------------------------------- */
-
-.key-points-list__content {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 2rem;
-}
-
-.key-points-list__content > * + * {
-  margin-top: 0;
-}
-
-.key-points-list__heading {
-  margin: 0;
-}
-
-.key-points-list__text {
-  margin: 0;
-}
-
-.key-points-list__text p {
-  margin-top: 0;
-  margin-bottom: 1rem;
-}
-
-.key-points-list__text p:last-child {
-  margin-bottom: 0;
-}
-
-.key-points-list__buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.2rem;
-}
-
-/* -----------------------------------------------------------------------
-   Right column: 2-column key points grid
-   ----------------------------------------------------------------------- */
-
-.key-points-list__grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem 3rem;
-}
-
-/* -----------------------------------------------------------------------
-   Individual key point
-   ----------------------------------------------------------------------- */
-
-.key-points-list__point-heading {
-  color: rgb(var(--color-button));
-  margin: 0 0 0.8rem;
-  font-size: var(--font-h3);
-}
-
-.key-points-list__point-body {
-  margin: 0;
-}
-
-.key-points-list__point-body p {
-  margin-top: 0;
-  margin-bottom: 0.8rem;
-}
-
-.key-points-list__point-body p:last-child {
-  margin-bottom: 0;
-}
-
-.key-points-list__point-button {
-  margin-top: 1.2rem;
-}
-
-/* -----------------------------------------------------------------------
-   Mobile: stack columns vertically
-   ----------------------------------------------------------------------- */
-
-@media screen and (max-width: 749px) {
-  .key-points-list__inner {
-    grid-template-columns: 1fr;
+.key-points-list {
+  /* -----------------------------------------------------------------------
+     Inner grid — left content column + right key points column
+     ----------------------------------------------------------------------- */
+  &__inner {
+    display: grid;
+     grid-template-columns: 1fr 60%;
     gap: 3rem;
   }
 
-  .key-points-list__content {
-    padding-bottom: 0;
+  /* -----------------------------------------------------------------------
+     Left column: heading, text, buttons
+     ----------------------------------------------------------------------- */
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.5rem;
+    max-width: 55rem;
+
+    > * + * {
+      margin-top: 0;
+    }
   }
 
-  .key-points-list__grid {
+  &__heading {
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  &__text {
+    margin: 0;
+    text-wrap: balance;
+
+    p {
+      margin-top: 0;
+      margin-bottom: 1rem;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  /* -----------------------------------------------------------------------
+     Right column: key points grid
+     ----------------------------------------------------------------------- */
+  &__grid {
+    display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 2.4rem 1.6rem;
+    gap: 3rem 3rem;
   }
-}
 
-@media screen and (max-width: 449px) {
-  .key-points-list__grid {
-    grid-template-columns: 1fr;
+  /* -----------------------------------------------------------------------
+     Individual key point
+     ----------------------------------------------------------------------- */
+  &__point-heading {
+    color: rgb(var(--color-button));
+    margin: 0 0 0.8rem;
+  }
+
+  &__point-body {
+    margin: 0;
+
+    p {
+      margin-top: 0;
+      margin-bottom: 0.8rem;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &__point-button {
+    margin-top: 1.2rem;
+  }
+
+  /* -----------------------------------------------------------------------
+     Mobile
+     ----------------------------------------------------------------------- */
+  @media screen and (max-width: 749px) {
+    &__inner {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    &__content {
+      padding-bottom: 0;
+    }
+
+    &__grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 2.4rem 1.6rem;
+    }
+  }
+
+  @media screen and (max-width: 449px) {
+    &__grid {
+      grid-template-columns: 1fr;
+    }
   }
 }

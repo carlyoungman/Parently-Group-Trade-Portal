@@ -85,6 +85,8 @@
 
 .card-information {
   text-align: var(--text-alignment);
+  margin-top: 1.5rem;
+  font-size: 2rem;
 }
 
 .card__media,
@@ -463,18 +465,8 @@
   width: 100%;
 }
 
-.card-information > * {
-  line-height: var(--font-body-line-height);
-  color: rgb(var(--color-foreground));
-}
 
-.card-information > .price {
-  color: rgb(var(--color-foreground));
-}
 
-.card--horizontal .card-information > .price {
-  color: rgba(var(--color-foreground), 0.75);
-}
 
 .card-information > .rating {
   margin-top: 0.4rem;

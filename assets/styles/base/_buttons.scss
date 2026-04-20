@@ -88,7 +88,7 @@
   ========================= */
 
   &--secondary {
-    color: rgb(var(--color-secondary-button-text));
+    color: rgb(var(--color-secondary-button-border-hover));
     background-color: transparent;
     border: var(--buttons-border-width) solid rgba(var(--color-secondary-button-border), var(--buttons-border-opacity));
 
@@ -101,7 +101,7 @@
     &:not([disabled]):hover,
     &:not([disabled]):active {
       color: rgb(var(--color-secondary-button-text-hover));
-      border-color: rgba(var(--color-secondary-button-border-hover), var(--buttons-border-opacity));
+      border-color: rgba(var(--color-secondary-button-border-hover));
     }
 
     &::after {

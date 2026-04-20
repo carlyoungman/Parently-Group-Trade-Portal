@@ -50,9 +50,9 @@
         {%- if block.type == 'key_point' -%}
           <div class="key-points-list__point" {{ block.shopify_attributes }}>
             {%- if block.settings.heading != blank -%}
-              <h3 class="key-points-list__point-heading inline-richtext">
+                 <h4 class="key-points-list__point-heading inline-richtext">
                 {{ block.settings.heading }}
-              </h3>
+              </h4>
             {%- endif -%}
             {%- if block.settings.content != blank -%}
               <div class="key-points-list__point-body rte">

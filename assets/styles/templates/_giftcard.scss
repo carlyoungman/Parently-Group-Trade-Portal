@@ -32,7 +32,7 @@ body {
   background-color: rgb(var(--color-background));
   color: rgb(var(--color-foreground));
   font-size: var(--font-body-size);
-  letter-spacing: 0.07rem;
+  letter-spacing: -0.5%;
   line-height: var(--font-body-line-height);
   //max-width: var(--page-width);
   margin: 0 auto;
@@ -40,6 +40,7 @@ body {
   font-family: var(--font-body-family);
   font-style: var(--font-body-style);
   font-weight: var(--font-body-weight);
+
 }
 
 @media only screen and (min-width: 750px) {
@@ -158,9 +159,8 @@ h2,
   line-height: var(--font-body-line-height);
   padding: 0.6rem 1.3rem;
   text-align: center;
-  background-color: rgb(var(--color-background));
-  border-color: rgba(var(--color-foreground), 0.04);
-  color: rgb(var(--color-foreground));
+  background-color:#73AE70;
+  color: #000;
 }
 
 .badge--expired {

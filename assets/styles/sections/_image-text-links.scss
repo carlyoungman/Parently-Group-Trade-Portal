@@ -90,8 +90,9 @@
     z-index: 2;
     display: flex;
     flex-direction: column;
-    gap: 1.6rem;
+    gap: 1.5rem;
     color: #ffffff;
+    max-width: 55rem;
   }
 
   &__subheading {
@@ -100,13 +101,15 @@
   }
 
   &__heading {
-    margin: 0;
+    margin: 0 !important;
     color: #ffffff;
+    text-wrap: balance;
   }
 
   &__text {
     margin: 0;
     color: #ffffff;
+    text-wrap: balance;
 
     p {
       margin-top: 0;
@@ -121,8 +124,12 @@
   &__buttons {
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
-    margin-top: 0.8rem;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+  .button--secondary{
+    border-color: #fff;
+    color: #fff;
   }
 
   /* -----------------------------------------------------------------------
@@ -138,10 +145,15 @@
     list-style: none;
     margin: 0;
     padding: 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.25);
+
 
     li {
       display: block;
+      &:last-of-type{
+       > a{
+         border-bottom: none;
+       }
+    }
     }
   }
 
@@ -150,9 +162,9 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 1.6rem;
-    padding: 1.8rem 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+    gap: 1.5rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid #fff;
     text-decoration: none;
     color: inherit;
 
@@ -177,8 +189,8 @@
 
   /* Link label with animated green underline */
   &__link-label {
-    font-size: var(--font-h3);
-    font-weight: var(--font-body-weight-semibold);
+     font-size: var(--font-h4);
+          font-weight: var(--font-body-weight-semibold);
     line-height: var(--font-heading-line-height);
     position: relative;
     padding-bottom: 0.2rem;
@@ -200,9 +212,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 3.6rem;
+     width: 3.6rem;
     height: 3.6rem;
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    border: 1px solid #fff;
     border-radius: 50%;
     flex-shrink: 0;
     transition: border-color 0.3s ease, background-color 0.3s ease;

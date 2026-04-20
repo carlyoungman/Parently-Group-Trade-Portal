@@ -49,10 +49,11 @@
     right: 0;
     top: 0;
     bottom: 0;
-    width: 58%;
-    border-radius: 2rem 0 0 2rem;
+    width: calc(50% - 1.5rem);
     z-index: 0;
     pointer-events: none;
+    border-radius: var(--buttons-radius-outset);
+    display: block !important;
   }
 
   // Slider component wrapper
@@ -84,7 +85,8 @@
   // Individual slide
   &__slide {
     display: grid;
-    grid-template-columns: 42% 58%;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
     min-width: 100%;
     width: 100%;
     flex: 0 0 100%;
@@ -95,7 +97,7 @@
   // Left column — slide image
   &__slide-image {
     position: relative;
-    border-radius: 1.6rem;
+    border-radius: var(--buttons-radius-outset);
     overflow: hidden;
     min-height: 36rem;
   }
@@ -105,6 +107,7 @@
     height: 100%;
     object-fit: cover;
     display: block;
+    aspect-ratio: 1 / 1;
   }
 
   &__placeholder {
@@ -118,21 +121,11 @@
   // On desktop: transparent so the abs-positioned bg shows through.
   // On mobile: gets the bg colour directly.
   &__slide-content {
-    background-color: var(--ic-carousel-bg, transparent);
     padding: 4rem 4rem 5.6rem 4.8rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 2rem;
-
-    // Separator line above nav
-    &::after {
-      content: '';
-      display: block;
-      height: 1px;
-      background-color: rgba(255, 255, 255, 0.3);
-      margin-top: auto;
-    }
   }
 
   &__slide-heading {
@@ -214,15 +207,6 @@
       .icon {
         height: 0.7rem;
       }
-    }
-  }
-}
-
-// Desktop — make content div transparent so the abs bg shows through
-@media screen and (min-width: 750px) {
-  .image-content-carousel {
-    &__slide-content {
-      background-color: transparent;
     }
   }
 }

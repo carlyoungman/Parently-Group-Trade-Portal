@@ -31,7 +31,7 @@ vertical-image-links-component {
     flex-direction: column;
     justify-content: center;
     padding: 4rem;
-    gap: 2rem;
+    gap: 1.5rem;
 
     > * + * {
       margin-top: 0;
@@ -62,8 +62,7 @@ vertical-image-links-component {
   &__buttons {
     display: flex;
     flex-wrap: wrap;
-    gap: 1.2rem;
-    margin-top: 1rem;
+    gap: 1.5rem;
   }
 
   /* -----------------------------------------------------------------------

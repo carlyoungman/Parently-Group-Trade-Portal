@@ -344,6 +344,25 @@ slider-component.slider-component-full-width {
   display: flex;
   align-items: center;
   justify-content: center;
+  &--prev,
+  &--next {
+    span.svg-wrapper {
+      transform-origin: center;
+    }
+  }
+
+  &--prev {
+    span.svg-wrapper {
+      transform: rotate(90deg);
+    }
+  }
+
+  &--next {
+    span.svg-wrapper {
+      transform: rotate(-90deg);
+    }
+  }
+
 }
 
 .slider-button:not([disabled]):hover {

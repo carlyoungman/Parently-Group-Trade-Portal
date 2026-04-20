@@ -264,6 +264,10 @@ blockquote {
 
 .caption-with-letter-spacing {
   text-transform: uppercase;
+  color: #73AE70;
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
 }
 
 .caption-with-letter-spacing--medium {
@@ -464,6 +468,8 @@ hr {
   text-decoration: none;
   color: currentColor;
   display: block;
+  font-size: 2rem;
+  font-weight:700;
 }
 
 .placeholder {
