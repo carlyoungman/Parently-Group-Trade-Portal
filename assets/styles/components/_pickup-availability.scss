@@ -57,10 +57,6 @@ pickup-availability-drawer {
   border-width: 0 0 0 var(--drawer-border-width);
   border-color: rgba(var(--color-foreground), var(--drawer-border-opacity));
   border-style: solid;
-  filter: drop-shadow(
-    var(--drawer-shadow-horizontal-offset) var(--drawer-shadow-vertical-offset) var(--drawer-shadow-blur-radius)
-      rgba(var(--color-shadow), var(--drawer-shadow-opacity))
-  );
 }
 
 pickup-availability-drawer[open] {

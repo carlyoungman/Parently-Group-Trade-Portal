@@ -87,29 +87,6 @@
 }
 
 // -----------------------------------------------------------------------------
-// Card shadow (reusable drop-shadow pattern)
-// -----------------------------------------------------------------------------
-
-/// Apply the themed card/component shadow using CSS custom properties
-@mixin component-shadow {
-  box-shadow:
-    var(--shadow-horizontal-offset)
-    var(--shadow-vertical-offset)
-    var(--shadow-blur-radius)
-    rgba(var(--color-shadow), var(--shadow-opacity));
-}
-
-/// Apply themed media drop-shadow (used for image shapes)
-@mixin media-drop-shadow {
-  filter: drop-shadow(
-    var(--shadow-horizontal-offset)
-    var(--shadow-vertical-offset)
-    var(--shadow-blur-radius)
-    rgba(var(--color-shadow), var(--shadow-opacity))
-  );
-}
-
-// -----------------------------------------------------------------------------
 // Card border (reusable border pattern)
 // -----------------------------------------------------------------------------
 
