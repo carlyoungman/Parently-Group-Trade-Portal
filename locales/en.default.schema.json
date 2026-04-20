@@ -147,6 +147,15 @@
         "button_hover": {
           "label": "Solid button hover/active background"
         },
+        "button_border": {
+          "label": "Solid button border"
+        },
+        "button_label_hover": {
+          "label": "Solid button text (hover)"
+        },
+        "button_border_hover": {
+          "label": "Solid button border (hover)"
+        },
         "secondary_button_background": {
           "label": "Outline button background"
         },
@@ -155,6 +164,15 @@
         },
         "secondary_button_hover": {
           "label": "Outline button hover/active background"
+        },
+        "secondary_button_border": {
+          "label": "Outline button border"
+        },
+        "secondary_button_label_hover": {
+          "label": "Outline button text (hover)"
+        },
+        "secondary_button_border_hover": {
+          "label": "Outline button border (hover)"
         },
         "shadow": {
           "label": "Shadow"

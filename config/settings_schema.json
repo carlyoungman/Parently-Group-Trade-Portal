@@ -105,6 +105,24 @@
           },
           {
             "type": "color",
+            "id": "button_border",
+            "label": "t:settings_schema.colors.settings.button_border.label",
+            "default": "#121212"
+          },
+          {
+            "type": "color",
+            "id": "button_label_hover",
+            "label": "t:settings_schema.colors.settings.button_label_hover.label",
+            "default": "#FFFFFF"
+          },
+          {
+            "type": "color",
+            "id": "button_border_hover",
+            "label": "t:settings_schema.colors.settings.button_border_hover.label",
+            "default": "#363636"
+          },
+          {
+            "type": "color",
             "id": "secondary_button",
             "label": "t:settings_schema.colors.settings.secondary_button_background.label",
             "default": "#FFFFFF"
@@ -120,6 +138,24 @@
             "id": "secondary_button_hover",
             "label": "t:settings_schema.colors.settings.secondary_button_hover.label",
             "default": "#f4f4f4"
+          },
+          {
+            "type": "color",
+            "id": "secondary_button_border",
+            "label": "t:settings_schema.colors.settings.secondary_button_border.label",
+            "default": "#121212"
+          },
+          {
+            "type": "color",
+            "id": "secondary_button_label_hover",
+            "label": "t:settings_schema.colors.settings.secondary_button_label_hover.label",
+            "default": "#121212"
+          },
+          {
+            "type": "color",
+            "id": "secondary_button_border_hover",
+            "label": "t:settings_schema.colors.settings.secondary_button_border_hover.label",
+            "default": "#f4f4f4"
           }
         ],
         "role": {
@@ -129,10 +165,10 @@
           "icons": "text",
           "primary_button": "button",
           "on_primary_button": "button_label",
-          "primary_button_border": "button",
+          "primary_button_border": "button_border",
           "secondary_button": "secondary_button",
           "on_secondary_button": "secondary_button_label",
-          "secondary_button_border": "secondary_button_label"
+          "secondary_button_border": "secondary_button_border"
         }
       }
     ]
