@@ -62,6 +62,7 @@
   &:not([disabled]):hover,
   &:not([disabled]):active {
     background-color: rgb(var(--color-button-hover));
+    border-color: rgb(var(--color-button-hover));
   }
 
   &:not([disabled]):hover::after {

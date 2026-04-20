@@ -61,7 +61,7 @@
             "button_link_1": "shopify://pages/dashboard",
             "button_style_secondary_1": false,
             "button_label_2": "Become a retailer",
-            "button_link_2": "shopify://pages/price-lists",
+            "button_link_2": "shopify://pages/because-a-tentailer",
             "button_style_secondary_2": true
           }
         }
@@ -154,7 +154,7 @@
         "logo_height": 100,
         "image_ratio": "wide",
         "logos_per_row_desktop": 6,
-        "padding_top": 36,
+        "padding_top": 0,
         "padding_bottom": 36
       }
     },
@@ -165,7 +165,7 @@
           "type": "heading",
           "settings": {
             "heading": "Your trusted B2B partner for premium children's and schoolwear brands.",
-            "heading_size": "h1"
+            "heading_size": "h2"
           }
         },
         "text_U39hRc": {
@@ -178,7 +178,7 @@
           "type": "buttons",
           "settings": {
             "button_label_1": "Become a retailer",
-            "button_link_1": "shopify://pages/retailer-support",
+            "button_link_1": "shopify://pages/because-a-tentailer",
             "button_style_secondary_1": true,
             "button_label_2": "About us",
             "button_link_2": "shopify://pages/about-us",
@@ -265,7 +265,7 @@
           "type": "heading",
           "settings": {
             "heading": "Everything you need at the Media Hub",
-            "heading_size": "h1"
+            "heading_size": "h2"
           }
         },
         "buttons_cbK8LK": {
@@ -400,7 +400,7 @@
           "type": "heading",
           "settings": {
             "heading": "Why the Parently Group...",
-            "heading_size": "h1"
+            "heading_size": "h2"
           }
         },
         "text_MayeRd": {
@@ -413,7 +413,7 @@
           "type": "buttons",
           "settings": {
             "button_label_1": "Become a retailer",
-            "button_link_1": "shopify://pages/retailer-support",
+            "button_link_1": "shopify://pages/because-a-tentailer",
             "button_style_secondary_1": true,
             "button_label_2": "",
             "button_link_2": "",
@@ -539,7 +539,7 @@
       "name": "Image with content carousel",
       "settings": {
         "heading": "Awards & Accolades",
-        "heading_size": "h1",
+        "heading_size": "h2",
         "content": "",
         "button_label_1": "",
         "button_link_1": "",
