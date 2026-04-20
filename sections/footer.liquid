@@ -162,25 +162,6 @@
           </div>
         {%- endif -%}
 
-        {%- if has_legal -%}
-          <div class="footer__menu-column">
-            {%- if section.settings.menu_legal_heading != blank -%}
-              <h2 class="footer-block__heading">{{ section.settings.menu_legal_heading }}</h2>
-            {%- endif -%}
-            <ul class="footer-block__details-content list-unstyled">
-              {%- for link in section.settings.menu_legal.links -%}
-                <li>
-                  <a
-                    href="{{ link.url }}"
-                    class="link link--text list-menu__item list-menu__item--link{% if link.active %} list-menu__item--active{% endif %}"
-                  >
-                    {{ link.title | escape }}
-                  </a>
-                </li>
-              {%- endfor -%}
-            </ul>
-          </div>
-        {%- endif -%}
       </nav>
     {%- endif -%}
 
@@ -235,7 +216,7 @@
       </div>
     </div>
     <div class="footer__content-bottom-wrapper page-width{% if section.settings.enable_country_selector == false and section.settings.enable_language_selector == false %} footer__content-bottom-wrapper--center{% endif %}">
-      <div class="footer__copyright caption">
+      <div class="footer__copyright">
         <small class="copyright__content"
           >&copy; {{ 'now' | date: '%Y' }}, {{ shop.name | link_to: routes.root_url -}}
         </small>
