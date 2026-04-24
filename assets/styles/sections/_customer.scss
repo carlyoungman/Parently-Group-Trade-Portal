@@ -8,7 +8,7 @@
   text-align: center;
 }
 
-@media screen and (min-width: 750px) {
+@include breakpoint-sm {
   .customer:not(.account):not(.order) {
     max-width: 47.8rem;
   }
@@ -47,7 +47,7 @@
   font-size: var(--font-h3);
 }
 
-@media only screen and (min-width: 750px) {
+@include breakpoint-sm {
   .customer h2.form__message {
     font-size: var(--font-h2);
   }
@@ -72,14 +72,14 @@
   position: relative;
 }
 
-@media screen and (min-width: 750px) {
+@include breakpoint-sm {
   .customer table {
     border: none;
     box-shadow: 0 0 0 0.1rem rgba(var(--color-foreground), 0.08);
   }
 }
 
-@media screen and (forced-colors: active) {
+@include forced-colors {
   .customer table {
     border-top: 0.1rem solid transparent;
     border-bottom: 0.1rem solid transparent;
@@ -98,7 +98,7 @@
   padding: 0;
 }
 
-@media screen and (min-width: 750px) {
+@include breakpoint-sm {
   .customer td {
     padding-right: 2.2rem;
   }
@@ -123,7 +123,7 @@
   padding-top: 4rem;
 }
 
-@media screen and (min-width: 750px) {
+@include breakpoint-sm {
   .customer th,
   .customer td:first-of-type {
     text-align: left;
@@ -155,7 +155,7 @@
   padding-bottom: 4rem;
 }
 
-@media screen and (min-width: 750px) {
+@include breakpoint-sm {
   .customer tbody td:last-of-type {
     padding-bottom: 0;
   }
@@ -165,13 +165,13 @@
   border-top: 0.01rem solid rgba(var(--color-foreground), 0.08);
 }
 
-@media screen and (min-width: 750px) {
+@include breakpoint-sm {
   .customer tbody tr:first-of-type {
     border-top: none;
   }
 }
 
-@media screen and (forced-colors: active) {
+@include forced-colors {
   .customer tbody tr {
     border-top: 0.1rem solid transparent;
   }
@@ -191,7 +191,7 @@
   padding-top: 4rem;
 }
 
-@media screen and (min-width: 750px) {
+@include breakpoint-sm {
   .customer tfoot tr:first-of-type td,
   .customer tfoot tr:first-of-type th {
     padding-top: 2.4rem;
@@ -202,7 +202,7 @@
   padding-bottom: 4rem;
 }
 
-@media screen and (min-width: 750px) {
+@include breakpoint-sm {
   .customer tfoot tr:last-of-type td,
   .customer tfoot tr:last-of-type th {
     padding-bottom: 2.4rem;
@@ -221,7 +221,7 @@
   background: rgba(var(--color-foreground), 0.08);
 }
 
-@media screen and (forced-colors: active) {
+@include forced-colors {
   .customer thead::after,
   .customer tfoot::before {
     background: CanvasText;
@@ -229,7 +229,7 @@
 }
 
 /* mobile table overrides */
-@media screen and (max-width: 749px) {
+@include mobile-only {
   .customer thead,
   .customer th,
   .customer tfoot td:first-of-type {
@@ -270,7 +270,7 @@
   margin-bottom: 7rem;
 }
 
-@media screen and (min-width: 990px) {
+@include breakpoint-md {
   .customer .pagination {
     margin-top: 7rem;
     margin-bottom: 10rem;
@@ -394,7 +394,7 @@
   color: rgb(var(--color-link));
 }
 
-@media only screen and (min-width: 750px) {
+@include breakpoint-sm {
   .activate button[name='decline'] {
     margin-top: inherit;
     margin-left: 1rem;
@@ -409,28 +409,28 @@
   padding-right: 2rem;
 }
 
-@media screen and (min-width: 750px) {
+@include breakpoint-sm {
   :is(.account, .order) {
     padding-left: 5rem;
     padding-right: 5rem;
   }
 }
 
-@media screen and (min-width: 990px) {
+@include breakpoint-md {
   :is(.account, .order) > div:nth-of-type(2) {
     display: flex;
     margin-top: 5rem;
   }
 }
 
-@media screen and (min-width: 990px) {
+@include breakpoint-md {
   :is(.account, .order) > div:nth-of-type(2) > div:first-of-type {
     flex-grow: 1;
     padding-right: 3.2rem;
   }
 }
 
-@media screen and (min-width: 750px) and (max-width: 989px) {
+@include tablet-only {
   .order > div:nth-of-type(2) > div:last-of-type {
     display: flex;
   }
@@ -454,7 +454,7 @@
   margin-bottom: 1rem;
 }
 
-@media screen and (min-width: 990px) {
+@include breakpoint-md {
   :is(.account, .order) h2 {
     margin-top: 0;
   }
@@ -471,7 +471,7 @@
   margin-right: 1rem;
 }
 
-@media screen and (min-width: 750px) {
+@include breakpoint-sm {
   .account thead th:last-child,
   .account td:last-child {
     text-align: right;
@@ -499,7 +499,7 @@
   align-items: initial;
 }
 
-@media screen and (min-width: 750px) {
+@include breakpoint-sm {
   .order thead th:nth-last-child(-n + 3),
   .order td:nth-last-child(-n + 3) {
     text-align: right;
@@ -513,7 +513,7 @@
   padding-bottom: 4rem;
 }
 
-@media screen and (min-width: 750px) {
+@include breakpoint-sm {
   .order tfoot tr:last-of-type td,
   .order tfoot tr:last-of-type th {
     padding-bottom: 2.4rem;
@@ -575,7 +575,7 @@
   font-size: var(--font-small);
 }
 
-@media screen and (min-width: 750px) {
+@include breakpoint-sm {
   .order td .cart-discount {
     display: none;
   }
@@ -590,7 +590,7 @@
   margin-bottom: 0;
 }
 
-@media screen and (min-width: 750px) {
+@include breakpoint-sm {
   .order tbody ul {
     text-align: left;
   }
@@ -606,7 +606,7 @@
   align-items: flex-end;
 }
 
-@media screen and (min-width: 750px) {
+@include breakpoint-sm {
   .order tbody tr:first-of-type td:first-of-type > div {
     align-items: flex-start;
   }

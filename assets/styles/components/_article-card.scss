@@ -1,5 +1,5 @@
 // Converted from component-article-card.css
-@media screen and (max-width: 749px) {
+@include mobile-only {
   .articles-wrapper .article {
     width: 100%;
   }
@@ -83,7 +83,7 @@
   margin-right: 3rem;
 }
 
-@media screen and (min-width: 990px) {
+@include breakpoint-md {
   .article-card__link:not(:only-child) {
     margin-right: 4rem;
   }
@@ -101,7 +101,7 @@
   padding-bottom: 33rem;
 }
 
-@media screen and (min-width: 750px) {
+@include breakpoint-sm {
   .article-card__image--small .ratio::before {
     padding-bottom: 14.3rem;
   }
@@ -115,7 +115,7 @@
   }
 }
 
-@media screen and (min-width: 990px) {
+@include breakpoint-md {
   .article-card__image--small .ratio::before {
     padding-bottom: 17.7rem;
   }
@@ -135,7 +135,7 @@
     margin: 0 0 5rem 0;
   }
 
-  @media screen and (min-width: 750px) {
+  @include breakpoint-sm {
     .articles-wrapper.grid {
       margin-bottom: 7rem;
     }

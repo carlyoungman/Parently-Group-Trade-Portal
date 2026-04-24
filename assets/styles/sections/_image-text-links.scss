@@ -231,7 +231,7 @@
 /* -----------------------------------------------------------------------
    Mobile — single column, stacked layout
    ----------------------------------------------------------------------- */
-@media screen and (max-width: 749px) {
+@include mobile-only {
   .image-text-links {
     &--small,
     &--medium,

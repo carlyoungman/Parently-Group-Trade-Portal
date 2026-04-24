@@ -12,13 +12,13 @@ slider-component.slider-component-full-width {
   --desktop-margin-left-first-item: 1.5rem;
 }
 
-@media screen and (max-width: 749px) {
+@include mobile-only {
   slider-component.page-width {
     padding: 0 1.5rem;
   }
 }
 
-@media screen and (min-width: 749px) and (max-width: 990px) {
+@include tablet-only {
   slider-component.page-width {
     padding: 0 5rem;
   }
@@ -31,7 +31,7 @@ slider-component.slider-component-full-width {
   padding-bottom: 0;
 }
 
-@media screen and (max-width: 749px) {
+@include mobile-only {
   .slider.slider--mobile {
     position: relative;
     flex-wrap: inherit;
@@ -65,7 +65,7 @@ slider-component.slider-component-full-width {
   }
 }
 
-@media screen and (min-width: 750px) {
+@include breakpoint-sm {
   .slider.slider--tablet-up {
     position: relative;
     flex-wrap: inherit;
@@ -81,7 +81,7 @@ slider-component.slider-component-full-width {
   }
 }
 
-@media screen and (max-width: 989px) {
+@include tablet-down {
   .slider.slider--tablet {
     position: relative;
     flex-wrap: inherit;
@@ -131,7 +131,7 @@ slider-component.slider-component-full-width {
   scroll-snap-align: center;
 }
 
-@media screen and (min-width: 990px) {
+@include breakpoint-md {
   .slider-component-desktop.page-width {
     max-width: none;
   }
@@ -209,7 +209,7 @@ slider-component.slider-component-full-width {
   }
 }
 
-@media (prefers-reduced-motion) {
+@include reduced-motion {
   .slider {
     scroll-behavior: auto;
   }
@@ -246,7 +246,7 @@ slider-component.slider-component-full-width {
   min-width: 4.4rem;
 }
 
-@media screen and (min-width: 750px) {
+@include breakpoint-sm {
   .slider-counter--dots {
     margin: 0 1.2rem;
   }
@@ -256,7 +256,7 @@ slider-component.slider-component-full-width {
   padding: 1rem;
 }
 
-@media screen and (max-width: 749px) {
+@include mobile-only {
   .slider-counter__link {
     padding: 0.7rem;
   }
@@ -275,7 +275,7 @@ slider-component.slider-component-full-width {
   background-color: rgb(var(--color-foreground));
 }
 
-@media screen and (forced-colors: active) {
+@include forced-colors {
   .slider-counter__link--active.slider-counter__link--dots .dot {
     background-color: CanvasText;
   }
@@ -316,19 +316,19 @@ slider-component.slider-component-full-width {
   justify-content: center;
 }
 
-@media screen and (min-width: 990px) {
+@include breakpoint-md {
   .slider:not(.slider--everywhere):not(.slider--desktop) + .slider-buttons {
     display: none;
   }
 }
 
-@media screen and (max-width: 989px) {
+@include tablet-down {
   .slider--desktop:not(.slider--tablet) + .slider-buttons {
     display: none;
   }
 }
 
-@media screen and (min-width: 750px) {
+@include breakpoint-sm {
   .slider--mobile + .slider-buttons {
     display: none;
   }

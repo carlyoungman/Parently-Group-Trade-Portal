@@ -55,7 +55,7 @@
     border-radius: var(--buttons-radius-outset);
     display: block !important;
 
-    @media screen and (min-width: 749px) {
+    @include breakpoint-sm {
       width: calc(50% - 1.5rem);
     }
   }
@@ -216,7 +216,7 @@
 }
 
 // Mobile — stack image above content, bg colour on content directly
-@media screen and (max-width: 749px) {
+@include mobile-only {
   .image-content-carousel {
     &__bg {
       display: none;

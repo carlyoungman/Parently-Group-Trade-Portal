@@ -5,7 +5,7 @@
     margin-bottom: 3.2rem;
     align-items: center;
     justify-content: center;
-    @media screen and (min-width: 750px) {
+    @include breakpoint-sm {
       gap: 6rem;
     }
   }
@@ -20,7 +20,7 @@
     min-width: unset;
     min-height: unset;
     font-size: var(--font-h5);
-    @media screen and (min-width: 750px) {
+    @include breakpoint-sm {
       font-size: var(--font-h2);
     }
 

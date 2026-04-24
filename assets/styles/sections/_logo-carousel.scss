@@ -140,7 +140,7 @@
 ========================= */
 
 /* Desktop */
-@media screen and (min-width: 990px) {
+@include breakpoint-md {
   .logo-carousel {
     &__list--grid {
       .logo-carousel__item {
@@ -151,7 +151,7 @@
 }
 
 /* Tablet */
-@media screen and (min-width: 750px) and (max-width: 989px) {
+@include tablet-only {
   .logo-carousel {
     &__list--grid {
       .logo-carousel__item {
@@ -162,7 +162,7 @@
 }
 
 /* Mobile */
-@media screen and (max-width: 749px) {
+@include mobile-only {
   .logo-carousel {
     &__list {
       gap: 1.5rem;

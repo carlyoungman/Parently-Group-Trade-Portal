@@ -64,7 +64,7 @@ pickup-availability-drawer[open] {
   opacity: 1;
 }
 
-@media screen and (min-width: 750px) {
+@include breakpoint-sm {
   pickup-availability-drawer {
     transform: translateX(100%);
     width: 37.5rem;
@@ -146,7 +146,7 @@ pickup-availability-drawer[open] {
 }
 
 @keyframes animateDrawerOpen {
-  @media screen and (max-width: 749px) {
+  @include mobile-only {
     0% {
       opacity: 0;
       transform: translateX(100%);
@@ -158,7 +158,7 @@ pickup-availability-drawer[open] {
     }
   }
 
-  @media screen and (min-width: 750px) {
+  @include breakpoint-sm {
     0% {
       opacity: 0;
       transform: translateX(100%);

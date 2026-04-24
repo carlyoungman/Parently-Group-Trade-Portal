@@ -98,7 +98,7 @@ variant-selects {
   color: rgb(var(--color-background));
 }
 
-@media screen and (forced-colors: active) {
+@include forced-colors {
   .product-form__input--pill input[type='radio']:checked + label {
     text-decoration: underline;
   }
@@ -145,7 +145,7 @@ variant-selects {
   margin: 0.7rem 1.2rem 0.2rem 0;
 }
 
-@media screen and (min-width: 750px) {
+@include breakpoint-sm {
   .product-form__input--swatch .swatch-input__input + .swatch-input__label {
     --swatch-input--size: 2.8rem;
   }

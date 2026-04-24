@@ -37,7 +37,7 @@ vertical-image-links-component {
       margin-top: 0;
     }
 
-    @media screen and (min-width: 990px) {
+    @include breakpoint-md {
       padding: 6rem 7rem;
     }
   }
@@ -151,7 +151,7 @@ vertical-image-links-component {
 /* -----------------------------------------------------------------------
    Mobile: stack layout, no sticky scroll effect
    ----------------------------------------------------------------------- */
-@media screen and (max-width: 749px) {
+@include mobile-only {
   .vertical-image-links {
     &__inner {
       position: static;

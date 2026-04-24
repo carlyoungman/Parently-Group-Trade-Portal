@@ -190,7 +190,7 @@ cart-drawer-items {
   flex: 1;
 }
 
-@media screen and (max-height: 650px) {
+@include short-screen {
   cart-drawer-items {
     overflow: visible;
   }
@@ -300,7 +300,7 @@ cart-drawer-items {
   grid-column: 2 / 5;
 }
 
-@media screen and (max-width: 749px) {
+@include mobile-only {
   .cart-drawer .cart-item cart-remove-button {
     margin-left: 0;
   }
@@ -360,7 +360,7 @@ cart-drawer-items {
   margin-right: 0.5rem !important;
 }
 
-@media screen and (min-width: 750px) {
+@include breakpoint-sm {
   .drawer__footer #dynamic-checkout-cart ul > li {
     flex-basis: calc(100% / 3 - 0.5rem) !important;
     margin: 0 !important;
@@ -404,7 +404,7 @@ cart-drawer-items::-webkit-scrollbar-track-piece {
   margin-top: 0.2rem;
 }
 
-@media screen and (min-width: 750px) {
+@include breakpoint-sm {
   .cart-drawer .cart-item__quantity--info quantity-popover > * {
     padding-left: 0;
   }

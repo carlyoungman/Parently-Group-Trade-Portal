@@ -11,20 +11,20 @@
   margin-top: 0;
 }
 
-@media screen and (max-width: 749px) {
+@include mobile-only {
   .multicolumn .title-wrapper-with-link {
     margin-bottom: 3rem;
   }
 }
 
-@media screen and (min-width: 750px) and (max-width: 989px) {
+@include tablet-only {
   .multicolumn__title {
     padding-left: 5rem;
     padding-right: 5rem;
   }
 }
 
-@media screen and (max-width: 989px) {
+@include tablet-down {
   .multicolumn .page-width {
     padding-left: 0;
     padding-right: 0;
@@ -49,7 +49,7 @@
   margin-top: 1.5rem;
 }
 
-@media screen and (min-width: 750px) {
+@include breakpoint-sm {
   .multicolumn .button {
     margin-top: 4rem;
   }
@@ -108,7 +108,7 @@
   transform: translateX(-50%);
 }
 
-@media screen and (max-width: 749px) {
+@include mobile-only {
   .multicolumn-list {
     margin: 0;
     width: 100%;
@@ -120,14 +120,14 @@
   }
 }
 
-@media screen and (min-width: 750px) and (max-width: 989px) {
+@include tablet-only {
   .multicolumn-list:not(.slider) {
     padding-left: 5rem;
     padding-right: 5rem;
   }
 }
 
-@media screen and (min-width: 750px) {
+@include breakpoint-sm {
   .multicolumn-list.slider {
     padding: 0;
   }
@@ -178,7 +178,7 @@
   padding-right: 2.5rem;
 }
 
-@media screen and (max-width: 749px) {
+@include mobile-only {
   .background-none .slider .multicolumn-card__info {
     padding-bottom: 1rem;
   }
@@ -188,7 +188,7 @@
   }
 }
 
-@media screen and (min-width: 750px) {
+@include breakpoint-sm {
   .background-none .multicolumn-card__image-wrapper {
     margin-left: 1.5rem;
     margin-right: 1.5rem;
@@ -227,7 +227,7 @@
   white-space: nowrap;
 }
 
-@media screen and (min-width: 990px) {
+@include breakpoint-md {
   .multicolumn-list__item--empty {
     display: list-item;
   }

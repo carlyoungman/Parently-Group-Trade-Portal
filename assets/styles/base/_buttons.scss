@@ -21,7 +21,7 @@
   line-height: var(--font-body-line-height);
   position: relative;
 
-  @media screen and (max-width: 569px) {
+  @include xs-sm-only {
     width: 100%;
   }
 
@@ -160,7 +160,7 @@
 }
 
 /* forced colors */
-@media (forced-colors: active) {
+@include forced-colors {
   .button {
     border: transparent solid 1px;
 

@@ -42,9 +42,100 @@
   }
 }
 
+/// Apply styles below xs-sm threshold (very small phones only)
+@mixin xs-sm-only {
+  @media screen and (max-width: #{$bp-xs-sm}) {
+    @content;
+  }
+}
+
+/// Apply styles below xs threshold (extra-small phones only)
+@mixin xs-only {
+  @media screen and (max-width: #{$bp-xs}) {
+    @content;
+  }
+}
+
+/// Apply styles on short viewports (max-height)
+@mixin short-screen {
+  @media screen and (max-height: #{$bp-short}) {
+    @content;
+  }
+}
+
+/// Apply styles for print media
+@mixin print-only {
+  @media print {
+    @content;
+  }
+}
+
+/// Apply styles between small and medium breakpoints (tablet only)
+@mixin tablet-only {
+  @media screen and (min-width: #{$bp-small}) and (max-width: #{$bp-medium - 1px}) {
+    @content;
+  }
+}
+
+/// Apply styles between small and large breakpoints (tablet to large desktop)
+@mixin tablet-to-lg {
+  @media screen and (min-width: #{$bp-small}) and (max-width: #{$bp-large - 1px}) {
+    @content;
+  }
+}
+
+/// Apply styles at mid (tablet-landscape+) breakpoint and above
+@mixin breakpoint-mid {
+  @media screen and (min-width: #{$bp-mid}) {
+    @content;
+  }
+}
+
+/// Apply styles at extra-large breakpoint and above
+@mixin breakpoint-xl {
+  @media screen and (min-width: #{$bp-xlarge}) {
+    @content;
+  }
+}
+
 // -----------------------------------------------------------------------------
 // Accessibility
 // -----------------------------------------------------------------------------
+
+/// Windows High Contrast / forced-colors mode
+@mixin forced-colors {
+  @media screen and (forced-colors: active) {
+    @content;
+  }
+}
+
+/// Styles for users who prefer reduced motion
+@mixin reduced-motion {
+  @media (prefers-reduced-motion) {
+    @content;
+  }
+}
+
+/// Styles for users who are OK with motion (no preference for reduced motion)
+@mixin motion-ok {
+  @media (prefers-reduced-motion: no-preference) {
+    @content;
+  }
+}
+
+/// Styles for users OK with motion on devices with a hover pointer
+@mixin motion-hover {
+  @media (prefers-reduced-motion: no-preference) and (hover: hover) {
+    @content;
+  }
+}
+
+/// Styles for devices that support hover (non-touch)
+@mixin hover-capable {
+  @media (hover: hover) {
+    @content;
+  }
+}
 
 /// Visually hide an element while keeping it accessible to screen readers
 @mixin visually-hidden {

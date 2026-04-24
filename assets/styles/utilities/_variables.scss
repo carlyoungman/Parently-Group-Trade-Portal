@@ -7,11 +7,20 @@
 // =============================================================================
 
 // -----------------------------------------------------------------------------
-// Breakpoints
+// Breakpoints (width)
 // -----------------------------------------------------------------------------
-$bp-small:    750px;
-$bp-medium:   990px;
-$bp-large:    1200px;
+$bp-small:    750px;   // tablet and above
+$bp-mid:      900px;   // intermediate (tablet-landscape and above)
+$bp-medium:   990px;   // desktop and above
+$bp-large:    1200px;  // large desktop and above
+$bp-xlarge:   1400px;  // extra-large desktop and above
+
+// Component-specific width thresholds
+$bp-xs:       449px;   // extra-small component threshold
+$bp-xs-sm:    569px;   // extra-small–small component threshold
+
+// Height breakpoint
+$bp-short:    650px;   // short-viewport threshold
 
 // -----------------------------------------------------------------------------
 // Typography scale (compile-time fallbacks; runtime uses CSS vars)

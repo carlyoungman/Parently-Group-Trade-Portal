@@ -121,7 +121,7 @@
   opacity: 0.5;
 }
 
-@media screen and (forced-colors: active) {
+@include forced-colors {
   .product-form__submit[aria-disabled='true'] {
     color: Window;
   }
@@ -236,7 +236,7 @@
   text-transform: capitalize;
 }
 
-@media screen and (forced-colors: active) {
+@include forced-colors {
   .recipient-fields > hr {
     border-top: 0.1rem solid rgb(var(--color-background));
   }

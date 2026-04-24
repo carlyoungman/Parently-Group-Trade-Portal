@@ -93,7 +93,7 @@
   /* -----------------------------------------------------------------------
      Mobile
      ----------------------------------------------------------------------- */
-  @media screen and (max-width: 749px) {
+  @include mobile-only {
     &__inner {
       grid-template-columns: 1fr;
       gap: 3rem;
@@ -109,7 +109,7 @@
     }
   }
 
-  @media screen and (max-width: 449px) {
+  @include xs-only {
     &__grid {
       grid-template-columns: 1fr;
     }

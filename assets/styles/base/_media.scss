@@ -57,7 +57,7 @@
   opacity: 0;
 }
 
-@media screen and (min-width: 990px) {
+@include breakpoint-md {
   .media--cropped {
     padding-bottom: 63%;
   }
