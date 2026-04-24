@@ -51,6 +51,22 @@
   endif
 -%}
 
+{%- if section.settings.show_notification_bar and section.settings.notification_text != blank -%}
+  <div class="utility-bar secondary-background">
+    <div class="page-width utility-bar__grid">
+      <div
+        class="announcement-bar announcement-bar--one-announcement"
+        role="region"
+        aria-label="Footer notification"
+      >
+        <p class="announcement-bar__message">
+          <span>{{ section.settings.notification_text | escape }}</span>
+        </p>
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+
 <footer class="footer color-scheme-1 section-{{ section.id }}-padding">
 
   {%- comment -%} ── Main content row: brand + menus ── {%- endcomment -%}
@@ -357,6 +373,22 @@
       "default": true,
       "label": "t:sections.footer.settings.show_policy.label",
       "info": "t:sections.footer.settings.show_policy.info"
+    },
+    {
+      "type": "header",
+      "content": "Notification bar"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_notification_bar",
+      "default": false,
+      "label": "Show notification bar"
+    },
+    {
+      "type": "text",
+      "id": "notification_text",
+      "label": "Notification text",
+      "placeholder": "e.g. OUTSTANDING SERVICE | EXCLUSIVE PRICING | INDUSTRY EXPERTISE"
     },
     {
       "type": "header",
