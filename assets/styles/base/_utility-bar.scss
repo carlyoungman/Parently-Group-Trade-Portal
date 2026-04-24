@@ -1,4 +1,5 @@
 // Converted from base.css: UI components - utility bar and announcement bar
+@use '../utilities/mixins' as *;
 /* utility-bar */
 .utility-bar {
   height: 100%;

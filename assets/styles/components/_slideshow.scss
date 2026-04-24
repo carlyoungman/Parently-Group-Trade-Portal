@@ -1,4 +1,5 @@
 // Converted from component-slideshow.css
+@use '../utilities/mixins' as *;
 slideshow-component {
   position: relative;
   display: flex;

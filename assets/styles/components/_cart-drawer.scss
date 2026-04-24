@@ -1,4 +1,5 @@
 // Converted from component-cart-drawer.css
+@use '../utilities/mixins' as *;
 .drawer {
   position: fixed;
   z-index: 1000;

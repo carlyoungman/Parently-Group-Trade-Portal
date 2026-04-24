@@ -1,4 +1,5 @@
 // Converted from component-list-social.css
+@use '../utilities/mixins' as *;
 .list-social {
   display: flex;
   flex-wrap: wrap;

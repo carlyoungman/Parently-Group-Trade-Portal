@@ -1,4 +1,5 @@
 // section-header
+@use '../utilities/mixins' as *;
 .section-header {
   &.shopify-section-group-header-group {
     z-index: 3;

@@ -1,4 +1,5 @@
 // Quick order list — table structure, totals row, remove buttons, messages
+@use '../utilities/mixins' as *;
 // Individual variant item rows → components/_variant-item.scss
 quick-order-list {
   display: block;

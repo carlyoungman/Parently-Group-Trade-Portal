@@ -1,4 +1,5 @@
 // Variant item rows used inside quick-order-list
+@use '../utilities/mixins' as *;
 // Table / totals wrapper → components/_quick-order-list.scss
 
 .variant-item__quantity .quantity:before {

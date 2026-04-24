@@ -1,4 +1,5 @@
 // Customer address management — list, add/edit form, default address toggle
+@use '../utilities/mixins' as *;
 // Core customer layout → sections/_customer.scss
 
 /* Addresses */

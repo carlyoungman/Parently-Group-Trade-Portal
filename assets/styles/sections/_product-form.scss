@@ -1,4 +1,5 @@
 // Product form — Shopify dynamic checkout, product-form inputs/submit, recipient form
+@use '../utilities/mixins' as *;
 // Product layout & media → sections/_main-product.scss
 
 /* Dynamic checkout */
