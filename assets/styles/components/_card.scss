@@ -6,7 +6,7 @@
   position: relative;
   text-decoration: none;
 
-  @media screen and (min-width: 990px) {
+  @include breakpoint-md {
     .media.media--hover-effect > img:only-child {
       transition: transform var(--duration-long) ease;
     }
@@ -57,7 +57,7 @@
     top: 0;
     width: 100%;
 
-    @media screen and (min-width: 990px) {
+    @include breakpoint-md {
       &.media--hover-effect > img:only-child {
         transition: transform var(--duration-long) ease;
       }
@@ -65,7 +65,7 @@
   }
 
   &:hover {
-    @media screen and (min-width: 990px) {
+    @include breakpoint-md {
       .media.media--hover-effect > img:first-child:only-child {
         transform: scale(1.03);
       }
@@ -266,7 +266,7 @@
     &__quick-add {
       font-size: var(--font-h6);
 
-      @media only screen and (min-width: 750px) {
+      @include breakpoint-sm {
         font-size: var(--font-h5);
       }
     }
@@ -523,14 +523,18 @@
     }
 
     .quantity__rules ~ volume-pricing {
-      @media screen and (max-width: 989px) {
-        margin-top: 0;
+      margin-top: 0;
+
+      @include breakpoint-md {
+        margin-top: revert;
       }
     }
 
     volume-pricing {
-      @media screen and (max-width: 989px) {
-        margin-top: 4.2rem;
+      margin-top: 4.2rem;
+
+      @include breakpoint-md {
+        margin-top: 1.2rem;
       }
     }
   }
@@ -542,7 +546,7 @@
 
 .grid {
   &--6-col-desktop {
-    @media screen and (min-width: 990px) {
+    @include breakpoint-md {
       .card__content {
         quick-add-bulk {
           .quantity {
@@ -574,14 +578,52 @@
   }
 
   &--2-col-tablet-down {
-    @media screen and (max-width: 749px) {
+    .card__content {
+      quick-add-bulk {
+        .quantity {
+          width: auto;
+
+          &__button {
+            width: 3.5rem;
+          }
+        }
+      }
+    }
+
+    .card--card,
+    .card--standard {
+      .card__information-volume-pricing-note--button {
+        + .global-settings-popup.quantity-popover__info {
+          left: 50%;
+          transform: translate(-50%);
+        }
+      }
+    }
+
+    .card--standard {
+      .card__information-volume-pricing-note--button {
+        + .global-settings-popup.quantity-popover__info {
+          width: 100%;
+        }
+      }
+    }
+
+    .card--card {
+      .card__information-volume-pricing-note--button {
+        + .global-settings-popup.quantity-popover__info {
+          width: calc(100% + var(--border-width) + 4rem);
+        }
+      }
+    }
+
+    @include breakpoint-sm {
       .card__content {
         quick-add-bulk {
           .quantity {
-            width: auto;
+            width: revert;
 
             &__button {
-              width: 3.5rem;
+              width: revert;
             }
           }
         }
@@ -591,8 +633,8 @@
       .card--standard {
         .card__information-volume-pricing-note--button {
           + .global-settings-popup.quantity-popover__info {
-            left: 50%;
-            transform: translate(-50%);
+            left: revert;
+            transform: revert;
           }
         }
       }
@@ -600,7 +642,7 @@
       .card--standard {
         .card__information-volume-pricing-note--button {
           + .global-settings-popup.quantity-popover__info {
-            width: 100%;
+            width: revert;
           }
         }
       }
@@ -608,7 +650,7 @@
       .card--card {
         .card__information-volume-pricing-note--button {
           + .global-settings-popup.quantity-popover__info {
-            width: calc(100% + var(--border-width) + 4rem);
+            width: revert;
           }
         }
       }
@@ -655,7 +697,7 @@
 }
 
 .product-card-wrapper {
-  @media (prefers-reduced-motion: no-preference) {
+  @include motion-ok {
     .shape--round {
       transition: clip-path var(--duration-long) ease;
     }
@@ -678,7 +720,7 @@
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
+@include motion-ok {
   .grid__item {
     &:nth-child(2n) {
       .product-card-wrapper:hover {
@@ -731,7 +773,7 @@
 }
 
 .underline-links-hover {
-  @media screen and (min-width: 990px) {
+  @include breakpoint-md {
     &:hover {
       a {
         text-decoration: underline;

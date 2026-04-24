@@ -4,7 +4,7 @@
   display: inline-block;
 }
 
-@media only screen and (min-width: 750px) {
+@include breakpoint-sm {
   .email-signup-banner:not(.banner--desktop-transparent) .email-signup-banner__box {
     width: 100%;
   }
@@ -30,16 +30,23 @@
   transform: translateX(-50%);
 }
 
-@media screen and (max-width: 749px) {
+.email-signup-banner:not(.banner--mobile-bottom) .banner__box:not(.email-signup-banner__box--no-image) {
+  background-color: transparent;
+  --color-foreground: 255, 255, 255;
+  --color-button: 255, 255, 255;
+  --color-button-text: 0, 0, 0;
+}
+
+@include breakpoint-sm {
   .email-signup-banner:not(.banner--mobile-bottom) .banner__box:not(.email-signup-banner__box--no-image) {
-    background-color: transparent;
-    --color-foreground: 255, 255, 255;
-    --color-button: 255, 255, 255;
-    --color-button-text: 0, 0, 0;
+    background-color: revert;
+    --color-foreground: revert;
+    --color-button: revert;
+    --color-button-text: revert;
   }
 }
 
-@media only screen and (min-width: 750px) {
+@include breakpoint-sm {
   .banner--desktop-transparent .email-signup-banner__box--no-image * {
     color: rgb(var(--color-foreground));
   }
@@ -62,15 +69,19 @@
   }
 }
 
-@media only screen and (min-width: 750px) {
+@include breakpoint-sm {
   .email-signup-banner-background-mobile {
     display: none;
   }
 }
 
-@media only screen and (max-width: 749px) {
+.email-signup-banner-background:not(.email-signup-banner-background-mobile) {
+  display: none;
+}
+
+@include breakpoint-sm {
   .email-signup-banner-background:not(.email-signup-banner-background-mobile) {
-    display: none;
+    display: revert;
   }
 }
 
@@ -78,17 +89,25 @@
   overflow: hidden;
 }
 
-@media screen and (max-width: 749px) {
+.banner--mobile-content-align-left .newsletter-form__message {
+  justify-content: flex-start;
+}
+
+.banner--mobile-content-align-right .newsletter-form__message {
+  justify-content: right;
+}
+
+@include breakpoint-sm {
   .banner--mobile-content-align-left .newsletter-form__message {
-    justify-content: flex-start;
+    justify-content: revert;
   }
 
   .banner--mobile-content-align-right .newsletter-form__message {
-    justify-content: right;
+    justify-content: revert;
   }
 }
 
-@media screen and (min-width: 750px) {
+@include breakpoint-sm {
   .banner--content-align-center .newsletter-form__message {
     justify-content: center;
   }

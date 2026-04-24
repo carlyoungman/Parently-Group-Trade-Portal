@@ -9,7 +9,7 @@
   padding-bottom: 2rem;
 }
 
-@media screen and (min-width: 750px) {
+@include breakpoint-sm {
   .collection-hero.collection-hero--with-image {
     padding: calc(4rem + var(--page-width-margin)) 0 calc(4rem + var(--page-width-margin));
     overflow: hidden;
@@ -24,7 +24,7 @@
   flex-basis: 100%;
 }
 
-@media screen and (min-width: 750px) {
+@include breakpoint-sm {
   .collection-hero {
     padding: 0;
   }
@@ -47,7 +47,7 @@
   line-height: var(--font-body-line-height);
 }
 
-@media screen and (min-width: 750px) {
+@include breakpoint-sm {
   .collection-hero__title + .collection-hero__description {
     font-size: var(--font-h4);
     margin-top: 2rem;
@@ -78,13 +78,11 @@
     rgba(var(--color-shadow), var(--media-shadow-opacity));
 }
 
-@media screen and (max-width: 749px) {
-  .collection-hero__image-container {
-    height: 20rem;
-  }
+.collection-hero__image-container {
+  height: 20rem;
 }
 
-@media screen and (min-width: 750px) {
+@include breakpoint-sm {
   .collection-hero--with-image .collection-hero__text-wrapper {
     padding: 4rem 2rem 4rem 0;
     flex-basis: 50%;

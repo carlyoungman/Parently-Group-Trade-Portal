@@ -45,7 +45,7 @@ span.active-facets__button-inner:after {
   font-size: var(--font-small);
 }
 
-@media screen and (min-width: 990px) {
+@include breakpoint-md {
   .active-facets__button {
     margin-right: 1.5rem;
   }
@@ -56,25 +56,45 @@ span.active-facets__button-inner:after {
   }
 }
 
-@media screen and (max-width: 989px) {
+.active-facets {
+  margin: 0 -1.2rem -1.2rem;
+}
+
+.active-facets__button,
+.active-facets__button-remove {
+  margin: 0;
+  padding: 1.2rem;
+}
+
+span.active-facets__button-inner {
+  padding-bottom: 0.1rem;
+  padding-top: 0.1rem;
+}
+
+.active-facets__button-wrapper {
+  padding-top: 0;
+  margin-left: 1.2rem;
+}
+
+@include breakpoint-md {
   .active-facets {
-    margin: 0 -1.2rem -1.2rem;
+    margin: revert;
   }
 
   .active-facets__button,
   .active-facets__button-remove {
-    margin: 0;
-    padding: 1.2rem;
+    margin: revert;
+    padding: revert;
   }
 
   span.active-facets__button-inner {
-    padding-bottom: 0.1rem;
-    padding-top: 0.1rem;
+    padding-bottom: revert;
+    padding-top: revert;
   }
 
   .active-facets__button-wrapper {
-    padding-top: 0;
-    margin-left: 1.2rem;
+    padding-top: 1.5rem;
+    margin-left: 0;
   }
 }
 
@@ -96,7 +116,7 @@ a.active-facets__button:focus-visible {
 }
 
 /* outline styling for Windows High Contrast Mode */
-@media (forced-colors: active) {
+@include forced-colors {
   a.active-facets__button:focus-visible {
     outline: transparent solid 1px;
   }
@@ -127,7 +147,7 @@ a.active-facets__button.focused .active-facets__button-inner {
   width: 1.2rem;
 }
 
-@media all and (min-width: 990px) {
+@include breakpoint-md {
   .active-facets__button .svg-wrapper {
     margin-right: -0.4rem;
     margin-top: 0.1rem;

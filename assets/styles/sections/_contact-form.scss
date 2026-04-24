@@ -15,7 +15,7 @@
   margin-bottom: 1.5rem;
 }
 
-@media screen and (min-width: 750px) {
+@include breakpoint-sm {
   .contact .field {
     margin-bottom: 2rem;
   }
@@ -25,13 +25,13 @@
   margin-top: 3rem;
 }
 
-@media screen and (min-width: 750px) {
+@include breakpoint-sm {
   .contact__button {
     margin-top: 4rem;
   }
 }
 
-@media screen and (min-width: 750px) {
+@include breakpoint-sm {
   .contact__fields {
     display: grid;
     grid-template-columns: repeat(2, 1fr);

@@ -10,7 +10,7 @@
     padding-bottom: var(--grid-mobile-vertical-spacing);
   }
 
-  @media screen and (min-width: 750px) {
+  @include breakpoint-sm {
     .grid {
       margin-left: calc(-1 * var(--grid-desktop-horizontal-spacing));
     }
@@ -26,7 +26,7 @@
     padding-bottom: 0;
   }
 
-  @media screen and (min-width: 749px) {
+  @include breakpoint-sm {
     .grid--peek .grid__item {
       padding-left: var(--grid-mobile-horizontal-spacing);
     }
@@ -36,7 +36,7 @@
     padding-bottom: var(--grid-mobile-vertical-spacing);
   }
 
-  @media screen and (min-width: 750px) {
+  @include breakpoint-sm {
     .product-grid .grid__item {
       padding-bottom: var(--grid-desktop-vertical-spacing);
     }
@@ -48,7 +48,7 @@
 }
 
 /* outline and border styling for Windows High Contrast Mode */
-@media (forced-colors: active) {
+@include forced-colors {
   .button,
   .shopify-challenge__button,
   .customer button {
@@ -96,7 +96,7 @@
   table-layout: fixed;
 }
 
-@media screen and (min-width: 750px) {
+@include breakpoint-sm {
   .rte table td {
     padding-left: 1.2rem;
     padding-right: 1.2rem;
@@ -211,7 +211,7 @@
 
 /* Animations */
 
-@media (prefers-reduced-motion: no-preference) {
+@include motion-ok {
   .animate--ambient > img,
   .animate--ambient > .svg-wrapper {
     animation: animateAmbient 30s linear infinite;
@@ -282,7 +282,7 @@
 
 /* Element Hovers: Vertical Lift, 3d Lift */
 
-@media (prefers-reduced-motion: no-preference) and (hover: hover) {
+@include motion-hover {
   .animate--hover-3d-lift .card-wrapper .card--card,
   .animate--hover-3d-lift .card-wrapper .card--standard .card__inner,
   .animate--hover-3d-lift .button:not(.button--tertiary),
@@ -484,7 +484,7 @@
   animation: dash 1.4s ease-in-out infinite;
 }
 
-@media screen and (forced-colors: active) {
+@include forced-colors {
   .path {
     stroke: CanvasText;
   }

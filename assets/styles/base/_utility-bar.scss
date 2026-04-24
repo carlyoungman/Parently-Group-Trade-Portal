@@ -8,7 +8,7 @@
   border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.08);
 }
 
-@media screen and (min-width: 990px) {
+@include breakpoint-md {
   .utility-bar--bottom-border-social-only {
     border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.08);
   }
@@ -27,17 +27,19 @@
   grid-area: social-icons;
 }
 
-@media screen and (max-width: 989px) {
-  .utility-bar .utility-bar__grid .list-social {
-    display: none;
-  }
+.utility-bar .utility-bar__grid .list-social {
+  display: none;
 }
 
 .utility-bar .list-social__item .icon {
   scale: 0.9;
 }
 
-@media screen and (min-width: 990px) {
+@include breakpoint-md {
+  .utility-bar .utility-bar__grid .list-social {
+    display: flex;
+  }
+
   .utility-bar__grid--3-col {
     grid-template-columns: 3fr 4fr 3fr;
     grid-template-areas: 'social-icons announcements language-currency';
@@ -114,7 +116,7 @@
   font-size: inherit;
 }
 
-@media screen and (min-width: 990px) {
+@include breakpoint-md {
   body:has(.section-header .header:not(.drawer-menu)) .utility-bar .page-width {
     padding-left: 5rem;
     padding-right: 5rem;
@@ -157,8 +159,10 @@
   letter-spacing: 0.1rem;
   min-height: 3.8rem;
   color: #fff;
-  @media screen and (max-width: 749px) {
-    font-size: 1.4rem;
+  font-size: 1.4rem;
+
+  @include breakpoint-sm {
+    font-size: inherit;
   }
 }
 

@@ -12,13 +12,11 @@ slider-component.slider-component-full-width {
   --desktop-margin-left-first-item: 1.5rem;
 }
 
-@media screen and (max-width: 749px) {
-  slider-component.page-width {
-    padding: 0 1.5rem;
-  }
+slider-component.page-width {
+  padding: 0 1.5rem;
 }
 
-@media screen and (min-width: 749px) and (max-width: 990px) {
+@include breakpoint-sm {
   slider-component.page-width {
     padding: 0 5rem;
   }
@@ -31,41 +29,54 @@ slider-component.slider-component-full-width {
   padding-bottom: 0;
 }
 
-@media screen and (max-width: 749px) {
+.slider.slider--mobile {
+  position: relative;
+  flex-wrap: inherit;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scroll-padding-left: 1.5rem;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 1rem;
+}
+
+/* Fix to show some space at the end of our sliders in all browsers */
+.slider--mobile:after {
+  content: '';
+  width: 0;
+  padding-left: 1.5rem;
+}
+
+.slider.slider--mobile .slider__slide {
+  margin-bottom: 0;
+  padding-top: max(var(--focus-outline-padding), var(--shadow-padding-top));
+  padding-bottom: max(var(--focus-outline-padding), var(--shadow-padding-bottom));
+}
+
+.slider.slider--mobile.contains-card--standard .slider__slide:not(.collection-list__item--no-media) {
+  padding-bottom: var(--focus-outline-padding);
+}
+
+.slider.slider--mobile.contains-content-container .slider__slide {
+  --focus-outline-padding: 0rem;
+}
+
+@include breakpoint-sm {
   .slider.slider--mobile {
-    position: relative;
-    flex-wrap: inherit;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-    scroll-padding-left: 1.5rem;
-    -webkit-overflow-scrolling: touch;
-    margin-bottom: 1rem;
-  }
-
-  /* Fix to show some space at the end of our sliders in all browsers */
-  .slider--mobile:after {
-    content: '';
-    width: 0;
-    padding-left: 1.5rem;
-  }
-
-  .slider.slider--mobile .slider__slide {
+    overflow-x: visible;
+    flex-wrap: wrap;
+    scroll-snap-type: none;
+    scroll-behavior: auto;
+    scroll-padding-left: 0;
     margin-bottom: 0;
-    padding-top: max(var(--focus-outline-padding), var(--shadow-padding-top));
-    padding-bottom: max(var(--focus-outline-padding), var(--shadow-padding-bottom));
   }
 
-  .slider.slider--mobile.contains-card--standard .slider__slide:not(.collection-list__item--no-media) {
-    padding-bottom: var(--focus-outline-padding);
-  }
-
-  .slider.slider--mobile.contains-content-container .slider__slide {
-    --focus-outline-padding: 0rem;
+  .slider--mobile:after {
+    content: none;
   }
 }
 
-@media screen and (min-width: 750px) {
+@include breakpoint-sm {
   .slider.slider--tablet-up {
     position: relative;
     flex-wrap: inherit;
@@ -81,38 +92,51 @@ slider-component.slider-component-full-width {
   }
 }
 
-@media screen and (max-width: 989px) {
+.slider.slider--tablet {
+  position: relative;
+  flex-wrap: inherit;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scroll-padding-left: 1.5rem;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 1rem;
+}
+
+/* Fix to show some space at the end of our sliders in all browsers */
+.slider--tablet:after {
+  content: '';
+  width: 0;
+  padding-left: 1.5rem;
+  margin-left: calc(-1 * var(--grid-desktop-horizontal-spacing));
+}
+
+.slider.slider--tablet .slider__slide {
+  margin-bottom: 0;
+  padding-top: max(var(--focus-outline-padding), var(--shadow-padding-top));
+  padding-bottom: max(var(--focus-outline-padding), var(--shadow-padding-bottom));
+}
+
+.slider.slider--tablet.contains-card--standard .slider__slide:not(.collection-list__item--no-media) {
+  padding-bottom: var(--focus-outline-padding);
+}
+
+.slider.slider--tablet.contains-content-container .slider__slide {
+  --focus-outline-padding: 0rem;
+}
+
+@include breakpoint-md {
   .slider.slider--tablet {
-    position: relative;
-    flex-wrap: inherit;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-    scroll-padding-left: 1.5rem;
-    -webkit-overflow-scrolling: touch;
-    margin-bottom: 1rem;
-  }
-
-  /* Fix to show some space at the end of our sliders in all browsers */
-  .slider--tablet:after {
-    content: '';
-    width: 0;
-    padding-left: 1.5rem;
-    margin-left: calc(-1 * var(--grid-desktop-horizontal-spacing));
-  }
-
-  .slider.slider--tablet .slider__slide {
+    overflow-x: visible;
+    flex-wrap: wrap;
+    scroll-snap-type: none;
+    scroll-behavior: auto;
+    scroll-padding-left: 0;
     margin-bottom: 0;
-    padding-top: max(var(--focus-outline-padding), var(--shadow-padding-top));
-    padding-bottom: max(var(--focus-outline-padding), var(--shadow-padding-bottom));
   }
 
-  .slider.slider--tablet.contains-card--standard .slider__slide:not(.collection-list__item--no-media) {
-    padding-bottom: var(--focus-outline-padding);
-  }
-
-  .slider.slider--tablet.contains-content-container .slider__slide {
-    --focus-outline-padding: 0rem;
+  .slider--tablet:after {
+    content: none;
   }
 }
 
@@ -131,7 +155,7 @@ slider-component.slider-component-full-width {
   scroll-snap-align: center;
 }
 
-@media screen and (min-width: 990px) {
+@include breakpoint-md {
   .slider-component-desktop.page-width {
     max-width: none;
   }
@@ -209,7 +233,7 @@ slider-component.slider-component-full-width {
   }
 }
 
-@media (prefers-reduced-motion) {
+@include reduced-motion {
   .slider {
     scroll-behavior: auto;
   }
@@ -246,19 +270,19 @@ slider-component.slider-component-full-width {
   min-width: 4.4rem;
 }
 
-@media screen and (min-width: 750px) {
+@include breakpoint-sm {
   .slider-counter--dots {
     margin: 0 1.2rem;
   }
 }
 
 .slider-counter__link {
-  padding: 1rem;
+  padding: 0.7rem;
 }
 
-@media screen and (max-width: 749px) {
+@include breakpoint-sm {
   .slider-counter__link {
-    padding: 0.7rem;
+    padding: 1rem;
   }
 }
 
@@ -275,7 +299,7 @@ slider-component.slider-component-full-width {
   background-color: rgb(var(--color-foreground));
 }
 
-@media screen and (forced-colors: active) {
+@include forced-colors {
   .slider-counter__link--active.slider-counter__link--dots .dot {
     background-color: CanvasText;
   }
@@ -316,19 +340,23 @@ slider-component.slider-component-full-width {
   justify-content: center;
 }
 
-@media screen and (min-width: 990px) {
+@include breakpoint-md {
   .slider:not(.slider--everywhere):not(.slider--desktop) + .slider-buttons {
     display: none;
   }
 }
 
-@media screen and (max-width: 989px) {
+.slider--desktop:not(.slider--tablet) + .slider-buttons {
+  display: none;
+}
+
+@include breakpoint-md {
   .slider--desktop:not(.slider--tablet) + .slider-buttons {
-    display: none;
+    display: flex;
   }
 }
 
-@media screen and (min-width: 750px) {
+@include breakpoint-sm {
   .slider--mobile + .slider-buttons {
     display: none;
   }

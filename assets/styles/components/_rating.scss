@@ -54,7 +54,7 @@
   margin: 0;
 }
 
-@media (forced-colors: active) {
+@include forced-colors {
   .rating {
     display: none;
   }

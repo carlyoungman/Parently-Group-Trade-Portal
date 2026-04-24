@@ -43,7 +43,7 @@ body {
 
 }
 
-@media only screen and (min-width: 750px) {
+@include breakpoint-sm {
   body {
     line-height: var(--font-body-line-height);
   }
@@ -85,7 +85,7 @@ h2,
   padding: 3rem;
 }
 
-@media only screen and (min-width: 750px) {
+@include breakpoint-sm {
   .gift-card {
     padding: 5rem 5rem 3rem;
   }
@@ -107,7 +107,7 @@ h2,
   max-height: 26rem;
 }
 
-@media only screen and (min-width: 750px) {
+@include breakpoint-sm {
   .gift-card__image {
     padding: 0;
   }
@@ -257,7 +257,7 @@ h2,
   width: 1.3rem;
 }
 
-@media print {
+@include print-only {
   .no-print {
     display: none;
   }

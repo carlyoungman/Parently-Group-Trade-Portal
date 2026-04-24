@@ -59,7 +59,7 @@ details[open].menu-opening > .menu-drawer__submenu {
   visibility: hidden; /* hide menus from screen readers when hidden by submenu */
 }
 
-@media screen and (min-width: 750px) {
+@include breakpoint-sm {
   .menu-drawer {
     width: 40rem;
     border-width: 0 var(--drawer-border-width) 0 0;
@@ -176,15 +176,23 @@ details[open].menu-opening > .menu-drawer__submenu {
   padding: 2rem 3rem;
 }
 
-@media screen and (max-width: 749px) {
+.header--has-account:where(:not(.header--has-social):not(.header--has-localizations)) .menu-drawer__utility-links {
+  padding: 2rem 3rem;
+}
+
+.header--has-localizations:where(:not(.header--has-social)) .menu-drawer__utility-links {
+  padding: 2rem 3rem;
+}
+
+@include breakpoint-sm {
   .header--has-account:where(:not(.header--has-social):not(.header--has-localizations)) .menu-drawer__utility-links {
-    padding: 2rem 3rem;
+    padding: revert;
   }
 }
 
-@media screen and (max-width: 989px) {
+@include breakpoint-md {
   .header--has-localizations:where(:not(.header--has-social)) .menu-drawer__utility-links {
-    padding: 2rem 3rem;
+    padding: revert;
   }
 }
 
@@ -231,10 +239,16 @@ details[open].menu-opening > .menu-drawer__submenu {
   padding: 1.1rem 1.1rem;
 }
 
-@media screen and (max-width: 749px) {
+.menu-drawer.country-selector-open {
+  transform: none !important;
+  filter: none !important;
+  transition: none !important;
+}
+
+@include breakpoint-sm {
   .menu-drawer.country-selector-open {
-    transform: none !important;
-    filter: none !important;
-    transition: none !important;
+    transform: revert !important;
+    filter: revert !important;
+    transition: revert !important;
   }
 }

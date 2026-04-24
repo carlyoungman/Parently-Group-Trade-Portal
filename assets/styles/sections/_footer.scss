@@ -20,7 +20,7 @@
     gap: 4rem;
     padding-bottom: 5rem;
 
-    @media screen and (min-width: 750px) {
+    @include breakpoint-sm {
       flex-direction: row;
       gap: 6rem;
       align-items: flex-start;
@@ -32,7 +32,7 @@
     flex: 0 0 auto;
     width: 100%;
 
-    @media screen and (min-width: 750px) {
+    @include breakpoint-sm {
       width: 28em;
     }
   }
@@ -63,7 +63,7 @@
     gap: 3.2rem 2.4rem;
     flex: 1 1 auto;
 
-    @media screen and (min-width: 990px) {
+    @include breakpoint-md {
       grid-template-columns: repeat(3, 1fr);
       gap: 2rem 3.2rem;
     }
@@ -80,17 +80,29 @@
       border-top: 0;
     }
 
-    @media screen and (max-width: 749px) {
-      flex-wrap: wrap;
-      padding-top: 0;
-      padding-left: 0;
-      padding-right: 0;
-      row-gap: 1.5rem;
+    flex-wrap: wrap;
+    padding-top: 0;
+    padding-left: 0;
+    padding-right: 0;
+    row-gap: 1.5rem;
+
+    &.scroll-trigger.animate--slide-in {
+      animation: none;
+      opacity: 1;
+      transform: inherit;
+    }
+
+    @include breakpoint-sm {
+      flex-wrap: revert;
+      padding-top: 3rem;
+      padding-left: revert;
+      padding-right: revert;
+      row-gap: revert;
 
       &.scroll-trigger.animate--slide-in {
-        animation: none;
-        opacity: 1;
-        transform: inherit;
+        animation: revert;
+        opacity: revert;
+        transform: revert;
       }
     }
   }
@@ -99,10 +111,14 @@
     display: flex;
     width: 100%;
 
-    @media screen and (max-width: 749px) {
-      flex-wrap: wrap;
-      row-gap: 1.5rem;
-      justify-content: center;
+    flex-wrap: wrap;
+    row-gap: 1.5rem;
+    justify-content: center;
+
+    @include breakpoint-sm {
+      flex-wrap: revert;
+      row-gap: revert;
+      justify-content: revert;
     }
 
     &--center {
@@ -110,7 +126,7 @@
     }
 
     &:not(.footer__content-bottom-wrapper--center) {
-      @media screen and (min-width: 750px) {
+      @include breakpoint-sm {
         .footer__copyright {
           text-align: right;
         }
@@ -130,7 +146,7 @@
       padding-left: 2rem;
       padding-right: 2rem;
 
-      @media screen and (min-width: 750px) {
+      @include breakpoint-sm {
         padding-left: 0;
         padding-right: 0;
         align-items: flex-end;
@@ -152,7 +168,7 @@
       margin: 1rem 1rem 0.5rem;
     }
 
-    @media screen and (min-width: 750px) {
+    @include breakpoint-sm {
       padding: 0.4rem 0;
       justify-content: flex-start;
 
@@ -167,13 +183,15 @@
   }
 
   &__localization:empty + &__column {
-    @media screen and (max-width: 749px) {
-      padding-top: 1.5rem;
+    padding-top: 1.5rem;
+
+    @include breakpoint-sm {
+      padding-top: revert;
     }
   }
 
   &__payment {
-    @media screen and (min-width: 750px) {
+    @include breakpoint-sm {
       margin-top: 1.5rem;
     }
   }
@@ -211,7 +229,7 @@
       padding: 0.5rem 0;
       transition: color var(--duration-short) ease;
 
-      @media screen and (min-width: 750px) {
+      @include breakpoint-sm {
         padding: 0.4rem 0;
 
         &:hover {
@@ -245,7 +263,7 @@
 
       text-decoration: none;
 
-      @media screen and (min-width: 750px) {
+      @include breakpoint-sm {
         &:hover {
           text-decoration: underline;
           text-underline-offset: 0.3rem;
@@ -294,7 +312,7 @@
 // ── Fallback: flexbox gap for older Safari ───────────────────
 
 @supports not (inset: 10px) {
-  @media screen and (min-width: 750px) {
+  @include breakpoint-sm {
     .footer {
       &__main {
         margin-left: -3rem;

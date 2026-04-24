@@ -36,7 +36,7 @@ menu-drawer + .header__search {
   display: inline-flex;
 }
 
-@media screen and (min-width: 990px) {
+@include breakpoint-md {
   .header:not(.header--top-center) * > .header__search,
   .header--top-center > .header__search {
     display: inline-flex;
@@ -102,7 +102,7 @@ details[open] .modal-overlay::after {
   right: 0.3rem;
 }
 
-@media screen and (min-width: 750px) {
+@include breakpoint-sm {
   .search-modal__close-button {
     right: 1rem;
   }
@@ -112,7 +112,7 @@ details[open] .modal-overlay::after {
   }
 }
 
-@media screen and (min-width: 990px) {
+@include breakpoint-md {
   .search-modal__form {
     max-width: 74.2rem;
   }

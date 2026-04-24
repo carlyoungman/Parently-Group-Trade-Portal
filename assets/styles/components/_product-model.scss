@@ -19,17 +19,25 @@
   display: none;
 }
 
-@media screen and (max-width: 749px) {
+slider-component .product__xr-button {
+  display: none;
+}
+
+.active .product__xr-button:not([data-shopify-xr-hidden]) {
+  display: block;
+}
+
+@include breakpoint-sm {
   slider-component .product__xr-button {
-    display: none;
+    display: revert;
   }
 
   .active .product__xr-button:not([data-shopify-xr-hidden]) {
-    display: block;
+    display: revert;
   }
 }
 
-@media screen and (min-width: 750px) {
+@include breakpoint-sm {
   slider-component + .button.product__xr-button {
     display: none;
   }

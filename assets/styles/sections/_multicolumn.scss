@@ -11,23 +11,35 @@
   margin-top: 0;
 }
 
-@media screen and (max-width: 749px) {
+.multicolumn .title-wrapper-with-link {
+  margin-bottom: 3rem;
+}
+
+.multicolumn__title {
+  padding-left: 5rem;
+  padding-right: 5rem;
+}
+
+.multicolumn .page-width {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+@include breakpoint-sm {
   .multicolumn .title-wrapper-with-link {
-    margin-bottom: 3rem;
+    margin-bottom: revert;
   }
 }
 
-@media screen and (min-width: 750px) and (max-width: 989px) {
+@include breakpoint-md {
   .multicolumn__title {
-    padding-left: 5rem;
-    padding-right: 5rem;
+    padding-left: revert;
+    padding-right: revert;
   }
-}
 
-@media screen and (max-width: 989px) {
   .multicolumn .page-width {
-    padding-left: 0;
-    padding-right: 0;
+    padding-left: revert;
+    padding-right: revert;
   }
 }
 
@@ -49,7 +61,7 @@
   margin-top: 1.5rem;
 }
 
-@media screen and (min-width: 750px) {
+@include breakpoint-sm {
   .multicolumn .button {
     margin-top: 4rem;
   }
@@ -108,26 +120,36 @@
   transform: translateX(-50%);
 }
 
-@media screen and (max-width: 749px) {
-  .multicolumn-list {
-    margin: 0;
-    width: 100%;
-  }
-
-  .multicolumn-list:not(.slider) {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-  }
+.multicolumn-list {
+  margin: 0;
+  width: 100%;
 }
 
-@media screen and (min-width: 750px) and (max-width: 989px) {
+.multicolumn-list:not(.slider) {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+@include breakpoint-sm {
+  .multicolumn-list {
+    margin: revert;
+    width: revert;
+  }
+
   .multicolumn-list:not(.slider) {
     padding-left: 5rem;
     padding-right: 5rem;
   }
 }
 
-@media screen and (min-width: 750px) {
+@include breakpoint-md {
+  .multicolumn-list:not(.slider) {
+    padding-left: revert;
+    padding-right: revert;
+  }
+}
+
+@include breakpoint-sm {
   .multicolumn-list.slider {
     padding: 0;
   }
@@ -178,17 +200,25 @@
   padding-right: 2.5rem;
 }
 
-@media screen and (max-width: 749px) {
+.background-none .slider .multicolumn-card__info {
+  padding-bottom: 1rem;
+}
+
+.multicolumn.background-none .slider.slider--mobile {
+  margin-bottom: 0rem;
+}
+
+@include breakpoint-sm {
   .background-none .slider .multicolumn-card__info {
-    padding-bottom: 1rem;
+    padding-bottom: revert;
   }
 
   .multicolumn.background-none .slider.slider--mobile {
-    margin-bottom: 0rem;
+    margin-bottom: revert;
   }
 }
 
-@media screen and (min-width: 750px) {
+@include breakpoint-sm {
   .background-none .multicolumn-card__image-wrapper {
     margin-left: 1.5rem;
     margin-right: 1.5rem;
@@ -227,7 +257,7 @@
   white-space: nowrap;
 }
 
-@media screen and (min-width: 990px) {
+@include breakpoint-md {
   .multicolumn-list__item--empty {
     display: list-item;
   }

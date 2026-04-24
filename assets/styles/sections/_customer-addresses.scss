@@ -12,7 +12,7 @@
   margin-top: 0rem;
 }
 
-@media screen and (min-width: 750px) {
+@include breakpoint-sm {
   .addresses li > button:first-of-type {
     margin-top: 3rem;
   }
@@ -67,7 +67,7 @@ li[data-address] > h2 {
   margin-bottom: 0;
 }
 
-@media only screen and (min-width: 750px) {
+@include breakpoint-sm {
   li[data-address] > h2 {
     font-size: var(--font-h2);
   }
@@ -82,7 +82,7 @@ li[data-address] > h2 {
   margin-left: 0;
 }
 
-@media only screen and (min-width: 750px) {
+@include breakpoint-sm {
   .addresses form > div:nth-of-type(1) {
     margin-right: 2rem;
   }

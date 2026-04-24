@@ -21,8 +21,10 @@
   line-height: var(--font-body-line-height);
   position: relative;
 
-  @media screen and (max-width: 569px) {
-    width: 100%;
+  width: 100%;
+
+  @include breakpoint-sm {
+    width: auto;
   }
 
   /* shared vars */
@@ -160,7 +162,7 @@
 }
 
 /* forced colors */
-@media (forced-colors: active) {
+@include forced-colors {
   .button {
     border: transparent solid 1px;
 

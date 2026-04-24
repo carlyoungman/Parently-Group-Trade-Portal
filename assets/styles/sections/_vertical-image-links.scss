@@ -37,7 +37,7 @@ vertical-image-links-component {
       margin-top: 0;
     }
 
-    @media screen and (min-width: 990px) {
+    @include breakpoint-md {
       padding: 6rem 7rem;
     }
   }
@@ -149,34 +149,61 @@ vertical-image-links-component {
 }
 
 /* -----------------------------------------------------------------------
-   Mobile: stack layout, no sticky scroll effect
+   Mobile: stack layout, no sticky scroll effect (mobile-first defaults)
    ----------------------------------------------------------------------- */
-@media screen and (max-width: 749px) {
+.vertical-image-links {
+  &__inner {
+    position: static;
+    height: auto;
+    overflow: visible;
+    grid-template-columns: 1fr;
+  }
+
+  &__content {
+    padding: 3rem 0;
+  }
+
+  &__carousel-outer {
+    height: auto;
+    overflow: visible;
+  }
+
+  &__carousel-track {
+    transform: none !important;
+    padding: 0;
+  }
+
+  &__card {
+    aspect-ratio: 16 / 9;
+    max-width: 100%;
+  }
+}
+
+@include breakpoint-sm {
   .vertical-image-links {
     &__inner {
-      position: static;
-      height: auto;
-      overflow: visible;
-      grid-template-columns: 1fr;
+      position: sticky;
+      height: 100vh;
+      overflow: hidden;
+      grid-template-columns: 1fr 1fr;
     }
 
     &__content {
-      padding: 3rem 0;
+      padding: 4rem;
     }
 
     &__carousel-outer {
-      height: auto;
-      overflow: visible;
+      height: 100vh;
+      overflow: hidden;
     }
 
     &__carousel-track {
-      transform: none !important;
-      padding: 0;
+      transform: revert !important;
+      padding: 1.6rem;
     }
 
     &__card {
-      aspect-ratio: 16 / 9;
-      max-width: 100%;
+      max-width: revert;
     }
   }
 }

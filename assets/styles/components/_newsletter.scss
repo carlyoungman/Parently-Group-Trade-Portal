@@ -8,7 +8,7 @@
   position: relative;
 }
 
-@media screen and (min-width: 750px) {
+@include breakpoint-sm {
   .newsletter-form {
     align-items: flex-start;
     margin: 0 auto;
@@ -37,7 +37,7 @@
   margin-top: 2rem;
 }
 
-@media screen and (min-width: 750px) {
+@include breakpoint-sm {
   .newsletter-form__message {
     justify-content: flex-start;
   }

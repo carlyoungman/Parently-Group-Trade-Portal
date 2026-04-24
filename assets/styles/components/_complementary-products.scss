@@ -31,7 +31,7 @@ product-recommendations:not(.is-accordion) .complementary-products__container {
   gap: calc(var(--grid-mobile-vertical-spacing) + 8px);
 }
 
-@media screen and (min-width: 750px) {
+@include breakpoint-sm {
   .complementary-slide > ul {
     gap: var(--grid-desktop-vertical-spacing);
   }
@@ -81,7 +81,7 @@ product-recommendations.is-accordion + .accordion {
   max-width: 20%;
 }
 
-@media screen and (min-width: 750px) and (max-width: 1200px) {
+@include tablet-to-lg {
   .complementary-products__container .card--horizontal .card__inner {
     max-width: 25%;
   }
@@ -151,7 +151,7 @@ product-recommendations.is-accordion + .accordion {
   text-align: var(--text-alignment);
 }
 
-@media screen and (min-width: 750px) {
+@include breakpoint-sm {
   .complementary-products__container .price--on-sale .price-item--regular {
     font-size: var(--font-small);
   }
