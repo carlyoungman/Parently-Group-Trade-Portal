@@ -70,14 +70,23 @@ quantity-popover .quick-order-list-remove-button .button {
   height: 14px;
 }
 
-@include tablet-down {
+.quantity-popover__info.global-settings-popup {
+  left: 0;
+  top: 100%;
+}
+
+.quantity-popover__info-button {
+  padding-left: 0;
+}
+
+@include breakpoint-md {
   .quantity-popover__info.global-settings-popup {
-    left: 0;
-    top: 100%;
+    left: revert;
+    top: 0.5rem;
   }
 
   .quantity-popover__info-button {
-    padding-left: 0;
+    padding-left: revert;
   }
 }
 

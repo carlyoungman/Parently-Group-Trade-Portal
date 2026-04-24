@@ -56,25 +56,45 @@ span.active-facets__button-inner:after {
   }
 }
 
-@include tablet-down {
+.active-facets {
+  margin: 0 -1.2rem -1.2rem;
+}
+
+.active-facets__button,
+.active-facets__button-remove {
+  margin: 0;
+  padding: 1.2rem;
+}
+
+span.active-facets__button-inner {
+  padding-bottom: 0.1rem;
+  padding-top: 0.1rem;
+}
+
+.active-facets__button-wrapper {
+  padding-top: 0;
+  margin-left: 1.2rem;
+}
+
+@include breakpoint-md {
   .active-facets {
-    margin: 0 -1.2rem -1.2rem;
+    margin: revert;
   }
 
   .active-facets__button,
   .active-facets__button-remove {
-    margin: 0;
-    padding: 1.2rem;
+    margin: revert;
+    padding: revert;
   }
 
   span.active-facets__button-inner {
-    padding-bottom: 0.1rem;
-    padding-top: 0.1rem;
+    padding-bottom: revert;
+    padding-top: revert;
   }
 
   .active-facets__button-wrapper {
-    padding-top: 0;
-    margin-left: 1.2rem;
+    padding-top: 1.5rem;
+    margin-left: 0;
   }
 }
 

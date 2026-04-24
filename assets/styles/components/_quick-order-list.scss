@@ -70,7 +70,7 @@ quick-order-list .pagination-wrapper {
   letter-spacing: 0.06rem;
 }
 
-@include tablet-only {
+@include breakpoint-sm {
   .quick-order-list-remove-button {
     width: 1.5rem;
     height: 1.5rem;
@@ -92,6 +92,31 @@ quick-order-list .pagination-wrapper {
   .quick-order-list__message,
   .quick-order-list-error {
     padding-bottom: 1rem;
+  }
+}
+
+@include breakpoint-md {
+  .quick-order-list-remove-button {
+    width: revert;
+    height: revert;
+  }
+
+  .quick-order-list-total__column.large-up-hide .loading__spinner {
+    margin-top: revert;
+  }
+
+  quick-order-list-remove-all-button {
+    margin-left: 0.9rem;
+    margin-top: revert;
+  }
+
+  .quick-order-list-total__column {
+    flex-wrap: revert;
+  }
+
+  .quick-order-list__message,
+  .quick-order-list-error {
+    padding-bottom: revert;
   }
 }
 
@@ -161,41 +186,39 @@ quick-order-list .pagination-wrapper {
   margin-top: -2rem;
 }
 
-@include tablet-down {
-  .quick-order-list-total__info {
-    flex-direction: column;
-    align-items: center;
-  }
+.quick-order-list-total__info {
+  flex-direction: column;
+  align-items: center;
+}
 
-  .quick-order-list__table,
-  .quick-order-list__table thead,
-  .quick-order-list__table tbody {
-    display: block;
-    width: 100%;
-  }
+.quick-order-list__table,
+.quick-order-list__table thead,
+.quick-order-list__table tbody {
+  display: block;
+  width: 100%;
+}
 
-  .quick-order-list__table thead tr {
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.08);
-    margin-bottom: 4rem;
-  }
+.quick-order-list__table thead tr {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.08);
+  margin-bottom: 4rem;
+}
 
-  .quick-order-list__message {
-    text-align: center;
-  }
+.quick-order-list__message {
+  text-align: center;
+}
 
-  .quick-order-list-total__column,
-  .quick-order-list-buttons {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-  }
+.quick-order-list-total__column,
+.quick-order-list-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
 
-  .quick-order-list__button {
-    max-width: 36rem;
-  }
+.quick-order-list__button {
+  max-width: 36rem;
 }
 
 @include breakpoint-md {
@@ -313,51 +336,93 @@ quick-order-list .pagination-wrapper {
   margin-right: 2rem;
 }
 
-@include tablet-down {
+.quick-order-list-total__price {
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+}
+
+.totals__product-total {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  align-items: center;
+  padding-bottom: 2rem;
+}
+
+.totals__subtotal-value,
+.quick-order-list__total-items span {
+  margin-right: 1.2rem;
+}
+
+.quick-order-list__total-items {
+  margin-top: 1rem;
+  margin-bottom: 1.3rem;
+}
+
+.quick-order-list-total__price .button {
+  margin-bottom: 2rem;
+}
+
+.quick-order-list-total__confirmation quick-order-list-remove-all-button button {
+  margin-top: 1rem;
+}
+
+.quick-order-list-total__confirmation {
+  flex-direction: column;
+  margin-top: 2rem;
+}
+
+.quick-order-list__button-confirm {
+  width: 100%;
+  max-width: 36rem;
+}
+
+quick-order-list .tax-note {
+  text-align: center;
+}
+
+@include breakpoint-md {
   .quick-order-list-total__price {
-    justify-content: center;
-    text-align: center;
-    width: 100%;
+    justify-content: flex-end;
+    text-align: right;
+    width: min-content;
   }
 
   .totals__product-total {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    align-items: center;
-    padding-bottom: 2rem;
+    padding-bottom: revert;
   }
 
   .totals__subtotal-value,
   .quick-order-list__total-items span {
-    margin-right: 1.2rem;
+    margin-right: revert;
   }
 
   .quick-order-list__total-items {
-    margin-top: 1rem;
-    margin-bottom: 1.3rem;
+    margin-top: revert;
+    margin-bottom: revert;
   }
 
   .quick-order-list-total__price .button {
-    margin-bottom: 2rem;
+    margin-bottom: revert;
   }
 
   .quick-order-list-total__confirmation quick-order-list-remove-all-button button {
-    margin-top: 1rem;
+    margin-top: revert;
   }
 
   .quick-order-list-total__confirmation {
-    flex-direction: column;
-    margin-top: 2rem;
+    flex-direction: row;
+    margin-top: -2rem;
   }
 
   .quick-order-list__button-confirm {
-    width: 100%;
-    max-width: 36rem;
+    width: revert;
+    max-width: revert;
   }
 
   quick-order-list .tax-note {
-    text-align: center;
+    text-align: revert;
   }
 }
 

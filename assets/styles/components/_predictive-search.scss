@@ -28,22 +28,36 @@
   padding-bottom: 1rem;
 }
 
-@include mobile-only {
+.predictive-search--header {
+  right: 0;
+  left: 0;
+  top: 100%;
+}
+
+.predictive-search__results-groups-wrapper {
+  flex-direction: column;
+}
+
+.predictive-search__results-groups-wrapper:not(.predictive-search__results-groups-wrapper--no-suggestions) {
+  /* On mobile, when there are no suggestions the first .predictive-search__results-groups-wrapper
+   * is virtually empty due to a display: hidden on the predictive-search__pages-wrapper child.
+   * This causes the gap to render and look like a big top margin */
+  gap: 2rem;
+}
+
+@include breakpoint-sm {
   .predictive-search--header {
-    right: 0;
-    left: 0;
-    top: 100%;
+    right: revert;
+    left: revert;
+    top: revert;
   }
 
   .predictive-search__results-groups-wrapper {
-    flex-direction: column;
+    flex-direction: row;
   }
 
   .predictive-search__results-groups-wrapper:not(.predictive-search__results-groups-wrapper--no-suggestions) {
-    /* On mobile, when there are no suggestions the first .predictive-search__results-groups-wrapper
-     * is virtually empty due to a display: hidden on the predictive-search__pages-wrapper child.
-     * This causes the gap to render and look like a big top margin */
-    gap: 2rem;
+    gap: revert;
   }
 }
 

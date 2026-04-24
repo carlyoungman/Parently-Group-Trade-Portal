@@ -138,23 +138,41 @@
   box-shadow: none;
 }
 
-@include mobile-only {
+.image-with-text.collapse-corners:not(.image-with-text--overlap) .image-with-text__media-item:after,
+.image-with-text.collapse-corners:not(.image-with-text--overlap) .grid__item .image-with-text__media,
+.image-with-text.collapse-corners:not(.image-with-text--overlap) .image-with-text__media img,
+.image-with-text.collapse-corners:not(.image-with-text--overlap) .image-with-text__media .placeholder-svg {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.image-with-text.collapse-corners:not(.image-with-text--overlap) .image-with-text__text-item:after,
+.image-with-text.collapse-corners:not(.image-with-text--overlap) .grid__item .image-with-text__content {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.image-with-text.collapse-borders:not(.image-with-text--overlap) .image-with-text__content {
+  border-top: 0;
+}
+
+@include breakpoint-sm {
   .image-with-text.collapse-corners:not(.image-with-text--overlap) .image-with-text__media-item:after,
   .image-with-text.collapse-corners:not(.image-with-text--overlap) .grid__item .image-with-text__media,
   .image-with-text.collapse-corners:not(.image-with-text--overlap) .image-with-text__media img,
   .image-with-text.collapse-corners:not(.image-with-text--overlap) .image-with-text__media .placeholder-svg {
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
+    border-bottom-right-radius: revert;
+    border-bottom-left-radius: revert;
   }
 
   .image-with-text.collapse-corners:not(.image-with-text--overlap) .image-with-text__text-item:after,
   .image-with-text.collapse-corners:not(.image-with-text--overlap) .grid__item .image-with-text__content {
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
+    border-top-left-radius: revert;
+    border-top-right-radius: revert;
   }
 
   .image-with-text.collapse-borders:not(.image-with-text--overlap) .image-with-text__content {
-    border-top: 0;
+    border-top: revert;
   }
 }
 
@@ -369,10 +387,15 @@
   margin-bottom: 1rem;
 }
 
-@include mobile-only {
+.collapse-padding .image-with-text__grid .image-with-text__content {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+@include breakpoint-sm {
   .collapse-padding .image-with-text__grid .image-with-text__content {
-    padding-left: 0;
-    padding-right: 0;
+    padding-left: revert;
+    padding-right: revert;
   }
 }
 

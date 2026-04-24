@@ -27,9 +27,13 @@
   scroll-snap-align: start;
 }
 
-@include mobile-only {
+.blog__post.article {
+  width: calc(100% - 3rem - var(--grid-mobile-horizontal-spacing));
+}
+
+@include breakpoint-sm {
   .blog__post.article {
-    width: calc(100% - 3rem - var(--grid-mobile-horizontal-spacing));
+    width: auto;
   }
 }
 

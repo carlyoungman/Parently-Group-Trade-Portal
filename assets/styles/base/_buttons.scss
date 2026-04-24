@@ -21,8 +21,10 @@
   line-height: var(--font-body-line-height);
   position: relative;
 
-  @include xs-sm-only {
-    width: 100%;
+  width: 100%;
+
+  @include breakpoint-sm {
+    width: auto;
   }
 
   /* shared vars */

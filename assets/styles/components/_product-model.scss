@@ -19,13 +19,21 @@
   display: none;
 }
 
-@include mobile-only {
+slider-component .product__xr-button {
+  display: none;
+}
+
+.active .product__xr-button:not([data-shopify-xr-hidden]) {
+  display: block;
+}
+
+@include breakpoint-sm {
   slider-component .product__xr-button {
-    display: none;
+    display: revert;
   }
 
   .active .product__xr-button:not([data-shopify-xr-hidden]) {
-    display: block;
+    display: revert;
   }
 }
 

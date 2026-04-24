@@ -176,15 +176,23 @@ details[open].menu-opening > .menu-drawer__submenu {
   padding: 2rem 3rem;
 }
 
-@include mobile-only {
+.header--has-account:where(:not(.header--has-social):not(.header--has-localizations)) .menu-drawer__utility-links {
+  padding: 2rem 3rem;
+}
+
+.header--has-localizations:where(:not(.header--has-social)) .menu-drawer__utility-links {
+  padding: 2rem 3rem;
+}
+
+@include breakpoint-sm {
   .header--has-account:where(:not(.header--has-social):not(.header--has-localizations)) .menu-drawer__utility-links {
-    padding: 2rem 3rem;
+    padding: revert;
   }
 }
 
-@include tablet-down {
+@include breakpoint-md {
   .header--has-localizations:where(:not(.header--has-social)) .menu-drawer__utility-links {
-    padding: 2rem 3rem;
+    padding: revert;
   }
 }
 
@@ -231,10 +239,16 @@ details[open].menu-opening > .menu-drawer__submenu {
   padding: 1.1rem 1.1rem;
 }
 
-@include mobile-only {
+.menu-drawer.country-selector-open {
+  transform: none !important;
+  filter: none !important;
+  transition: none !important;
+}
+
+@include breakpoint-sm {
   .menu-drawer.country-selector-open {
-    transform: none !important;
-    filter: none !important;
-    transition: none !important;
+    transform: revert !important;
+    filter: revert !important;
+    transition: revert !important;
   }
 }

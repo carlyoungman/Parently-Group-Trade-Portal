@@ -231,23 +231,48 @@
 /* -----------------------------------------------------------------------
    Mobile — single column, stacked layout
    ----------------------------------------------------------------------- */
-@include mobile-only {
+.image-text-links {
+  &--small,
+  &--medium,
+  &--large {
+    min-height: 0;
+  }
+
+  &__inner {
+    grid-template-columns: 1fr;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+    gap: 3rem;
+  }
+
+  &__link-label {
+    font-size: inherit;
+  }
+}
+
+@include breakpoint-sm {
   .image-text-links {
-    &--small,
-    &--medium,
+    &--small {
+      min-height: 42rem;
+    }
+
+    &--medium {
+      min-height: 56rem;
+    }
+
     &--large {
-      min-height: 0;
+      min-height: 78rem;
     }
 
     &__inner {
-      grid-template-columns: 1fr;
-      padding-top: 4rem;
-      padding-bottom: 4rem;
-      gap: 3rem;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 6rem;
+      padding-bottom: 6rem;
+      gap: 4rem 8rem;
     }
 
     &__link-label {
-      font-size: inherit;
+      font-size: var(--font-h4);
     }
   }
 }

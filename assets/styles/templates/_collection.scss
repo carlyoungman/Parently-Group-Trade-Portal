@@ -1,14 +1,23 @@
 // Converted from template-collection.css
-@include mobile-only {
+.collection .grid__item:only-child {
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+
+.collection .slider.slider--tablet {
+  margin-bottom: 1.5rem;
+}
+
+@include breakpoint-sm {
   .collection .grid__item:only-child {
-    flex: 0 0 100%;
-    max-width: 100%;
+    flex: revert;
+    max-width: revert;
   }
 }
 
-@include tablet-down {
+@include breakpoint-md {
   .collection .slider.slider--tablet {
-    margin-bottom: 1.5rem;
+    margin-bottom: revert;
   }
 }
 
@@ -16,19 +25,6 @@
   position: absolute;
   z-index: 1;
   width: 1.8rem;
-}
-
-@include mobile-only {
-  .collection .loading-overlay {
-    top: 0;
-    right: 0;
-  }
-}
-
-@include breakpoint-sm {
-  .collection .loading-overlay {
-    left: 0;
-  }
 }
 
 .collection .loading-overlay {
@@ -44,6 +40,7 @@
 
 @include breakpoint-sm {
   .collection .loading-overlay {
+    left: 0;
     padding-left: 5rem;
     padding-right: 5rem;
   }
@@ -58,9 +55,13 @@
   margin-bottom: 15rem;
 }
 
-@include tablet-down {
+.collection .slider--tablet.product-grid {
+  scroll-padding-left: 1.5rem;
+}
+
+@include breakpoint-md {
   .collection .slider--tablet.product-grid {
-    scroll-padding-left: 1.5rem;
+    scroll-padding-left: revert;
   }
 }
 

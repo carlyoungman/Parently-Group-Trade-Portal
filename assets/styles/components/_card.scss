@@ -523,14 +523,18 @@
     }
 
     .quantity__rules ~ volume-pricing {
-      @include tablet-down {
-        margin-top: 0;
+      margin-top: 0;
+
+      @include breakpoint-md {
+        margin-top: revert;
       }
     }
 
     volume-pricing {
-      @include tablet-down {
-        margin-top: 4.2rem;
+      margin-top: 4.2rem;
+
+      @include breakpoint-md {
+        margin-top: 1.2rem;
       }
     }
   }
@@ -574,14 +578,52 @@
   }
 
   &--2-col-tablet-down {
-    @include mobile-only {
+    .card__content {
+      quick-add-bulk {
+        .quantity {
+          width: auto;
+
+          &__button {
+            width: 3.5rem;
+          }
+        }
+      }
+    }
+
+    .card--card,
+    .card--standard {
+      .card__information-volume-pricing-note--button {
+        + .global-settings-popup.quantity-popover__info {
+          left: 50%;
+          transform: translate(-50%);
+        }
+      }
+    }
+
+    .card--standard {
+      .card__information-volume-pricing-note--button {
+        + .global-settings-popup.quantity-popover__info {
+          width: 100%;
+        }
+      }
+    }
+
+    .card--card {
+      .card__information-volume-pricing-note--button {
+        + .global-settings-popup.quantity-popover__info {
+          width: calc(100% + var(--border-width) + 4rem);
+        }
+      }
+    }
+
+    @include breakpoint-sm {
       .card__content {
         quick-add-bulk {
           .quantity {
-            width: auto;
+            width: revert;
 
             &__button {
-              width: 3.5rem;
+              width: revert;
             }
           }
         }
@@ -591,8 +633,8 @@
       .card--standard {
         .card__information-volume-pricing-note--button {
           + .global-settings-popup.quantity-popover__info {
-            left: 50%;
-            transform: translate(-50%);
+            left: revert;
+            transform: revert;
           }
         }
       }
@@ -600,7 +642,7 @@
       .card--standard {
         .card__information-volume-pricing-note--button {
           + .global-settings-popup.quantity-popover__info {
-            width: 100%;
+            width: revert;
           }
         }
       }
@@ -608,7 +650,7 @@
       .card--card {
         .card__information-volume-pricing-note--button {
           + .global-settings-popup.quantity-popover__info {
-            width: calc(100% + var(--border-width) + 4rem);
+            width: revert;
           }
         }
       }

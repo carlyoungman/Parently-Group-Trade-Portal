@@ -27,10 +27,15 @@
   }
 }
 
-@include tablet-down {
+.facets-container {
+  grid-template-columns: auto minmax(0, max-content);
+  column-gap: 2rem;
+}
+
+@include breakpoint-md {
   .facets-container {
-    grid-template-columns: auto minmax(0, max-content);
-    column-gap: 2rem;
+    grid-template-columns: repeat(2, auto);
+    column-gap: revert;
   }
 }
 
@@ -728,7 +733,7 @@ button.facets__button {
   }
 }
 
-@include tablet-only {
+@include breakpoint-sm {
   .facets-vertical .active-facets__button {
     padding: 1rem;
     margin-bottom: 0;
@@ -737,5 +742,17 @@ button.facets__button {
 
   .facets-vertical .active-facets__button-remove {
     padding: 0 1rem 1rem;
+  }
+}
+
+@include breakpoint-md {
+  .facets-vertical .active-facets__button {
+    padding: revert;
+    margin-bottom: 1.5rem;
+    margin-left: revert;
+  }
+
+  .facets-vertical .active-facets__button-remove {
+    padding: revert;
   }
 }

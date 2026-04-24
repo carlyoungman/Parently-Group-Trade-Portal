@@ -2,12 +2,12 @@
 .list-social {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-end;
+  justify-content: center;
 }
 
-@include mobile-only {
+@include breakpoint-sm {
   .list-social {
-    justify-content: center;
+    justify-content: flex-end;
   }
 }
 

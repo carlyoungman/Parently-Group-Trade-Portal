@@ -146,27 +146,13 @@ pickup-availability-drawer[open] {
 }
 
 @keyframes animateDrawerOpen {
-  @include mobile-only {
-    0% {
-      opacity: 0;
-      transform: translateX(100%);
-    }
-
-    100% {
-      opacity: 1;
-      transform: translateX(0);
-    }
+  0% {
+    opacity: 0;
+    transform: translateX(100%);
   }
 
-  @include breakpoint-sm {
-    0% {
-      opacity: 0;
-      transform: translateX(100%);
-    }
-
-    100% {
-      opacity: 1;
-      transform: translateX(0);
-    }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
   }
 }

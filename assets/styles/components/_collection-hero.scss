@@ -78,10 +78,8 @@
     rgba(var(--color-shadow), var(--media-shadow-opacity));
 }
 
-@include mobile-only {
-  .collection-hero__image-container {
-    height: 20rem;
-  }
+.collection-hero__image-container {
+  height: 20rem;
 }
 
 @include breakpoint-sm {

@@ -178,19 +178,33 @@
   width: auto;
 }
 
-@include tablet-down {
+.quick-add-modal__content-info--bulk .quick-add__content-info__media {
+  display: flex;
+  margin: 0;
+}
+
+.quick-add-modal__content-info--bulk quick-order-list {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.quick-add-modal__content-info.quick-add-modal__content-info--bulk {
+  --modal-padding: 1.5rem;
+}
+
+@include breakpoint-md {
   .quick-add-modal__content-info--bulk .quick-add__content-info__media {
-    display: flex;
-    margin: 0;
+    display: revert;
+    margin: revert;
   }
 
   .quick-add-modal__content-info--bulk quick-order-list {
-    padding-left: 0;
-    padding-right: 0;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
   }
 
   .quick-add-modal__content-info.quick-add-modal__content-info--bulk {
-    --modal-padding: 1.5rem;
+    --modal-padding: 2.5rem;
   }
 }
 
@@ -204,9 +218,13 @@
   }
 }
 
-@include tablet-down {
+.quick-add-modal__content-info--bulk {
+  flex-direction: column;
+}
+
+@include breakpoint-md {
   .quick-add-modal__content-info--bulk {
-    flex-direction: column;
+    flex-direction: row;
   }
 }
 
@@ -231,22 +249,39 @@
   padding: 0;
 }
 
-@include mobile-only {
+quick-add-modal .slider .product__media-item.grid__item {
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+}
+
+.quick-add-modal__content {
+  bottom: var(--modal-height-offset);
+}
+
+.quick-add-modal__content-info > * {
+  max-height: 100%;
+}
+
+quick-add-modal .product--mobile-columns .product__media-item {
+  width: calc(100% - 3rem - var(--grid-mobile-horizontal-spacing));
+}
+
+@include breakpoint-sm {
   quick-add-modal .slider .product__media-item.grid__item {
-    margin-left: 1.5rem;
-    margin-right: 1.5rem;
+    margin-left: revert;
+    margin-right: revert;
   }
 
   .quick-add-modal__content {
-    bottom: var(--modal-height-offset);
+    bottom: revert;
   }
 
   .quick-add-modal__content-info > * {
-    max-height: 100%;
+    max-height: revert;
   }
 
   quick-add-modal .product--mobile-columns .product__media-item {
-    width: calc(100% - 3rem - var(--grid-mobile-horizontal-spacing));
+    width: revert;
   }
 }
 

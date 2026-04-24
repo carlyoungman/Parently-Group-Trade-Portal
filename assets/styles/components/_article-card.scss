@@ -1,7 +1,11 @@
 // Converted from component-article-card.css
-@include mobile-only {
+.articles-wrapper .article {
+  width: 100%;
+}
+
+@include breakpoint-sm {
   .articles-wrapper .article {
-    width: 100%;
+    width: auto;
   }
 }
 

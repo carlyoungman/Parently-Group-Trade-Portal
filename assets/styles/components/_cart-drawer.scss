@@ -300,9 +300,13 @@ cart-drawer-items {
   grid-column: 2 / 5;
 }
 
-@include mobile-only {
+.cart-drawer .cart-item cart-remove-button {
+  margin-left: 0;
+}
+
+@include breakpoint-sm {
   .cart-drawer .cart-item cart-remove-button {
-    margin-left: 0;
+    margin-left: 1rem;
   }
 }
 
