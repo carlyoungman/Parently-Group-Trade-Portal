@@ -1,4 +1,5 @@
 // Converted from quantity-popover.css
+@use '../utilities/mixins' as *;
 quantity-popover {
   position: relative;
   display: block;

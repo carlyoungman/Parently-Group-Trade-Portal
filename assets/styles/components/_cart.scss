@@ -1,4 +1,5 @@
 // Converted from component-cart.css
+@use '../utilities/mixins' as *;
 .cart {
   position: relative;
   display: block;

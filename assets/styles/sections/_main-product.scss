@@ -1,4 +1,5 @@
 // Product page — layout, media gallery, thumbnails, info container, modals
+@use '../utilities/mixins' as *;
 // Product form & payment button → sections/_product-form.scss
 product-info {
   display: block;

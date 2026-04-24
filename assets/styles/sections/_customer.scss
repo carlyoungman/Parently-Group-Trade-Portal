@@ -1,4 +1,5 @@
 // Converted from customer.css — layout, tables, login, account/order pages
+@use '../utilities/mixins' as *;
 // Address management → sections/_customer-addresses.scss
 .customer:not(.account):not(.order) {
   margin: 0 auto;

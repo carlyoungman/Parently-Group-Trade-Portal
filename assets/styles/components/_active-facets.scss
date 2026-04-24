@@ -1,4 +1,5 @@
 // Active facet filter tags — selected filter chips and clear controls
+@use '../utilities/mixins' as *;
 .active-facets {
   display: flex;
   flex-wrap: wrap;

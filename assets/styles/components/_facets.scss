@@ -1,4 +1,5 @@
 // Core facet filter form, sort controls, display dropdowns, checkboxes, product count, vertical layout
+@use '../utilities/mixins' as *;
 // Active filter tags  → components/_active-facets.scss
 // Mobile facets drawer → components/_facets-mobile.scss
 .facets-container {

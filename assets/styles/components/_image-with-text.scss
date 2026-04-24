@@ -1,4 +1,5 @@
 // Converted from component-image-with-text.css
+@use '../utilities/mixins' as *;
 .image-with-text .grid {
   margin-bottom: 0;
 }

@@ -1,4 +1,5 @@
 // Converted from base.css: Utilities, animations, hover effects, spinners
+@use '../utilities/mixins' as *;
 /* check for flexbox gap in older Safari versions */
 @supports not (inset: 10px) {
   .grid {

@@ -1,4 +1,5 @@
 // Converted from base.css: Grid system
+@use '../utilities/mixins' as *;
 /* component-grid */
 .grid {
   display: flex;
