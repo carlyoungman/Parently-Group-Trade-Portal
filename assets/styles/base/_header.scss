@@ -121,9 +121,12 @@
 
 // Secondary logo
 .header__heading-logo {
-  @include mobile-only {
-    display: none;
+  display: none;
+
+  @include breakpoint-sm {
+    display: block;
   }
+
   &--secondary {
     display: block;
   }
@@ -364,28 +367,36 @@
 
   // Layout modifiers
   &--has-app {
-    @include mobile-only {
-      grid-template-columns: auto 1fr auto;
+    grid-template-columns: auto 1fr auto;
+
+    @include breakpoint-sm {
+      grid-template-columns: 1fr auto 1fr;
     }
   }
 
   &--mobile-left {
-    @include tablet-down {
-      grid-template-columns: auto 2fr 1fr;
+    grid-template-columns: auto 2fr 1fr;
+
+    .header__heading,
+    .header__heading-link {
+      text-align: left;
+      justify-self: start;
+    }
+
+    @include breakpoint-md {
+      grid-template-columns: auto 1fr auto;
 
       .header__heading,
       .header__heading-link {
-        text-align: left;
-        justify-self: start;
+        text-align: inherit;
+        justify-self: revert;
       }
     }
   }
 
-  @include tablet-down {
-    &__heading,
-    &__heading-link {
-      text-align: center;
-    }
+  &__heading,
+  &__heading-link {
+    text-align: center;
   }
 
   @include breakpoint-md {

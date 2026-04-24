@@ -40,10 +40,15 @@
   row-gap: 0;
 }
 
-@include mobile-only {
+.grid__item.slider__slide--full-width {
+  width: 100%;
+  max-width: none;
+}
+
+@include breakpoint-sm {
   .grid__item.slider__slide--full-width {
-    width: 100%;
-    max-width: none;
+    width: calc(25% - var(--grid-desktop-horizontal-spacing) * 3 / 4);
+    max-width: calc(50% - var(--grid-desktop-horizontal-spacing) / 2);
   }
 }
 
@@ -84,35 +89,38 @@
   }
 }
 
-@include tablet-down {
-  .grid--1-col-tablet-down .grid__item {
-    width: 100%;
-    max-width: 100%;
-  }
+.grid--1-col-tablet-down .grid__item {
+  width: 100%;
+  max-width: 100%;
+}
 
-  .slider--tablet.grid--peek {
-    margin: 0;
-    width: 100%;
-  }
+.slider--tablet.grid--peek {
+  margin: 0;
+  width: 100%;
+}
 
-  .slider--tablet.grid--peek .grid__item {
-    box-sizing: content-box;
-    margin: 0;
-  }
+.slider--tablet.grid--peek .grid__item {
+  box-sizing: content-box;
+  margin: 0;
+}
 
-  .slider.slider--tablet .scroll-trigger.animate--slide-in,
-  .slider.slider--mobile .scroll-trigger.animate--slide-in {
-    animation: none;
-    opacity: 1;
-    transform: inherit;
-  }
+.slider.slider--tablet .scroll-trigger.animate--slide-in,
+.slider.slider--mobile .scroll-trigger.animate--slide-in {
+  animation: none;
+  opacity: 1;
+  transform: inherit;
+}
 
-  .scroll-trigger:not(.scroll-trigger--offscreen) .slider--tablet {
-    animation: var(--animation-slide-in);
-  }
+.scroll-trigger:not(.scroll-trigger--offscreen) .slider--tablet {
+  animation: var(--animation-slide-in);
 }
 
 @include breakpoint-md {
+  .grid--1-col-tablet-down .grid__item {
+    width: calc(25% - var(--grid-desktop-horizontal-spacing) * 3 / 4);
+    max-width: calc(50% - var(--grid-desktop-horizontal-spacing) / 2);
+  }
+
   .grid--6-col-desktop .grid__item {
     width: calc(16.66% - var(--grid-desktop-horizontal-spacing) * 5 / 6);
     max-width: calc(16.66% - var(--grid-desktop-horizontal-spacing) * 5 / 6);
@@ -161,46 +169,46 @@
   }
 }
 
-@include mobile-only {
-  .grid--peek.slider--mobile {
-    margin: 0;
-    width: 100%;
-  }
-
-  .grid--peek.slider--mobile .grid__item {
-    box-sizing: content-box;
-    margin: 0;
-  }
-
-  .grid--peek .grid__item {
-    min-width: 35%;
-  }
-
-  .grid--peek.slider .grid__item:first-of-type {
-    margin-left: 1.5rem;
-  }
-
-  /* Fix to show some space at the end of our sliders in all browsers */
-  .grid--peek.slider:after {
-    margin-left: calc(-1 * var(--grid-mobile-horizontal-spacing));
-  }
-
-  .grid--2-col-tablet-down .grid__item {
-    width: calc(50% - var(--grid-mobile-horizontal-spacing) / 2);
-  }
-
-  .slider--tablet.grid--peek.grid--2-col-tablet-down .grid__item,
-  .grid--peek .grid__item {
-    width: calc(50% - var(--grid-mobile-horizontal-spacing) - 3rem);
-  }
-
-  .slider--tablet.grid--peek.grid--1-col-tablet-down .grid__item,
-  .slider--mobile.grid--peek.grid--1-col-tablet-down .grid__item {
-    width: calc(100% - var(--grid-mobile-horizontal-spacing) - 3rem);
-  }
+/* Peek slider: mobile defaults (mobile spacing) */
+.grid--peek.slider--mobile {
+  margin: 0;
+  width: 100%;
 }
 
-@include tablet-only {
+.grid--peek.slider--mobile .grid__item {
+  box-sizing: content-box;
+  margin: 0;
+}
+
+.grid--peek .grid__item {
+  min-width: 35%;
+}
+
+.grid--peek.slider .grid__item:first-of-type {
+  margin-left: 1.5rem;
+}
+
+/* Fix to show some space at the end of our sliders in all browsers */
+.grid--peek.slider:after {
+  margin-left: calc(-1 * var(--grid-mobile-horizontal-spacing));
+}
+
+.grid--2-col-tablet-down .grid__item {
+  width: calc(50% - var(--grid-mobile-horizontal-spacing) / 2);
+}
+
+.slider--tablet.grid--peek.grid--2-col-tablet-down .grid__item,
+.grid--peek .grid__item {
+  width: calc(50% - var(--grid-mobile-horizontal-spacing) - 3rem);
+}
+
+.slider--tablet.grid--peek.grid--1-col-tablet-down .grid__item,
+.slider--mobile.grid--peek.grid--1-col-tablet-down .grid__item {
+  width: calc(100% - var(--grid-mobile-horizontal-spacing) - 3rem);
+}
+
+/* Peek slider: tablet+ overrides (desktop spacing) */
+@include breakpoint-sm {
   .slider--tablet.grid--peek .grid__item {
     width: calc(25% - var(--grid-desktop-horizontal-spacing) - 3rem);
   }

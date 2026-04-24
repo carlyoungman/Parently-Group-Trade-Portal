@@ -343,19 +343,25 @@ table:not([class]) th {
   border: 0.1rem solid rgba(var(--color-foreground), 0.2);
 }
 
-@include mobile-only {
-  .small-hide {
-    display: none !important;
-  }
+.small-hide {
+  display: none !important;
 }
 
-@include tablet-only {
+@include breakpoint-sm {
+  .small-hide {
+    display: revert !important;
+  }
+
   .medium-hide {
     display: none !important;
   }
 }
 
 @include breakpoint-md {
+  .medium-hide {
+    display: revert !important;
+  }
+
   .large-up-hide {
     display: none !important;
   }
