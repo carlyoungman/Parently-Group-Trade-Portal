@@ -157,6 +157,9 @@
   letter-spacing: 0.1rem;
   min-height: 3.8rem;
   color: #fff;
+  @media screen and (max-width: 749px) {
+    font-size: 1.4rem;
+  }
 }
 
 .announcement-bar-slider--fade-in-next .announcement-bar__message,

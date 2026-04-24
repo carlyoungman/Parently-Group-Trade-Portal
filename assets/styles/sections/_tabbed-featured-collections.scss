@@ -19,7 +19,10 @@
     font: inherit;
     min-width: unset;
     min-height: unset;
-    font-size: var(--font-h2);
+    font-size: var(--font-h5);
+    @media screen and (min-width: 750px) {
+      font-size: var(--font-h2);
+    }
 
     &::after {
       content: '';

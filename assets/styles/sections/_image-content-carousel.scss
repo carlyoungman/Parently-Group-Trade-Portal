@@ -49,11 +49,15 @@
     right: 0;
     top: 0;
     bottom: 0;
-    width: calc(50% - 1.5rem);
+    width: 100%;
     z-index: 0;
     pointer-events: none;
     border-radius: var(--buttons-radius-outset);
     display: block !important;
+
+    @media screen and (min-width: 749px) {
+      width: calc(50% - 1.5rem);
+    }
   }
 
   // Slider component wrapper

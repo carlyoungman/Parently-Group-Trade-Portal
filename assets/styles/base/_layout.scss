@@ -196,8 +196,9 @@ h6,
 }
 
 .supersize {
-  font-size: var(--font-supersize);
-  line-height: var(--font-heading-line-height);
+  @media screen and (min-width: 750px) {
+    font-size: var(--font-supersize);
+  }
 }
 
 h1,

@@ -21,6 +21,10 @@
   line-height: var(--font-body-line-height);
   position: relative;
 
+  @media screen and (max-width: 569px) {
+    width: 100%;
+  }
+
   /* shared vars */
   --shadow-horizontal-offset: var(--buttons-shadow-horizontal-offset);
   --shadow-vertical-offset: var(--buttons-shadow-vertical-offset);
