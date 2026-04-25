@@ -22,7 +22,7 @@
   letter-spacing: 0.1rem;
   line-height: var(--font-body-line-height);
   position: relative;
-
+  font-weight: 400;
   width: 100%;
 
   @include breakpoint-sm {

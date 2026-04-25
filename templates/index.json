@@ -151,11 +151,11 @@
         "title": "Explore our brands",
         "heading_size": "h2",
         "enable_carousel": false,
-        "logo_height": 100,
+        "logo_height": 112,
         "image_ratio": "wide",
         "logos_per_row_desktop": 6,
         "padding_top": 0,
-        "padding_bottom": 36
+        "padding_bottom": 0
       }
     },
     "vertical_image_links_DkXcji": {
@@ -507,7 +507,7 @@
             "image": "shopify://shop_images/Rectangle_5299.png",
             "heading": "Ethical Trading Initiative Member",
             "content": "<p>100% Ethical Trading Transparency. The Parently Group is a founding member of the Ethical Trading Initiative since 2019. Our ambition is achieve full transparency throughout our supply-chain. We are currently benchmarked at 75%<br/><br/></p>",
-            "content_image": "shopify://shop_images/ETI_Member_Standard_Logo_white_1.svg",
+            "content_image": "shopify://shop_images/ETI_Member_Standard_Logo_white_1.png",
             "button_label_1": "",
             "button_link_1": "",
             "button_style_secondary_1": false,
@@ -548,8 +548,8 @@
         "button_link_2": "",
         "button_style_secondary_2": true,
         "content_bg_color": "#73ae70",
-        "padding_top": 36,
-        "padding_bottom": 36
+        "padding_top": 0,
+        "padding_bottom": 100
       }
     }
   },
