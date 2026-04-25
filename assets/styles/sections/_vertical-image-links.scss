@@ -1,25 +1,21 @@
-// Converted from section-vertical-image-links.css
 @use '../utilities/mixins' as *;
 
 /* =============================================================================
    Vertical Image Links Section
-   Two-column layout: text content left, sticky-scroll image card carousel right.
+   Two-column layout: text content left (sticky), all cards visible right.
    ============================================================================= */
 
-/* Outer custom element — JS sets min-height to drive scroll progress */
 vertical-image-links-component {
   display: block;
-  position: relative;
 }
 
 /* =============================================================================
-   Mobile-first defaults: single-column static layout, no scroll effect
+   Mobile-first defaults: single-column, content above cards
    ============================================================================= */
 .vertical-image-links {
   &__inner {
     display: grid;
     grid-template-columns: 1fr;
-    align-items: stretch;
   }
 
   /* -----------------------------------------------------------------------
@@ -61,15 +57,12 @@ vertical-image-links-component {
   }
 
   /* -----------------------------------------------------------------------
-     Right column: carousel
+     Right column: card list
      ----------------------------------------------------------------------- */
   &__carousel-outer {
     position: relative;
-    height: auto;
-    overflow: visible;
   }
 
-  /* The moving track — translateY is driven by JS scroll progress on desktop */
   &__carousel-track {
     display: flex;
     flex-direction: column;
@@ -84,11 +77,10 @@ vertical-image-links-component {
      ----------------------------------------------------------------------- */
   &__card {
     position: relative;
-    flex-shrink: 0;
     border-radius: var(--buttons-radius-outset);
     overflow: hidden;
     aspect-ratio: 16 / 9;
-    max-width: 100%;
+    width: 100%;
   }
 
   &__card-link {
@@ -143,18 +135,19 @@ vertical-image-links-component {
   }
 
   /* =============================================================================
-     Desktop (breakpoint-sm+): sticky two-column layout, JS-driven card scroll
+     Desktop (breakpoint-sm+): two columns, left content sticky while cards scroll
      ============================================================================= */
   @include breakpoint-sm {
     &__inner {
+      grid-template-columns: 1fr 1fr;
+      align-items: start;
+    }
+
+    /* Sticky left column — stays centred in viewport as right column scrolls */
+    &__content {
       position: sticky;
       top: 0;
       height: 100vh;
-      overflow: hidden;
-      grid-template-columns: 1fr 1fr;
-    }
-
-    &__content {
       padding: 4rem;
 
       @include breakpoint-md {
@@ -162,18 +155,12 @@ vertical-image-links-component {
       }
     }
 
-    &__carousel-outer {
-      height: 100vh;
-      overflow: hidden;
-    }
-
     &__carousel-track {
       padding: 1.6rem;
-      will-change: transform;
     }
 
     &__card {
-      max-width: unset;
+      width: auto;
     }
   }
 }
