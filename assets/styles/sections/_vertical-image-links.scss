@@ -12,15 +12,13 @@ vertical-image-links-component {
   position: relative;
 }
 
+/* =============================================================================
+   Mobile-first defaults: single-column static layout, no scroll effect
+   ============================================================================= */
 .vertical-image-links {
-  /* Inner sticky layout — stays fixed in viewport while outer section scrolls */
   &__inner {
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    overflow: hidden;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     align-items: stretch;
   }
 
@@ -31,15 +29,11 @@ vertical-image-links-component {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 4rem;
+    padding: 3rem 0;
     gap: 1.5rem;
 
     > * + * {
       margin-top: 0;
-    }
-
-    @include breakpoint-md {
-      padding: 6rem 7rem;
     }
   }
 
@@ -71,19 +65,18 @@ vertical-image-links-component {
      ----------------------------------------------------------------------- */
   &__carousel-outer {
     position: relative;
-    overflow: hidden;
-    height: 100vh;
+    height: auto;
+    overflow: visible;
   }
 
-  /* The moving track — translateY is driven by JS scroll progress */
+  /* The moving track — translateY is driven by JS scroll progress on desktop */
   &__carousel-track {
     display: flex;
     flex-direction: column;
     gap: 1.6rem;
-    padding: 1.6rem;
+    padding: 0;
     list-style: none;
     margin: 0;
-    will-change: transform;
   }
 
   /* -----------------------------------------------------------------------
@@ -95,6 +88,7 @@ vertical-image-links-component {
     border-radius: var(--buttons-radius-outset);
     overflow: hidden;
     aspect-ratio: 16 / 9;
+    max-width: 100%;
   }
 
   &__card-link {
@@ -147,43 +141,14 @@ vertical-image-links-component {
       filter: brightness(0) invert(1);
     }
   }
-}
 
-/* -----------------------------------------------------------------------
-   Mobile: stack layout, no sticky scroll effect (mobile-first defaults)
-   ----------------------------------------------------------------------- */
-.vertical-image-links {
-  &__inner {
-    position: static;
-    height: auto;
-    overflow: visible;
-    grid-template-columns: 1fr;
-  }
-
-  &__content {
-    padding: 3rem 0;
-  }
-
-  &__carousel-outer {
-    height: auto;
-    overflow: visible;
-  }
-
-  &__carousel-track {
-    transform: none !important;
-    padding: 0;
-  }
-
-  &__card {
-    aspect-ratio: 16 / 9;
-    max-width: 100%;
-  }
-}
-
-@include breakpoint-sm {
-  .vertical-image-links {
+  /* =============================================================================
+     Desktop (breakpoint-sm+): sticky two-column layout, JS-driven card scroll
+     ============================================================================= */
+  @include breakpoint-sm {
     &__inner {
       position: sticky;
+      top: 0;
       height: 100vh;
       overflow: hidden;
       grid-template-columns: 1fr 1fr;
@@ -191,6 +156,10 @@ vertical-image-links-component {
 
     &__content {
       padding: 4rem;
+
+      @include breakpoint-md {
+        padding: 6rem 7rem;
+      }
     }
 
     &__carousel-outer {
@@ -199,12 +168,12 @@ vertical-image-links-component {
     }
 
     &__carousel-track {
-      transform: revert !important;
       padding: 1.6rem;
+      will-change: transform;
     }
 
     &__card {
-      max-width: revert;
+      max-width: unset;
     }
   }
 }
