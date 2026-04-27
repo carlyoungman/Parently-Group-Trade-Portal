@@ -1,0 +1,232 @@
+// Section: Coloured Background Slider
+// Header (page-width) above a full-bleed coloured strip containing a
+// horizontally scrollable image carousel with dot navigation.
+@use '../utilities/mixins' as *;
+
+.coloured-background-slider {
+
+  // ── Section header ────────────────────────────────────────
+
+  &__header {
+    text-align: center;
+    margin-bottom: 3.2rem;
+  }
+
+  &__heading {
+    margin: 0 0 1.6rem;
+  }
+
+  &__section-content {
+    max-width: 64rem;
+    margin: 0 auto 2rem;
+
+    p {
+      margin-top: 0;
+      margin-bottom: 1rem;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &__section-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    justify-content: center;
+  }
+
+  // ── Full-bleed coloured strip ─────────────────────────────
+
+  &__carousel-wrapper {
+    width: 100%;
+    padding: 3.2rem 0 3.6rem;
+    // background-color injected via inline style using --cbs-bg CSS custom property
+  }
+
+  // slider-component custom element wrapper
+  &__slider-component {
+    display: block;
+  }
+
+  // ── Scrollable track ──────────────────────────────────────
+
+  &__track {
+    display: flex;
+    list-style: none;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    padding: 0 1.6rem;
+    gap: 1.6rem;
+    margin: 0;
+    margin-bottom: 0 !important; // override component-slider.css margin-bottom: 1rem
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  // ── Individual slide card ─────────────────────────────────
+
+  &__slide {
+    flex: 0 0 auto;
+    width: 24rem; // mobile — shows ~1.3 cards + peek on 375px screen
+    scroll-snap-align: center;
+  }
+
+  // Clips image to border-radius and applies aspect-ratio
+  &__slide-image-wrapper {
+    border-radius: var(--buttons-radius-outset, 1.6rem);
+    overflow: hidden;
+    width: 100%;
+    line-height: 0; // prevent phantom gap below inline image
+  }
+
+  &__image {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+    aspect-ratio: var(--cbs-image-ratio, 3 / 4); // overridden per-section via inline style
+  }
+
+  &__placeholder {
+    width: 100%;
+    display: block;
+    aspect-ratio: var(--cbs-image-ratio, 3 / 4);
+    background-color: rgba(var(--color-foreground), 0.04);
+  }
+
+  // ── Navigation bar ────────────────────────────────────────
+
+  &__nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    margin-top: 2.4rem;
+    padding: 0 1.6rem;
+  }
+
+  // Prev / next arrow buttons — styled for coloured background
+  &__nav-btn {
+    color: rgba(255, 255, 255, 0.75);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    width: 4.4rem;
+    height: 4.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: color 0.2s ease, opacity 0.2s ease;
+
+    .icon {
+      height: 0.7rem;
+    }
+
+    &:not([disabled]):hover {
+      color: #ffffff;
+    }
+
+    &[disabled] {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+
+    // Caret icon rotation — matches the global slider-button pattern
+    &.slider-button--prev .svg-wrapper {
+      display: inline-flex;
+      transform: rotate(90deg);
+    }
+
+    &.slider-button--next .svg-wrapper {
+      display: inline-flex;
+      transform: rotate(-90deg);
+    }
+  }
+
+  // Dot indicator row
+  &__dots {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  // Clickable dot button wrapper
+  &__dot-btn {
+    background: none;
+    border: none;
+    padding: 0.7rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease-in-out;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    // Active state — dot becomes filled white
+    &.slider-counter__link--active {
+      .coloured-background-slider__dot {
+        background-color: #ffffff;
+        border-color: #ffffff;
+      }
+    }
+  }
+
+  // The visual dot circle
+  &__dot {
+    display: block;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    border: 0.1rem solid rgba(255, 255, 255, 0.5);
+    background-color: transparent;
+    transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+  }
+}
+
+// ── Tablet ────────────────────────────────────────────────────────────────────
+
+@include breakpoint-sm {
+  .coloured-background-slider {
+    &__header {
+      margin-bottom: 4rem;
+    }
+
+    &__carousel-wrapper {
+      padding: 4rem 0 4.8rem;
+    }
+
+    &__track {
+      padding: 0 5rem; // aligns first card with page-width content
+      gap: 2rem;
+    }
+
+    &__slide {
+      width: 30rem; // ~2.2 visible on 750px screen
+    }
+
+    &__nav {
+      padding: 0 5rem;
+    }
+  }
+}
+
+// ── Desktop ───────────────────────────────────────────────────────────────────
+
+@include breakpoint-md {
+  .coloured-background-slider {
+    &__slide {
+      width: 34rem; // ~3+ visible on 1200px page-width
+    }
+  }
+}
