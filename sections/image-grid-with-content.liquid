@@ -1,0 +1,263 @@
+{%- render 'section-padding-style' -%}
+
+{%- style -%}
+  #shopify-section-{{ section.id }} .image-grid-with-content__content {
+    background-color: {{ section.settings.content_bg_color }};
+    color: {{ section.settings.text_color }};
+  }
+{%- endstyle -%}
+
+<div class="image-grid-with-content section-{{ section.id }}-padding">
+  <div class="page-width">
+    <div class="image-grid-with-content__layout{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+
+      {%- comment -%} ── Left: image grid ── {%- endcomment -%}
+      <div class="image-grid-with-content__images">
+
+        {%- liquid
+          assign fetch_priority = 'auto'
+          if section.index == 1
+            assign fetch_priority = 'high'
+          endif
+        -%}
+
+        {%- comment -%} Image 1 — primary, spans full column width {%- endcomment -%}
+        <div class="image-grid-with-content__image-item image-grid-with-content__image-item--primary">
+          {%- if section.settings.image_1 != blank -%}
+            {{
+              section.settings.image_1
+              | image_url: width: 1200
+              | image_tag:
+                widths: '400, 600, 900, 1200',
+                sizes: '(min-width: 990px) 35vw, (min-width: 750px) 45vw, 100vw',
+                loading: 'lazy',
+                fetchpriority: fetch_priority,
+                class: 'image-grid-with-content__image'
+            }}
+          {%- else -%}
+            <span class="image-grid-with-content__placeholder image-grid-with-content__placeholder--primary">
+              {{- 'detailed-apparel-1' | placeholder_svg_tag: 'placeholder-svg' -}}
+            </span>
+          {%- endif -%}
+        </div>
+
+        {%- comment -%} Images 2 & 3 — side by side below {%- endcomment -%}
+        <div class="image-grid-with-content__image-row">
+
+          <div class="image-grid-with-content__image-item">
+            {%- if section.settings.image_2 != blank -%}
+              {{
+                section.settings.image_2
+                | image_url: width: 600
+                | image_tag:
+                  widths: '200, 300, 400, 600',
+                  sizes: '(min-width: 990px) 17vw, (min-width: 750px) 22vw, 50vw',
+                  loading: 'lazy',
+                  class: 'image-grid-with-content__image'
+              }}
+            {%- else -%}
+              <span class="image-grid-with-content__placeholder image-grid-with-content__placeholder--secondary">
+                {{- 'detailed-apparel-2' | placeholder_svg_tag: 'placeholder-svg' -}}
+              </span>
+            {%- endif -%}
+          </div>
+
+          <div class="image-grid-with-content__image-item">
+            {%- if section.settings.image_3 != blank -%}
+              {{
+                section.settings.image_3
+                | image_url: width: 600
+                | image_tag:
+                  widths: '200, 300, 400, 600',
+                  sizes: '(min-width: 990px) 17vw, (min-width: 750px) 22vw, 50vw',
+                  loading: 'lazy',
+                  class: 'image-grid-with-content__image'
+              }}
+            {%- else -%}
+              <span class="image-grid-with-content__placeholder image-grid-with-content__placeholder--secondary">
+                {{- 'collection-apparel-2' | placeholder_svg_tag: 'placeholder-svg' -}}
+              </span>
+            {%- endif -%}
+          </div>
+
+        </div>
+      </div>
+
+      {%- comment -%} ── Right: content panel ── {%- endcomment -%}
+      <div class="image-grid-with-content__content">
+
+        {%- unless section.settings.heading == blank -%}
+          <h2 class="image-grid-with-content__heading inline-richtext {{ section.settings.heading_size }}">
+            {{ section.settings.heading }}
+          </h2>
+        {%- endunless -%}
+
+        {%- unless section.settings.content == blank -%}
+          <div class="image-grid-with-content__text rte">
+            {{ section.settings.content }}
+          </div>
+        {%- endunless -%}
+
+        {%- render 'button-pair',
+          button_label_1: section.settings.button_label_1,
+          button_link_1: section.settings.button_link_1,
+          button_style_secondary_1: section.settings.button_style_secondary_1,
+          button_label_2: section.settings.button_label_2,
+          button_link_2: section.settings.button_link_2,
+          button_style_secondary_2: section.settings.button_style_secondary_2,
+          container_class: 'image-grid-with-content__buttons'
+        -%}
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Image grid with content",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Images"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Image 1 (primary – top)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Image 2 (bottom left)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_3",
+      "label": "Image 3 (bottom right)"
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "default": "Colour changing technology",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "Heading size",
+      "default": "h2",
+      "options": [
+        { "value": "supersize", "label": "t:sections.all.heading_size.options__1.label" },
+        { "value": "h1", "label": "t:sections.all.heading_size.options__2.label" },
+        { "value": "h2", "label": "t:sections.all.heading_size.options__3.label" },
+        { "value": "h3", "label": "t:sections.all.heading_size.options__4.label" },
+        { "value": "h4", "label": "t:sections.all.heading_size.options__5.label" },
+        { "value": "h5", "label": "t:sections.all.heading_size.options__6.label" },
+        { "value": "h6", "label": "t:sections.all.heading_size.options__7.label" },
+        { "value": "small", "label": "t:sections.all.heading_size.options__8.label" },
+        { "value": "h0", "label": "Extra large" }
+      ]
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Content",
+      "info": "Optional body text displayed below the heading."
+    },
+    {
+      "type": "header",
+      "content": "Buttons"
+    },
+    {
+      "type": "text",
+      "id": "button_label_1",
+      "label": "Button 1 label",
+      "info": "Leave blank to hide."
+    },
+    {
+      "type": "url",
+      "id": "button_link_1",
+      "label": "Button 1 link"
+    },
+    {
+      "type": "checkbox",
+      "id": "button_style_secondary_1",
+      "label": "Button 1 — use outline style",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "button_label_2",
+      "label": "Button 2 label",
+      "info": "Leave blank to hide."
+    },
+    {
+      "type": "url",
+      "id": "button_link_2",
+      "label": "Button 2 link"
+    },
+    {
+      "type": "checkbox",
+      "id": "button_style_secondary_2",
+      "label": "Button 2 — use outline style",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Appearance"
+    },
+    {
+      "type": "color",
+      "id": "content_bg_color",
+      "label": "Content background colour",
+      "default": "#0099a8"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text colour",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 36
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image grid with content"
+    }
+  ]
+}
+{% endschema %}
