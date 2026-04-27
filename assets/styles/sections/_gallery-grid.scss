@@ -1,0 +1,158 @@
+// Section: Gallery Grid
+// Configurable image gallery with multiple layout options.
+// Default "featured" layout uses an alternating wide/narrow 5-column grid
+// that mirrors the reference design (narrow|wide row 1, wide|narrow row 2).
+@use '../utilities/mixins' as *;
+
+.gallery-grid {
+
+  // ── Section header ──────────────────────────────────────────────────────────
+
+  &__header {
+    text-align: center;
+    margin-bottom: 3.2rem;
+  }
+
+  &__heading {
+    margin: 0 0 1.6rem;
+  }
+
+  &__section-content {
+    max-width: 64rem;
+    margin: 0 auto 2rem;
+
+    p {
+      margin-top: 0;
+      margin-bottom: 1rem;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &__section-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    justify-content: center;
+  }
+
+  // ── Grid (mobile-first: single column) ─────────────────────────────────────
+
+  &__grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.8rem;
+    grid-template-columns: 1fr;
+
+    &--mobile-2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  &__item {
+    min-width: 0; // prevent grid blowout from wide content
+  }
+
+  // ── Image wrapper (doubles as <a> when the image is linked) ────────────────
+
+  &__image-wrapper {
+    display: block;
+    overflow: hidden;
+    width: 100%;
+    line-height: 0; // remove phantom gap below inline image
+    border-radius: var(--media-radius, 0);
+
+    &--linked {
+      text-decoration: none;
+      cursor: pointer;
+
+      .gallery-grid__image {
+        transition: transform 0.4s ease;
+      }
+
+      &:hover .gallery-grid__image,
+      &:focus-visible .gallery-grid__image {
+        transform: scale(1.03);
+      }
+
+      &:focus-visible {
+        outline: 0.2rem solid rgb(var(--color-foreground));
+        outline-offset: 0.2rem;
+      }
+    }
+  }
+
+  // ── Image ──────────────────────────────────────────────────────────────────
+
+  &__image {
+    display: block;
+    width: 100%;
+    object-fit: cover;
+    aspect-ratio: var(--gallery-grid-image-ratio, auto);
+  }
+
+  // ── Placeholder (no image selected) ────────────────────────────────────────
+
+  &__placeholder {
+    display: block;
+    width: 100%;
+    aspect-ratio: var(--gallery-grid-image-ratio, 4 / 3);
+    background-color: rgba(var(--color-foreground), 0.04);
+
+    svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+// ── Tablet and above ──────────────────────────────────────────────────────────
+
+@include breakpoint-sm {
+  .gallery-grid {
+    &__header {
+      margin-bottom: 4rem;
+    }
+
+    &__grid {
+      gap: 1.2rem;
+
+      // Reset mobile-2 so the layout modifier classes take full control
+      &--mobile-2 {
+        grid-template-columns: unset;
+      }
+
+      // Featured layout: 5-column base grid, items span 2 or 3 columns
+      // alternating per group of 4 to produce the wide/narrow pattern:
+      //   Row 1 — items 4n+1 (narrow, span 2) | 4n+2 (wide, span 3)
+      //   Row 2 — items 4n+3 (wide, span 3)   | 4n+4 (narrow, span 2)
+      &--featured {
+        grid-template-columns: repeat(5, 1fr);
+
+        .gallery-grid__item:nth-child(4n + 1) { grid-column: span 2; }
+        .gallery-grid__item:nth-child(4n + 2) { grid-column: span 3; }
+        .gallery-grid__item:nth-child(4n + 3) { grid-column: span 3; }
+        .gallery-grid__item:nth-child(4n + 4) { grid-column: span 2; }
+      }
+
+      &--equal-2 { grid-template-columns: repeat(2, 1fr); }
+      &--equal-3 { grid-template-columns: repeat(3, 1fr); }
+      &--equal-4 { grid-template-columns: repeat(4, 1fr); }
+    }
+  }
+}
+
+// ── Desktop ───────────────────────────────────────────────────────────────────
+
+@include breakpoint-md {
+  .gallery-grid {
+    &__grid {
+      gap: 1.6rem;
+    }
+  }
+}
