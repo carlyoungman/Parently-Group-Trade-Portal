@@ -51,6 +51,7 @@
               {% endunless %}
             >
               {%- if block.settings.image != blank -%}
+                {%- capture image_sizes -%}(min-width: 990px) calc((100vw - 10rem) / {{ section.settings.columns_desktop }}), (min-width: 750px) calc((100vw - 6rem) / {{ section.settings.columns_mobile }}), calc(100vw - 3rem){%- endcapture -%}
                 <div class="link-panels__image-wrapper">
                   {{
                     block.settings.image
@@ -59,7 +60,7 @@
                       class: 'link-panels__image',
                       loading: 'lazy',
                       widths: '200, 400, 600, 800',
-                      sizes: '(min-width: 990px) calc((100vw - 10rem) / {{ section.settings.columns_desktop }}), (min-width: 750px) calc((100vw - 6rem) / {{ section.settings.columns_mobile }}), calc(100vw - 3rem)'
+                      sizes: image_sizes
                   }}
                 </div>
               {%- endif -%}
