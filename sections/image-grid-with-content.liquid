@@ -84,7 +84,12 @@
       </div>
 
       {%- comment -%} ── Right: content panel ── {%- endcomment -%}
-      <div class="image-grid-with-content__content">
+      {%- assign text_color_lower = section.settings.text_color | downcase -%}
+      {%- assign is_white_text = false -%}
+      {%- if text_color_lower == '#ffffff' or text_color_lower == '#fff' or text_color_lower == 'white' -%}
+        {%- assign is_white_text = true -%}
+      {%- endif -%}
+      <div class="image-grid-with-content__content{% if is_white_text %} image-grid-with-content__content--white-text{% endif %}">
 
         {%- unless section.settings.heading == blank -%}
           <h2 class="image-grid-with-content__heading inline-richtext {{ section.settings.heading_size }}">

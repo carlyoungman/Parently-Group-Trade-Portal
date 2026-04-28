@@ -1,0 +1,127 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="page-width section-{{ section.id }}-padding">
+  <div class="button-grid button-grid--{{ section.settings.alignment }}">
+    {%- for block in section.blocks -%}
+      {%- if block.settings.button_label != blank -%}
+        <a
+          {% if block.settings.button_link == blank %}
+            role="link" aria-disabled="true"
+          {% else %}
+            href="{{ block.settings.button_link }}"
+          {% endif %}
+          class="button{% if block.settings.button_style_secondary %} button--secondary{% else %} button--primary{% endif %}"
+          {{ block.shopify_attributes }}
+        >
+          {{- block.settings.button_label | escape -}}
+        </a>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.button-grid.name",
+  "tag": "section",
+  "class": "section",
+  "max_blocks": 6,
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "select",
+      "id": "alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "t:sections.button-grid.settings.alignment.options__1.label"
+        },
+        {
+          "value": "center",
+          "label": "t:sections.button-grid.settings.alignment.options__2.label"
+        },
+        {
+          "value": "right",
+          "label": "t:sections.button-grid.settings.alignment.options__3.label"
+        }
+      ],
+      "default": "center",
+      "label": "t:sections.button-grid.settings.alignment.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "button",
+      "name": "t:sections.button-grid.blocks.button.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "t:sections.button-grid.blocks.button.settings.button_label.label",
+          "info": "t:sections.button-grid.blocks.button.settings.button_label.info",
+          "default": "t:sections.button-grid.blocks.button.settings.button_label.default"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "t:sections.button-grid.blocks.button.settings.button_link.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "button_style_secondary",
+          "default": true,
+          "label": "t:sections.button-grid.blocks.button.settings.button_style_secondary.label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.button-grid.presets.name",
+      "blocks": [
+        { "type": "button", "settings": { "button_label": "Button 1" } },
+        { "type": "button", "settings": { "button_label": "Button 2" } },
+        { "type": "button", "settings": { "button_label": "Button 3" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -113,4 +113,8 @@
     flex-wrap: wrap;
     gap: 1.2rem;
   }
+
+  &__content--white-text {
+    @include button-white;
+  }
 }
