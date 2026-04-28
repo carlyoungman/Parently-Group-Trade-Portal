@@ -1,0 +1,14 @@
+.button-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.button-grid--left {
+  justify-content: flex-start;
+}
+
+.button-grid--right {
+  justify-content: flex-end;
+}
