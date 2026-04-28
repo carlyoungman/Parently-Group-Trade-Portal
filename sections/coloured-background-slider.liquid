@@ -32,7 +32,11 @@
       class="coloured-background-slider__carousel-wrapper{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
       style="background-color: var(--cbs-bg);"
     >
-      <slider-component class="coloured-background-slider__slider-component">
+      <slider-component
+        class="coloured-background-slider__slider-component"
+        data-autoplay="{{ section.settings.autoplay }}"
+        data-autoplay-speed="{{ section.settings.autoplay_speed }}"
+      >
 
         <ul
           id="Slider-{{ section.id }}"
@@ -135,28 +139,77 @@
   var slider = sliderEl && sliderEl.querySelector('[id^="Slider-"]');
   var dots = sliderEl ? Array.from(sliderEl.querySelectorAll('.coloured-background-slider__dot-btn')) : [];
 
-  if (!slider || !dots.length) return;
+  if (!slider) return;
 
-  function setActiveDot(page) {
-    dots.forEach(function (dot, i) {
-      var active = i === page - 1;
-      dot.classList.toggle('slider-counter__link--active', active);
-      dot.setAttribute('aria-current', active ? 'true' : 'false');
+  // Returns the 0-based index of the slide whose centre is closest to the visible centre
+  function getActiveIndex() {
+    var slides = Array.from(sliderEl.querySelectorAll('[id^="Slide-"]'));
+    var centre = slider.scrollLeft + slider.clientWidth / 2;
+    var minDist = Infinity;
+    var idx = 0;
+    slides.forEach(function (s, i) {
+      var d = Math.abs((s.offsetLeft + s.offsetWidth / 2) - centre);
+      if (d < minDist) { minDist = d; idx = i; }
+    });
+    return idx;
+  }
+
+  function updateUI() {
+    var idx = getActiveIndex();
+    sliderEl.querySelectorAll('[id^="Slide-"]').forEach(function (s, i) {
+      s.classList.toggle('is-active', i === idx);
+    });
+    dots.forEach(function (d, i) {
+      d.classList.toggle('slider-counter__link--active', i === idx);
+      d.setAttribute('aria-current', i === idx ? 'true' : 'false');
     });
   }
 
-  sliderEl.addEventListener('slideChanged', function (e) {
-    setActiveDot(e.detail.currentPage);
+  // Debounced scroll listener
+  var scrollTimer;
+  slider.addEventListener('scroll', function () {
+    clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(updateUI, 80);
   });
 
+  sliderEl.addEventListener('slideChanged', function () {
+    setTimeout(updateUI, 50);
+  });
+
+  // Dot click — scroll to centre the target slide
   dots.forEach(function (dot, index) {
     dot.addEventListener('click', function () {
       var slides = Array.from(sliderEl.querySelectorAll('[id^="Slide-"]'));
-      if (slides[index]) {
-        slider.scrollTo({ left: slides[index].offsetLeft, behavior: 'smooth' });
-      }
+      if (!slides[index]) return;
+      var target = slides[index].offsetLeft - (slider.clientWidth / 2) + (slides[index].offsetWidth / 2);
+      slider.scrollTo({ left: Math.max(0, target), behavior: 'smooth' });
     });
   });
+
+  // Autoplay
+  var autoplay = sliderEl.dataset.autoplay === 'true';
+  var speed = (parseFloat(sliderEl.dataset.autoplaySpeed) || 4) * 1000;
+  var timer = null;
+
+  function nextSlide() {
+    var slides = Array.from(sliderEl.querySelectorAll('[id^="Slide-"]'));
+    if (!slides.length) return;
+    var next = (getActiveIndex() + 1) % slides.length;
+    var target = slides[next].offsetLeft - (slider.clientWidth / 2) + (slides[next].offsetWidth / 2);
+    slider.scrollTo({ left: Math.max(0, target), behavior: 'smooth' });
+  }
+
+  function startAutoplay() { if (autoplay) timer = setInterval(nextSlide, speed); }
+  function stopAutoplay() { clearInterval(timer); timer = null; }
+
+  if (autoplay) {
+    sliderEl.addEventListener('mouseenter', stopAutoplay);
+    sliderEl.addEventListener('mouseleave', startAutoplay);
+    startAutoplay();
+  }
+
+  // Set initial active state
+  updateUI();
 })();
 </script>
 
@@ -262,6 +315,26 @@
         { "value": "16-9", "label": "16:9 — Widescreen" },
         { "value": "auto", "label": "Auto — Follow image" }
       ]
+    },
+    {
+      "type": "header",
+      "content": "Autoplay"
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Enable autoplay",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "autoplay_speed",
+      "min": 1,
+      "max": 10,
+      "step": 0.5,
+      "unit": "s",
+      "label": "Change slides every",
+      "default": 4
     },
     {
       "type": "header",
