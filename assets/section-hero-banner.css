@@ -1,3 +1,29 @@
+/* Hero Banner — content image / logo block */
+
+.banner__content-image {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.6rem;
+}
+
+.banner__content-image-img {
+  display: block;
+  height: auto;
+  width: 100%;
+}
+
+.banner__content-image--small .banner__content-image-img {
+  max-width: 10rem;
+}
+
+.banner__content-image--medium .banner__content-image-img {
+  max-width: 20rem;
+}
+
+.banner__content-image--large .banner__content-image-img {
+  max-width: 32rem;
+}
+
 /* Hero Banner — video background styles */
 
 .banner--has-video .banner__media--video {
