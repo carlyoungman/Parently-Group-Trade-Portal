@@ -63,6 +63,7 @@
     display: block;
     overflow: hidden;
     width: 100%;
+    height: 100%; // fill the grid row height so all images in a row are equal
     line-height: 0; // remove phantom gap below inline image
     border-radius: var(--media-radius, 0);
 
@@ -91,6 +92,7 @@
   &__image {
     display: block;
     width: 100%;
+    height: 100%; // fill the wrapper so all images match the row height
     object-fit: cover;
     aspect-ratio: var(--gallery-grid-image-ratio, auto);
   }
