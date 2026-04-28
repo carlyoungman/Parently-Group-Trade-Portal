@@ -57,13 +57,22 @@
     text-decoration: none;
     overflow: hidden;
     border-radius: var(--text-boxes-radius, 0.8rem);
-    transition: opacity 0.2s ease, transform 0.2s ease;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
     position: relative;
 
     &:hover,
     &:focus-visible {
-      opacity: 0.9;
-      transform: translateY(-0.2rem);
+      transform: translateY(-1.5rem);
+      box-shadow: 0 1.6rem 3.2rem rgba(0, 0, 0, 0.18);
+
+      .link-panels__image {
+        transform: scale(1.06);
+      }
+
+      .link-panels__label {
+        transform: translateY(-0.4rem);
+        box-shadow: 0 0.4rem 1.2rem rgba(0, 0, 0, 0.2);
+      }
     }
 
     &:focus-visible {
@@ -83,6 +92,7 @@
     justify-content: center;
     width: 100%;
     padding: 3rem 3rem 2rem;
+    overflow: hidden;
 
     @include breakpoint-sm {
       padding: 4rem 4rem 2.4rem;
@@ -95,6 +105,7 @@
     max-width: 100%;
     object-fit: cover;
     height: auto;
+    transition: transform 0.35s ease;
   }
 
   &__label {
@@ -110,6 +121,7 @@
     letter-spacing: 0.02em;
     position: absolute;
     bottom: 25%;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
 
     @include breakpoint-sm {
       font-size: var(--font-h4, 1.8rem);
