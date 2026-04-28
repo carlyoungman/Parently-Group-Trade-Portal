@@ -42,12 +42,12 @@
 
   // Primary image (top)
   &__image-item--primary &__image {
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 16 / 9;
   }
 
   // Secondary images
   &__image-row &__image {
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 16 / 9;
   }
 
   // Placeholder
@@ -57,11 +57,11 @@
     background-color: rgba(var(--color-foreground), 0.04);
 
     &--primary {
-      aspect-ratio: 4 / 3;
+      aspect-ratio: 16 / 9;
     }
 
     &--secondary {
-      aspect-ratio: 1 / 1;
+      aspect-ratio: 16 / 9;
     }
 
     svg {

@@ -46,7 +46,8 @@
         "show_text_box": true,
         "stack_images_on_mobile": true,
         "mobile_content_alignment": "center",
-        "show_text_below": true
+        "show_text_below": true,
+        "mobile_content_background": "#229eae"
       }
     },
     "rich_text_dLLBUB": {
@@ -131,9 +132,9 @@
         "button_label_2": "",
         "button_link_2": "",
         "button_style_secondary_2": true,
-        "background_color": "#0da5b4",
+        "background_color": "#0aa6b5",
         "image_ratio": "auto",
-        "autoplay": false,
+        "autoplay": true,
         "autoplay_speed": 4,
         "padding_top": 0,
         "padding_bottom": 0
@@ -161,7 +162,7 @@
             "link": "",
             "link_target": false,
             "image": "shopify://shop_images/ChatGPT_Image_Apr_28_2026_04_08_19_PM_1.png",
-            "background_color": "#229eae",
+            "background_color": "#0aa6b5",
             "text_background_color": "#ebbf4c",
             "heading_color": "#ffffff"
           }
@@ -240,7 +241,7 @@
         "button_label_2": "",
         "button_link_2": "",
         "button_style_secondary_2": true,
-        "content_bg_color": "#0da5b4",
+        "content_bg_color": "#0aa6b5",
         "text_color": "#ffffff",
         "padding_top": 0,
         "padding_bottom": 0
@@ -290,9 +291,9 @@
       ],
       "name": "Gallery grid",
       "settings": {
-        "heading": "",
+        "heading": "Our Adventure Crew",
         "heading_size": "h2",
-        "content": "",
+        "content": "<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam<br/><br/></p>",
         "button_label_1": "",
         "button_link_1": "",
         "button_style_secondary_1": false,
@@ -300,10 +301,10 @@
         "button_link_2": "",
         "button_style_secondary_2": true,
         "layout": "featured",
-        "image_ratio": "4-3",
+        "image_ratio": "16-9",
         "columns_mobile": "1",
         "padding_top": 36,
-        "padding_bottom": 36
+        "padding_bottom": 100
       }
     }
   },
