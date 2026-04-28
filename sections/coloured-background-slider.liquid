@@ -136,71 +136,129 @@
   if (!section) return;
 
   var sliderEl = section.querySelector('slider-component');
-  var slider = sliderEl && sliderEl.querySelector('[id^="Slider-"]');
-  var dots = sliderEl ? Array.from(sliderEl.querySelectorAll('.coloured-background-slider__dot-btn')) : [];
-
+  var slider   = sliderEl && sliderEl.querySelector('[id^="Slider-"]');
+  var dots     = sliderEl ? Array.from(sliderEl.querySelectorAll('.coloured-background-slider__dot-btn')) : [];
   if (!slider) return;
 
-  // Returns the 0-based index of the slide whose centre is closest to the visible centre
-  function getActiveIndex() {
-    var slides = Array.from(sliderEl.querySelectorAll('[id^="Slide-"]'));
-    var centre = slider.scrollLeft + slider.clientWidth / 2;
-    var minDist = Infinity;
-    var idx = 0;
-    slides.forEach(function (s, i) {
-      var d = Math.abs((s.offsetLeft + s.offsetWidth / 2) - centre);
-      if (d < minDist) { minDist = d; idx = i; }
+  var origSlides = Array.from(slider.querySelectorAll('[id^="Slide-"]'));
+  var origCount  = origSlides.length;
+  var allSlides  = origSlides.slice(); // expanded to 3× by setupLoop
+  var setWidth   = 0;
+  var jumping    = false;
+
+  // Keep SliderComponent's prev/next buttons enabled at all times
+  if (origCount > 1) sliderEl.enableSliderLooping = true;
+
+  // ── Build prepend + append clone sets ────────────────────
+  function setupLoop() {
+    if (origCount < 2) return;
+
+    function mkClone(s) {
+      var c = s.cloneNode(true);
+      c.removeAttribute('id');
+      c.setAttribute('aria-hidden', 'true');
+      c.classList.add('cbs-clone');
+      return c;
+    }
+
+    // Prepend clones (insert reversed so they end up in forward order)
+    origSlides.slice().reverse().forEach(function (s) {
+      slider.insertBefore(mkClone(s), slider.firstChild);
     });
-    return idx;
+
+    // Append clones
+    origSlides.forEach(function (s) { slider.appendChild(mkClone(s)); });
+
+    // Full slide list: [n prepend clones | n originals | n append clones]
+    allSlides = Array.from(slider.querySelectorAll('.coloured-background-slider__slide'));
+
+    // Width of one full set (distance between matching slides in adjacent sets)
+    setWidth = allSlides[origCount].offsetLeft - allSlides[0].offsetLeft;
+
+    // Scroll to show the original set on load
+    var firstOrig = allSlides[origCount];
+    slider.style.scrollBehavior = 'auto';
+    slider.scrollLeft = Math.max(0, firstOrig.offsetLeft - slider.clientWidth / 2 + firstOrig.offsetWidth / 2);
+    slider.style.scrollBehavior = '';
   }
 
+  // ── Index helpers ─────────────────────────────────────────
+  // Index of the slide whose centre is nearest to the viewport centre
+  function centredIdx() {
+    var c = slider.scrollLeft + slider.clientWidth / 2;
+    var best = 0, bestD = Infinity;
+    allSlides.forEach(function (s, i) {
+      var d = Math.abs((s.offsetLeft + s.offsetWidth / 2) - c);
+      if (d < bestD) { bestD = d; best = i; }
+    });
+    return best;
+  }
+
+  // Map any allSlides index (including clones) → 0..origCount-1
+  function toOrig(i) {
+    return ((i - origCount) % origCount + origCount) % origCount;
+  }
+
+  // ── Seamless loop reset after scroll settles ─────────────
+  function loopReset() {
+    if (jumping || !setWidth) return;
+    var ci    = centredIdx();
+    var delta = 0;
+    if (ci >= 2 * origCount) delta = -setWidth; // in append clones → jump back
+    else if (ci < origCount) delta =  setWidth;  // in prepend clones → jump forward
+    if (!delta) return;
+
+    jumping = true;
+    slider.style.scrollBehavior = 'auto';
+    slider.scrollLeft += delta;
+    slider.style.scrollBehavior = '';
+    requestAnimationFrame(function () { jumping = false; updateUI(); });
+  }
+
+  // ── Dot & active-slide state ──────────────────────────────
   function updateUI() {
-    var idx = getActiveIndex();
-    sliderEl.querySelectorAll('[id^="Slide-"]').forEach(function (s, i) {
-      s.classList.toggle('is-active', i === idx);
+    var origIdx = toOrig(centredIdx());
+    allSlides.forEach(function (s, i) {
+      s.classList.toggle('is-active', toOrig(i) === origIdx);
     });
     dots.forEach(function (d, i) {
-      d.classList.toggle('slider-counter__link--active', i === idx);
-      d.setAttribute('aria-current', i === idx ? 'true' : 'false');
+      d.classList.toggle('slider-counter__link--active', i === origIdx);
+      d.setAttribute('aria-current', i === origIdx ? 'true' : 'false');
     });
   }
 
-  // Debounced scroll listener
-  var scrollTimer;
+  // ── Scroll listeners ──────────────────────────────────────
+  var uiTimer, resetTimer;
   slider.addEventListener('scroll', function () {
-    clearTimeout(scrollTimer);
-    scrollTimer = setTimeout(updateUI, 80);
+    if (jumping) return;
+    clearTimeout(uiTimer);    uiTimer    = setTimeout(updateUI,   80);
+    clearTimeout(resetTimer);
+    resetTimer = setTimeout(loopReset, 150);
   });
 
-  sliderEl.addEventListener('slideChanged', function () {
-    setTimeout(updateUI, 50);
-  });
-
-  // Dot click — scroll to centre the target slide
-  dots.forEach(function (dot, index) {
+  // ── Dot navigation — always target original slides ────────
+  dots.forEach(function (dot, idx) {
     dot.addEventListener('click', function () {
-      var slides = Array.from(sliderEl.querySelectorAll('[id^="Slide-"]'));
-      if (!slides[index]) return;
-      var target = slides[index].offsetLeft - (slider.clientWidth / 2) + (slides[index].offsetWidth / 2);
-      slider.scrollTo({ left: Math.max(0, target), behavior: 'smooth' });
+      var s = origSlides[idx];
+      if (!s) return;
+      slider.scrollTo({ left: Math.max(0, s.offsetLeft - slider.clientWidth / 2 + s.offsetWidth / 2), behavior: 'smooth' });
     });
   });
 
-  // Autoplay
+  // ── Autoplay ──────────────────────────────────────────────
   var autoplay = sliderEl.dataset.autoplay === 'true';
-  var speed = (parseFloat(sliderEl.dataset.autoplaySpeed) || 4) * 1000;
-  var timer = null;
+  var speed    = (parseFloat(sliderEl.dataset.autoplaySpeed) || 4) * 1000;
+  var apTimer  = null;
 
   function nextSlide() {
-    var slides = Array.from(sliderEl.querySelectorAll('[id^="Slide-"]'));
-    if (!slides.length) return;
-    var next = (getActiveIndex() + 1) % slides.length;
-    var target = slides[next].offsetLeft - (slider.clientWidth / 2) + (slides[next].offsetWidth / 2);
-    slider.scrollTo({ left: Math.max(0, target), behavior: 'smooth' });
+    var ci   = centredIdx();
+    var next = Math.min(ci + 1, allSlides.length - 1);
+    var s    = allSlides[next];
+    slider.scrollTo({ left: Math.max(0, s.offsetLeft - slider.clientWidth / 2 + s.offsetWidth / 2), behavior: 'smooth' });
   }
 
-  function startAutoplay() { if (autoplay) timer = setInterval(nextSlide, speed); }
-  function stopAutoplay() { clearInterval(timer); timer = null; }
+  function startAutoplay() { if (autoplay) apTimer = setInterval(nextSlide, speed); }
+  function stopAutoplay()  { clearInterval(apTimer); apTimer = null; }
 
   if (autoplay) {
     sliderEl.addEventListener('mouseenter', stopAutoplay);
@@ -208,7 +266,8 @@
     startAutoplay();
   }
 
-  // Set initial active state
+  // ── Init ──────────────────────────────────────────────────
+  setupLoop();
   updateUI();
 })();
 </script>
