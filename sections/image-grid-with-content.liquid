@@ -11,7 +11,6 @@
   <div class="page-width">
     <div class="image-grid-with-content__layout{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
 
-      {%- comment -%} ── Left: image grid ── {%- endcomment -%}
       <div class="image-grid-with-content__images">
 
         {%- liquid
@@ -21,8 +20,7 @@
           endif
         -%}
 
-        {%- comment -%} Image 1 — primary, spans full column width {%- endcomment -%}
-        <div class="image-grid-with-content__image-item image-grid-with-content__image-item--primary">
+        <div class="image-grid-with-content__image-item">
           {%- if section.settings.image_1 != blank -%}
             {{
               section.settings.image_1
@@ -35,13 +33,12 @@
                 class: 'image-grid-with-content__image'
             }}
           {%- else -%}
-            <span class="image-grid-with-content__placeholder image-grid-with-content__placeholder--primary">
+            <span class="image-grid-with-content__placeholder">
               {{- 'detailed-apparel-1' | placeholder_svg_tag: 'placeholder-svg' -}}
             </span>
           {%- endif -%}
         </div>
 
-        {%- comment -%} Images 2 & 3 — side by side below {%- endcomment -%}
         <div class="image-grid-with-content__image-row">
 
           <div class="image-grid-with-content__image-item">
@@ -56,7 +53,7 @@
                   class: 'image-grid-with-content__image'
               }}
             {%- else -%}
-              <span class="image-grid-with-content__placeholder image-grid-with-content__placeholder--secondary">
+              <span class="image-grid-with-content__placeholder">
                 {{- 'detailed-apparel-2' | placeholder_svg_tag: 'placeholder-svg' -}}
               </span>
             {%- endif -%}
@@ -74,7 +71,7 @@
                   class: 'image-grid-with-content__image'
               }}
             {%- else -%}
-              <span class="image-grid-with-content__placeholder image-grid-with-content__placeholder--secondary">
+              <span class="image-grid-with-content__placeholder">
                 {{- 'collection-apparel-2' | placeholder_svg_tag: 'placeholder-svg' -}}
               </span>
             {%- endif -%}
@@ -83,7 +80,6 @@
         </div>
       </div>
 
-      {%- comment -%} ── Right: content panel ── {%- endcomment -%}
       {%- assign text_color_lower = section.settings.text_color | downcase -%}
       {%- assign is_white_text = false -%}
       {%- if text_color_lower == '#ffffff' or text_color_lower == '#fff' or text_color_lower == 'white' -%}

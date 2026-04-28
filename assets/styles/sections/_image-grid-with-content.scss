@@ -8,7 +8,6 @@
     grid-template-columns: 1fr;
     border-radius: var(--buttons-radius-outset);
     overflow: hidden;
-    // Tablet (750px+)
     @media (min-width: 750px) {
       grid-template-columns: 1fr 1fr;
       gap: var(--grid-desktop-horizontal-spacing);
@@ -36,33 +35,16 @@
   &__image {
     display: block;
     width: 100%;
+    aspect-ratio: 16 / 9;
     object-fit: cover;
-    max-height: 20em;
-  }
-
-  // Primary image (top)
-  &__image-item--primary &__image {
-    aspect-ratio: 16 / 9;
-  }
-
-  // Secondary images
-  &__image-row &__image {
-    aspect-ratio: 16 / 9;
   }
 
   // Placeholder
   &__placeholder {
     display: block;
     width: 100%;
+    aspect-ratio: 16 / 9;
     background-color: rgba(var(--color-foreground), 0.04);
-
-    &--primary {
-      aspect-ratio: 16 / 9;
-    }
-
-    &--secondary {
-      aspect-ratio: 16 / 9;
-    }
 
     svg {
       display: block;
@@ -79,12 +61,10 @@
     justify-content: center;
     gap: 2rem;
 
-    // Tablet (750px+)
     @media (min-width: 750px) {
       padding: 4rem 4.8rem;
     }
 
-    // Desktop (990px+)
     @media (min-width: 990px) {
       padding: 4.8rem 6.4rem;
     }
