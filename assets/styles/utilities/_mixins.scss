@@ -258,22 +258,6 @@
   appearance: none;
 }
 
-/// White button variant — use on a dark/coloured container to make buttons appear white.
-/// Primary buttons get a white fill with dark text; secondary/outline buttons get a white border and white text.
-@mixin button-white {
-  --color-button: 255, 255, 255;
-  --color-button-text: 30, 30, 30;
-  --color-button-hover: 230, 230, 230;
-  --color-button-text-hover: 30, 30, 30;
-  --color-button-border-hover: 255, 255, 255;
-  --color-secondary-button: 255, 255, 255;
-  --color-secondary-button-text: 255, 255, 255;
-  --color-secondary-button-hover: 255, 255, 255;
-  --color-secondary-button-text-hover: 30, 30, 30;
-  --color-secondary-button-border: 255, 255, 255;
-  --color-secondary-button-border-hover: 255, 255, 255;
-}
-
 // -----------------------------------------------------------------------------
 // Hover effects (matching Dawn animation settings)
 // -----------------------------------------------------------------------------
