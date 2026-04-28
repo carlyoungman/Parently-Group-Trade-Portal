@@ -3535,6 +3535,44 @@
       "presets": {
         "name": "Collapsible content"
       }
+    },
+    "button-grid": {
+      "name": "Button grid",
+      "settings": {
+        "alignment": {
+          "label": "Alignment",
+          "options__1": {
+            "label": "Left"
+          },
+          "options__2": {
+            "label": "Center"
+          },
+          "options__3": {
+            "label": "Right"
+          }
+        }
+      },
+      "blocks": {
+        "button": {
+          "name": "Button",
+          "settings": {
+            "button_label": {
+              "label": "Label",
+              "info": "Leave blank to hide",
+              "default": "Button label"
+            },
+            "button_link": {
+              "label": "Link"
+            },
+            "button_style_secondary": {
+              "label": "Outline style"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Button grid"
+      }
     }
   }
 }
