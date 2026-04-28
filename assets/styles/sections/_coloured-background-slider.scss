@@ -4,6 +4,8 @@
 @use '../utilities/mixins' as *;
 
 .coloured-background-slider {
+  position: relative;
+  overflow: hidden;
 
   // ── Section header ────────────────────────────────────────
 
@@ -39,13 +41,15 @@
 
   // ── Coloured strip — full page width ─────────────────────
 
-  &__carousel-wrapper {
-    width: 100%;
-    max-width: var(--page-width);
-    margin: 0 auto;
-    border-radius: var(--buttons-radius-outset, 1.6rem);
+  &__background {
+    width: 70%;
+    position: absolute;
+    right: -30px;
+    bottom: 0;
+    height: 70%;
     overflow: hidden;
-    padding: 0 0 3.6rem;
+    transform: translateY(4rem);
+    border-radius: var(--buttons-radius-outset);
   }
 
   // slider-component custom element wrapper
@@ -63,10 +67,9 @@
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
-    padding: 3.2rem 1.6rem 0; // top padding gives the active slide room to rise into
+    padding: 3.2rem 0;
     gap: 1.6rem;
     margin: 0;
-    margin-bottom: 0 !important; // override component-slider.css margin-bottom: 1rem
     -ms-overflow-style: none;
     scrollbar-width: none;
 
@@ -84,7 +87,7 @@
     transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
     &.is-active {
-      transform: translateY(-2.4rem); // rises into the 3.2rem top-padding space
+      transform: translateY(-3rem); // rises into the 3.2rem top-padding space
 
       .coloured-background-slider__slide-image-wrapper {
         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
@@ -122,8 +125,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.8rem;
-    margin-top: 2.4rem;
+    gap: 1rem;
+    margin-bottom: 3rem;
     padding: 0 1.6rem;
   }
 
@@ -166,6 +169,7 @@
     }
   }
 
+
   // Dot indicator row
   &__dots {
     display: flex;
@@ -177,7 +181,6 @@
   &__dot-btn {
     background: none;
     border: none;
-    padding: 0.7rem;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -200,10 +203,10 @@
   // The visual dot circle
   &__dot {
     display: block;
-    width: 1rem;
-    height: 1rem;
+    width: 2rem;
+    height: 2rem;
     border-radius: 50%;
-    border: 0.1rem solid rgba(255, 255, 255, 0.5);
+    border: 0.1rem solid rgba(255, 255, 255, 1);
     background-color: transparent;
     transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
   }
@@ -217,13 +220,8 @@
       margin-bottom: 4rem;
     }
 
-    &__carousel-wrapper {
-      padding: 0 0 4.8rem;
-    }
-
     &__track {
-      padding: 4rem 5rem 0;
-      gap: 2rem;
+      gap: 3rem;
     }
 
     &__slide {
@@ -245,7 +243,7 @@
 @include breakpoint-md {
   .coloured-background-slider {
     &__slide {
-      width: 34rem; // ~3+ visible on 1200px page-width
+      width: 40rem;
     }
   }
 }

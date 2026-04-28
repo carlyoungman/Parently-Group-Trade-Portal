@@ -44,8 +44,7 @@
   &__item {
     display: flex;
     flex-direction: column;
-    overflow: hidden;
-    border-radius: var(--buttons-radius-outset);
+
   }
 
   &__panel {
@@ -56,9 +55,9 @@
     height: 100%;
     text-decoration: none;
     overflow: hidden;
-    border-radius: var(--text-boxes-radius, 0.8rem);
     transition: transform 0.35s ease, box-shadow 0.35s ease;
     position: relative;
+    border-radius: var(--buttons-radius-outset);
 
     &:hover,
     &:focus-visible {

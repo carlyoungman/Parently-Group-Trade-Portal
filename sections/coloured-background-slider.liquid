@@ -29,9 +29,9 @@
   {%- comment -%} Full-bleed coloured strip with image carousel {%- endcomment -%}
   {%- if section.blocks.size > 0 -%}
     <div
-      class="coloured-background-slider__carousel-wrapper{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+      class="coloured-background-slider__background{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
       style="background-color: var(--cbs-bg);"
-    >
+    > </div>
       <slider-component
         class="coloured-background-slider__slider-component"
         data-autoplay="{{ section.settings.autoplay }}"
@@ -125,7 +125,7 @@
         {%- endif -%}
 
       </slider-component>
-    </div>
+
   {%- endif -%}
 
 </div>
