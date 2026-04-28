@@ -58,6 +58,16 @@
   {%- endstyle -%}
 {%- endif -%}
 
+{%- if section.settings.mobile_content_background != blank -%}
+  {%- style -%}
+    @media screen and (max-width: 749px) {
+      #Banner-{{ section.id }} .banner__box {
+        background-color: {{ section.settings.mobile_content_background }};
+      }
+    }
+  {%- endstyle -%}
+{%- endif -%}
+
 {%- liquid
   assign full_width = '100vw'
   assign widths = '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840'
@@ -483,6 +493,12 @@
       "id": "show_text_below",
       "default": true,
       "label": "t:sections.image-banner.settings.show_text_below.label"
+    },
+    {
+      "type": "color",
+      "id": "mobile_content_background",
+      "label": "Mobile content background color",
+      "info": "Applied behind the content area on mobile when the image and content are stacked."
     }
   ],
   "blocks": [
