@@ -37,12 +37,14 @@
     justify-content: center;
   }
 
-  // ── Full-bleed coloured strip ─────────────────────────────
+  // ── Coloured strip — 80% width, centred ──────────────────
 
   &__carousel-wrapper {
-    width: 100%;
-    padding: 3.2rem 0 3.6rem;
-    // background-color injected via inline style using --cbs-bg CSS custom property
+    width: 80%;
+    margin: 0 auto;
+    border-radius: var(--buttons-radius-outset, 1.6rem);
+    overflow: hidden;
+    padding: 0 0 3.6rem;
   }
 
   // slider-component custom element wrapper
@@ -54,12 +56,13 @@
 
   &__track {
     display: flex;
+    align-items: flex-end; // bottom-align all slides so the active slide rises at the top
     list-style: none;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
-    padding: 0 1.6rem;
+    padding: 3.2rem 1.6rem 0; // top padding gives the active slide room to rise into
     gap: 1.6rem;
     margin: 0;
     margin-bottom: 0 !important; // override component-slider.css margin-bottom: 1rem
@@ -77,6 +80,15 @@
     flex: 0 0 auto;
     width: 24rem; // mobile — shows ~1.3 cards + peek on 375px screen
     scroll-snap-align: center;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+    &.is-active {
+      transform: translateY(-2.4rem); // rises into the 3.2rem top-padding space
+
+      .coloured-background-slider__slide-image-wrapper {
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+      }
+    }
   }
 
   // Clips image to border-radius and applies aspect-ratio
@@ -85,6 +97,7 @@
     overflow: hidden;
     width: 100%;
     line-height: 0; // prevent phantom gap below inline image
+    transition: box-shadow 0.4s ease;
   }
 
   &__image {
@@ -203,16 +216,20 @@
     }
 
     &__carousel-wrapper {
-      padding: 4rem 0 4.8rem;
+      padding: 0 0 4.8rem;
     }
 
     &__track {
-      padding: 0 5rem; // aligns first card with page-width content
+      padding: 4rem 5rem 0;
       gap: 2rem;
     }
 
     &__slide {
-      width: 30rem; // ~2.2 visible on 750px screen
+      width: 30rem;
+
+      &.is-active {
+        transform: translateY(-3rem);
+      }
     }
 
     &__nav {
