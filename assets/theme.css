@@ -14519,25 +14519,15 @@ li[data-address] > h2 {
 .image-grid-with-content__image {
   display: block;
   width: 100%;
+  aspect-ratio: 16/9;
   object-fit: cover;
-  max-height: 20em;
-}
-.image-grid-with-content__image-item--primary .image-grid-with-content__image {
-  aspect-ratio: 16/9;
-}
-.image-grid-with-content__image-row .image-grid-with-content__image {
-  aspect-ratio: 16/9;
+  max-height: 35rem;
 }
 .image-grid-with-content__placeholder {
   display: block;
   width: 100%;
+  aspect-ratio: 16/9;
   background-color: rgba(var(--color-foreground), 0.04);
-}
-.image-grid-with-content__placeholder--primary {
-  aspect-ratio: 16/9;
-}
-.image-grid-with-content__placeholder--secondary {
-  aspect-ratio: 16/9;
 }
 .image-grid-with-content__placeholder svg {
   display: block;
