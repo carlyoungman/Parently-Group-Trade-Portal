@@ -73,6 +73,7 @@
       ],
       "name": "t:sections.hero-banner.presets.name",
       "settings": {
+        "video": "shopify://files/videos/parently_banner_v9.mp4",
         "image": "shopify://shop_images/579d8f985199230a4253ce169c4cc6e1167164ee.jpg",
         "image_overlay_opacity": 50,
         "image_height": "large",
@@ -190,7 +191,7 @@
           "settings": {
             "background_image": "shopify://shop_images/David_Luke_background.png",
             "logo_image": "shopify://shop_images/David_Luke_logo_white.png",
-            "link": "https://www.davidluke.com/"
+            "link": "shopify://pages/brands"
           }
         },
         "image_link_KiMaTC": {
@@ -198,7 +199,7 @@
           "settings": {
             "background_image": "shopify://shop_images/Grass_and_Air_background.png",
             "logo_image": "shopify://shop_images/Grass_and_Air_logo.png",
-            "link": "https://www.grassandair.com/"
+            "link": "shopify://pages/grass-air"
           }
         },
         "image_link_tQdfhG": {
@@ -206,7 +207,7 @@
           "settings": {
             "background_image": "shopify://shop_images/Juco_background.jpg",
             "logo_image": "shopify://shop_images/Juco_logo_white.png",
-            "link": ""
+            "link": "shopify://pages/juco"
           }
         },
         "image_link_DEa9xR": {
@@ -214,7 +215,7 @@
           "settings": {
             "background_image": "shopify://shop_images/Team_footwear_background.png",
             "logo_image": "shopify://shop_images/Team_footwear_logo.png",
-            "link": "https://termfootwear.com/"
+            "link": "shopify://pages/term-footwear"
           }
         },
         "image_link_zEQTCM": {
@@ -222,7 +223,7 @@
           "settings": {
             "background_image": "shopify://shop_images/Lelli_Kelly_background.png",
             "logo_image": "shopify://shop_images/Lelli_Kelly_logo_white.png",
-            "link": ""
+            "link": "shopify://pages/little-classmates"
           }
         },
         "image_link_twjnEk": {
@@ -230,7 +231,7 @@
           "settings": {
             "background_image": "shopify://shop_images/Little_Christmas_background.png",
             "logo_image": "shopify://shop_images/Little_Christmas_logo_white.png",
-            "link": ""
+            "link": "shopify://pages/little-classmates-1"
           }
         }
       },
