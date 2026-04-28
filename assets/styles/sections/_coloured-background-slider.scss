@@ -37,10 +37,11 @@
     justify-content: center;
   }
 
-  // ── Coloured strip — 80% width, centred ──────────────────
+  // ── Coloured strip — full page width ─────────────────────
 
   &__carousel-wrapper {
-    width: 80%;
+    width: 100%;
+    max-width: var(--page-width);
     margin: 0 auto;
     border-radius: var(--buttons-radius-outset, 1.6rem);
     overflow: hidden;
