@@ -1,55 +1,56 @@
-// Section: Image Grid with Content
-// Two-column layout: asymmetric image grid (left) + coloured content panel (right).
-// Images: one full-width primary image on top, two equal-width images below.
-// Content panel bg-color and text-color are injected per-section via inline <style>.
 @use '../utilities/mixins' as *;
 
 .image-grid-with-content {
 
   // ── Two-column outer layout ────────────────────────────────
-  // Mobile: single column (images stacked above content).
-  // Tablet+: side-by-side via breakpoint-sm override below.
-
   &__layout {
     display: grid;
     grid-template-columns: 1fr;
+    border-radius: var(--buttons-radius-outset);
+    overflow: hidden;
+    // Tablet (750px+)
+    @media (min-width: 750px) {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--grid-desktop-horizontal-spacing);
+      align-items: stretch;
+    }
   }
 
   // ── Image grid (left column) ───────────────────────────────
-
   &__images {
     display: grid;
-    gap: 0.4rem;
+    gap: var(--grid-desktop-horizontal-spacing);
   }
 
   &__image-row {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 0.4rem;
+    gap: var(--grid-desktop-horizontal-spacing);
   }
 
   &__image-item {
     overflow: hidden;
-    line-height: 0; // prevent phantom gap below inline image
+    line-height: 0;
   }
 
   &__image {
     display: block;
     width: 100%;
     object-fit: cover;
+    max-height: 20em;
   }
 
-  // Primary image (top): landscape crop
+  // Primary image (top)
   &__image-item--primary &__image {
     aspect-ratio: 4 / 3;
   }
 
-  // Row images (bottom pair): square crop
+  // Secondary images
   &__image-row &__image {
     aspect-ratio: 1 / 1;
   }
 
-  // Placeholder shown when no image is selected
+  // Placeholder
   &__placeholder {
     display: block;
     width: 100%;
@@ -71,18 +72,27 @@
   }
 
   // ── Content panel (right column) ───────────────────────────
-  // bg-color and text-color set via #shopify-section-{id} scoped inline style.
-
   &__content {
     padding: 3.2rem 2.4rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 2rem;
+
+    // Tablet (750px+)
+    @media (min-width: 750px) {
+      padding: 4rem 4.8rem;
+    }
+
+    // Desktop (990px+)
+    @media (min-width: 990px) {
+      padding: 4.8rem 6.4rem;
+    }
   }
 
   &__heading {
     margin: 0;
+    color: inherit;
   }
 
   &__text {
@@ -102,34 +112,5 @@
     display: flex;
     flex-wrap: wrap;
     gap: 1.2rem;
-  }
-}
-
-// ── Tablet (750px+) ───────────────────────────────────────────────────────────
-
-@include breakpoint-sm {
-  .image-grid-with-content {
-    &__layout {
-      grid-template-columns: 1fr 1fr;
-      align-items: stretch;
-    }
-
-    &__images {
-      // Images naturally fill the full column height at this breakpoint
-    }
-
-    &__content {
-      padding: 4rem 4.8rem;
-    }
-  }
-}
-
-// ── Desktop (990px+) ──────────────────────────────────────────────────────────
-
-@include breakpoint-md {
-  .image-grid-with-content {
-    &__content {
-      padding: 4.8rem 6.4rem;
-    }
   }
 }
