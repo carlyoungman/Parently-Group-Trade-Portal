@@ -13774,7 +13774,8 @@ li[data-address] > h2 {
     margin-bottom: 4rem;
   }
   .coloured-background-slider__track {
-    gap: 3rem;
+    column-gap: var(--grid-desktop-horizontal-spacing);
+    row-gap: var(--grid-desktop-vertical-spacing);
   }
   .coloured-background-slider__slide {
     width: 30rem;
