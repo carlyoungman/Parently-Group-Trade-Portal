@@ -221,7 +221,8 @@
     }
 
     &__track {
-      gap: 3rem;
+      column-gap: var(--grid-desktop-horizontal-spacing);
+      row-gap: var(--grid-desktop-vertical-spacing);
     }
 
     &__slide {

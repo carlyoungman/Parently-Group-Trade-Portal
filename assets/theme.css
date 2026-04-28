@@ -14439,6 +14439,10 @@ li[data-address] > h2 {
   object-fit: cover;
   aspect-ratio: var(--gallery-grid-image-ratio, auto);
 }
+.gallery-grid__image-wrapper.is-active {
+  box-shadow: 0 0 0 0.3rem rgb(var(--color-foreground));
+  border-radius: var(--buttons-radius-outset);
+}
 .gallery-grid__placeholder {
   display: block;
   width: 100%;
@@ -17745,5 +17749,3 @@ h2,
     display: none;
   }
 }
-
-/*# sourceMappingURL=theme.css.map */
