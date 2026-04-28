@@ -265,13 +265,20 @@
   --color-button-text: 30, 30, 30;
   --color-button-hover: 230, 230, 230;
   --color-button-text-hover: 30, 30, 30;
-  --color-button-border-hover: 255, 255, 255;
+  --color-button-border-hover: 230, 230, 230;
   --color-secondary-button: 255, 255, 255;
   --color-secondary-button-text: 255, 255, 255;
   --color-secondary-button-hover: 255, 255, 255;
   --color-secondary-button-text-hover: 30, 30, 30;
   --color-secondary-button-border: 255, 255, 255;
   --color-secondary-button-border-hover: 255, 255, 255;
+
+  .button:not([disabled]):hover,
+  .button:not([disabled]):active {
+    background-color: rgb(var(--color-button-hover));
+    color: rgb(var(--color-button-text-hover));
+    border-color: rgb(var(--color-button-border-hover));
+  }
 }
 
 // -----------------------------------------------------------------------------
