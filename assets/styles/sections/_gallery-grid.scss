@@ -97,6 +97,15 @@
     aspect-ratio: var(--gallery-grid-image-ratio, auto);
   }
 
+  // ── Active state ───────────────────────────────────────────────────────────
+
+  &__image-wrapper {
+    &.is-active {
+      box-shadow: 0 0 0 0.3rem rgb(var(--color-foreground));
+      border-radius: var(--buttons-radius-outset);
+    }
+  }
+
   // ── Placeholder (no image selected) ────────────────────────────────────────
 
   &__placeholder {

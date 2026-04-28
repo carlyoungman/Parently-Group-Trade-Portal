@@ -28,6 +28,7 @@
       <ul
         class="gallery-grid__grid gallery-grid__grid--{{ section.settings.layout }} gallery-grid__grid--mobile-{{ section.settings.columns_mobile }}"
         role="list"
+        data-gallery-grid
       >
         {%- for block in section.blocks -%}
           {%- if block.type == 'image' -%}
@@ -44,9 +45,10 @@
                   class="gallery-grid__image-wrapper gallery-grid__image-wrapper--linked"
                   href="{{ block.settings.link }}"
                   {% if block.settings.link_target %}target="_blank" rel="noopener noreferrer"{% endif %}
+                  data-gallery-item
                 >
               {%- else -%}
-                <div class="gallery-grid__image-wrapper">
+                <div class="gallery-grid__image-wrapper" data-gallery-item role="button" tabindex="0">
               {%- endif -%}
 
               {%- if block.settings.image != blank -%}
@@ -78,6 +80,35 @@
 
   </div>
 </div>
+
+<script>
+  (function () {
+    document.querySelectorAll('[data-gallery-grid]').forEach(function (grid) {
+      function activate(item) {
+        grid.querySelectorAll('[data-gallery-item]').forEach(function (el) {
+          el.classList.remove('is-active');
+          el.setAttribute('aria-pressed', 'false');
+        });
+        item.classList.add('is-active');
+        item.setAttribute('aria-pressed', 'true');
+      }
+
+      grid.addEventListener('click', function (e) {
+        var item = e.target.closest('[data-gallery-item]');
+        if (!item) return;
+        activate(item);
+      });
+
+      grid.addEventListener('keydown', function (e) {
+        if (e.key !== 'Enter' && e.key !== ' ') return;
+        var item = e.target.closest('[data-gallery-item]');
+        if (!item) return;
+        e.preventDefault();
+        activate(item);
+      });
+    });
+  })();
+</script>
 
 {% schema %}
 {
