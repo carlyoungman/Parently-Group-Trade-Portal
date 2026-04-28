@@ -20,23 +20,26 @@
     "hero_banner_eaFfDE": {
       "type": "hero-banner",
       "blocks": {
-        "heading_AT4fB3": {
-          "type": "heading",
+        "image_gQEEM7": {
+          "type": "image",
           "settings": {
-            "heading": "Grass & Air",
-            "heading_size": "supersize"
+            "image": "shopify://shop_images/Grass_Air_Logo.svg",
+            "image_width": "medium"
           }
         }
       },
       "block_order": [
-        "heading_AT4fB3"
+        "image_gQEEM7"
       ],
       "name": "t:sections.hero-banner.presets.name",
       "settings": {
+        "video_position": "center center",
         "image": "shopify://shop_images/62ea5a6998dd3f69b114a2f02709904443a356c9.jpg",
+        "image_position": "bottom center",
+        "image_2_position": "center center",
         "image_overlay_opacity": 0,
         "image_height": "medium",
-        "image_behavior": "none",
+        "image_behavior": "ambient",
         "white_text": true,
         "desktop_content_position": "middle-center",
         "desktop_content_alignment": "center",
@@ -129,7 +132,9 @@
         "button_link_2": "",
         "button_style_secondary_2": true,
         "background_color": "#0da5b4",
-        "image_ratio": "1-1",
+        "image_ratio": "auto",
+        "autoplay": false,
+        "autoplay_speed": 4,
         "padding_top": 0,
         "padding_bottom": 0
       }
