@@ -25,7 +25,8 @@
 // 2. Base – foundational rules split from Dawn's base.css
 // -----------------------------------------------------------------------------
 @use 'base/tokens';       // CSS custom property mappings for cards/media/content
-@use 'base/layout';       // page-width, section spacing, accessibility, typography
+@use 'base/layout';       // page-width, section spacing, accessibility utilities
+@use 'base/typography';   // headings, body text, captions, links, text utilities
 @use 'base/grid';         // grid system
 @use 'base/media';        // .media component
 @use 'base/buttons';      // button variants and states
