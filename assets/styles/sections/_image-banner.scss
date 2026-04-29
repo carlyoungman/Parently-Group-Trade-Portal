@@ -375,6 +375,17 @@
   z-index: 2;
 }
 
+// Inner content wrapper used by hero-banner — scoped to avoid conflicting with
+// the outer .banner__content positioning container above.
+.banner__box > .banner__content {
+  @include section-content;
+  align-items: center;
+  position: static;
+  z-index: auto;
+  padding: 0;
+  width: 100%;
+}
+
 @include breakpoint-sm {
   .banner__content {
     padding: 5rem;
