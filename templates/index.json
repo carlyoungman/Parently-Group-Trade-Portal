@@ -74,7 +74,10 @@
       "name": "t:sections.hero-banner.presets.name",
       "settings": {
         "video": "shopify://files/videos/parently_banner_v9.mp4",
+        "video_position": "center center",
         "image": "shopify://shop_images/579d8f985199230a4253ce169c4cc6e1167164ee.jpg",
+        "image_position": "center center",
+        "image_2_position": "center center",
         "image_overlay_opacity": 50,
         "image_height": "large",
         "image_behavior": "ambient",
@@ -172,7 +175,7 @@
         "text_U39hRc": {
           "type": "text",
           "settings": {
-            "text": "<p>Access exclusive wholesale pricing, streamlined ordering, and dedicated retailer support<br/><br/></p>"
+            "text": "<p>Access exclusive wholesale pricing, streamlined ordering, and dedicated retailer support.</p>"
           }
         },
         "buttons_CafG9b": {
@@ -507,7 +510,7 @@
           "settings": {
             "image": "shopify://shop_images/Rectangle_5299.png",
             "heading": "Ethical Trading Initiative Member",
-            "content": "<p>100% Ethical Trading Transparency. The Parently Group is a founding member of the Ethical Trading Initiative since 2019. Our ambition is achieve full transparency throughout our supply-chain. We are currently benchmarked at 75%<br/><br/></p>",
+            "content": "<p>100% Ethical Trading Transparency. The Parently Group is a founding member of the Ethical Trading Initiative since 2019. Our ambition is achieve full transparency throughout our supply-chain. We are currently benchmarked at 75%</p>",
             "content_image": "shopify://shop_images/ETI_Member_Standard_Logo_white_1.png",
             "button_label_1": "",
             "button_link_1": "",

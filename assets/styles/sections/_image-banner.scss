@@ -638,7 +638,7 @@
     > .banner__content {
       @include section-content;
 
-      align-items: center;
+
       position: static;
       z-index: auto;
       padding: 0;
@@ -662,7 +662,7 @@
     }
 
     .banner__heading + * {
-      margin-top: 1rem;
+      margin-top: 1.5rem;
     }
   }
 

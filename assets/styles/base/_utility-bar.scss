@@ -1,9 +1,7 @@
 // Converted from base.css: UI components - utility bar and announcement bar
 @use '../utilities/mixins' as *;
 /* utility-bar */
-.utility-bar {
-  height: 100%;
-}
+
 
 .utility-bar--bottom-border {
   border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.08);
