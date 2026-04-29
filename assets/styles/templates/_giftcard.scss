@@ -1,86 +1,5 @@
-// Converted from template-giftcard.css
+// Gift card template — specific to the gift card page layout
 @use '../utilities/mixins' as *;
-/* Base */
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-}
-
-a:empty,
-ul:empty,
-dl:empty,
-div:empty,
-section:empty,
-article:empty,
-p:empty,
-h1:empty,
-h2:empty,
-h3:empty,
-h4:empty,
-h5:empty,
-h6:empty {
-  display: none;
-}
-
-html {
-  font-size: 62.5%;
-  box-sizing: border-box;
-  height: 100%;
-}
-
-body {
-  background-color: rgb(var(--color-background));
-  color: rgb(var(--color-foreground));
-  font-size: var(--font-body-size);
-  letter-spacing: -0.5%;
-  line-height: var(--font-body-line-height);
-  //max-width: var(--page-width);
-  margin: 0 auto;
-  flex: 1 0 auto;
-  font-family: var(--font-body-family);
-  font-style: var(--font-body-style);
-  font-weight: var(--font-body-weight);
-
-}
-
-@include breakpoint-sm {
-  body {
-    line-height: var(--font-body-line-height);
-  }
-}
-
-::selection {
-  background-color: rgba(var(--color-foreground), 0.2);
-}
-
-h1,
-.h1,
-h2,
-.h2 {
-  font-family: var(--font-heading-family);
-  font-style: var(--font-heading-style);
-  font-weight: var(--font-heading-weight);
-  letter-spacing: -5%;
-  line-height: var(--font-heading-line-height);
-}
-
-h1,
-.h1 {
-  font-size: var(--font-h1);
-}
-
-h2,
-.h2 {
-  font-size: var(--font-h2);
-}
-
-
-
-
-
-
-
 
 .gift-card {
   padding: 3rem;
@@ -160,7 +79,7 @@ h2,
   line-height: var(--font-body-line-height);
   padding: 0.6rem 1.3rem;
   text-align: center;
-  background-color:#73AE70;
+  background-color: #73AE70;
   color: #000;
 }
 
@@ -196,66 +115,6 @@ h2,
 .gift-card__buttons > .button {
   display: block;
   margin: 1rem 0;
-}
-
-/*
-  Focus ring - default (with offset)
-*/
-
-/* Fallback - for browsers that don't support :focus-visible, a fallback is set for :focus */
-*:focus {
-  outline: 0;
-  box-shadow: none;
-}
-
-*:focus-visible {
-  outline: 0.2rem solid rgba(var(--color-foreground), 0.5);
-  outline-offset: 0.3rem;
-  box-shadow: 0 0 0 0.3rem rgb(var(--color-background)), 0 0 0.5rem 0.4rem rgba(var(--color-foreground), 0.3);
-}
-
-/* Fallback - for browsers that don't support :focus-visible, a fallback is set for :focus */
-.focused {
-  outline: 0.2rem solid rgba(var(--color-foreground), 0.5);
-  outline-offset: 0.3rem;
-  box-shadow: 0 0 0 0.3rem rgb(var(--color-background)), 0 0 0.5rem 0.4rem rgba(var(--color-foreground), 0.3);
-}
-
-.button:focus-visible {
-  box-shadow: 0 0 0 0.1rem rgb(var(--color-button)), 0 0 0 0.3rem rgb(var(--color-background)),
-    0 0 0.5rem 0.4rem rgba(var(--color-foreground), 0.3);
-}
-
-.button:focus {
-  box-shadow: 0 0 0 0.1rem rgb(var(--color-button)), 0 0 0 0.3rem rgb(var(--color-background)),
-    0 0 0.5rem 0.4rem rgba(var(--color-foreground), 0.3);
-}
-
-.button--secondary:focus-visible {
-  box-shadow: 0 0 0 0.1rem rgb(var(--color-secondary-button-label)), 0 0 0 0.3rem rgb(var(--color-background)),
-    0 0 0.5rem 0.4rem rgba(var(--color-foreground), 0.3);
-}
-
-.button--secondary:focus {
-  box-shadow: 0 0 0 0.1rem rgb(var(--color-secondary-button-label)), 0 0 0 0.3rem rgb(var(--color-background)),
-    0 0 0.5rem 0.4rem rgba(var(--color-foreground), 0.3);
-}
-
-.form__message {
-  align-items: center;
-  display: flex;
-  font-size: var(--font-small);
-  line-height: var(--font-body-line-height);
-  justify-content: center;
-  margin-bottom: 0.5rem;
-  opacity: 0.8;
-}
-
-.form__message .icon {
-  flex-shrink: 0;
-  height: 1.3rem;
-  margin-right: 0.5rem;
-  width: 1.3rem;
 }
 
 @include print-only {
