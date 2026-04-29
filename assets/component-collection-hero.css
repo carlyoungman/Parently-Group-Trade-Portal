@@ -29,7 +29,6 @@
   }
 
   .collection-hero__inner {
-    align-items: center;
     flex-direction: row;
     padding-bottom: 0;
   }
