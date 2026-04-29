@@ -20,15 +20,8 @@
      Left column: heading, text, buttons
      ----------------------------------------------------------------------- */
   &__content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 1.5rem;
+    @include section-content;
     max-width: 55rem;
-
-    > * + * {
-      margin-top: 0;
-    }
   }
 
   &__heading {

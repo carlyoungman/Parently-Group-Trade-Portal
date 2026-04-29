@@ -22,15 +22,8 @@ vertical-image-links-component {
      Left column: text content
      ----------------------------------------------------------------------- */
   &__content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    @include section-content;
     padding: 3rem 0;
-    gap: 1.5rem;
-
-    > * + * {
-      margin-top: 0;
-    }
   }
 
   &__heading {

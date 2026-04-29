@@ -224,6 +224,19 @@
   }
 }
 
+/// Shared content column layout for section __content elements.
+/// Stacks children vertically with consistent gap; resets sibling margins.
+@mixin section-content($gap: 1.5rem) {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: $gap;
+
+  > * + * {
+    margin-top: 0;
+  }
+}
+
 /// Flex row with gap
 @mixin flex-row($gap: $spacing-md, $align: center) {
   display: flex;
