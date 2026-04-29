@@ -149,6 +149,14 @@
   // Keep SliderComponent's prev/next buttons enabled at all times
   if (origCount > 1) sliderEl.enableSliderLooping = true;
 
+  // ── Scroll to a specific slide element ───────────────────
+  function scrollToSlide(slideEl) {
+    slider.scrollTo({
+      left: Math.max(0, slideEl.offsetLeft - slider.clientWidth / 2 + slideEl.offsetWidth / 2),
+      behavior: 'smooth'
+    });
+  }
+
   // ── Build prepend + append clone sets ────────────────────
   function setupLoop() {
     if (origCount < 2) return;
@@ -236,12 +244,55 @@
     resetTimer = setTimeout(loopReset, 150);
   });
 
+  // ── Click slide to centre it ──────────────────────────────
+  // Called after setupLoop so allSlides includes clones
+  function initSlideClicks() {
+    allSlides.forEach(function (slide) {
+      var downX = 0;
+      slide.addEventListener('pointerdown', function (e) { downX = e.clientX; });
+      slide.addEventListener('click', function (e) {
+        if (Math.abs(e.clientX - downX) < 8) scrollToSlide(slide);
+      });
+    });
+  }
+
+  // ── Mouse drag to scroll ──────────────────────────────────
+  var mouseDragging    = false;
+  var mouseDragStartX  = 0;
+  var mouseDragScrollL = 0;
+  var mouseDragDist    = 0;
+
+  slider.addEventListener('mousedown', function (e) {
+    if (e.button !== 0) return;
+    mouseDragging    = true;
+    mouseDragDist    = 0;
+    mouseDragStartX  = e.clientX;
+    mouseDragScrollL = slider.scrollLeft;
+    slider.style.scrollBehavior = 'auto';
+    slider.style.cursor = 'grabbing';
+  });
+
+  window.addEventListener('mousemove', function (e) {
+    if (!mouseDragging) return;
+    var dx = e.clientX - mouseDragStartX;
+    mouseDragDist = Math.abs(dx);
+    slider.scrollLeft = mouseDragScrollL - dx;
+  });
+
+  window.addEventListener('mouseup', function () {
+    if (!mouseDragging) return;
+    mouseDragging = false;
+    slider.style.scrollBehavior = '';
+    slider.style.cursor = '';
+    if (mouseDragDist > 4) scrollToSlide(allSlides[centredIdx()]);
+  });
+
   // ── Dot navigation — always target original slides ────────
   dots.forEach(function (dot, idx) {
     dot.addEventListener('click', function () {
       var s = origSlides[idx];
       if (!s) return;
-      slider.scrollTo({ left: Math.max(0, s.offsetLeft - slider.clientWidth / 2 + s.offsetWidth / 2), behavior: 'smooth' });
+      scrollToSlide(s);
     });
   });
 
@@ -253,8 +304,7 @@
   function nextSlide() {
     var ci   = centredIdx();
     var next = Math.min(ci + 1, allSlides.length - 1);
-    var s    = allSlides[next];
-    slider.scrollTo({ left: Math.max(0, s.offsetLeft - slider.clientWidth / 2 + s.offsetWidth / 2), behavior: 'smooth' });
+    scrollToSlide(allSlides[next]);
   }
 
   function startAutoplay() { if (autoplay) apTimer = setInterval(nextSlide, speed); }
@@ -268,6 +318,7 @@
 
   // ── Init ──────────────────────────────────────────────────
   setupLoop();
+  initSlideClicks();
   updateUI();
 })();
 </script>
