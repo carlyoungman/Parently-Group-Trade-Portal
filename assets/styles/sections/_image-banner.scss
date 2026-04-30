@@ -677,4 +677,226 @@
     max-width: 45rem;
     word-break: break-word;
   }
+<<<<<<< HEAD
 }
+=======
+
+  .banner__content--bottom-left {
+    align-items: flex-end;
+    justify-content: flex-start;
+  }
+
+  .banner__content--bottom-center {
+    align-items: flex-end;
+    justify-content: center;
+  }
+
+  .banner__content--bottom-right {
+    align-items: flex-end;
+    justify-content: flex-end;
+  }
+}
+
+.banner--mobile-bottom:not(.banner--stacked) .banner__content {
+  order: 2;
+}
+
+.banner:not(.banner--mobile-bottom) .field__input,
+.banner--mobile-bottom:not(.banner--stacked) .banner__box.color-scheme-1 {
+  background: transparent;
+}
+
+@include breakpoint-sm {
+  .banner--mobile-bottom:not(.banner--stacked) .banner__content {
+    order: revert;
+  }
+
+  .banner:not(.banner--mobile-bottom) .field__input,
+  .banner--mobile-bottom:not(.banner--stacked) .banner__box.color-scheme-1 {
+    background: revert;
+  }
+}
+
+.banner__box {
+  padding: 6rem 1.5rem;
+  position: relative;
+  height: fit-content;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  word-wrap: break-word;
+  z-index: 1;
+}
+
+.banner--mobile-bottom .banner__box {
+  padding: 4rem 3.5rem;
+}
+
+@include breakpoint-sm {
+  .banner__box {
+    padding: 4rem 3.5rem;
+  }
+
+  .banner--desktop-transparent .banner__box {
+    padding: 4rem 0;
+    background: transparent;
+    max-width: 89rem;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .banner--desktop-transparent .button--secondary {
+    --alpha-button-background: 0;
+  }
+
+  .banner--desktop-transparent .content-container:after {
+    display: none;
+  }
+}
+
+.banner--mobile-bottom::after,
+.banner--mobile-bottom .banner__media::after {
+  display: none;
+}
+
+@include breakpoint-sm {
+  .banner--mobile-bottom::after,
+  .banner--mobile-bottom .banner__media::after {
+    display: revert;
+  }
+}
+
+.banner::after,
+.banner__media::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  background: #000000;
+  opacity: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+}
+
+.banner__box > * + .banner__text {
+  margin-top: 1.5rem;
+}
+
+@include breakpoint-sm {
+  .banner__box > * + .banner__text {
+    margin-top: 2rem;
+  }
+}
+
+.banner__box > * + * {
+  margin-top: 1rem;
+}
+
+.banner__box > *:first-child {
+  margin-top: 0;
+}
+
+.banner--stacked .banner__box {
+  width: 100%;
+}
+
+@include breakpoint-sm {
+  .banner--stacked .banner__box {
+    width: auto;
+    max-width: 71rem;
+    min-width: 45rem;
+  }
+}
+
+@include breakpoint-sm {
+  .banner__box {
+    width: auto;
+    max-width: 71rem;
+    min-width: 45rem;
+  }
+}
+
+@include breakpoint-xl {
+  .banner__box {
+    max-width: 90rem;
+  }
+}
+
+.banner__heading {
+  @include section-heading;
+}
+
+.banner__text {
+  @include section-text;
+}
+
+.banner__box .banner__heading + * {
+  margin-top: 1rem;
+}
+
+.banner__buttons {
+  @include section-buttons;
+  display: inline-flex; // inline-flex centres the group within banner text-align context
+  gap: 1rem; // tighter gap suits the centred hero layout
+  max-width: 45rem;
+  word-break: break-word;
+}
+
+.banner--content-align-mobile-right .banner__buttons--multiple {
+  justify-content: flex-end;
+}
+
+.banner--content-align-mobile-center .banner__buttons--multiple > * {
+  flex-grow: 1;
+  min-width: 22rem;
+}
+
+@include breakpoint-sm {
+  .banner--content-align-mobile-right .banner__buttons--multiple {
+    justify-content: revert;
+  }
+
+  .banner--content-align-mobile-center .banner__buttons--multiple > * {
+    flex-grow: revert;
+    min-width: revert;
+  }
+}
+
+@include breakpoint-sm {
+  .banner--content-align-center .banner__buttons--multiple > * {
+    flex-grow: 1;
+    min-width: 22rem;
+  }
+
+  .banner--content-align-right .banner__buttons--multiple {
+    justify-content: flex-end;
+  }
+}
+
+.banner__box > * + .banner__buttons {
+  margin-top: 2rem;
+}
+
+.banner:not(.slideshow) .rte a,
+.banner:not(.slideshow) .inline-richtext a:hover,
+.banner:not(.slideshow) .rte a:hover {
+  color: currentColor;
+}
+
+@include breakpoint-sm {
+  .banner:not(.slideshow) .rte a,
+  .banner:not(.slideshow) .inline-richtext a:hover,
+  .banner:not(.slideshow) .rte a:hover {
+    color: revert;
+  }
+}
+
+@include breakpoint-sm {
+  .banner--desktop-transparent .rte a,
+  .banner--desktop-transparent .inline-richtext a:hover,
+  .banner--desktop-transparent .rte a:hover {
+    color: currentColor;
+  }
+}
+>>>>>>> 1636d4f2290e5ac79ec6d0d7dfbdc6133f569f1f

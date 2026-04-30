@@ -237,6 +237,40 @@
   }
 }
 
+/// Shared heading style for __heading elements within section content columns.
+@mixin section-heading {
+  margin: 0;
+  text-wrap: balance;
+}
+
+/// Shared subheading style for __subheading elements within section content columns.
+@mixin section-subheading {
+  margin: 0;
+  opacity: 0.85;
+}
+
+/// Shared body text style for __text elements within section content columns.
+@mixin section-text {
+  margin: 0;
+  text-wrap: balance;
+
+  p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+/// Shared button group layout for __buttons elements within section content columns.
+@mixin section-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
 /// Flex row with gap
 @mixin flex-row($gap: $spacing-md, $align: center) {
   display: flex;

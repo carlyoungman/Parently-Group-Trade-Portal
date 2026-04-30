@@ -70,28 +70,22 @@
   }
 
   &__heading {
-    margin: 0;
-    color: inherit;
+    @include section-heading;
   }
 
   &__text {
-    margin: 0;
-
-    p {
-      margin-top: 0;
-      margin-bottom: 1rem;
-
-      &:last-child {
-        margin-bottom: 0;
-      }
-    }
+    @include section-text;
   }
 
   &__buttons {
+<<<<<<< HEAD
     display: flex;
     flex-wrap: wrap;
     gap: 1.2rem;
     margin-top: 1.5rem;
+=======
+    @include section-buttons;
+>>>>>>> 1636d4f2290e5ac79ec6d0d7dfbdc6133f569f1f
   }
 
   &__content--white-text {
