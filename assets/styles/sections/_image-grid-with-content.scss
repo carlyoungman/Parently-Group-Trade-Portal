@@ -78,14 +78,7 @@
   }
 
   &__buttons {
-<<<<<<< HEAD
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.2rem;
-    margin-top: 1.5rem;
-=======
     @include section-buttons;
->>>>>>> 1636d4f2290e5ac79ec6d0d7dfbdc6133f569f1f
   }
 
   &__content--white-text {
