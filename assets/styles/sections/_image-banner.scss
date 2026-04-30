@@ -564,7 +564,11 @@
 }
 
 .banner__heading {
-  margin-bottom: 0;
+  @include section-heading;
+}
+
+.banner__text {
+  @include section-text;
 }
 
 .banner__box .banner__heading + * {
@@ -572,9 +576,9 @@
 }
 
 .banner__buttons {
-  display: inline-flex;
-  flex-wrap: wrap;
-  gap: 1rem;
+  @include section-buttons;
+  display: inline-flex; // inline-flex centres the group within banner text-align context
+  gap: 1rem; // tighter gap suits the centred hero layout
   max-width: 45rem;
   word-break: break-word;
 }

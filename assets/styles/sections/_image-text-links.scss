@@ -95,36 +95,21 @@
   }
 
   &__subheading {
-    margin: 0;
-    opacity: 0.85;
+    @include section-subheading;
   }
 
   &__heading {
-    margin: 0 !important;
+    @include section-heading;
     color: #ffffff;
-    text-wrap: balance;
   }
 
   &__text {
-    margin: 0;
+    @include section-text;
     color: #ffffff;
-    text-wrap: balance;
-
-    p {
-      margin-top: 0;
-      margin-bottom: 1rem;
-
-      &:last-child {
-        margin-bottom: 0;
-      }
-    }
   }
 
   &__buttons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-    margin-top: 1.5rem;
+    @include section-buttons;
   }
   .button--secondary{
     border-color: #fff;
