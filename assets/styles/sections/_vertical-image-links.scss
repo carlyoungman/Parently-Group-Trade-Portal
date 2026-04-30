@@ -27,26 +27,15 @@ vertical-image-links-component {
   }
 
   &__heading {
-    margin: 0;
+    @include section-heading;
   }
 
   &__text {
-    margin: 0;
-
-    p {
-      margin-top: 0;
-      margin-bottom: 1rem;
-
-      &:last-child {
-        margin-bottom: 0;
-      }
-    }
+    @include section-text;
   }
 
   &__buttons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem;
+    @include section-buttons;
   }
 
   /* -----------------------------------------------------------------------
