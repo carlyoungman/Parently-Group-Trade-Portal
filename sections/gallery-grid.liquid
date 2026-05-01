@@ -1,23 +1,5 @@
 {%- render 'section-padding-style' -%}
 
-{%- liquid
-  assign mf = page.metafields.brand
-  assign use_metafields = false
-  if mf != blank
-    assign use_metafields = true
-  endif
-  if use_metafields and mf.gallery_heading.value != blank
-    assign gallery_heading = mf.gallery_heading.value
-  else
-    assign gallery_heading = section.settings.heading
-  endif
-  if use_metafields and mf.gallery_content.value != blank
-    assign gallery_content = mf.gallery_content.value
-  else
-    assign gallery_content = section.settings.content
-  endif
--%}
-
 <div
   class="gallery-grid color-scheme-1 section-{{ section.id }}-padding"
   style="--gallery-grid-image-ratio: {{ section.settings.image_ratio | replace: '-', ' / ' }};"
@@ -25,9 +7,9 @@
   <div class="page-width">
 
     {%- render 'section-heading-group',
-      heading: gallery_heading,
+      heading: section.settings.heading,
       heading_size: section.settings.heading_size,
-      content: gallery_content,
+      content: section.settings.content,
       button_label_1: section.settings.button_label_1,
       button_link_1: section.settings.button_link_1,
       button_style_secondary_1: section.settings.button_style_secondary_1,
@@ -40,52 +22,7 @@
       button_container_class: 'gallery-grid__section-buttons'
     -%}
 
-    {%- if use_metafields -%}
-      {%- liquid
-        assign gallery_keys = 'gallery_image_1,gallery_image_2,gallery_image_3,gallery_image_4' | split: ','
-        assign mf_gallery_count = 0
-        for key in gallery_keys
-          if mf[key].value != blank
-            assign mf_gallery_count = mf_gallery_count | plus: 1
-          endif
-        endfor
-      -%}
-      {%- if mf_gallery_count > 0 -%}
-        {%- capture image_sizes -%}(min-width: 990px) calc(60vw - 5rem), (min-width: 750px) calc(50vw - 3rem), calc(100vw - 3rem){%- endcapture -%}
-        <ul
-          class="gallery-grid__grid gallery-grid__grid--{{ section.settings.layout }} gallery-grid__grid--mobile-{{ section.settings.columns_mobile }}"
-          role="list"
-          data-gallery-grid
-        >
-          {%- assign img_order = 0 -%}
-          {%- for key in gallery_keys -%}
-            {%- assign gal_img = mf[key].value -%}
-            {%- if gal_img != blank -%}
-              {%- assign img_order = img_order | plus: 1 -%}
-              <li
-                class="gallery-grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-                {% if settings.animations_reveal_on_scroll %}
-                  data-cascade
-                  style="--animation-order: {{ img_order }};"
-                {% endif %}
-              >
-                <div class="gallery-grid__image-wrapper" data-gallery-item role="button" tabindex="0">
-                  {{
-                    gal_img
-                    | image_url: width: 1500
-                    | image_tag:
-                      class: 'gallery-grid__image',
-                      loading: 'lazy',
-                      widths: '400, 600, 800, 1000, 1200, 1500',
-                      sizes: image_sizes
-                  }}
-                </div>
-              </li>
-            {%- endif -%}
-          {%- endfor -%}
-        </ul>
-      {%- endif -%}
-    {%- elsif section.blocks.size > 0 -%}
+    {%- if section.blocks.size > 0 -%}
       {%- capture image_sizes -%}(min-width: 990px) calc(60vw - 5rem), (min-width: 750px) calc(50vw - 3rem), calc(100vw - 3rem){%- endcapture -%}
 
       <ul

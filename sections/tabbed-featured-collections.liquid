@@ -4,11 +4,6 @@
   assign columns_mobile_int = section.settings.columns_mobile | plus: 0
   assign columns_desktop_int = section.settings.columns_desktop | plus: 0
   assign skip_card_product_styles = false
-  assign mf = page.metafields.brand
-  assign use_metafields = false
-  if mf != blank
-    assign use_metafields = true
-  endif
 -%}
 
 
@@ -18,7 +13,7 @@
     id="TabbedCollections-{{ section.id }}"
   >
     <div class="tabbed-collections__inner page-width">
-    {%- if section.blocks.size == 0 and use_metafields == false -%}
+    {%- if section.blocks.size == 0 -%}
       {%- render 'empty-state-message',
         message: 'Add tab blocks in the theme editor to get started.',
         class: 'tabbed-collections__empty'
@@ -30,179 +25,89 @@
         role="tablist"
         aria-label="Product collection tabs"
       >
-        {%- if use_metafields -%}
-          {%- for i in (1..2) -%}
-            {%- assign title_key = 'tab_' | append: i | append: '_title' -%}
-            {%- assign tab_title = mf[title_key].value | default: 'Tab' -%}
-            <button
-              type="button"
-              class="tabbed-collections__tab{% if forloop.first %} tabbed-collections__tab--active{% endif %}"
-              id="Tab-mf-{{ i }}-{{ section.id }}"
-              role="tab"
-              aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
-              aria-controls="Panel-mf-{{ i }}-{{ section.id }}"
-              tabindex="{% if forloop.first %}0{% else %}-1{% endif %}"
-            >
-              {{ tab_title | escape }}
-            </button>
-          {%- endfor -%}
-        {%- else -%}
-          {%- for block in section.blocks -%}
-            <button
-              type="button"
-              class="tabbed-collections__tab{% if forloop.first %} tabbed-collections__tab--active{% endif %}"
-              id="Tab-{{ block.id }}-{{ section.id }}"
-              role="tab"
-              aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
-              aria-controls="Panel-{{ block.id }}-{{ section.id }}"
-              tabindex="{% if forloop.first %}0{% else %}-1{% endif %}"
-              {{ block.shopify_attributes }}
-            >
-              {{ block.settings.tab_title | default: 'Tab' | escape }}
-            </button>
-          {%- endfor -%}
-        {%- endif -%}
+        {%- for block in section.blocks -%}
+          <button
+            type="button"
+            class="tabbed-collections__tab{% if forloop.first %} tabbed-collections__tab--active{% endif %}"
+            id="Tab-{{ block.id }}-{{ section.id }}"
+            role="tab"
+            aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+            aria-controls="Panel-{{ block.id }}-{{ section.id }}"
+            tabindex="{% if forloop.first %}0{% else %}-1{% endif %}"
+            {{ block.shopify_attributes }}
+          >
+            {{ block.settings.tab_title | default: 'Tab' | escape }}
+          </button>
+        {%- endfor -%}
       </div>
 
-      {%- if use_metafields -%}
-        {%- for i in (1..2) -%}
-          {%- liquid
-            assign col_key = 'tab_' | append: i | append: '_collection'
-            assign tab_collection = mf[col_key].value
-          -%}
-          <div
-            id="Panel-mf-{{ i }}-{{ section.id }}"
-            class="tabbed-collections__panel"
-            role="tabpanel"
-            aria-labelledby="Tab-mf-{{ i }}-{{ section.id }}"
-            tabindex="0"
-            {% unless forloop.first %}hidden{% endunless %}
-          >
-            {%- if tab_collection != blank and tab_collection.products.size > 0 -%}
-              <ul
-                class="grid product-grid contains-card contains-card--product{% if settings.card_style == 'standard' %} contains-card--standard{% endif %} grid--{{ columns_desktop_int }}-col-desktop grid--{{ columns_mobile_int }}-col-tablet-down"
-                role="list"
-              >
-                {%- for product in tab_collection.products limit: section.settings.products_to_show -%}
-                  <li class="grid__item">
-                    {%- render 'card-product',
-                      card_product: product,
-                      media_aspect_ratio: section.settings.image_ratio,
-                      image_shape: section.settings.image_shape,
-                      lazy_load: true,
-                      show_secondary_image: section.settings.show_secondary_image,
-                      show_vendor: section.settings.show_vendor,
-                      show_rating: section.settings.show_rating,
-                      skip_styles: skip_card_product_styles,
-                      section_id: section.id,
-                      quick_add: 'none'
-                    -%}
-                  </li>
-                  {%- assign skip_card_product_styles = true -%}
-                {%- endfor -%}
-              </ul>
+      {%- for block in section.blocks -%}
+        <div
+          id="Panel-{{ block.id }}-{{ section.id }}"
+          class="tabbed-collections__panel"
+          role="tabpanel"
+          aria-labelledby="Tab-{{ block.id }}-{{ section.id }}"
+          tabindex="0"
+          {% unless forloop.first %}hidden{% endunless %}
+        >
+          {%- assign tab_collection = block.settings.collection -%}
 
-            {%- elsif tab_collection != blank and tab_collection.products.size == 0 -%}
-              {%- render 'empty-state-message',
-                message: 'This collection has no products yet.',
-                class: 'tabbed-collections__panel-empty'
-              -%}
+          {%- if tab_collection != blank and tab_collection.products.size > 0 -%}
+            <ul
+              class="grid product-grid contains-card contains-card--product{% if settings.card_style == 'standard' %} contains-card--standard{% endif %} grid--{{ columns_desktop_int }}-col-desktop grid--{{ columns_mobile_int }}-col-tablet-down"
+              role="list"
+            >
+              {%- for product in tab_collection.products limit: section.settings.products_to_show -%}
+                <li class="grid__item">
+                  {%- render 'card-product',
+                    card_product: product,
+                    media_aspect_ratio: section.settings.image_ratio,
+                    image_shape: section.settings.image_shape,
+                    lazy_load: true,
+                    show_secondary_image: section.settings.show_secondary_image,
+                    show_vendor: section.settings.show_vendor,
+                    show_rating: section.settings.show_rating,
+                    skip_styles: skip_card_product_styles,
+                    section_id: section.id,
+                    quick_add: 'none'
+                  -%}
+                </li>
+                {%- assign skip_card_product_styles = true -%}
+              {%- endfor -%}
+            </ul>
 
-            {%- else -%}
-              <ul
-                class="grid product-grid contains-card contains-card--product grid--{{ columns_desktop_int }}-col-desktop grid--{{ columns_mobile_int }}-col-tablet-down"
-                role="list"
-              >
-                {%- for j in (1..columns_desktop_int) -%}
-                  <li class="grid__item">
-                    {%- assign placeholder_image = 'product-apparel-' | append: forloop.index -%}
-                    {%- render 'card-product',
-                      media_aspect_ratio: section.settings.image_ratio,
-                      image_shape: section.settings.image_shape,
-                      lazy_load: false,
-                      placeholder_image: placeholder_image,
-                      skip_styles: skip_card_product_styles
-                    -%}
-                  </li>
-                  {%- assign skip_card_product_styles = true -%}
-                {%- endfor -%}
-              </ul>
-            {%- endif -%}
+          {%- elsif tab_collection != blank and tab_collection.products.size == 0 -%}
+            {%- render 'empty-state-message',
+              message: 'This collection has no products yet.',
+              class: 'tabbed-collections__panel-empty'
+            -%}
 
-            {%- if section.settings.image_shape == 'arch' -%}
-              {{ 'mask-arch.svg' | inline_asset_content }}
-            {%- endif -%}
-          </div>
-        {%- endfor -%}
-      {%- else -%}
-        {%- for block in section.blocks -%}
-          <div
-            id="Panel-{{ block.id }}-{{ section.id }}"
-            class="tabbed-collections__panel"
-            role="tabpanel"
-            aria-labelledby="Tab-{{ block.id }}-{{ section.id }}"
-            tabindex="0"
-            {% unless forloop.first %}hidden{% endunless %}
-          >
-            {%- assign tab_collection = block.settings.collection -%}
+          {%- else -%}
+            <ul
+              class="grid product-grid contains-card contains-card--product grid--{{ columns_desktop_int }}-col-desktop grid--{{ columns_mobile_int }}-col-tablet-down"
+              role="list"
+            >
+              {%- for i in (1..columns_desktop_int) -%}
+                <li class="grid__item">
+                  {%- assign placeholder_image = 'product-apparel-' | append: forloop.index -%}
+                  {%- render 'card-product',
+                    media_aspect_ratio: section.settings.image_ratio,
+                    image_shape: section.settings.image_shape,
+                    lazy_load: false,
+                    placeholder_image: placeholder_image,
+                    skip_styles: skip_card_product_styles
+                  -%}
+                </li>
+                {%- assign skip_card_product_styles = true -%}
+              {%- endfor -%}
+            </ul>
+          {%- endif -%}
 
-            {%- if tab_collection != blank and tab_collection.products.size > 0 -%}
-              <ul
-                class="grid product-grid contains-card contains-card--product{% if settings.card_style == 'standard' %} contains-card--standard{% endif %} grid--{{ columns_desktop_int }}-col-desktop grid--{{ columns_mobile_int }}-col-tablet-down"
-                role="list"
-              >
-                {%- for product in tab_collection.products limit: section.settings.products_to_show -%}
-                  <li class="grid__item">
-                    {%- render 'card-product',
-                      card_product: product,
-                      media_aspect_ratio: section.settings.image_ratio,
-                      image_shape: section.settings.image_shape,
-                      lazy_load: true,
-                      show_secondary_image: section.settings.show_secondary_image,
-                      show_vendor: section.settings.show_vendor,
-                      show_rating: section.settings.show_rating,
-                      skip_styles: skip_card_product_styles,
-                      section_id: section.id,
-                      quick_add: 'none'
-                    -%}
-                  </li>
-                  {%- assign skip_card_product_styles = true -%}
-                {%- endfor -%}
-              </ul>
-
-            {%- elsif tab_collection != blank and tab_collection.products.size == 0 -%}
-              {%- render 'empty-state-message',
-                message: 'This collection has no products yet.',
-                class: 'tabbed-collections__panel-empty'
-              -%}
-
-            {%- else -%}
-              <ul
-                class="grid product-grid contains-card contains-card--product grid--{{ columns_desktop_int }}-col-desktop grid--{{ columns_mobile_int }}-col-tablet-down"
-                role="list"
-              >
-                {%- for i in (1..columns_desktop_int) -%}
-                  <li class="grid__item">
-                    {%- assign placeholder_image = 'product-apparel-' | append: forloop.index -%}
-                    {%- render 'card-product',
-                      media_aspect_ratio: section.settings.image_ratio,
-                      image_shape: section.settings.image_shape,
-                      lazy_load: false,
-                      placeholder_image: placeholder_image,
-                      skip_styles: skip_card_product_styles
-                    -%}
-                  </li>
-                  {%- assign skip_card_product_styles = true -%}
-                {%- endfor -%}
-              </ul>
-            {%- endif -%}
-
-            {%- if section.settings.image_shape == 'arch' -%}
-              {{ 'mask-arch.svg' | inline_asset_content }}
-            {%- endif -%}
-          </div>
-        {%- endfor -%}
-      {%- endif -%}
+          {%- if section.settings.image_shape == 'arch' -%}
+            {{ 'mask-arch.svg' | inline_asset_content }}
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
 
     {%- endif -%}
     </div>

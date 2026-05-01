@@ -1,97 +1,9 @@
 {%- render 'section-padding-style' -%}
 
-{%- liquid
-  assign mf = page.metafields.brand
-  assign use_metafields = false
-  if mf != blank
-    assign use_metafields = true
-    assign mf_image_1        = mf.grid_image_1.value
-    assign mf_image_2        = mf.grid_image_2.value
-    assign mf_image_3        = mf.grid_image_3.value
-    assign mf_heading        = mf.grid_heading.value
-    assign mf_content        = mf.grid_content.value
-    assign mf_btn1_label     = mf.grid_button_label_1.value
-    assign mf_btn1_link      = mf.grid_button_link_1.value
-    assign mf_btn2_label     = mf.grid_button_label_2.value
-    assign mf_btn2_link      = mf.grid_button_link_2.value
-    assign mf_bg_color       = mf.grid_content_bg_color.value
-    assign mf_text_color     = mf.grid_text_color.value
-  endif
-  if use_metafields
-    if mf_image_1 != blank
-      assign grid_image_1 = mf_image_1
-    else
-      assign grid_image_1 = section.settings.image_1
-    endif
-    if mf_image_2 != blank
-      assign grid_image_2 = mf_image_2
-    else
-      assign grid_image_2 = section.settings.image_2
-    endif
-    if mf_image_3 != blank
-      assign grid_image_3 = mf_image_3
-    else
-      assign grid_image_3 = section.settings.image_3
-    endif
-    if mf_heading != blank
-      assign grid_heading = mf_heading
-    else
-      assign grid_heading = section.settings.heading
-    endif
-    if mf_content != blank
-      assign grid_content = mf_content
-    else
-      assign grid_content = section.settings.content
-    endif
-    if mf_btn1_label != blank
-      assign grid_btn1_label = mf_btn1_label
-    else
-      assign grid_btn1_label = section.settings.button_label_1
-    endif
-    if mf_btn1_link != blank
-      assign grid_btn1_link = mf_btn1_link
-    else
-      assign grid_btn1_link = section.settings.button_link_1
-    endif
-    if mf_btn2_label != blank
-      assign grid_btn2_label = mf_btn2_label
-    else
-      assign grid_btn2_label = section.settings.button_label_2
-    endif
-    if mf_btn2_link != blank
-      assign grid_btn2_link = mf_btn2_link
-    else
-      assign grid_btn2_link = section.settings.button_link_2
-    endif
-    if mf_bg_color != blank
-      assign grid_bg_color = mf_bg_color
-    else
-      assign grid_bg_color = section.settings.content_bg_color
-    endif
-    if mf_text_color != blank
-      assign grid_text_color = mf_text_color
-    else
-      assign grid_text_color = section.settings.text_color
-    endif
-  else
-    assign grid_image_1   = section.settings.image_1
-    assign grid_image_2   = section.settings.image_2
-    assign grid_image_3   = section.settings.image_3
-    assign grid_heading   = section.settings.heading
-    assign grid_content   = section.settings.content
-    assign grid_btn1_label = section.settings.button_label_1
-    assign grid_btn1_link  = section.settings.button_link_1
-    assign grid_btn2_label = section.settings.button_label_2
-    assign grid_btn2_link  = section.settings.button_link_2
-    assign grid_bg_color  = section.settings.content_bg_color
-    assign grid_text_color = section.settings.text_color
-  endif
--%}
-
 {%- style -%}
   #shopify-section-{{ section.id }} .image-grid-with-content__content {
-    background-color: {{ grid_bg_color }};
-    color: {{ grid_text_color }};
+    background-color: {{ section.settings.content_bg_color }};
+    color: {{ section.settings.text_color }};
   }
 {%- endstyle -%}
 
@@ -109,9 +21,9 @@
         -%}
 
         <div class="image-grid-with-content__image-item">
-          {%- if grid_image_1 != blank -%}
+          {%- if section.settings.image_1 != blank -%}
             {{
-              grid_image_1
+              section.settings.image_1
               | image_url: width: 1200
               | image_tag:
                 widths: '400, 600, 900, 1200',
@@ -130,9 +42,9 @@
         <div class="image-grid-with-content__image-row">
 
           <div class="image-grid-with-content__image-item">
-            {%- if grid_image_2 != blank -%}
+            {%- if section.settings.image_2 != blank -%}
               {{
-                grid_image_2
+                section.settings.image_2
                 | image_url: width: 600
                 | image_tag:
                   widths: '200, 300, 400, 600',
@@ -148,9 +60,9 @@
           </div>
 
           <div class="image-grid-with-content__image-item">
-            {%- if grid_image_3 != blank -%}
+            {%- if section.settings.image_3 != blank -%}
               {{
-                grid_image_3
+                section.settings.image_3
                 | image_url: width: 600
                 | image_tag:
                   widths: '200, 300, 400, 600',
@@ -168,31 +80,31 @@
         </div>
       </div>
 
-      {%- assign text_color_lower = grid_text_color | downcase -%}
+      {%- assign text_color_lower = section.settings.text_color | downcase -%}
       {%- assign is_white_text = false -%}
       {%- if text_color_lower == '#ffffff' or text_color_lower == '#fff' or text_color_lower == 'white' -%}
         {%- assign is_white_text = true -%}
       {%- endif -%}
       <div class="image-grid-with-content__content{% if is_white_text %} image-grid-with-content__content--white-text{% endif %}">
 
-        {%- unless grid_heading == blank -%}
+        {%- unless section.settings.heading == blank -%}
           <h2 class="image-grid-with-content__heading inline-richtext {{ section.settings.heading_size }}">
-            {{ grid_heading }}
+            {{ section.settings.heading }}
           </h2>
         {%- endunless -%}
 
-        {%- unless grid_content == blank -%}
+        {%- unless section.settings.content == blank -%}
           <div class="image-grid-with-content__text rte">
-            {{ grid_content }}
+            {{ section.settings.content }}
           </div>
         {%- endunless -%}
 
         {%- render 'button-pair',
-          button_label_1: grid_btn1_label,
-          button_link_1: grid_btn1_link,
+          button_label_1: section.settings.button_label_1,
+          button_link_1: section.settings.button_link_1,
           button_style_secondary_1: section.settings.button_style_secondary_1,
-          button_label_2: grid_btn2_label,
-          button_link_2: grid_btn2_link,
+          button_label_2: section.settings.button_label_2,
+          button_link_2: section.settings.button_link_2,
           button_style_secondary_2: section.settings.button_style_secondary_2,
           container_class: 'image-grid-with-content__buttons'
         -%}

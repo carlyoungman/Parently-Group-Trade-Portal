@@ -16,23 +16,9 @@
           "settings": {
             "image_width": "medium"
           }
-        },
-        "heading_block": {
-          "type": "heading",
-          "settings": {
-            "heading": "",
-            "heading_size": "h2"
-          }
-        },
-        "text_block": {
-          "type": "text",
-          "settings": {
-            "text": "",
-            "text_style": "body"
-          }
         }
       },
-      "block_order": ["logo_block", "heading_block", "text_block"],
+      "block_order": ["logo_block"],
       "settings": {
         "video_position": "center center",
         "image_position": "bottom center",
