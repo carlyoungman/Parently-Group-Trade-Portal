@@ -1,8 +1,22 @@
 {%- render 'section-padding-style' -%}
 
+{%- liquid
+  assign mf = page.metafields.brand
+  assign use_metafields = false
+  if mf != blank
+    assign use_metafields = true
+  endif
+  if use_metafields and mf.slider_bg_color.value != blank
+    assign cbs_bg = mf.slider_bg_color.value
+  else
+    assign cbs_bg = section.settings.background_color
+  endif
+  assign slider_keys = 'slider_image_1,slider_image_2,slider_image_3,slider_image_4,slider_image_5' | split: ','
+-%}
+
 {%- style -%}
   #shopify-section-{{ section.id }} {
-    --cbs-bg: {{ section.settings.background_color }};
+    --cbs-bg: {{ cbs_bg }};
     --cbs-image-ratio: {{ section.settings.image_ratio | replace: '-', ' / ' }};
   }
 {%- endstyle -%}
@@ -27,7 +41,20 @@
   -%}
 
   {%- comment -%} Full-bleed coloured strip with image carousel {%- endcomment -%}
-  {%- if section.blocks.size > 0 -%}
+  {%- liquid
+    if use_metafields
+      assign rendered_slide_count = 0
+      for key in slider_keys
+        if mf[key].value != blank
+          assign rendered_slide_count = rendered_slide_count | plus: 1
+        endif
+      endfor
+    else
+      assign rendered_slide_count = section.blocks.size
+    endif
+  -%}
+
+  {%- if rendered_slide_count > 0 -%}
     <div
       class="coloured-background-slider__background{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
       style="background-color: var(--cbs-bg);"
@@ -45,43 +72,74 @@
           aria-live="polite"
           aria-atomic="true"
         >
-          {%- for block in section.blocks -%}
-            <li
-              id="Slide-{{ section.id }}-{{ forloop.index }}"
-              class="coloured-background-slider__slide slider__slide"
-              {{ block.shopify_attributes }}
-              role="group"
-              aria-roledescription="slide"
-              aria-label="{{ forloop.index }} {{ 'general.slider.of' | t }} {{ forloop.length }}"
-              tabindex="-1"
-            >
-              <div class="coloured-background-slider__slide-image-wrapper">
-                {%- if block.settings.image != blank -%}
-                  {%- liquid
-                    assign fetch_priority = 'auto'
-                    if section.index == 1 and forloop.first
-                      assign fetch_priority = 'high'
-                    endif
-                  -%}
-                  {{
-                    block.settings.image
-                    | image_url: width: 900
-                    | image_tag:
-                      widths: '300, 450, 600, 900',
-                      sizes: '(min-width: 990px) 34rem, (min-width: 750px) 30rem, 24rem',
-                      loading: 'lazy',
-                      fetchpriority: fetch_priority,
-                      class: 'coloured-background-slider__image'
-                  }}
-                {%- else -%}
-                  {{ 'detailed-apparel-1' | placeholder_svg_tag: 'placeholder-svg coloured-background-slider__placeholder' }}
-                {%- endif -%}
-              </div>
-            </li>
-          {%- endfor -%}
+          {%- if use_metafields -%}
+            {%- assign slide_num = 0 -%}
+            {%- for key in slider_keys -%}
+              {%- assign slide_img = mf[key].value -%}
+              {%- if slide_img != blank -%}
+                {%- assign slide_num = slide_num | plus: 1 -%}
+                <li
+                  id="Slide-{{ section.id }}-{{ slide_num }}"
+                  class="coloured-background-slider__slide slider__slide"
+                  role="group"
+                  aria-roledescription="slide"
+                  aria-label="{{ slide_num }} {{ 'general.slider.of' | t }} {{ rendered_slide_count }}"
+                  tabindex="-1"
+                >
+                  <div class="coloured-background-slider__slide-image-wrapper">
+                    {{
+                      slide_img
+                      | image_url: width: 900
+                      | image_tag:
+                        widths: '300, 450, 600, 900',
+                        sizes: '(min-width: 990px) 34rem, (min-width: 750px) 30rem, 24rem',
+                        loading: 'lazy',
+                        fetchpriority: 'auto',
+                        class: 'coloured-background-slider__image'
+                    }}
+                  </div>
+                </li>
+              {%- endif -%}
+            {%- endfor -%}
+          {%- else -%}
+            {%- for block in section.blocks -%}
+              <li
+                id="Slide-{{ section.id }}-{{ forloop.index }}"
+                class="coloured-background-slider__slide slider__slide"
+                {{ block.shopify_attributes }}
+                role="group"
+                aria-roledescription="slide"
+                aria-label="{{ forloop.index }} {{ 'general.slider.of' | t }} {{ forloop.length }}"
+                tabindex="-1"
+              >
+                <div class="coloured-background-slider__slide-image-wrapper">
+                  {%- if block.settings.image != blank -%}
+                    {%- liquid
+                      assign fetch_priority = 'auto'
+                      if section.index == 1 and forloop.first
+                        assign fetch_priority = 'high'
+                      endif
+                    -%}
+                    {{
+                      block.settings.image
+                      | image_url: width: 900
+                      | image_tag:
+                        widths: '300, 450, 600, 900',
+                        sizes: '(min-width: 990px) 34rem, (min-width: 750px) 30rem, 24rem',
+                        loading: 'lazy',
+                        fetchpriority: fetch_priority,
+                        class: 'coloured-background-slider__image'
+                    }}
+                  {%- else -%}
+                    {{ 'detailed-apparel-1' | placeholder_svg_tag: 'placeholder-svg coloured-background-slider__placeholder' }}
+                  {%- endif -%}
+                </div>
+              </li>
+            {%- endfor -%}
+          {%- endif -%}
         </ul>
 
-        {%- if section.blocks.size > 1 -%}
+        {%- if rendered_slide_count > 1 -%}
           <div class="coloured-background-slider__nav">
             <button
               type="button"
@@ -96,18 +154,33 @@
             </button>
 
             <div class="coloured-background-slider__dots" role="tablist" aria-label="{{ section.settings.heading | strip_html | escape }}">
-              {%- for block in section.blocks -%}
-                <button
-                  type="button"
-                  class="coloured-background-slider__dot-btn{% if forloop.first %} slider-counter__link--active{% endif %}"
-                  aria-label="{{ 'sections.slideshow.load_slide' | t }} {{ forloop.index }} {{ 'general.slider.of' | t }} {{ forloop.length }}"
-                  aria-controls="Slider-{{ section.id }}"
-                  aria-current="{% if forloop.first %}true{% else %}false{% endif %}"
-                  role="tab"
-                >
-                  <span class="coloured-background-slider__dot"></span>
-                </button>
-              {%- endfor -%}
+              {%- if use_metafields -%}
+                {%- for i in (1..rendered_slide_count) -%}
+                  <button
+                    type="button"
+                    class="coloured-background-slider__dot-btn{% if forloop.first %} slider-counter__link--active{% endif %}"
+                    aria-label="{{ 'sections.slideshow.load_slide' | t }} {{ i }} {{ 'general.slider.of' | t }} {{ rendered_slide_count }}"
+                    aria-controls="Slider-{{ section.id }}"
+                    aria-current="{% if forloop.first %}true{% else %}false{% endif %}"
+                    role="tab"
+                  >
+                    <span class="coloured-background-slider__dot"></span>
+                  </button>
+                {%- endfor -%}
+              {%- else -%}
+                {%- for block in section.blocks -%}
+                  <button
+                    type="button"
+                    class="coloured-background-slider__dot-btn{% if forloop.first %} slider-counter__link--active{% endif %}"
+                    aria-label="{{ 'sections.slideshow.load_slide' | t }} {{ forloop.index }} {{ 'general.slider.of' | t }} {{ forloop.length }}"
+                    aria-controls="Slider-{{ section.id }}"
+                    aria-current="{% if forloop.first %}true{% else %}false{% endif %}"
+                    role="tab"
+                  >
+                    <span class="coloured-background-slider__dot"></span>
+                  </button>
+                {%- endfor -%}
+              {%- endif -%}
             </div>
 
             <button

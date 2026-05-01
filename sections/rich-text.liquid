@@ -1,3 +1,13 @@
+{%- liquid
+  assign mf = page.metafields.brand
+  assign use_metafields = false
+  if mf != blank
+    assign use_metafields = true
+    assign mf_intro_heading = mf.intro_heading.value
+    assign mf_intro_text    = mf.intro_text.value
+  endif
+-%}
+
 {%- style -%}
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
@@ -19,6 +29,11 @@
         {%- for block in section.blocks -%}
           {%- case block.type -%}
             {%- when 'heading' -%}
+              {%- if use_metafields and mf_intro_heading != blank -%}
+                {%- assign rt_heading = mf_intro_heading -%}
+              {%- else -%}
+                {%- assign rt_heading = block.settings.heading -%}
+              {%- endif -%}
               <h2
                 class="rich-text__heading rte inline-richtext {{ block.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
                 {{ block.shopify_attributes }}
@@ -27,7 +42,7 @@
                   style="--animation-order: {{ forloop.index }};"
                 {% endif %}
               >
-                {{ block.settings.heading }}
+                {{ rt_heading }}
               </h2>
             {%- when 'caption' -%}
               <p
@@ -41,6 +56,11 @@
                 {{ block.settings.caption | escape }}
               </p>
             {%- when 'text' -%}
+              {%- if use_metafields and mf_intro_text != blank -%}
+                {%- assign rt_text = mf_intro_text -%}
+              {%- else -%}
+                {%- assign rt_text = block.settings.text -%}
+              {%- endif -%}
               <div
                 class="rich-text__text rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
                 {{ block.shopify_attributes }}
@@ -49,7 +69,7 @@
                   style="--animation-order: {{ forloop.index }};"
                 {% endif %}
               >
-                {{ block.settings.text }}
+                {{ rt_text }}
               </div>
             {%- when 'button' -%}
               <div

@@ -1,5 +1,13 @@
 {%- render 'section-padding-style' -%}
 
+{%- liquid
+  assign mf = page.metafields.brand
+  assign use_metafields = false
+  if mf != blank
+    assign use_metafields = true
+  endif
+-%}
+
 <div class="link-panels color-scheme-1 section-{{ section.id }}-padding">
   <div class="page-width">
 
@@ -23,60 +31,126 @@
       class="link-panels__grid grid grid--{{ section.settings.columns_mobile }}-col-tablet-down grid--{{ section.settings.columns_desktop }}-col-desktop"
       role="list"
     >
-      {%- for block in section.blocks -%}
-        {%- if block.type == 'panel' -%}
-          <li
-            class="link-panels__item grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-            {{ block.shopify_attributes }}
-            {% if settings.animations_reveal_on_scroll %}
-              data-cascade
-              style="--animation-order: {{ forloop.index }};"
-            {% endif %}
-          >
-            <a
-              class="link-panels__panel"
-              style="background-color: {{ block.settings.background_color }};"
-              {% if block.settings.link != blank %}
-                href="{{ block.settings.link }}"
-                {% if block.settings.link_target %}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                {% endif %}
-              {% else %}
-                role="link"
-                aria-disabled="true"
+      {%- if use_metafields -%}
+        {%- for i in (1..2) -%}
+          {%- liquid
+            assign headline_key   = 'panel_' | append: i | append: '_headline'
+            assign link_key       = 'panel_' | append: i | append: '_link'
+            assign image_key      = 'panel_' | append: i | append: '_image'
+            assign bg_key         = 'panel_' | append: i | append: '_bg_color'
+            assign text_bg_key    = 'panel_' | append: i | append: '_text_bg_color'
+            assign head_col_key   = 'panel_' | append: i | append: '_heading_color'
+            assign p_headline     = mf[headline_key].value
+            assign p_link         = mf[link_key].value
+            assign p_image        = mf[image_key].value
+            assign p_bg           = mf[bg_key].value
+            assign p_text_bg      = mf[text_bg_key].value
+            assign p_head_col     = mf[head_col_key].value
+          -%}
+          {%- if p_headline != blank or p_image != blank -%}
+            <li
+              class="link-panels__item grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+              {% if settings.animations_reveal_on_scroll %}
+                data-cascade
+                style="--animation-order: {{ i }};"
               {% endif %}
-              {% unless block.settings.headline == blank %}
-                aria-label="{{ block.settings.headline | escape }}"
-              {% endunless %}
             >
-              {%- if block.settings.image != blank -%}
-                {%- capture image_sizes -%}(min-width: 990px) calc((100vw - 10rem) / {{ section.settings.columns_desktop }}), (min-width: 750px) calc((100vw - 6rem) / {{ section.settings.columns_mobile }}), calc(100vw - 3rem){%- endcapture -%}
-                <div class="link-panels__image-wrapper">
-                  {{
-                    block.settings.image
-                    | image_url: width: 800
-                    | image_tag:
-                      class: 'link-panels__image',
-                      loading: 'lazy',
-                      widths: '200, 400, 600, 800',
-                      sizes: image_sizes
-                  }}
-                </div>
-              {%- endif -%}
+              <a
+                class="link-panels__panel"
+                style="background-color: {{ p_bg }};"
+                {% if p_link != blank %}
+                  href="{{ p_link }}"
+                {% else %}
+                  role="link"
+                  aria-disabled="true"
+                {% endif %}
+                {% unless p_headline == blank %}
+                  aria-label="{{ p_headline | escape }}"
+                {% endunless %}
+              >
+                {%- if p_image != blank -%}
+                  {%- capture image_sizes -%}(min-width: 990px) calc((100vw - 10rem) / {{ section.settings.columns_desktop }}), (min-width: 750px) calc((100vw - 6rem) / {{ section.settings.columns_mobile }}), calc(100vw - 3rem){%- endcapture -%}
+                  <div class="link-panels__image-wrapper">
+                    {{
+                      p_image
+                      | image_url: width: 800
+                      | image_tag:
+                        class: 'link-panels__image',
+                        loading: 'lazy',
+                        widths: '200, 400, 600, 800',
+                        sizes: image_sizes
+                    }}
+                  </div>
+                {%- endif -%}
 
-              {%- unless block.settings.headline == blank -%}
-                <span
-                  class="link-panels__label"
-                  style="background-color: {{ block.settings.text_background_color }}; color: {{ block.settings.heading_color }};"
-                >
-                  {{- block.settings.headline | escape -}}
-                </span>
-              {%- endunless -%}
-            </a>
-          </li>
-        {%- endif -%}
-      {%- endfor -%}
+                {%- unless p_headline == blank -%}
+                  <span
+                    class="link-panels__label"
+                    style="background-color: {{ p_text_bg }}; color: {{ p_head_col }};"
+                  >
+                    {{- p_headline | escape -}}
+                  </span>
+                {%- endunless -%}
+              </a>
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+      {%- else -%}
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'panel' -%}
+            <li
+              class="link-panels__item grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+              {{ block.shopify_attributes }}
+              {% if settings.animations_reveal_on_scroll %}
+                data-cascade
+                style="--animation-order: {{ forloop.index }};"
+              {% endif %}
+            >
+              <a
+                class="link-panels__panel"
+                style="background-color: {{ block.settings.background_color }};"
+                {% if block.settings.link != blank %}
+                  href="{{ block.settings.link }}"
+                  {% if block.settings.link_target %}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  {% endif %}
+                {% else %}
+                  role="link"
+                  aria-disabled="true"
+                {% endif %}
+                {% unless block.settings.headline == blank %}
+                  aria-label="{{ block.settings.headline | escape }}"
+                {% endunless %}
+              >
+                {%- if block.settings.image != blank -%}
+                  {%- capture image_sizes -%}(min-width: 990px) calc((100vw - 10rem) / {{ section.settings.columns_desktop }}), (min-width: 750px) calc((100vw - 6rem) / {{ section.settings.columns_mobile }}), calc(100vw - 3rem){%- endcapture -%}
+                  <div class="link-panels__image-wrapper">
+                    {{
+                      block.settings.image
+                      | image_url: width: 800
+                      | image_tag:
+                        class: 'link-panels__image',
+                        loading: 'lazy',
+                        widths: '200, 400, 600, 800',
+                        sizes: image_sizes
+                    }}
+                  </div>
+                {%- endif -%}
+
+                {%- unless block.settings.headline == blank -%}
+                  <span
+                    class="link-panels__label"
+                    style="background-color: {{ block.settings.text_background_color }}; color: {{ block.settings.heading_color }};"
+                  >
+                    {{- block.settings.headline | escape -}}
+                  </span>
+                {%- endunless -%}
+              </a>
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endif -%}
     </ul>
 
   </div>
