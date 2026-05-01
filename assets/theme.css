@@ -13627,11 +13627,25 @@ li[data-address] > h2 {
   margin-top: 1.5rem;
 }
 .banner__heading {
+  margin: 0;
+  text-wrap: balance;
+}
+.banner__text {
+  margin: 0;
+  text-wrap: balance;
+}
+.banner__text p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+.banner__text p:last-child {
   margin-bottom: 0;
 }
 .banner__buttons {
-  display: inline-flex;
+  display: flex;
   flex-wrap: wrap;
+  gap: 1.5rem;
+  display: inline-flex;
   gap: 1rem;
   max-width: 45rem;
   word-break: break-word;
@@ -14149,13 +14163,12 @@ li[data-address] > h2 {
   opacity: 0.85;
 }
 .image-text-links__heading {
-  margin: 0 !important;
-  color: #ffffff;
+  margin: 0;
   text-wrap: balance;
+  color: #ffffff;
 }
 .image-text-links__text {
   margin: 0;
-  color: #ffffff;
   text-wrap: balance;
 }
 .image-text-links__text p {
@@ -14165,11 +14178,13 @@ li[data-address] > h2 {
 .image-text-links__text p:last-child {
   margin-bottom: 0;
 }
+.image-text-links__text {
+  color: #ffffff;
+}
 .image-text-links__buttons {
   display: flex;
   flex-wrap: wrap;
   gap: 1.5rem;
-  margin-top: 1.5rem;
 }
 .image-text-links .button--secondary {
   border-color: #fff;
@@ -14346,7 +14361,6 @@ li[data-address] > h2 {
   display: flex;
   flex-wrap: wrap;
   gap: 1.5rem;
-  margin-top: 1.5rem;
 }
 .key-points-list {
   /* -----------------------------------------------------------------------
@@ -14601,10 +14615,11 @@ li[data-address] > h2 {
 }
 .image-grid-with-content__heading {
   margin: 0;
-  color: inherit;
+  text-wrap: balance;
 }
 .image-grid-with-content__text {
   margin: 0;
+  text-wrap: balance;
 }
 .image-grid-with-content__text p {
   margin-top: 0;
@@ -14616,8 +14631,7 @@ li[data-address] > h2 {
 .image-grid-with-content__buttons {
   display: flex;
   flex-wrap: wrap;
-  gap: 1.2rem;
-  margin-top: 1.5rem;
+  gap: 1.5rem;
 }
 .image-grid-with-content__content--white-text {
   --color-button: 255, 255, 255;
@@ -17233,9 +17247,11 @@ vertical-image-links-component {
 }
 .vertical-image-links__heading {
   margin: 0;
+  text-wrap: balance;
 }
 .vertical-image-links__text {
   margin: 0;
+  text-wrap: balance;
 }
 .vertical-image-links__text p {
   margin-top: 0;
@@ -17248,7 +17264,6 @@ vertical-image-links-component {
   display: flex;
   flex-wrap: wrap;
   gap: 1.5rem;
-  margin-top: 1.5rem;
 }
 .vertical-image-links {
   /* -----------------------------------------------------------------------

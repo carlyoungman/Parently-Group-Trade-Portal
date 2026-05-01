@@ -73,7 +73,7 @@
       ],
       "name": "t:sections.hero-banner.presets.name",
       "settings": {
-        "video": "shopify://files/videos/parently_banner_v9.mp4",
+        "video": "shopify://files/videos/Final - Homepage Video.mp4",
         "video_position": "center center",
         "image": "shopify://shop_images/579d8f985199230a4253ce169c4cc6e1167164ee.jpg",
         "image_position": "center center",
@@ -96,7 +96,7 @@
         "logo_rB6LMG": {
           "type": "logo",
           "settings": {
-            "image": "shopify://shop_images/David_Luke_Colour.png",
+            "image": "shopify://shop_images/parentlygroup-davidluke-logo.svg",
             "image_alt": "David Luke",
             "link": "https://www.davidluke.com/"
           }
@@ -104,7 +104,7 @@
         "logo_hzWPbP": {
           "type": "logo",
           "settings": {
-            "image": "shopify://shop_images/Grass_Air_Colour.png",
+            "image": "shopify://shop_images/parentlygroup-grassandair-logo.svg",
             "image_alt": "Grass and air",
             "link": "https://www.grassandair.com/"
           }
@@ -112,7 +112,7 @@
         "logo_WQkqpf": {
           "type": "logo",
           "settings": {
-            "image": "shopify://shop_images/Juco_Colour.png",
+            "image": "shopify://shop_images/parentlygroup-juco-logo.svg",
             "image_alt": "JUCO",
             "link": "https://parentlygroup.com/our-brands/juco/"
           }
@@ -120,7 +120,7 @@
         "logo_XJCcCh": {
           "type": "logo",
           "settings": {
-            "image": "shopify://shop_images/Term_Footwear_Colour.png",
+            "image": "shopify://shop_images/parentlygroup-termfootwear-logo.svg",
             "image_alt": "Term Footwear",
             "link": ""
           }
@@ -128,7 +128,7 @@
         "logo_rcTkpB": {
           "type": "logo",
           "settings": {
-            "image": "shopify://shop_images/Lelli_Kelly_Colour.png",
+            "image": "shopify://shop_images/parentlygroup-lellikelly-logo.svg",
             "image_alt": "Lelli Kelly",
             "link": "https://lellikellyshop.co.uk/"
           }
@@ -136,7 +136,7 @@
         "logo_PAycdL": {
           "type": "logo",
           "settings": {
-            "image": "shopify://shop_images/Little_Classmate_Colour.png",
+            "image": "shopify://shop_images/parentlygroup-littleclassmates-logo_a1e401e2-f35f-4d93-bfe9-dc5a60e28748.svg",
             "image_alt": "Little Classmates",
             "link": ""
           }
@@ -155,7 +155,7 @@
         "title": "Explore our brands",
         "heading_size": "h2",
         "enable_carousel": false,
-        "logo_height": 112,
+        "logo_height": 80,
         "image_ratio": "wide",
         "logos_per_row_desktop": 6,
         "padding_top": 0,
