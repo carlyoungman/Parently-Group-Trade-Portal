@@ -1,0 +1,218 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "hero_banner": {
+      "type": "hero-banner",
+      "blocks": {
+        "logo_block": {
+          "type": "image",
+          "settings": {
+            "image_width": "medium"
+          }
+        }
+      },
+      "block_order": ["logo_block"],
+      "settings": {
+        "video_position": "center center",
+        "image_position": "bottom center",
+        "image_2_position": "center center",
+        "image_overlay_opacity": 0,
+        "image_height": "medium",
+        "image_behavior": "ambient",
+        "white_text": true,
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    },
+    "rich_text": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_block": {
+          "type": "heading",
+          "settings": {
+            "heading": "",
+            "heading_size": "h2"
+          }
+        },
+        "text_block": {
+          "type": "text",
+          "settings": {
+            "text": "<p></p>"
+          }
+        }
+      },
+      "block_order": ["heading_block", "text_block"],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "full_width": true,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "coloured_background_slider": {
+      "type": "coloured-background-slider",
+      "blocks": {
+        "slide_1": { "type": "slide", "settings": {} },
+        "slide_2": { "type": "slide", "settings": {} },
+        "slide_3": { "type": "slide", "settings": {} },
+        "slide_4": { "type": "slide", "settings": {} },
+        "slide_5": { "type": "slide", "settings": {} }
+      },
+      "block_order": ["slide_1", "slide_2", "slide_3", "slide_4", "slide_5"],
+      "settings": {
+        "heading": "",
+        "heading_size": "h2",
+        "content": "",
+        "button_label_1": "",
+        "button_link_1": "",
+        "button_style_secondary_1": false,
+        "button_label_2": "",
+        "button_link_2": "",
+        "button_style_secondary_2": true,
+        "background_color": "#0099a8",
+        "image_ratio": "auto",
+        "autoplay": true,
+        "autoplay_speed": 4,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "link_panels": {
+      "type": "link-panels",
+      "blocks": {
+        "panel_1": {
+          "type": "panel",
+          "settings": {
+            "headline": "",
+            "link_target": false,
+            "background_color": "#004E9A",
+            "text_background_color": "#0099A8",
+            "heading_color": "#ffffff"
+          }
+        },
+        "panel_2": {
+          "type": "panel",
+          "settings": {
+            "headline": "",
+            "link_target": false,
+            "background_color": "#0099A8",
+            "text_background_color": "#F5A623",
+            "heading_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": ["panel_1", "panel_2"],
+      "settings": {
+        "heading": "",
+        "heading_size": "h2",
+        "content": "",
+        "button_label_1": "",
+        "button_link_1": "",
+        "button_style_secondary_1": false,
+        "button_label_2": "",
+        "button_link_2": "",
+        "button_style_secondary_2": true,
+        "columns_desktop": 2,
+        "columns_mobile": "1",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "tabbed_featured_collections": {
+      "type": "tabbed-featured-collections",
+      "blocks": {
+        "tab_1": {
+          "type": "tab",
+          "settings": {
+            "tab_title": "New Arrivals"
+          }
+        },
+        "tab_2": {
+          "type": "tab",
+          "settings": {
+            "tab_title": "Best Sellers"
+          }
+        }
+      },
+      "block_order": ["tab_1", "tab_2"],
+      "settings": {
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": true,
+        "show_rating": false,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "image_grid_with_content": {
+      "type": "image-grid-with-content",
+      "settings": {
+        "heading": "",
+        "heading_size": "h2",
+        "content": "",
+        "button_label_1": "",
+        "button_link_1": "",
+        "button_style_secondary_1": true,
+        "button_label_2": "",
+        "button_link_2": "",
+        "button_style_secondary_2": true,
+        "content_bg_color": "#0099a8",
+        "text_color": "#ffffff",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "gallery_grid": {
+      "type": "gallery-grid",
+      "blocks": {
+        "image_1": { "type": "image", "settings": {} },
+        "image_2": { "type": "image", "settings": {} },
+        "image_3": { "type": "image", "settings": {} },
+        "image_4": { "type": "image", "settings": {} }
+      },
+      "block_order": ["image_1", "image_2", "image_3", "image_4"],
+      "settings": {
+        "heading": "",
+        "heading_size": "h2",
+        "content": "",
+        "button_label_1": "",
+        "button_link_1": "",
+        "button_style_secondary_1": false,
+        "button_label_2": "",
+        "button_link_2": "",
+        "button_style_secondary_2": true,
+        "layout": "featured",
+        "image_ratio": "16-9",
+        "columns_mobile": "1",
+        "padding_top": 36,
+        "padding_bottom": 100
+      }
+    }
+  },
+  "order": [
+    "main",
+    "hero_banner",
+    "rich_text",
+    "coloured_background_slider",
+    "link_panels",
+    "tabbed_featured_collections",
+    "image_grid_with_content",
+    "gallery_grid"
+  ]
+}
