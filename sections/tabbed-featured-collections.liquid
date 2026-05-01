@@ -62,7 +62,6 @@
                   {%- render 'card-product',
                     card_product: product,
                     media_aspect_ratio: section.settings.image_ratio,
-                    image_shape: section.settings.image_shape,
                     lazy_load: true,
                     show_secondary_image: section.settings.show_secondary_image,
                     show_vendor: section.settings.show_vendor,
@@ -92,7 +91,6 @@
                   {%- assign placeholder_image = 'product-apparel-' | append: forloop.index -%}
                   {%- render 'card-product',
                     media_aspect_ratio: section.settings.image_ratio,
-                    image_shape: section.settings.image_shape,
                     lazy_load: false,
                     placeholder_image: placeholder_image,
                     skip_styles: skip_card_product_styles
@@ -103,9 +101,6 @@
             </ul>
           {%- endif -%}
 
-          {%- if section.settings.image_shape == 'arch' -%}
-            {{ 'mask-arch.svg' | inline_asset_content }}
-          {%- endif -%}
         </div>
       {%- endfor -%}
 
@@ -222,22 +217,6 @@
         { "value": "adapt", "label": "Adapt to image" },
         { "value": "portrait", "label": "Portrait" },
         { "value": "square", "label": "Square" }
-      ]
-    },
-    {
-      "type": "select",
-      "id": "image_shape",
-      "default": "default",
-      "label": "Image shape",
-      "options": [
-        { "value": "default", "label": "Default" },
-        { "value": "arch", "label": "Arch" },
-        { "value": "blob", "label": "Blob" },
-        { "value": "chevronleft", "label": "Chevron left" },
-        { "value": "chevronright", "label": "Chevron right" },
-        { "value": "diamond", "label": "Diamond" },
-        { "value": "parallelogram", "label": "Parallelogram" },
-        { "value": "round", "label": "Round" }
       ]
     },
     {
