@@ -22,6 +22,10 @@
     }
   }
 
+  .button{
+    margin-top: 1.5rem;
+  }
+
   &__grid {
     &--reverse {
       @include breakpoint-sm {
