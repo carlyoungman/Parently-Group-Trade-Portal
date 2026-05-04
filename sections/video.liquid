@@ -10,6 +10,18 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+
+  {%- if section.settings.background_color != blank -%}
+    #VideoSection--{{ section.id }} {
+      background-color: {{ section.settings.background_color }};
+    }
+  {%- endif -%}
+
+  {%- if section.settings.heading_color != blank -%}
+    #VideoSection--{{ section.id }} .title {
+      color: {{ section.settings.heading_color }};
+    }
+  {%- endif -%}
 {%- endstyle -%}
 
 {%- liquid
@@ -35,7 +47,7 @@
   {%- endif %}
 {%- endcapture -%}
 
-<div class="color-scheme-1">
+<div id="VideoSection--{{ section.id }}" class="color-scheme-1">
   <div class="video-section isolate{% unless section.settings.full_width %} page-width{% endunless %} section-{{ section.id }}-padding">
     <div
       {% if section.settings.full_width %}
@@ -223,6 +235,20 @@
       "id": "full_width",
       "label": "t:sections.video.settings.full_width.label",
       "default": false
+    },
+    {
+      "type": "header",
+      "content": "Colours"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background colour"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading colour"
     },
     {
       "type": "header",
