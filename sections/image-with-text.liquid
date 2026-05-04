@@ -10,6 +10,25 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+
+  {%- if section.settings.image_background_color != blank -%}
+    #ImageMedia--{{ section.id }} {
+      background-color: {{ section.settings.image_background_color }};
+    }
+  {%- endif -%}
+
+  {%- if section.settings.text_background_color != blank -%}
+    #ImageWithText--{{ section.id }} {
+      background-color: {{ section.settings.text_background_color }};
+    }
+  {%- endif -%}
+
+  {%- if section.settings.content_text_color != blank -%}
+    #ImageWithText--{{ section.id }},
+    #ImageWithText--{{ section.id }} * {
+      color: {{ section.settings.content_text_color }};
+    }
+  {%- endif -%}
 {%- endstyle -%}
 
 {%- liquid
@@ -28,6 +47,7 @@
       <div class="image-with-text__grid grid grid--gapless grid--1-col grid--{% if section.settings.desktop_image_width == 'medium' %}2-col-tablet{% else %}3-col-tablet{% endif %}{% if section.settings.layout == 'text_first' %} image-with-text__grid--reverse{% endif %}">
         <div class="image-with-text__media-item image-with-text__media-item--{{ section.settings.desktop_image_width }} image-with-text__media-item--{{ section.settings.desktop_content_position }} grid__item">
           <div
+            id="ImageMedia--{{ section.id }}"
             class="image-with-text__media image-with-text__media--{{ section.settings.height }} global-media-settings{% unless remove_color_classes %} color-scheme-1{% else %} background-transparent{% endunless %}{% if section.settings.image != blank %} media{% else %} image-with-text__media--placeholder placeholder{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}"
             {% if section.settings.height == 'adapt' and section.settings.image != blank %}
               style="padding-bottom: {{ 1 | divided_by: section.settings.image.aspect_ratio | times: 100 }}%;"
@@ -277,6 +297,25 @@
       ],
       "default": "left",
       "label": "t:sections.image-with-text.settings.mobile_content_alignment.label"
+    },
+    {
+      "type": "header",
+      "content": "Colours"
+    },
+    {
+      "type": "color",
+      "id": "image_background_color",
+      "label": "Image background colour"
+    },
+    {
+      "type": "color",
+      "id": "text_background_color",
+      "label": "Text block background colour"
+    },
+    {
+      "type": "color",
+      "id": "content_text_color",
+      "label": "Content text colour"
     },
     {
       "type": "header",
