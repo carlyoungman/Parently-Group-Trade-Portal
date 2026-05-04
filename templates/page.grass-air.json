@@ -216,7 +216,6 @@
         "columns_desktop": 4,
         "columns_mobile": "2",
         "image_ratio": "square",
-        "image_shape": "default",
         "show_secondary_image": true,
         "show_vendor": true,
         "show_rating": false,

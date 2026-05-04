@@ -155,7 +155,6 @@
         "columns_desktop": 4,
         "columns_mobile": "2",
         "image_ratio": "portrait",
-        "image_shape": "default",
         "show_secondary_image": true,
         "show_vendor": true,
         "show_rating": false,
@@ -205,8 +204,164 @@
         "desktop_content_position": "middle",
         "desktop_content_alignment": "left",
         "mobile_content_alignment": "left",
+        "image_background_color": "#4767b3",
+        "text_background_color": "#cbdeef",
+        "content_text_color": "#4767b3",
         "padding_top": 0,
         "padding_bottom": 0
+      }
+    },
+    "image_text_links_aLFyUk": {
+      "type": "image-text-links",
+      "blocks": {
+        "subheading_YaqtFh": {
+          "type": "subheading",
+          "settings": {
+            "text": "Retailer resources"
+          }
+        },
+        "heading_VXRBEK": {
+          "type": "heading",
+          "settings": {
+            "heading": "Everything you need at the Media Hub",
+            "heading_size": "h2"
+          }
+        },
+        "buttons_q8Epgi": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "Find out more",
+            "button_link_1": "shopify://pages/eco-resources",
+            "button_style_secondary_1": true,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": true
+          }
+        },
+        "link_item_4cArDb": {
+          "type": "link_item",
+          "settings": {
+            "label": "Image Downloads",
+            "link": "shopify://pages/image-downloads"
+          }
+        },
+        "link_item_ik8LJE": {
+          "type": "link_item",
+          "settings": {
+            "label": "Price Lists",
+            "link": "shopify://pages/price-lists-1"
+          }
+        },
+        "link_item_zNi8i4": {
+          "type": "link_item",
+          "settings": {
+            "label": "Point of Sale",
+            "link": ""
+          }
+        },
+        "link_item_XTyyMW": {
+          "type": "link_item",
+          "settings": {
+            "label": "Eco Resources",
+            "link": "shopify://pages/eco-resources"
+          }
+        },
+        "link_item_VkpzBR": {
+          "type": "link_item",
+          "settings": {
+            "label": "Marketing",
+            "link": "shopify://pages/marketing-support"
+          }
+        },
+        "link_item_ibtkcg": {
+          "type": "link_item",
+          "settings": {
+            "label": "Videos",
+            "link": "shopify://pages/videos"
+          }
+        }
+      },
+      "block_order": [
+        "subheading_YaqtFh",
+        "heading_VXRBEK",
+        "buttons_q8Epgi",
+        "link_item_4cArDb",
+        "link_item_ik8LJE",
+        "link_item_zNi8i4",
+        "link_item_XTyyMW",
+        "link_item_VkpzBR",
+        "link_item_ibtkcg"
+      ],
+      "name": "Image & text links",
+      "settings": {
+        "image": "shopify://shop_images/Rectangle_2699.jpg",
+        "image_overlay_opacity": 40,
+        "image_behavior": "none",
+        "section_height": "large"
+      }
+    },
+    "image_with_text_gXghyD": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_taTgMY": {
+          "type": "heading",
+          "settings": {
+            "heading": "Our story",
+            "heading_size": "h0"
+          }
+        },
+        "text_R6VBUT": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.<br/><br/></p>",
+            "text_style": "body"
+          }
+        },
+        "button_RfW7DE": {
+          "type": "button",
+          "settings": {
+            "button_label": "Find out more",
+            "button_link": "",
+            "button_style_secondary": true
+          }
+        }
+      },
+      "block_order": [
+        "heading_taTgMY",
+        "text_R6VBUT",
+        "button_RfW7DE"
+      ],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/b7034ac4b884dcf6c9478fd2db2e0a0066cf6a27.jpg",
+        "height": "large",
+        "desktop_image_width": "medium",
+        "layout": "text_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "image_background_color": "#ca703f",
+        "text_background_color": "#ca703f",
+        "content_text_color": "#ffffff",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "video_R6F6e6": {
+      "type": "video",
+      "name": "t:sections.video.presets.name",
+      "settings": {
+        "heading": "",
+        "heading_size": "h2",
+        "enable_video_looping": true,
+        "video": "shopify://files/videos/Final - Homepage Video.mp4",
+        "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+        "description": "",
+        "full_width": false,
+        "padding_top": 0,
+        "padding_bottom": 100
       }
     }
   },
@@ -216,6 +371,9 @@
     "rich_text_DjHynz",
     "button_grid_LE8piH",
     "tabbed_featured_collections_wJWt9k",
-    "image_with_text_hpWHaL"
+    "image_with_text_hpWHaL",
+    "image_text_links_aLFyUk",
+    "image_with_text_gXghyD",
+    "video_R6F6e6"
   ]
 }
