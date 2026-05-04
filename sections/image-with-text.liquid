@@ -11,6 +11,16 @@
     }
   }
 
+  @media screen and (min-width: 750px) {
+    #ImageMedia--{{ section.id }}.global-media-settings {
+      {% if section.settings.layout == 'image_first' %}
+        border-radius: 22px 0 0 22px !important;
+      {% else %}
+        border-radius: 0 22px 22px 0 !important;
+      {% endif %}
+    }
+  }
+
   {%- if section.settings.image_background_color != blank -%}
     #ImageMedia--{{ section.id }} {
       background-color: {{ section.settings.image_background_color }};
