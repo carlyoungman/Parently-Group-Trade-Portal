@@ -3,6 +3,8 @@
   --ratio-percent: 56.25%;
   position: relative;
   padding-bottom: calc(var(--ratio-percent) - var(--media-border-width));
+  border-radius: var(--buttons-radius-outset);
+  overflow: hidden;
 }
 
 
