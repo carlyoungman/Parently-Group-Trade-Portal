@@ -25,8 +25,12 @@
 
   {%- if section.settings.content_text_color != blank -%}
     #ImageWithText--{{ section.id }},
-    #ImageWithText--{{ section.id }} * {
+    #ImageWithText--{{ section.id }} *,
+    #ImageWithText--{{ section.id }} .button {
       color: {{ section.settings.content_text_color }};
+    }
+    #ImageWithText--{{ section.id }} .button--secondary {
+      border-color: {{ section.settings.content_text_color }};
     }
   {%- endif -%}
 {%- endstyle -%}
