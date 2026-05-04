@@ -21,6 +21,30 @@
     #ImageWithText--{{ section.id }} {
       background-color: {{ section.settings.text_background_color }};
     }
+
+    @media screen and (min-width: 750px) {
+      .section-{{ section.id }}-padding {
+        overflow-x: hidden;
+      }
+
+      .section-{{ section.id }}-padding .image-with-text {
+        overflow: visible;
+      }
+
+      #ImageWithText--{{ section.id }} {
+        overflow: visible;
+      }
+
+      #ImageWithText--{{ section.id }}::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        height: 100%;
+        background-color: {{ section.settings.text_background_color }};
+        z-index: -1;
+        {% if section.settings.layout == 'image_first' %}left: 0; right: -100vw;{% else %}left: -100vw; right: 0;{% endif %}
+      }
+    }
   {%- endif -%}
 
   {%- if section.settings.content_text_color != blank -%}
