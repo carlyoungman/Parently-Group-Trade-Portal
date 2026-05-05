@@ -127,6 +127,68 @@
         "padding_bottom": 0
       }
     },
+    "link_panels_Ji68ab": {
+      "type": "link-panels",
+      "blocks": {
+        "panel_gXhBpy": {
+          "type": "panel",
+          "settings": {
+            "headline": "SERVICES",
+            "link": "",
+            "link_target": false,
+            "image": "shopify://shop_images/69e420d1ea17da526427928e1dc2bef32e3c2675.jpg",
+            "background_color": "#cbdeef",
+            "text_background_color": "#355bbc",
+            "heading_color": "#ffffff"
+          }
+        },
+        "panel_RrbyWf": {
+          "type": "panel",
+          "settings": {
+            "headline": "OUTLET",
+            "link": "",
+            "link_target": false,
+            "image": "shopify://shop_images/c5866beb81116e105a2ebf7c10bdcc2ff87d6005.jpg",
+            "background_color": "#f6f2ce",
+            "text_background_color": "#ca703f",
+            "heading_color": "#ffffff"
+          }
+        },
+        "panel_BGW3CB": {
+          "type": "panel",
+          "settings": {
+            "headline": "SUSTAINABILITY",
+            "link": "",
+            "link_target": false,
+            "image": "shopify://shop_images/0a8ce74b8bbeac3f34eae77b25e001f659c460b7.jpg",
+            "background_color": "#d7e6c2",
+            "text_background_color": "#23382d",
+            "heading_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "panel_gXhBpy",
+        "panel_RrbyWf",
+        "panel_BGW3CB"
+      ],
+      "name": "Link panels",
+      "settings": {
+        "heading": "",
+        "heading_size": "h2",
+        "content": "",
+        "button_label_1": "",
+        "button_link_1": "",
+        "button_style_secondary_1": false,
+        "button_label_2": "",
+        "button_link_2": "",
+        "button_style_secondary_2": true,
+        "columns_desktop": 3,
+        "columns_mobile": "1",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
     "tabbed_featured_collections_wJWt9k": {
       "type": "tabbed-featured-collections",
       "blocks": {
@@ -360,6 +422,8 @@
         "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
         "description": "",
         "full_width": false,
+        "background_color": "",
+        "heading_color": "",
         "padding_top": 0,
         "padding_bottom": 100
       }
@@ -370,6 +434,7 @@
     "hero_banner",
     "rich_text_DjHynz",
     "button_grid_LE8piH",
+    "link_panels_Ji68ab",
     "tabbed_featured_collections_wJWt9k",
     "image_with_text_hpWHaL",
     "image_text_links_aLFyUk",
