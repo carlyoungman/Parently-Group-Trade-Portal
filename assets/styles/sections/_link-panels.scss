@@ -79,8 +79,10 @@
       outline-offset: 0.2rem;
     }
 
+    min-height: 36rem;
+
     @include breakpoint-sm {
-      min-height: 32rem;
+      min-height: 48rem;
     }
   }
 
@@ -100,8 +102,8 @@
 
   &__image-wrapper--circle {
     flex: 0 0 auto;
-    width: 60%;
-    max-width: 16rem;
+    width: 70%;
+    max-width: 20rem;
     aspect-ratio: 1 / 1;
     border-radius: 50%;
     border-width: 0.4rem;
@@ -110,7 +112,7 @@
     padding: 0;
 
     @include breakpoint-sm {
-      max-width: 20rem;
+      max-width: 26rem;
       padding: 0;
     }
 
@@ -139,7 +141,7 @@
     text-align: center;
     font-family: var(--font-heading-family);
     font-size: var(--font-h5, 1.6rem);
-    font-weight: var(--font-heading-weight, 700);
+    font-weight: 700;
     line-height: var(--font-heading-line-height);
     letter-spacing: 0.02em;
     position: absolute;
