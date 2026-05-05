@@ -592,7 +592,7 @@ button.facets__button {
 span.active-facets__button-inner {
   color: rgb(var(--color-foreground));
   box-shadow: 0 0 0 0.1rem rgb(var(--color-foreground));
-  border-radius: 2.6rem;
+  border-radius: var(--buttons-radius-outset);
   font-size: 1rem;
   min-height: 0;
   min-width: 0;
