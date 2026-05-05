@@ -836,6 +836,12 @@ summary::-webkit-details-marker {
   color: rgba(var(--color-foreground), 0.7);
 }
 
+.large {
+  font-size: 1.4rem;
+  line-height: 1.6;
+  letter-spacing: 0.04rem;
+}
+
 .subtitle--small {
   font-size: inherit;
   letter-spacing: 0.1rem;

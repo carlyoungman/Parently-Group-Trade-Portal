@@ -80,7 +80,7 @@
                   {% render block %}
                 {%- when 'text' -%}
                   <p
-                    class="product__text inline-richtext{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}"
+                    class="product__text inline-richtext{% if block.settings.text_style == 'caption-with-letter-spacing' or block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% elsif block.settings.text_style == 'large' %} large{% endif %}"
                     {{ block.shopify_attributes }}
                   >
                     {{- block.settings.text -}}
@@ -132,7 +132,7 @@
                   {%- endunless -%}
                 {%- when 'sku' -%}
                   <p
-                    class="product__sku{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}{% if product.selected_or_first_available_variant.sku.size == 0 %} visibility-hidden{% endif %}"
+                    class="product__sku{% if block.settings.text_style == 'caption-with-letter-spacing' or block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% elsif block.settings.text_style == 'large' %} large{% endif %}{% if product.selected_or_first_available_variant.sku.size == 0 %} visibility-hidden{% endif %}"
                     id="Sku-{{ section.id }}"
                     role="status"
                     {{ block.shopify_attributes }}
@@ -512,12 +512,16 @@
               "label": "t:sections.featured-product.blocks.text.settings.text_style.options__1.label"
             },
             {
-              "value": "subtitle",
+              "value": "large",
               "label": "t:sections.featured-product.blocks.text.settings.text_style.options__2.label"
             },
             {
-              "value": "uppercase",
+              "value": "subtitle",
               "label": "t:sections.featured-product.blocks.text.settings.text_style.options__3.label"
+            },
+            {
+              "value": "caption-with-letter-spacing",
+              "label": "t:sections.featured-product.blocks.text.settings.text_style.options__4.label"
             }
           ],
           "default": "body",
@@ -579,12 +583,16 @@
               "label": "t:sections.featured-product.blocks.sku.settings.text_style.options__1.label"
             },
             {
-              "value": "subtitle",
+              "value": "large",
               "label": "t:sections.featured-product.blocks.sku.settings.text_style.options__2.label"
             },
             {
-              "value": "uppercase",
+              "value": "subtitle",
               "label": "t:sections.featured-product.blocks.sku.settings.text_style.options__3.label"
+            },
+            {
+              "value": "caption-with-letter-spacing",
+              "label": "t:sections.featured-product.blocks.sku.settings.text_style.options__4.label"
             }
           ],
           "default": "body",
