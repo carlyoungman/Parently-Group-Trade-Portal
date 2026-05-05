@@ -71,6 +71,7 @@
 
   &__heading {
     @include section-heading;
+    color: inherit;
   }
 
   &__text {
