@@ -5,6 +5,7 @@
   padding-bottom: calc(var(--ratio-percent) - var(--media-border-width));
   border-radius: var(--buttons-radius-outset);
   overflow: hidden;
+
 }
 
 
@@ -36,6 +37,8 @@
   position: absolute;
   width: 100%;
   height: 100%;
+  border-radius: var(--buttons-radius-outset);
+  overflow: hidden;
 }
 
 .video-section__media video {

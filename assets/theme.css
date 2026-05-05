@@ -6191,7 +6191,7 @@ button.facets__button {
 span.active-facets__button-inner {
   color: rgb(var(--color-foreground));
   box-shadow: 0 0 0 0.1rem rgb(var(--color-foreground));
-  border-radius: 2.6rem;
+  border-radius: var(--buttons-radius-outset);
   font-size: var(--font-small);
   min-height: 0;
   min-width: 0;
@@ -17235,6 +17235,8 @@ vertical-image-links-component {
   --ratio-percent: 56.25%;
   position: relative;
   padding-bottom: calc(var(--ratio-percent) - var(--media-border-width));
+  border-radius: var(--buttons-radius-outset);
+  overflow: hidden;
 }
 
 .video-section__media.global-media-settings--full-width {
@@ -17264,6 +17266,8 @@ vertical-image-links-component {
   position: absolute;
   width: 100%;
   height: 100%;
+  border-radius: var(--buttons-radius-outset);
+  overflow: hidden;
 }
 
 .video-section__media video {
