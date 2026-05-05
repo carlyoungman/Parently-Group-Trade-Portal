@@ -98,6 +98,30 @@
     }
   }
 
+  &__image-wrapper--circle {
+    flex: 0 0 auto;
+    width: 60%;
+    max-width: 16rem;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    border-width: 0.4rem;
+    border-style: solid;
+    overflow: hidden;
+    padding: 0;
+
+    @include breakpoint-sm {
+      max-width: 20rem;
+      padding: 0;
+    }
+
+    .link-panels__image {
+      width: 100%;
+      height: 100%;
+      max-width: none;
+      object-fit: cover;
+    }
+  }
+
   &__image {
     display: block;
     width: auto;
@@ -125,6 +149,34 @@
     @include breakpoint-sm {
       font-size: var(--font-h4, 1.8rem);
       padding: 1.6rem 2.4rem;
+    }
+  }
+
+  &__panel--circle {
+    justify-content: center;
+    padding: 2.4rem 1.6rem;
+    gap: 1.6rem;
+
+    @include breakpoint-sm {
+      padding: 3.2rem 2rem;
+      gap: 2rem;
+    }
+
+    .link-panels__label {
+      position: static;
+      bottom: auto;
+      width: 100%;
+      min-width: 0;
+      padding: 0;
+      background-color: transparent;
+    }
+
+    &:hover,
+    &:focus-visible {
+      .link-panels__label {
+        transform: none;
+        box-shadow: none;
+      }
     }
   }
 }
