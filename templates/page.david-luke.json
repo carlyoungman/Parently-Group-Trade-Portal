@@ -34,18 +34,18 @@
       "settings": {
         "video_position": "center center",
         "image": "shopify://shop_images/david-luke-hero.jpg",
-        "image_position": "bottom center",
+        "image_position": "center center",
         "image_2_position": "center center",
-        "image_overlay_opacity": 0,
+        "image_overlay_opacity": 20,
         "image_height": "medium",
         "image_behavior": "ambient",
         "white_text": true,
         "desktop_content_position": "middle-center",
         "desktop_content_alignment": "center",
         "show_text_box": true,
-        "stack_images_on_mobile": true,
+        "stack_images_on_mobile": false,
         "mobile_content_alignment": "center",
-        "show_text_below": true
+        "show_text_below": false
       }
     },
     "rich_text_DjHynz": {
@@ -137,9 +137,10 @@
             "link": "",
             "link_target": false,
             "image": "shopify://shop_images/69e420d1ea17da526427928e1dc2bef32e3c2675.jpg",
+            "display_alternative": true,
             "background_color": "#cbdeef",
             "text_background_color": "#355bbc",
-            "heading_color": "#ffffff"
+            "heading_color": "#4767b3"
           }
         },
         "panel_RrbyWf": {
@@ -149,9 +150,10 @@
             "link": "",
             "link_target": false,
             "image": "shopify://shop_images/c5866beb81116e105a2ebf7c10bdcc2ff87d6005.jpg",
+            "display_alternative": true,
             "background_color": "#f6f2ce",
             "text_background_color": "#ca703f",
-            "heading_color": "#ffffff"
+            "heading_color": "#ca703f"
           }
         },
         "panel_BGW3CB": {
@@ -161,9 +163,10 @@
             "link": "",
             "link_target": false,
             "image": "shopify://shop_images/0a8ce74b8bbeac3f34eae77b25e001f659c460b7.jpg",
+            "display_alternative": true,
             "background_color": "#d7e6c2",
             "text_background_color": "#23382d",
-            "heading_color": "#ffffff"
+            "heading_color": "#23382d"
           }
         }
       },
