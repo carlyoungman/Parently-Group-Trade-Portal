@@ -31,7 +31,7 @@
           </h2>
         {%- when 'paragraph' -%}
           <div
-            class="newsletter__subheading rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+            class="newsletter__subheading rte {{ block.settings.text_style }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
             {{ block.shopify_attributes }}
             {% if settings.animations_reveal_on_scroll %}
               data-cascade
@@ -225,6 +225,30 @@
           "id": "text",
           "default": "t:sections.newsletter.blocks.paragraph.settings.paragraph.default",
           "label": "t:sections.newsletter.blocks.paragraph.settings.paragraph.label"
+        },
+        {
+          "type": "select",
+          "id": "text_style",
+          "options": [
+            {
+              "value": "body",
+              "label": "t:sections.newsletter.blocks.paragraph.settings.text_style.options__1.label"
+            },
+            {
+              "value": "large",
+              "label": "t:sections.newsletter.blocks.paragraph.settings.text_style.options__2.label"
+            },
+            {
+              "value": "subtitle",
+              "label": "t:sections.newsletter.blocks.paragraph.settings.text_style.options__3.label"
+            },
+            {
+              "value": "caption-with-letter-spacing",
+              "label": "t:sections.newsletter.blocks.paragraph.settings.text_style.options__4.label"
+            }
+          ],
+          "default": "body",
+          "label": "t:sections.newsletter.blocks.paragraph.settings.text_style.label"
         }
       ]
     },

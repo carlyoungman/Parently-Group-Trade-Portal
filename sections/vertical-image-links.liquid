@@ -39,7 +39,7 @@
           {%- when 'text' -%}
             {%- if block.settings.text != blank -%}
               <div
-                class="vertical-image-links__text rte"
+                class="vertical-image-links__text rte {{ block.settings.text_style }}"
                 {{ block.shopify_attributes }}
               >
                 {{ block.settings.text }}
@@ -204,6 +204,18 @@
           "id": "text",
           "default": "<p>Use this section to describe your brand partners or highlight featured categories.</p>",
           "label": "Content"
+        },
+        {
+          "type": "select",
+          "id": "text_style",
+          "options": [
+            { "value": "body", "label": "Body" },
+            { "value": "large", "label": "Large" },
+            { "value": "subtitle", "label": "Subheading" },
+            { "value": "caption-with-letter-spacing", "label": "Uppercase" }
+          ],
+          "default": "body",
+          "label": "Style"
         }
       ]
     },

@@ -162,7 +162,7 @@
               </h2>
             {%- endif -%}
             {%- if block.settings.subheading != blank -%}
-              <div class="banner__text rte">
+              <div class="banner__text rte {{ block.settings.text_style }}">
                 <p>{{ block.settings.subheading }}</p>
               </div>
             {%- endif -%}
@@ -456,6 +456,30 @@
           "id": "subheading",
           "default": "t:sections.slideshow.blocks.slide.settings.subheading.default",
           "label": "t:sections.slideshow.blocks.slide.settings.subheading.label"
+        },
+        {
+          "type": "select",
+          "id": "text_style",
+          "options": [
+            {
+              "value": "body",
+              "label": "t:sections.slideshow.blocks.slide.settings.text_style.options__1.label"
+            },
+            {
+              "value": "large",
+              "label": "t:sections.slideshow.blocks.slide.settings.text_style.options__2.label"
+            },
+            {
+              "value": "subtitle",
+              "label": "t:sections.slideshow.blocks.slide.settings.text_style.options__3.label"
+            },
+            {
+              "value": "caption-with-letter-spacing",
+              "label": "t:sections.slideshow.blocks.slide.settings.text_style.options__4.label"
+            }
+          ],
+          "default": "body",
+          "label": "t:sections.slideshow.blocks.slide.settings.text_style.label"
         },
         {
           "type": "header",

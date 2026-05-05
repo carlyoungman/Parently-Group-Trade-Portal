@@ -21,7 +21,7 @@
           {%- when 'text' -%}
             {%- if block.settings.text != blank -%}
               <div
-                class="key-points-list__text rte"
+                class="key-points-list__text rte {{ block.settings.text_style }}"
                 {{ block.shopify_attributes }}
               >
                 {{ block.settings.text }}
@@ -55,7 +55,7 @@
               </h4>
             {%- endif -%}
             {%- if block.settings.content != blank -%}
-              <div class="key-points-list__point-body rte">
+              <div class="key-points-list__point-body rte {{ block.settings.text_style }}">
                 {{ block.settings.content }}
               </div>
             {%- endif -%}
@@ -155,6 +155,18 @@
           "id": "text",
           "default": "<p>What we can bring to every partnership, across every brand.</p>",
           "label": "Content"
+        },
+        {
+          "type": "select",
+          "id": "text_style",
+          "options": [
+            { "value": "body", "label": "Body" },
+            { "value": "large", "label": "Large" },
+            { "value": "subtitle", "label": "Subheading" },
+            { "value": "caption-with-letter-spacing", "label": "Uppercase" }
+          ],
+          "default": "body",
+          "label": "Style"
         }
       ]
     },
@@ -226,6 +238,18 @@
           "id": "content",
           "default": "<p>Describe this key point in a short, clear sentence or two.</p>",
           "label": "Content"
+        },
+        {
+          "type": "select",
+          "id": "text_style",
+          "options": [
+            { "value": "body", "label": "Body" },
+            { "value": "large", "label": "Large" },
+            { "value": "subtitle", "label": "Subheading" },
+            { "value": "caption-with-letter-spacing", "label": "Uppercase" }
+          ],
+          "default": "body",
+          "label": "Style"
         },
         {
           "type": "header",

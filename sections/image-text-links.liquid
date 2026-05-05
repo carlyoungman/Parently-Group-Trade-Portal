@@ -58,7 +58,7 @@
 
           {%- when 'text' -%}
             {%- if block.settings.text != blank -%}
-              <div class="image-text-links__text rte" {{ block.shopify_attributes }}>
+              <div class="image-text-links__text rte {{ block.settings.text_style }}" {{ block.shopify_attributes }}>
                 {{ block.settings.text }}
               </div>
             {%- endif -%}
@@ -218,6 +218,18 @@
           "type": "richtext",
           "id": "text",
           "label": "Content"
+        },
+        {
+          "type": "select",
+          "id": "text_style",
+          "options": [
+            { "value": "body", "label": "Body" },
+            { "value": "large", "label": "Large" },
+            { "value": "subtitle", "label": "Subheading" },
+            { "value": "caption-with-letter-spacing", "label": "Uppercase" }
+          ],
+          "default": "body",
+          "label": "Style"
         }
       ]
     },

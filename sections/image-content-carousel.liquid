@@ -90,7 +90,7 @@
                   {%- endif -%}
 
                   {%- if block.settings.content != blank -%}
-                    <div class="image-content-carousel__slide-text rte">
+                    <div class="image-content-carousel__slide-text rte {{ block.settings.text_style }}">
                       {{ block.settings.content }}
                     </div>
                   {%- endif -%}
@@ -305,6 +305,18 @@
           "id": "content",
           "default": "<p>Describe this slide in a short, clear paragraph.</p>",
           "label": "Content"
+        },
+        {
+          "type": "select",
+          "id": "text_style",
+          "options": [
+            { "value": "body", "label": "Body" },
+            { "value": "large", "label": "Large" },
+            { "value": "subtitle", "label": "Subheading" },
+            { "value": "caption-with-letter-spacing", "label": "Uppercase" }
+          ],
+          "default": "body",
+          "label": "Style"
         },
         {
           "type": "image_picker",
