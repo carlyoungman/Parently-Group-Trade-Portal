@@ -948,9 +948,12 @@
                 "label": "Body"
               },
               "options__2": {
-                "label": "Subtitle"
+                "label": "Large"
               },
               "options__3": {
+                "label": "Subheading"
+              },
+              "options__4": {
                 "label": "Uppercase"
               }
             }
@@ -1010,9 +1013,12 @@
                 "label": "Body"
               },
               "options__2": {
-                "label": "Subtitle"
+                "label": "Large"
               },
               "options__3": {
+                "label": "Subheading"
+              },
+              "options__4": {
                 "label": "Uppercase"
               }
             }
@@ -1409,9 +1415,12 @@
                 "label": "Body"
               },
               "options__2": {
-                "label": "Subtitle"
+                "label": "Large"
               },
               "options__3": {
+                "label": "Subheading"
+              },
+              "options__4": {
                 "label": "Uppercase"
               },
               "label": "Style"
@@ -1570,9 +1579,15 @@
             "text_style": {
               "label": "Style",
               "options__1": {
-                "label": "Subtitle"
+                "label": "Body"
               },
               "options__2": {
+                "label": "Large"
+              },
+              "options__3": {
+                "label": "Subheading"
+              },
+              "options__4": {
                 "label": "Uppercase"
               }
             },
@@ -1603,7 +1618,13 @@
                 "label": "Body"
               },
               "options__2": {
-                "label": "Subtitle"
+                "label": "Large"
+              },
+              "options__3": {
+                "label": "Subheading"
+              },
+              "options__4": {
+                "label": "Uppercase"
               }
             }
           }
@@ -1676,7 +1697,13 @@
             "label": "Body"
           },
           "options__2": {
-            "label": "Subtitle"
+            "label": "Large"
+          },
+          "options__3": {
+            "label": "Subheading"
+          },
+          "options__4": {
+            "label": "Uppercase"
           },
           "label": "Text style"
         },
@@ -2076,9 +2103,12 @@
                 "label": "Body"
               },
               "options__2": {
-                "label": "Subtitle"
+                "label": "Large"
               },
               "options__3": {
+                "label": "Subheading"
+              },
+              "options__4": {
                 "label": "Uppercase"
               }
             }
@@ -2099,9 +2129,12 @@
                 "label": "Body"
               },
               "options__2": {
-                "label": "Subtitle"
+                "label": "Large"
               },
               "options__3": {
+                "label": "Subheading"
+              },
+              "options__4": {
                 "label": "Uppercase"
               }
             },
@@ -2171,9 +2204,12 @@
                 "label": "Body"
               },
               "options__2": {
-                "label": "Subtitle"
+                "label": "Large"
               },
               "options__3": {
+                "label": "Subheading"
+              },
+              "options__4": {
                 "label": "Uppercase"
               }
             }
@@ -2884,7 +2920,13 @@
                 "label": "Body"
               },
               "options__2": {
-                "label": "Subtitle"
+                "label": "Large"
+              },
+              "options__3": {
+                "label": "Subheading"
+              },
+              "options__4": {
+                "label": "Uppercase"
               },
               "label": "Style"
             }
@@ -3029,9 +3071,15 @@
             "text_style": {
               "label": "Style",
               "options__1": {
-                "label": "Subtitle"
+                "label": "Body"
               },
               "options__2": {
+                "label": "Large"
+              },
+              "options__3": {
+                "label": "Subheading"
+              },
+              "options__4": {
                 "label": "Uppercase"
               }
             },
