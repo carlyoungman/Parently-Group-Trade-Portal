@@ -91,7 +91,7 @@
   &__slide {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
+    gap: var(--grid-desktop-horizontal-spacing);
     min-width: 100%;
     width: 100%;
     flex: 0 0 100%;

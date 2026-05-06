@@ -45,7 +45,7 @@
     margin: 0;
     padding: 0;
     display: grid;
-    gap: 0.8rem;
+    gap: var(--grid-mobile-horizontal-spacing);
     grid-template-columns: 1fr;
 
     &--mobile-2 {
@@ -131,7 +131,7 @@
     }
 
     &__grid {
-      gap: 1.2rem;
+      gap: var(--grid-desktop-horizontal-spacing);
 
       // Reset mobile-2 so the layout modifier classes take full control
       &--mobile-2 {
@@ -158,12 +158,3 @@
   }
 }
 
-// ── Desktop ───────────────────────────────────────────────────────────────────
-
-@include breakpoint-md {
-  .gallery-grid {
-    &__grid {
-      gap: 1.6rem;
-    }
-  }
-}

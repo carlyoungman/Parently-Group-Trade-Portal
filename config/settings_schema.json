@@ -319,9 +319,9 @@
         "type": "range",
         "id": "spacing_grid_horizontal",
         "min": 4,
-        "max": 40,
+        "max": 60,
         "step": 4,
-        "default": 8,
+        "default": 16,
         "unit": "px",
         "label": "t:settings_schema.layout.settings.spacing_grid_horizontal.label"
       },
@@ -329,9 +329,9 @@
         "type": "range",
         "id": "spacing_grid_vertical",
         "min": 4,
-        "max": 40,
+        "max": 60,
         "step": 4,
-        "default": 8,
+        "default": 16,
         "unit": "px",
         "label": "t:settings_schema.layout.settings.spacing_grid_vertical.label"
       }
