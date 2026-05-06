@@ -69,6 +69,12 @@ function getStockStatus(variant) {
   return 'in';
 }
 
+function isCellVisible(variant, showInStock, showSoldOut, showNotAvailable) {
+  if (!variant) return showNotAvailable;
+  if (!variant.available) return showSoldOut;
+  return showInStock;
+}
+
 function StockBadge({ variant }) {
   const status = getStockStatus(variant);
   const qty = variant?.inventory_quantity;
@@ -116,7 +122,7 @@ function QuantityStepper({ value, onChange, disabled }) {
   );
 }
 
-function ProductBulkOrder({ product }) {
+function ProductBulkOrder({ product, showInStock = true, showSoldOut = true, showNotAvailable = true }) {
   const options = product.options ?? [];
 
   // Detect which option position holds colour, size, and length by name
@@ -217,7 +223,7 @@ function ProductBulkOrder({ product }) {
     const ro = new ResizeObserver(sync);
     if (bodyTableRef.current) ro.observe(bodyTableRef.current);
     return () => ro.disconnect();
-  }, [sizes, displayColumns, selectedColour]);
+  }, [visibleSizes, visibleColumns, selectedColour]);
 
   // Build variant lookup: "option1|option2|option3" → variant
   const variantMap = useMemo(() => {
@@ -246,16 +252,36 @@ function ProductBulkOrder({ product }) {
     setAddStatus(null);
   }, []);
 
-  // Row subtotal (across all lengths for a given size)
+  const visibleSizes = useMemo(
+    () =>
+      sizes.filter((size) =>
+        displayColumns.some((len) =>
+          isCellVisible(getVariant(selectedColour, size, len), showInStock, showSoldOut, showNotAvailable)
+        )
+      ),
+    [sizes, displayColumns, selectedColour, getVariant, showInStock, showSoldOut, showNotAvailable]
+  );
+
+  const visibleColumns = useMemo(
+    () =>
+      displayColumns.filter((len) =>
+        sizes.some((size) =>
+          isCellVisible(getVariant(selectedColour, size, len), showInStock, showSoldOut, showNotAvailable)
+        )
+      ),
+    [displayColumns, sizes, selectedColour, getVariant, showInStock, showSoldOut, showNotAvailable]
+  );
+
+  // Row subtotal (across all visible lengths for a given size)
   const rowTotal = (size) =>
-    displayColumns.reduce((sum, len) => {
+    visibleColumns.reduce((sum, len) => {
       const v = getVariant(selectedColour, size, len);
       return v ? sum + getQty(v.id) * v.price : sum;
     }, 0);
 
-  // Column item count (across all sizes for a given length)
+  // Column item count (across all visible sizes for a given length)
   const colItemCount = (len) =>
-    sizes.reduce((sum, size) => {
+    visibleSizes.reduce((sum, size) => {
       const v = getVariant(selectedColour, size, len);
       return v ? sum + getQty(v.id) : sum;
     }, 0);
@@ -355,7 +381,7 @@ function ProductBulkOrder({ product }) {
               <th className="pbo__th pbo__th--size" scope="col">
                 {sizeLabel.toUpperCase()}
               </th>
-              {displayColumns.map((len) => (
+              {visibleColumns.map((len) => (
                 <th key={len || 'qty'} className="pbo__th" scope="col">
                   {len ? len.toUpperCase() : 'QTY'}
                 </th>
@@ -375,19 +401,19 @@ function ProductBulkOrder({ product }) {
           <thead className="pbo__thead--sr-only">
             <tr>
               <th scope="col">{sizeLabel.toUpperCase()}</th>
-              {displayColumns.map((len) => (
+              {visibleColumns.map((len) => (
                 <th key={len || 'qty'} scope="col">{len ? len.toUpperCase() : 'QTY'}</th>
               ))}
               <th scope="col">TOTAL</th>
             </tr>
           </thead>
           <tbody>
-            {sizes.map((size) => (
+            {visibleSizes.map((size) => (
               <tr key={size} className="pbo__row">
                 <td className="pbo__size-cell" headers="col-size">
                   {size}
                 </td>
-                {displayColumns.map((len) => {
+                {visibleColumns.map((len) => {
                   const variant = getVariant(selectedColour, size, len);
                   const qty = variant ? getQty(variant.id) : 0;
                   const isOOS = !variant || !variant.available;
@@ -468,7 +494,7 @@ function ProductBulkOrder({ product }) {
         </div>
 
         <div className="pbo__footer-totals">
-          {displayColumns.map((len) => (
+          {visibleColumns.map((len) => (
             <div key={len || 'qty'} className="pbo__col-total">
               <span className="pbo__col-total-value">{colItemCount(len)}</span>
               <span className="pbo__col-total-label">Total Items</span>
@@ -489,7 +515,17 @@ document.querySelectorAll('[data-product-bulk-order]').forEach((el) => {
   try {
     const productData = JSON.parse(el.dataset.product ?? '{}');
     if (!Array.isArray(productData.variants) || productData.variants.length === 0) return;
-    createRoot(el).render(<ProductBulkOrder product={productData} />);
+    const showInStock = el.dataset.showInStock !== 'false';
+    const showSoldOut = el.dataset.showSoldOut !== 'false';
+    const showNotAvailable = el.dataset.showNotAvailable !== 'false';
+    createRoot(el).render(
+      <ProductBulkOrder
+        product={productData}
+        showInStock={showInStock}
+        showSoldOut={showSoldOut}
+        showNotAvailable={showNotAvailable}
+      />
+    );
   } catch (e) {
     console.error('[ProductBulkOrder] Failed to parse product data:', e);
   }
