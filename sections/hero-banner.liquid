@@ -80,9 +80,15 @@
   endif
 -%}
 
+{%- liquid
+  assign stacks = false
+  if has_video == false and section.settings.stack_images_on_mobile and section.settings.image != blank and section.settings.image_2 != blank
+    assign stacks = true
+  endif
+-%}
 <div
   id="Banner-{{ section.id }}"
-  class="banner banner--content-align-{{ section.settings.desktop_content_alignment }} banner--content-align-mobile-{{ section.settings.mobile_content_alignment }} banner--{{ section.settings.image_height }}{% if has_video == false and section.settings.stack_images_on_mobile and section.settings.image != blank and section.settings.image_2 != blank %} banner--stacked{% endif %}{% if section.settings.image_height == 'adapt' and section.settings.image != blank and has_video == false %} banner--adapt{% endif %}{% if section.settings.show_text_below %} banner--mobile-bottom{%- endif -%}{% if section.settings.show_text_box == false %} banner--desktop-transparent{% endif %}{% if has_video %} banner--has-video{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
+  class="banner banner--content-align-{{ section.settings.desktop_content_alignment }} banner--content-align-mobile-{{ section.settings.mobile_content_alignment }} banner--{{ section.settings.image_height }}{% if stacks %} banner--stacked banner--mobile-bottom{% endif %}{% if section.settings.image_height == 'adapt' and section.settings.image != blank and has_video == false %} banner--adapt{% endif %}{% if has_video %} banner--has-video{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
 >
   {%- if has_video -%}
     <div class="banner__media banner__media--video media{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
@@ -158,7 +164,19 @@
     </div>
   {%- endif -%}
 
-  <div class="banner__content banner__content--{{ section.settings.desktop_content_position }} page-width{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+  {%- liquid
+    assign content_classes = 'banner__content banner__content--' | append: section.settings.desktop_content_position | append: ' page-width'
+    unless section.settings.show_text_below
+      assign content_classes = content_classes | append: ' page-width--no-mobile'
+    endunless
+    unless section.settings.show_text_box
+      assign content_classes = content_classes | append: ' page-width--no-desktop'
+    endunless
+    if settings.animations_reveal_on_scroll
+      assign content_classes = content_classes | append: ' scroll-trigger animate--slide-in'
+    endif
+  -%}
+  <div class="{{ content_classes }}">
     <div class="banner__box content-container content-container--full-width-mobile color-scheme-1">
       <div class="banner__content">
         {%- for block in section.blocks -%}

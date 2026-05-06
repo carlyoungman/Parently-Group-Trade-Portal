@@ -13204,11 +13204,11 @@ li[data-address] > h2 {
 .banner--mobile-bottom .banner__box {
   padding: 4rem 3.5rem;
 }
-.banner--mobile-bottom:not(.banner--stacked) .banner__content {
+.banner--mobile-bottom .banner__content {
   order: 2;
 }
 @media screen and (min-width: 750px) {
-  .banner--mobile-bottom:not(.banner--stacked) .banner__content {
+  .banner--mobile-bottom .banner__content {
     order: revert;
   }
 }
@@ -13502,6 +13502,32 @@ li[data-address] > h2 {
   gap: 1rem;
   max-width: 45rem;
   word-break: break-word;
+}
+
+.banner__content.page-width--no-mobile {
+  max-width: none;
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: 0;
+  margin-right: 0;
+}
+@media screen and (min-width: 750px) {
+  .banner__content.page-width--no-mobile {
+    max-width: var(--page-width);
+    padding-left: 5rem;
+    padding-right: 5rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+@media screen and (min-width: 750px) {
+  .banner__content.page-width--no-desktop {
+    max-width: none;
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: 0;
+    margin-right: 0;
+  }
 }
 
 .coloured-background-slider {
