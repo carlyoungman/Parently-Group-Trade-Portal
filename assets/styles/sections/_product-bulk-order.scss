@@ -167,13 +167,13 @@ $pbo-radius-sm:    0.6rem;
 .pbo__cell {
   padding: 1.6rem 1.2rem;
   vertical-align: top;
-  text-align: center;
+  text-align: left;
 }
 
 .pbo__cell-inner {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: 0.6rem;
 }
 
