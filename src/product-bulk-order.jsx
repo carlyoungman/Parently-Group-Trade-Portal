@@ -438,20 +438,21 @@ function ProductBulkOrder({ product }) {
       {/* Footer */}
       <div className="pbo__footer">
         <div className="pbo__footer-left">
-          <button
-            type="button"
-            className="pbo__cart-btn"
-            onClick={addToCart}
-            disabled={isAdding || totalItems === 0}
-          >
-            {isAdding ? 'Adding…' : 'Add to Cart'}
-          </button>
-
-          {addStatus === 'success' && (
-            <a href="/cart" className="pbo__view-cart-link">
-              View cart →
+          {addStatus === 'success' ? (
+            <a href="/cart" className="pbo__cart-btn">
+              View cart
             </a>
+          ) : (
+            <button
+              type="button"
+              className="pbo__cart-btn"
+              onClick={addToCart}
+              disabled={isAdding || totalItems === 0}
+            >
+              {isAdding ? 'Adding…' : 'Add to Cart'}
+            </button>
           )}
+
           {addStatus === 'error' && (
             <span className="pbo__status pbo__status--error">
               Something went wrong. Please try again.
