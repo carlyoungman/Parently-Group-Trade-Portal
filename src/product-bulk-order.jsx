@@ -156,6 +156,7 @@ function ProductBulkOrder({ product }) {
 
   const hasColours = colours.length > 1;
   const hasLengths = lengths.length > 0;
+  const displayColumns = hasLengths ? lengths : [''];
 
   const [selectedColour, setSelectedColour] = useState(colours[0] ?? '');
   const [quantities, setQuantities] = useState({});
@@ -244,8 +245,6 @@ function ProductBulkOrder({ product }) {
     setQuantities((prev) => ({ ...prev, [variantId]: qty }));
     setAddStatus(null);
   }, []);
-
-  const displayColumns = hasLengths ? lengths : [''];
 
   // Row subtotal (across all lengths for a given size)
   const rowTotal = (size) =>
