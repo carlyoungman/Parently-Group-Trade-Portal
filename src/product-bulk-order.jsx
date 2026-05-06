@@ -200,6 +200,46 @@ function ProductBulkOrder({ product, showInStock = true, showSoldOut = true, sho
     };
   }, []);
 
+  // Build variant lookup: "option1|option2|option3" → variant
+  const variantMap = useMemo(() => {
+    const map = {};
+    product.variants.forEach((v) => {
+      map[`${v.option1 ?? ''}|${v.option2 ?? ''}|${v.option3 ?? ''}`] = v;
+    });
+    return map;
+  }, [product]);
+
+  const getVariant = useCallback(
+    (colour, size, length = '') => {
+      const opts = ['', '', ''];
+      if (colourOptionIndex >= 0) opts[colourOptionIndex] = colour;
+      if (sizeOptionIndex   >= 0) opts[sizeOptionIndex]   = size;
+      if (lengthOptionIndex >= 0) opts[lengthOptionIndex] = length;
+      return variantMap[`${opts[0]}|${opts[1]}|${opts[2]}`];
+    },
+    [variantMap, colourOptionIndex, sizeOptionIndex, lengthOptionIndex]
+  );
+
+  const visibleSizes = useMemo(
+    () =>
+      sizes.filter((size) =>
+        displayColumns.some((len) =>
+          isCellVisible(getVariant(selectedColour, size, len), showInStock, showSoldOut, showNotAvailable)
+        )
+      ),
+    [sizes, displayColumns, selectedColour, getVariant, showInStock, showSoldOut, showNotAvailable]
+  );
+
+  const visibleColumns = useMemo(
+    () =>
+      displayColumns.filter((len) =>
+        sizes.some((size) =>
+          isCellVisible(getVariant(selectedColour, size, len), showInStock, showSoldOut, showNotAvailable)
+        )
+      ),
+    [displayColumns, sizes, selectedColour, getVariant, showInStock, showSoldOut, showNotAvailable]
+  );
+
   // Sync column widths from the body table to the sticky header table
   useLayoutEffect(() => {
     const sync = () => {
@@ -225,52 +265,12 @@ function ProductBulkOrder({ product, showInStock = true, showSoldOut = true, sho
     return () => ro.disconnect();
   }, [visibleSizes, visibleColumns, selectedColour]);
 
-  // Build variant lookup: "option1|option2|option3" → variant
-  const variantMap = useMemo(() => {
-    const map = {};
-    product.variants.forEach((v) => {
-      map[`${v.option1 ?? ''}|${v.option2 ?? ''}|${v.option3 ?? ''}`] = v;
-    });
-    return map;
-  }, [product]);
-
-  const getVariant = useCallback(
-    (colour, size, length = '') => {
-      const opts = ['', '', ''];
-      if (colourOptionIndex >= 0) opts[colourOptionIndex] = colour;
-      if (sizeOptionIndex   >= 0) opts[sizeOptionIndex]   = size;
-      if (lengthOptionIndex >= 0) opts[lengthOptionIndex] = length;
-      return variantMap[`${opts[0]}|${opts[1]}|${opts[2]}`];
-    },
-    [variantMap, colourOptionIndex, sizeOptionIndex, lengthOptionIndex]
-  );
-
   const getQty = (variantId) => quantities[variantId] ?? 0;
 
   const setQty = useCallback((variantId, qty) => {
     setQuantities((prev) => ({ ...prev, [variantId]: qty }));
     setAddStatus(null);
   }, []);
-
-  const visibleSizes = useMemo(
-    () =>
-      sizes.filter((size) =>
-        displayColumns.some((len) =>
-          isCellVisible(getVariant(selectedColour, size, len), showInStock, showSoldOut, showNotAvailable)
-        )
-      ),
-    [sizes, displayColumns, selectedColour, getVariant, showInStock, showSoldOut, showNotAvailable]
-  );
-
-  const visibleColumns = useMemo(
-    () =>
-      displayColumns.filter((len) =>
-        sizes.some((size) =>
-          isCellVisible(getVariant(selectedColour, size, len), showInStock, showSoldOut, showNotAvailable)
-        )
-      ),
-    [displayColumns, sizes, selectedColour, getVariant, showInStock, showSoldOut, showNotAvailable]
-  );
 
   // Row subtotal (across all visible lengths for a given size)
   const rowTotal = (size) =>
