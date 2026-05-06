@@ -66,8 +66,8 @@ $pbo-radius-sm:    0.6rem;
   }
 
   &--active {
-    background-color: var(--color-secondary-background);
-    border-color: var(--color-secondary-background);
+    background-color: rgb(var(--color-secondary-background));
+    border-color: rgb(var(--color-secondary-background));
     color: #fff;
   }
 }
@@ -245,7 +245,7 @@ $pbo-radius-sm:    0.6rem;
 
   &:focus {
     outline: none;
-    background-color: color-mix(in srgb, var(--color-secondary-background) 6%, transparent);
+    background-color: rgba(var(--color-secondary-background), 0.06);
   }
 
   &:disabled {
@@ -302,7 +302,7 @@ $pbo-radius-sm:    0.6rem;
   white-space: nowrap;
 
   &--in {
-    background-color: var(--color-secondary-background);
+    background-color: rgb(var(--color-secondary-background));
     color: #fff;
   }
 
