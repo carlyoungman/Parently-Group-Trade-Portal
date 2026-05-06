@@ -173,6 +173,10 @@ function ProductBulkOrder({ product, showInStock = true, showSoldOut = true, sho
   const bodyScrollRef = useRef(null);
   const stickyHeaderTableRef = useRef(null);
   const bodyTableRef = useRef(null);
+  const headerWrapRef = useRef(null);
+  const headerSentinelRef = useRef(null);
+  const footerRef = useRef(null);
+  const footerSentinelRef = useRef(null);
 
   // Sync horizontal scroll between the sticky header and the body
   useEffect(() => {
@@ -197,6 +201,46 @@ function ProductBulkOrder({ product, showInStock = true, showSoldOut = true, sho
     return () => {
       bodyEl.removeEventListener('scroll', onBodyScroll);
       headerEl.removeEventListener('scroll', onHeaderScroll);
+    };
+  }, []);
+
+  // Stuck detection — adds --stuck modifier when header/footer are sticky
+  useEffect(() => {
+    const headerSentinel = headerSentinelRef.current;
+    const headerWrap     = headerWrapRef.current;
+    const footerSentinel = footerSentinelRef.current;
+    const footerEl       = footerRef.current;
+    if (!headerSentinel || !headerWrap || !footerSentinel || !footerEl) return;
+
+    const getHeaderHeight = () =>
+      getComputedStyle(document.documentElement).getPropertyValue('--header-height').trim() || '0px';
+
+    const buildHeaderObserver = () =>
+      new IntersectionObserver(
+        ([entry]) => headerWrap.classList.toggle('pbo__table-header-wrap--stuck', !entry.isIntersecting),
+        { rootMargin: `-${getHeaderHeight()} 0px 0px 0px`, threshold: 0 }
+      );
+
+    const footerObserver = new IntersectionObserver(
+      ([entry]) => footerEl.classList.toggle('pbo__footer--stuck', !entry.isIntersecting),
+      { threshold: 0 }
+    );
+
+    let headerObserver = buildHeaderObserver();
+    headerObserver.observe(headerSentinel);
+    footerObserver.observe(footerSentinel);
+
+    const onResize = () => {
+      headerObserver.disconnect();
+      headerObserver = buildHeaderObserver();
+      headerObserver.observe(headerSentinel);
+    };
+    window.addEventListener('resize', onResize, { passive: true });
+
+    return () => {
+      headerObserver.disconnect();
+      footerObserver.disconnect();
+      window.removeEventListener('resize', onResize);
     };
   }, []);
 
@@ -373,25 +417,31 @@ function ProductBulkOrder({ product, showInStock = true, showSoldOut = true, sho
         </div>
       )}
 
-      {/* Sticky header – sits outside the overflow-x wrapper so position:sticky resolves to the page */}
-      <div className="pbo__table-header-scroll" ref={headerScrollRef}>
-        <table className="pbo__table" ref={stickyHeaderTableRef} aria-hidden="true">
-          <thead>
-            <tr>
-              <th className="pbo__th pbo__th--size" scope="col">
-                {sizeLabel.toUpperCase()}
-              </th>
-              {visibleColumns.map((len) => (
-                <th key={len || 'qty'} className="pbo__th" scope="col">
-                  {len ? len.toUpperCase() : 'QTY'}
+      {/* Sentinel for header stuck detection */}
+      <div className="pbo__sentinel" ref={headerSentinelRef} aria-hidden="true" />
+
+      {/* Sticky header wrap – handles sticky positioning and full-width background */}
+      <div className="pbo__table-header-wrap" ref={headerWrapRef}>
+        {/* Inner scroll div retains overflow-x:auto without clipping ::before/::after */}
+        <div className="pbo__table-header-scroll" ref={headerScrollRef}>
+          <table className="pbo__table" ref={stickyHeaderTableRef} aria-hidden="true">
+            <thead>
+              <tr>
+                <th className="pbo__th pbo__th--size" scope="col">
+                  {sizeLabel.toUpperCase()}
                 </th>
-              ))}
-              <th className="pbo__th pbo__th--total" scope="col">
-                TOTAL
-              </th>
-            </tr>
-          </thead>
-        </table>
+                {visibleColumns.map((len) => (
+                  <th key={len || 'qty'} className="pbo__th" scope="col">
+                    {len ? len.toUpperCase() : 'QTY'}
+                  </th>
+                ))}
+                <th className="pbo__th pbo__th--total" scope="col">
+                  TOTAL
+                </th>
+              </tr>
+            </thead>
+          </table>
+        </div>
       </div>
 
       {/* Matrix table body */}
@@ -461,8 +511,11 @@ function ProductBulkOrder({ product, showInStock = true, showSoldOut = true, sho
         </table>
       </div>
 
+      {/* Sentinel for footer stuck detection */}
+      <div className="pbo__sentinel" ref={footerSentinelRef} aria-hidden="true" />
+
       {/* Footer */}
-      <div className="pbo__footer">
+      <div className="pbo__footer" ref={footerRef}>
         <div className="pbo__footer-left">
           {addStatus === 'success' ? (
             <a href="/cart" className="pbo__cart-btn">
