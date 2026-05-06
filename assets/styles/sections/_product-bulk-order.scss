@@ -95,10 +95,6 @@ $pbo-radius-sm:    0.6rem;
   width: 100%;
   border-collapse: collapse;
   min-width: 60rem;
-
-  thead tr {
-    border-bottom: 1.5px solid $pbo-border;
-  }
 }
 
 .pbo__th {
@@ -109,6 +105,11 @@ $pbo-radius-sm:    0.6rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: $pbo-text-muted;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background-color: #fff;
+  border-bottom: 1.5px solid $pbo-border;
 
   &--size {
     text-align: left;
@@ -312,6 +313,12 @@ $pbo-radius-sm:    0.6rem;
   padding-top: 2.4rem;
   border-top: 1.5px solid $pbo-border;
   margin-top: 0.4rem;
+  position: sticky;
+  bottom: 0;
+  z-index: 2;
+  background-color: #fff;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.08);
+  padding-bottom: 1.6rem;
 }
 
 .pbo__footer-left {
