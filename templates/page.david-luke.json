@@ -42,8 +42,8 @@
         "white_text": true,
         "desktop_content_position": "middle-center",
         "desktop_content_alignment": "center",
-        "show_text_box": true,
-        "stack_images_on_mobile": false,
+        "show_text_box": false,
+        "stack_images_on_mobile": true,
         "mobile_content_alignment": "center",
         "show_text_below": false
       }
