@@ -4,13 +4,28 @@
     margin-left: -1.2rem;
   }
 
-  {%- if section.settings.sticky_header_type == 'reduce-logo-size' -%}
+  {%- liquid
+    assign _css_sticky = section.settings.sticky_header_type
+    if request.page_type == 'index' and section.settings.sticky_header_type_index != 'default'
+      assign _css_sticky = section.settings.sticky_header_type_index
+    elsif request.page_type == 'product' and section.settings.sticky_header_type_product != 'default'
+      assign _css_sticky = section.settings.sticky_header_type_product
+    elsif request.page_type == 'collection' and section.settings.sticky_header_type_collection != 'default'
+      assign _css_sticky = section.settings.sticky_header_type_collection
+    elsif request.page_type == 'page' and section.settings.sticky_header_type_page != 'default'
+      assign _css_sticky = section.settings.sticky_header_type_page
+    elsif request.page_type == 'cart' and section.settings.sticky_header_type_cart != 'default'
+      assign _css_sticky = section.settings.sticky_header_type_cart
+    endif
+  -%}
+
+  {%- if _css_sticky == 'reduce-logo-size' -%}
     .scrolled-past-header .header__heading-logo-wrapper {
       width: 75%;
     }
   {%- endif -%}
 
-  {%- if section.settings.sticky_header_type == 'absolute' -%}
+  {%- if _css_sticky == 'absolute' -%}
     .section-header {
       margin-bottom: calc(-1 * var(--header-height, 0px));
     }
@@ -99,18 +114,32 @@
 -%}
 
 {% liquid
+  assign effective_sticky_type = section.settings.sticky_header_type
+
+  if request.page_type == 'index' and section.settings.sticky_header_type_index != 'default'
+    assign effective_sticky_type = section.settings.sticky_header_type_index
+  elsif request.page_type == 'product' and section.settings.sticky_header_type_product != 'default'
+    assign effective_sticky_type = section.settings.sticky_header_type_product
+  elsif request.page_type == 'collection' and section.settings.sticky_header_type_collection != 'default'
+    assign effective_sticky_type = section.settings.sticky_header_type_collection
+  elsif request.page_type == 'page' and section.settings.sticky_header_type_page != 'default'
+    assign effective_sticky_type = section.settings.sticky_header_type_page
+  elsif request.page_type == 'cart' and section.settings.sticky_header_type_cart != 'default'
+    assign effective_sticky_type = section.settings.sticky_header_type_cart
+  endif
+
   assign header_tag = 'div'
 
-  if section.settings.sticky_header_type != 'none'
+  if effective_sticky_type != 'none'
     assign header_tag = 'sticky-header'
   endif
 %}
 
 <{{ header_tag }}
   {% if header_tag == 'sticky-header' %}
-    data-sticky-type="{{ section.settings.sticky_header_type }}"
+    data-sticky-type="{{ effective_sticky_type }}"
   {% endif %}
-  class="header-wrapper color-scheme-1{% if section.settings.show_line_separator %} header-wrapper--border-bottom{% endif %}{% if section.settings.sticky_header_type == 'absolute' %} header-wrapper--absolute{% endif %}"
+  class="header-wrapper color-scheme-1{% if section.settings.show_line_separator %} header-wrapper--border-bottom{% endif %}{% if effective_sticky_type == 'absolute' %} header-wrapper--absolute{% endif %}"
 >
   {%- liquid
     assign social_links = false
@@ -591,6 +620,84 @@
       ],
       "default": "on-scroll-up",
       "label": "t:sections.header.settings.sticky_header_type.label"
+    },
+    {
+      "type": "header",
+      "content": "Sticky header overrides per template"
+    },
+    {
+      "type": "paragraph",
+      "content": "Set to 'Use default' to inherit the global sticky header setting above."
+    },
+    {
+      "type": "select",
+      "id": "sticky_header_type_index",
+      "options": [
+        { "value": "default", "label": "Use default" },
+        { "value": "none", "label": "None" },
+        { "value": "on-scroll-up", "label": "On scroll up" },
+        { "value": "always", "label": "Always" },
+        { "value": "reduce-logo-size", "label": "Reduce logo size" },
+        { "value": "absolute", "label": "Absolute" }
+      ],
+      "default": "default",
+      "label": "Home page"
+    },
+    {
+      "type": "select",
+      "id": "sticky_header_type_product",
+      "options": [
+        { "value": "default", "label": "Use default" },
+        { "value": "none", "label": "None" },
+        { "value": "on-scroll-up", "label": "On scroll up" },
+        { "value": "always", "label": "Always" },
+        { "value": "reduce-logo-size", "label": "Reduce logo size" },
+        { "value": "absolute", "label": "Absolute" }
+      ],
+      "default": "default",
+      "label": "Product page"
+    },
+    {
+      "type": "select",
+      "id": "sticky_header_type_collection",
+      "options": [
+        { "value": "default", "label": "Use default" },
+        { "value": "none", "label": "None" },
+        { "value": "on-scroll-up", "label": "On scroll up" },
+        { "value": "always", "label": "Always" },
+        { "value": "reduce-logo-size", "label": "Reduce logo size" },
+        { "value": "absolute", "label": "Absolute" }
+      ],
+      "default": "default",
+      "label": "Collection page"
+    },
+    {
+      "type": "select",
+      "id": "sticky_header_type_page",
+      "options": [
+        { "value": "default", "label": "Use default" },
+        { "value": "none", "label": "None" },
+        { "value": "on-scroll-up", "label": "On scroll up" },
+        { "value": "always", "label": "Always" },
+        { "value": "reduce-logo-size", "label": "Reduce logo size" },
+        { "value": "absolute", "label": "Absolute" }
+      ],
+      "default": "default",
+      "label": "Pages"
+    },
+    {
+      "type": "select",
+      "id": "sticky_header_type_cart",
+      "options": [
+        { "value": "default", "label": "Use default" },
+        { "value": "none", "label": "None" },
+        { "value": "on-scroll-up", "label": "On scroll up" },
+        { "value": "always", "label": "Always" },
+        { "value": "reduce-logo-size", "label": "Reduce logo size" },
+        { "value": "absolute", "label": "Absolute" }
+      ],
+      "default": "default",
+      "label": "Cart page"
     },
     {
       "type": "checkbox",
