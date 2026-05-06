@@ -63,8 +63,8 @@ function formatMoney(pence) {
 function getStockStatus(variant) {
   if (!variant || !variant.available) return 'out';
   const qty = variant.inventory_quantity;
-  if (qty === undefined || qty === null) return 'in'; // tracking off → assume in stock
-  if (qty <= 0) return 'out';
+  // qty 0/null/undefined with available:true means tracking is off or continues-selling → in stock
+  if (!qty || qty <= 0) return 'in';
   if (qty <= LOW_STOCK_THRESHOLD) return 'low';
   return 'in';
 }
@@ -75,7 +75,7 @@ function StockBadge({ variant }) {
   const label =
     status === 'out'
       ? 'Out of stock'
-      : qty !== undefined && qty !== null
+      : qty > 0
       ? `${qty} in stock`
       : 'In stock';
   return <span className={`pbo-stock pbo-stock--${status}`}>{label}</span>;
