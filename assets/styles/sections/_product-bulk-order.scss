@@ -85,7 +85,7 @@ $pbo-radius-sm:    0.6rem;
 // ─── Sticky header scroll (outside overflow-x wrapper so sticky resolves to page) ──
 .pbo__table-header-scroll {
   position: sticky;
-  top: 0;
+  top: var(--header-height, 0px);
   z-index: 2;
   background-color: #fff;
   overflow-x: auto;
