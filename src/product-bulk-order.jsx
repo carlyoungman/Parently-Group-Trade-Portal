@@ -119,18 +119,39 @@ function QuantityStepper({ value, onChange, disabled }) {
 function ProductBulkOrder({ product }) {
   const options = product.options ?? [];
 
-  // Derive unique values for each option position
+  // Detect which option position holds colour, size, and length by name
+  const colourOptionIndex = options.findIndex((o) => /colou?r/i.test(o));
+  const sizeOptionIndex   = options.findIndex((o) => /size/i.test(o));
+  const lengthOptionIndex = options.findIndex((o) => /length/i.test(o));
+
+  const getOptionValue = (variant, index) => {
+    if (index === 0) return variant.option1;
+    if (index === 1) return variant.option2;
+    if (index === 2) return variant.option3;
+    return '';
+  };
+
+  // Derive unique values for each semantic option
   const colours = useMemo(
-    () => [...new Set(product.variants.map((v) => v.option1))].filter(Boolean),
-    [product]
+    () =>
+      colourOptionIndex >= 0
+        ? [...new Set(product.variants.map((v) => getOptionValue(v, colourOptionIndex)))].filter(Boolean)
+        : [],
+    [product, colourOptionIndex]
   );
   const sizes = useMemo(
-    () => [...new Set(product.variants.map((v) => v.option2))].filter(Boolean),
-    [product]
+    () =>
+      sizeOptionIndex >= 0
+        ? [...new Set(product.variants.map((v) => getOptionValue(v, sizeOptionIndex)))].filter(Boolean)
+        : [],
+    [product, sizeOptionIndex]
   );
   const lengths = useMemo(
-    () => [...new Set(product.variants.map((v) => v.option3))].filter(Boolean),
-    [product]
+    () =>
+      lengthOptionIndex >= 0
+        ? [...new Set(product.variants.map((v) => getOptionValue(v, lengthOptionIndex)))].filter(Boolean)
+        : [],
+    [product, lengthOptionIndex]
   );
 
   const hasColours = colours.length > 1;
@@ -151,8 +172,14 @@ function ProductBulkOrder({ product }) {
   }, [product]);
 
   const getVariant = useCallback(
-    (colour, size, length = '') => variantMap[`${colour}|${size}|${length}`],
-    [variantMap]
+    (colour, size, length = '') => {
+      const opts = ['', '', ''];
+      if (colourOptionIndex >= 0) opts[colourOptionIndex] = colour;
+      if (sizeOptionIndex   >= 0) opts[sizeOptionIndex]   = size;
+      if (lengthOptionIndex >= 0) opts[lengthOptionIndex] = length;
+      return variantMap[`${opts[0]}|${opts[1]}|${opts[2]}`];
+    },
+    [variantMap, colourOptionIndex, sizeOptionIndex, lengthOptionIndex]
   );
 
   const getQty = (variantId) => quantities[variantId] ?? 0;
@@ -231,8 +258,8 @@ function ProductBulkOrder({ product }) {
     }
   };
 
-  const colourLabel = options[0] ?? 'Colour';
-  const sizeLabel = options[1] ?? 'Size';
+  const colourLabel = colourOptionIndex >= 0 ? options[colourOptionIndex] : 'Colour';
+  const sizeLabel   = sizeOptionIndex   >= 0 ? options[sizeOptionIndex]   : 'Size';
 
   return (
     <div className="pbo">
