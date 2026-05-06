@@ -427,16 +427,16 @@ function ProductBulkOrder({ product, showInStock = true, showSoldOut = true, sho
                             onChange={(val) => variant && setQty(variant.id, val)}
                             disabled={isOOS}
                           />
-                          {qty > 0 && !isOOS && (
-                            <button
-                              type="button"
-                              className="pbo__delete-btn"
-                              onClick={() => variant && setQty(variant.id, 0)}
-                              aria-label={`Remove ${size} ${len}`}
-                            >
-                              <TrashIcon />
-                            </button>
-                          )}
+                          <button
+                            type="button"
+                            className={`pbo__delete-btn${qty === 0 || isOOS ? ' pbo__delete-btn--hidden' : ''}`}
+                            onClick={() => variant && setQty(variant.id, 0)}
+                            aria-label={`Remove ${size} ${len}`}
+                            tabIndex={qty > 0 && !isOOS ? 0 : -1}
+                            aria-hidden={qty > 0 && !isOOS ? undefined : 'true'}
+                          >
+                            <TrashIcon />
+                          </button>
                         </div>
                         {variant ? (
                           <div className="pbo__price">{formatMoney(variant.price)} Each</div>

@@ -110,11 +110,12 @@ $pbo-radius-sm:    0.6rem;
   width: 100%;
   border-collapse: collapse;
   min-width: 60rem;
+  table-layout: fixed;
 }
 
 .pbo__th {
   padding: 1.6rem 1.2rem;
-  text-align: center;
+  text-align: left;
   font-size: 1.1rem;
   font-weight: 600;
   letter-spacing: 0.12em;
@@ -125,7 +126,6 @@ $pbo-radius-sm:    0.6rem;
 
   &--size {
     text-align: left;
-    width: 8rem;
   }
 
   &--total {
@@ -273,6 +273,11 @@ $pbo-radius-sm:    0.6rem;
   &:hover {
     color: $pbo-red;
     background-color: $pbo-red-light;
+  }
+
+  &--hidden {
+    visibility: hidden;
+    pointer-events: none;
   }
 }
 
