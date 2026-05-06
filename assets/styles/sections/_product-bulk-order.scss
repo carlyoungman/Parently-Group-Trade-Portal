@@ -4,7 +4,6 @@
 @use 'sass:color';
 
 // Design tokens (match the screenshot)
-$pbo-green:        #2a6b45;
 $pbo-green-light:  #d4edda;
 $pbo-orange:       #d97706;
 $pbo-orange-light: #fef3c7;
@@ -67,8 +66,8 @@ $pbo-radius-sm:    0.6rem;
   }
 
   &--active {
-    background-color: $pbo-green;
-    border-color: $pbo-green;
+    background-color: var(--color-secondary-background);
+    border-color: var(--color-secondary-background);
     color: #fff;
   }
 }
@@ -167,13 +166,13 @@ $pbo-radius-sm:    0.6rem;
 .pbo__cell {
   padding: 1.6rem 1.2rem;
   vertical-align: top;
-  text-align: center;
+  text-align: left;
 }
 
 .pbo__cell-inner {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: 0.6rem;
 }
 
@@ -246,7 +245,7 @@ $pbo-radius-sm:    0.6rem;
 
   &:focus {
     outline: none;
-    background-color: rgba(42, 107, 69, 0.06);
+    background-color: color-mix(in srgb, var(--color-secondary-background) 6%, transparent);
   }
 
   &:disabled {
@@ -303,7 +302,7 @@ $pbo-radius-sm:    0.6rem;
   white-space: nowrap;
 
   &--in {
-    background-color: $pbo-green;
+    background-color: var(--color-secondary-background);
     color: #fff;
   }
 
