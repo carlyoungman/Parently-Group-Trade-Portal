@@ -81,15 +81,47 @@ $pbo-radius-sm:    0.6rem;
   flex-shrink: 0;
 }
 
-// ─── Sticky header scroll (outside overflow-x wrapper so sticky resolves to page) ──
-.pbo__table-header-scroll {
+// ─── Sentinel (IntersectionObserver anchor) ──────────────────────────────────
+.pbo__sentinel {
+  position: relative;
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+// ─── Sticky header wrap ──────────────────────────────────────────────────────
+// Handles position:sticky and the full-width background extension.
+// The inner .pbo__table-header-scroll keeps overflow-x:auto; ::before/::after
+// placed on that element would be clipped, so they live on this wrapper instead.
+.pbo__table-header-wrap {
   position: sticky;
   top: var(--header-height, 0px);
   z-index: 2;
-  background-color: #fff;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset-block: 0;
+    left: -9999px;
+    right: -9999px;
+    background-color: #fff;
+    z-index: -1;
+    box-shadow: none;
+    transition: box-shadow 0.15s ease;
+  }
+
+  &--stuck::before {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  }
+}
+
+// ─── Sticky header scroll (inner overflow container) ─────────────────────────
+.pbo__table-header-scroll {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
+  background-color: #fff;
   border-top: 1.5px solid $pbo-border;
 
   &::-webkit-scrollbar {
@@ -345,9 +377,23 @@ $pbo-radius-sm:    0.6rem;
   position: sticky;
   bottom: 0;
   z-index: 2;
-  background-color: #fff;
-  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.08);
   padding-bottom: 1.6rem;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset-block: 0;
+    left: -9999px;
+    right: -9999px;
+    background-color: #fff;
+    z-index: -1;
+    box-shadow: none;
+    transition: box-shadow 0.15s ease;
+  }
+
+  &--stuck::before {
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.08);
+  }
 }
 
 .pbo__footer-left {
