@@ -274,6 +274,11 @@ $pbo-radius-sm:    0.6rem;
     color: $pbo-red;
     background-color: $pbo-red-light;
   }
+
+  &--hidden {
+    visibility: hidden;
+    pointer-events: none;
+  }
 }
 
 // ─── Price per item ──────────────────────────────────────────────────────────
