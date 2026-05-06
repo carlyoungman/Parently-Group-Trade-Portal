@@ -488,10 +488,8 @@ function ProductBulkOrder({ product, showInStock = true, showSoldOut = true, sho
                             <TrashIcon />
                           </button>
                         </div>
-                        {variant ? (
+                        {variant && (
                           <div className="pbo__price">{formatMoney(variant.price)} Each</div>
-                        ) : (
-                          <div className="pbo__price pbo__price--na">—</div>
                         )}
                         {variant ? (
                           <StockBadge variant={variant} />
