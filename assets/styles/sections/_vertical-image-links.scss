@@ -48,7 +48,8 @@ vertical-image-links-component {
   &__carousel-track {
     display: flex;
     flex-direction: column;
-    gap: 1.6rem;
+    column-gap: var(--grid-desktop-horizontal-spacing);
+    row-gap: var(--grid-desktop-vertical-spacing);
     padding: 0;
     list-style: none;
     margin: 0;
