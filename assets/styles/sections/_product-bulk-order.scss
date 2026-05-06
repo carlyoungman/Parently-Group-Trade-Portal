@@ -82,12 +82,27 @@ $pbo-radius-sm:    0.6rem;
   flex-shrink: 0;
 }
 
+// ─── Sticky header scroll (outside overflow-x wrapper so sticky resolves to page) ──
+.pbo__table-header-scroll {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background-color: #fff;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  border-top: 1.5px solid $pbo-border;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 // ─── Table wrapper (horizontal scroll on small screens) ─────────────────────
 .pbo__table-wrapper {
   width: 100%;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  border-top: 1.5px solid $pbo-border;
 }
 
 // ─── Matrix table ────────────────────────────────────────────────────────────
@@ -105,9 +120,6 @@ $pbo-radius-sm:    0.6rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: $pbo-text-muted;
-  position: sticky;
-  top: 0;
-  z-index: 2;
   background-color: #fff;
   border-bottom: 1.5px solid $pbo-border;
 
@@ -120,6 +132,19 @@ $pbo-radius-sm:    0.6rem;
     text-align: right;
     white-space: nowrap;
   }
+}
+
+// ─── Screen-reader-only thead in body table ──────────────────────────────────
+.pbo__thead--sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 // ─── Table rows ──────────────────────────────────────────────────────────────

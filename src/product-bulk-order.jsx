@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useCallback } from 'react';
+import React, { useState, useMemo, useCallback, useRef, useEffect, useLayoutEffect } from 'react';
 import { createRoot } from 'react-dom/client';
 
 const LOW_STOCK_THRESHOLD = 5;
@@ -162,6 +162,62 @@ function ProductBulkOrder({ product }) {
   const [isAdding, setIsAdding] = useState(false);
   const [addStatus, setAddStatus] = useState(null); // null | 'success' | 'error'
 
+  const headerScrollRef = useRef(null);
+  const bodyScrollRef = useRef(null);
+  const stickyHeaderTableRef = useRef(null);
+  const bodyTableRef = useRef(null);
+
+  // Sync horizontal scroll between the sticky header and the body
+  useEffect(() => {
+    const headerEl = headerScrollRef.current;
+    const bodyEl = bodyScrollRef.current;
+    if (!headerEl || !bodyEl) return;
+    let syncing = false;
+    const onBodyScroll = () => {
+      if (syncing) return;
+      syncing = true;
+      headerEl.scrollLeft = bodyEl.scrollLeft;
+      syncing = false;
+    };
+    const onHeaderScroll = () => {
+      if (syncing) return;
+      syncing = true;
+      bodyEl.scrollLeft = headerEl.scrollLeft;
+      syncing = false;
+    };
+    bodyEl.addEventListener('scroll', onBodyScroll, { passive: true });
+    headerEl.addEventListener('scroll', onHeaderScroll, { passive: true });
+    return () => {
+      bodyEl.removeEventListener('scroll', onBodyScroll);
+      headerEl.removeEventListener('scroll', onHeaderScroll);
+    };
+  }, []);
+
+  // Sync column widths from the body table to the sticky header table
+  useLayoutEffect(() => {
+    const sync = () => {
+      const bodyTable = bodyTableRef.current;
+      const headerTable = stickyHeaderTableRef.current;
+      if (!bodyTable || !headerTable) return;
+      const firstRow = bodyTable.querySelector('tbody tr');
+      if (!firstRow) return;
+      const bodyCells = firstRow.querySelectorAll('td');
+      const headerCells = headerTable.querySelectorAll('th');
+      bodyCells.forEach((td, i) => {
+        if (headerCells[i]) {
+          const w = td.getBoundingClientRect().width;
+          headerCells[i].style.width = `${w}px`;
+          headerCells[i].style.minWidth = `${w}px`;
+        }
+      });
+      headerTable.style.width = `${bodyTable.getBoundingClientRect().width}px`;
+    };
+    sync();
+    const ro = new ResizeObserver(sync);
+    if (bodyTableRef.current) ro.observe(bodyTableRef.current);
+    return () => ro.disconnect();
+  }, [sizes, displayColumns, selectedColour]);
+
   // Build variant lookup: "option1|option2|option3" → variant
   const variantMap = useMemo(() => {
     const map = {};
@@ -292,9 +348,9 @@ function ProductBulkOrder({ product }) {
         </div>
       )}
 
-      {/* Matrix table */}
-      <div className="pbo__table-wrapper">
-        <table className="pbo__table">
+      {/* Sticky header – sits outside the overflow-x wrapper so position:sticky resolves to the page */}
+      <div className="pbo__table-header-scroll" ref={headerScrollRef}>
+        <table className="pbo__table" ref={stickyHeaderTableRef} aria-hidden="true">
           <thead>
             <tr>
               <th className="pbo__th pbo__th--size" scope="col">
@@ -308,6 +364,22 @@ function ProductBulkOrder({ product }) {
               <th className="pbo__th pbo__th--total" scope="col">
                 TOTAL
               </th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+
+      {/* Matrix table body */}
+      <div className="pbo__table-wrapper" ref={bodyScrollRef}>
+        <table className="pbo__table" ref={bodyTableRef}>
+          {/* Visually hidden thead keeps screen-reader header/cell associations */}
+          <thead className="pbo__thead--sr-only">
+            <tr>
+              <th scope="col">{sizeLabel.toUpperCase()}</th>
+              {displayColumns.map((len) => (
+                <th key={len || 'qty'} scope="col">{len ? len.toUpperCase() : 'QTY'}</th>
+              ))}
+              <th scope="col">TOTAL</th>
             </tr>
           </thead>
           <tbody>
