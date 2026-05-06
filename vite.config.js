@@ -24,6 +24,7 @@ export default defineConfig({
         inlineDynamicImports: true,
         entryFileNames: 'product-bulk-order.js',
         assetFileNames: 'product-bulk-order.[ext]',
+        generatedCode: { constBindings: false },
       },
     },
   },
