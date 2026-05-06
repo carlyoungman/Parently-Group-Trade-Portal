@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "concurrently --names \"shopify,sass\" --prefix-colors \"cyan,magenta\" --kill-others-on-fail \"shopify theme dev --environment=dev\" \"npm run watch:css\"",
-    "build": "npm run build:css",
+    "build": "npm run build:css && npm run build:js",
+    "build:js": "vite build",
     "build:css": "sass assets/styles/theme.scss assets/theme.css --style=compressed --no-source-map",
     "build:css:dev": "sass assets/styles/theme.scss assets/theme.css --style=expanded --source-map",
     "watch:css": "sass --watch assets/styles/theme.scss:assets/theme.css --style=expanded --source-map",
