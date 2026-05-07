@@ -134,9 +134,8 @@
     padding: 0 1rem 1rem 1rem;
 
     .caption-with-letter-spacing{
-      color: #73AE70;
+      color:  rgb(var(--color-secondary-background));
       margin-bottom: 1rem;
-      font-size: var(--font-h4);
     }
   }
 
@@ -486,7 +485,6 @@
 .card-information {
   text-align: var(--text-alignment);
   margin-top: 1.5rem;
-  font-size: var(--font-h3);
   width: 100%;
 
   > * + * {
@@ -782,4 +780,10 @@
       }
     }
   }
+}
+
+.full-unstyled-link {
+
+  font-size: inherit;
+  font-weight: inherit;
 }

@@ -23,7 +23,7 @@
     min-height: unset;
     font-size: var(--font-h5);
     @include breakpoint-sm {
-      font-size: var(--font-h2);
+      font-size: var(--font-h3);
     }
 
     &::after {
