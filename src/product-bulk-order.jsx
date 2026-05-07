@@ -539,6 +539,25 @@ function ProductBulkOrder({ product, variantSwatches = {}, showInStock = true, s
               </tr>
             ))}
           </tbody>
+          <tfoot>
+            <tr className="pbo__tfoot-row">
+              <td className="pbo__size-cell pbo__tfoot-label">Totals</td>
+              {visibleColumns.map((len) => (
+                <td key={len || 'qty'} className="pbo__cell">
+                  <div className="pbo__col-total">
+                    <span className="pbo__col-total-value">{colItemCount(len)}</span>
+                    <span className="pbo__col-total-label">Items</span>
+                  </div>
+                </td>
+              ))}
+              <td className="pbo__row-total">
+                <div className="pbo__subtotal">
+                  <span className="pbo__subtotal-value">{formatMoney(grandTotal)}</span>
+                  <span className="pbo__subtotal-label">Subtotal</span>
+                </div>
+              </td>
+            </tr>
+          </tfoot>
         </table>
       </div>
 
@@ -578,12 +597,6 @@ function ProductBulkOrder({ product, variantSwatches = {}, showInStock = true, s
         </div>
 
         <div className="pbo__footer-totals">
-          {visibleColumns.map((len) => (
-            <div key={len || 'qty'} className="pbo__col-total">
-              <span className="pbo__col-total-value">{colItemCount(len)}</span>
-              <span className="pbo__col-total-label">Total Items</span>
-            </div>
-          ))}
           <div className="pbo__subtotal">
             <span className="pbo__subtotal-value">{formatMoney(grandTotal)}</span>
             <span className="pbo__subtotal-label">Product Subtotal</span>

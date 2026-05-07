@@ -475,17 +475,25 @@ $pbo-radius-sm:    0.6rem;
 .pbo__footer-totals {
   display: flex;
   align-items: flex-start;
-  gap: 3.2rem;
-  flex-wrap: wrap;
+}
+
+// ─── Tfoot row ───────────────────────────────────────────────────────────────
+.pbo__tfoot-row {
+  border-top: 1.5px solid $pbo-border;
+}
+
+.pbo__tfoot-label {
+  color: $pbo-text-muted;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
 }
 
 .pbo__col-total,
 .pbo__subtotal {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: 0.2rem;
-  min-width: 6rem;
 }
 
 .pbo__col-total-value,
