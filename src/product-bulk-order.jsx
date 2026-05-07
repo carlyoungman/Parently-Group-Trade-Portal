@@ -122,7 +122,7 @@ function QuantityStepper({ value, onChange, disabled }) {
   );
 }
 
-function ProductBulkOrder({ product, showInStock = true, showSoldOut = true, showNotAvailable = true }) {
+function ProductBulkOrder({ product, variantSwatches = {}, showInStock = true, showSoldOut = true, showNotAvailable = true }) {
   const options = product.options ?? [];
 
   // Detect which option position holds colour, size, and length by name
@@ -145,6 +145,17 @@ function ProductBulkOrder({ product, showInStock = true, showSoldOut = true, sho
         : [],
     [product, colourOptionIndex]
   );
+  const colourMetafieldMap = useMemo(() => {
+    const map = {};
+    product.variants.forEach((v) => {
+      const colour = getOptionValue(v, colourOptionIndex);
+      if (colour && !map[colour] && variantSwatches[v.id]) {
+        map[colour] = variantSwatches[v.id];
+      }
+    });
+    return map;
+  }, [product, colourOptionIndex, variantSwatches]);
+
   const sizes = useMemo(
     () =>
       sizeOptionIndex >= 0
@@ -407,7 +418,7 @@ function ProductBulkOrder({ product, showInStock = true, showSoldOut = true, sho
               >
                 <span
                   className="pbo__colour-swatch"
-                  style={{ backgroundColor: getSwatchColor(colour) }}
+                  style={{ backgroundColor: colourMetafieldMap[colour] ?? getSwatchColor(colour) }}
                   aria-hidden="true"
                 />
                 <span className="pbo__colour-name">{colour}</span>
@@ -568,12 +579,16 @@ document.querySelectorAll('[data-product-bulk-order]').forEach((el) => {
   try {
     const productData = JSON.parse(el.dataset.product ?? '{}');
     if (!Array.isArray(productData.variants) || productData.variants.length === 0) return;
+    const swatchData = JSON.parse(el.dataset.variantSwatches ?? '[]');
+    const variantSwatches = {};
+    swatchData.forEach(({ id, color }) => { if (color) variantSwatches[id] = color; });
     const showInStock = el.dataset.showInStock !== 'false';
     const showSoldOut = el.dataset.showSoldOut !== 'false';
     const showNotAvailable = el.dataset.showNotAvailable !== 'false';
     createRoot(el).render(
       <ProductBulkOrder
         product={productData}
+        variantSwatches={variantSwatches}
         showInStock={showInStock}
         showSoldOut={showSoldOut}
         showNotAvailable={showNotAvailable}
