@@ -198,30 +198,44 @@ function ProductBulkOrder({ product, variantSwatches = {}, showInStock = true, s
   const headerSentinelRef = useRef(null);
   const footerRef = useRef(null);
   const footerSentinelRef = useRef(null);
+  const footerScrollRef = useRef(null);
+  const footerLeftRef = useRef(null);
 
-  // Sync horizontal scroll between the sticky header and the body
+  // Sync horizontal scroll between the sticky header, body, and footer totals
   useEffect(() => {
     const headerEl = headerScrollRef.current;
     const bodyEl = bodyScrollRef.current;
-    if (!headerEl || !bodyEl) return;
+    const footerEl = footerScrollRef.current;
+    if (!headerEl || !bodyEl || !footerEl) return;
     let syncing = false;
     const onBodyScroll = () => {
       if (syncing) return;
       syncing = true;
       headerEl.scrollLeft = bodyEl.scrollLeft;
+      footerEl.scrollLeft = bodyEl.scrollLeft;
       syncing = false;
     };
     const onHeaderScroll = () => {
       if (syncing) return;
       syncing = true;
       bodyEl.scrollLeft = headerEl.scrollLeft;
+      footerEl.scrollLeft = headerEl.scrollLeft;
+      syncing = false;
+    };
+    const onFooterScroll = () => {
+      if (syncing) return;
+      syncing = true;
+      bodyEl.scrollLeft = footerEl.scrollLeft;
+      headerEl.scrollLeft = footerEl.scrollLeft;
       syncing = false;
     };
     bodyEl.addEventListener('scroll', onBodyScroll, { passive: true });
     headerEl.addEventListener('scroll', onHeaderScroll, { passive: true });
+    footerEl.addEventListener('scroll', onFooterScroll, { passive: true });
     return () => {
       bodyEl.removeEventListener('scroll', onBodyScroll);
       headerEl.removeEventListener('scroll', onHeaderScroll);
+      footerEl.removeEventListener('scroll', onFooterScroll);
     };
   }, []);
 
@@ -314,7 +328,7 @@ function ProductBulkOrder({ product, variantSwatches = {}, showInStock = true, s
     [displayColumns, sizes, selectedColour, getVariant, showInStock, showSoldOut, showNotAvailable]
   );
 
-  // Sync column widths from the body table to the sticky header table
+  // Sync column widths from the body table to the sticky header and footer totals
   useLayoutEffect(() => {
     const sync = () => {
       const bodyTable = bodyTableRef.current;
@@ -324,6 +338,8 @@ function ProductBulkOrder({ product, variantSwatches = {}, showInStock = true, s
       if (!firstRow) return;
       const bodyCells = firstRow.querySelectorAll('td');
       const headerCells = headerTable.querySelectorAll('th');
+
+      // Sync header th widths
       bodyCells.forEach((td, i) => {
         if (headerCells[i]) {
           const w = td.getBoundingClientRect().width;
@@ -332,6 +348,44 @@ function ProductBulkOrder({ product, variantSwatches = {}, showInStock = true, s
         }
       });
       headerTable.style.width = `${bodyTable.getBoundingClientRect().width}px`;
+
+      // Sync footer-left width to SIZE column (td[0]), never below cart button content width
+      const footerLeft = footerLeftRef.current;
+      if (footerLeft && bodyCells.length > 0) {
+        if (window.innerWidth > 749) {
+          const sizeColWidth = bodyCells[0].getBoundingClientRect().width;
+          const naturalWidth = footerLeft.scrollWidth;
+          footerLeft.style.minWidth = `${Math.max(sizeColWidth, naturalWidth)}px`;
+        } else {
+          footerLeft.style.minWidth = '';
+        }
+      }
+
+      // Sync each col-total / subtotal width to its corresponding table column
+      const footerScroll = footerScrollRef.current;
+      if (footerScroll && bodyCells.length > 1) {
+        const totalCells = footerScroll.querySelectorAll('.pbo__col-total, .pbo__subtotal');
+        totalCells.forEach((cell, i) => {
+          const td = bodyCells[i + 1]; // +1 to skip the SIZE column
+          if (td) {
+            const w = td.getBoundingClientRect().width;
+            cell.style.width = `${w}px`;
+            cell.style.minWidth = `${w}px`;
+            cell.style.flexShrink = '0';
+          }
+        });
+
+        // Set inner totals container width = sum of all data columns
+        let totalsWidth = 0;
+        for (let i = 1; i < bodyCells.length; i++) {
+          totalsWidth += bodyCells[i].getBoundingClientRect().width;
+        }
+        const innerTotals = footerScroll.querySelector('.pbo__footer-totals');
+        if (innerTotals) {
+          innerTotals.style.width = `${totalsWidth}px`;
+          innerTotals.style.minWidth = `${totalsWidth}px`;
+        }
+      }
     };
     sync();
     const ro = new ResizeObserver(sync);
@@ -539,25 +593,6 @@ function ProductBulkOrder({ product, variantSwatches = {}, showInStock = true, s
               </tr>
             ))}
           </tbody>
-          <tfoot>
-            <tr className="pbo__tfoot-row">
-              <td className="pbo__size-cell pbo__tfoot-label">Totals</td>
-              {visibleColumns.map((len) => (
-                <td key={len || 'qty'} className="pbo__cell">
-                  <div className="pbo__col-total">
-                    <span className="pbo__col-total-value">{colItemCount(len)}</span>
-                    <span className="pbo__col-total-label">Items</span>
-                  </div>
-                </td>
-              ))}
-              <td className="pbo__row-total">
-                <div className="pbo__subtotal">
-                  <span className="pbo__subtotal-value">{formatMoney(grandTotal)}</span>
-                  <span className="pbo__subtotal-label">Subtotal</span>
-                </div>
-              </td>
-            </tr>
-          </tfoot>
         </table>
       </div>
 
@@ -566,7 +601,7 @@ function ProductBulkOrder({ product, variantSwatches = {}, showInStock = true, s
 
       {/* Footer */}
       <div className="pbo__footer" ref={footerRef}>
-        <div className="pbo__footer-left">
+        <div className="pbo__footer-left" ref={footerLeftRef}>
           {addStatus === 'success' ? (
             <a href="/cart" className="pbo__cart-btn">
               View cart
@@ -596,10 +631,18 @@ function ProductBulkOrder({ product, variantSwatches = {}, showInStock = true, s
           )}
         </div>
 
-        <div className="pbo__footer-totals">
-          <div className="pbo__subtotal">
-            <span className="pbo__subtotal-value">{formatMoney(grandTotal)}</span>
-            <span className="pbo__subtotal-label">Product Subtotal</span>
+        <div className="pbo__footer-totals-scroll" ref={footerScrollRef}>
+          <div className="pbo__footer-totals">
+            {visibleColumns.map((len) => (
+              <div key={len || 'qty'} className="pbo__col-total">
+                <span className="pbo__col-total-value">{colItemCount(len)}</span>
+                <span className="pbo__col-total-label">Total Items</span>
+              </div>
+            ))}
+            <div className="pbo__subtotal">
+              <span className="pbo__subtotal-value">{formatMoney(grandTotal)}</span>
+              <span className="pbo__subtotal-label">Product Subtotal</span>
+            </div>
           </div>
         </div>
       </div>

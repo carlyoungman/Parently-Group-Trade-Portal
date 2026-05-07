@@ -351,9 +351,8 @@ $pbo-radius-sm:    0.6rem;
 .pbo__footer {
   display: flex;
   align-items: flex-start;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 2rem;
+  justify-content: flex-start;
+  gap: 0;
   padding-top: 2.4rem;
   border-top: 1.5px solid $pbo-border;
   margin-top: 0.4rem;
@@ -383,6 +382,7 @@ $pbo-radius-sm:    0.6rem;
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
+  flex-shrink: 0;
 }
 
 // ─── Cart button ─────────────────────────────────────────────────────────────
@@ -472,20 +472,21 @@ $pbo-radius-sm:    0.6rem;
 }
 
 // ─── Footer totals ───────────────────────────────────────────────────────────
+.pbo__footer-totals-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  flex: 1 1 0;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 .pbo__footer-totals {
   display: flex;
   align-items: flex-start;
-}
-
-// ─── Tfoot row ───────────────────────────────────────────────────────────────
-.pbo__tfoot-row {
-  border-top: 1.5px solid $pbo-border;
-}
-
-.pbo__tfoot-label {
-  color: $pbo-text-muted;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+  // width / min-width set by JS to match body table data columns
 }
 
 .pbo__col-total,
@@ -494,6 +495,13 @@ $pbo-radius-sm:    0.6rem;
   flex-direction: column;
   align-items: flex-start;
   gap: 0.2rem;
+  flex-shrink: 0;
+  // width / min-width set by JS to match corresponding table column
+}
+
+// Right-align subtotal to match the TOTAL column
+.pbo__footer-totals .pbo__subtotal {
+  align-items: flex-end;
 }
 
 .pbo__col-total-value,
@@ -529,7 +537,8 @@ $pbo-radius-sm:    0.6rem;
     gap: 1.6rem;
   }
 
-  .pbo__footer-totals {
-    gap: 2rem;
+  .pbo__footer-totals-scroll {
+    width: 100%;
+    overflow-x: auto;
   }
 }
