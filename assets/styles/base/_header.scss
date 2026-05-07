@@ -51,6 +51,35 @@
     border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.08);
   }
 
+  // Non-absolute header: always show secondary logo styling
+  &:not(.header-wrapper--absolute) {
+    background-color: var(--sticky-header-bg, rgb(var(--color-background)));
+    background: var(--sticky-header-bg, rgb(var(--color-background)));
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+
+    .header__heading-logo {
+      &--primary {
+        @include breakpoint-sm {
+          display: none;
+        }
+      }
+
+      &--secondary {
+        @include breakpoint-sm {
+          display: block;
+        }
+      }
+    }
+
+    .list-menu__item {
+      color: rgb(var(--color-foreground));
+    }
+
+    .svg-wrapper .icon {
+      color: rgb(var(--color-foreground));
+    }
+  }
+
   // Absolute Header Mode
   &.header-wrapper--absolute {
     width: 100%;
