@@ -128,7 +128,12 @@ function ProductBulkOrder({ product, variantSwatches = {}, showInStock = true, s
   // Detect which option position holds colour, size, and length by name
   const colourOptionIndex = options.findIndex((o) => /colou?r/i.test(o));
   const sizeOptionIndex   = options.findIndex((o) => /size/i.test(o));
-  const lengthOptionIndex = options.findIndex((o) => /length/i.test(o));
+  const lengthOptionIndex = options.findIndex((o, i) => {
+    if (/length/i.test(o)) return true;
+    // Fall back to any option that is not colour or size (e.g. "Fit", "Cut", "Style")
+    return colourOptionIndex >= 0 && sizeOptionIndex >= 0
+      && i !== colourOptionIndex && i !== sizeOptionIndex;
+  });
 
   const getOptionValue = (variant, index) => {
     if (index === 0) return variant.option1;
@@ -172,7 +177,7 @@ function ProductBulkOrder({ product, variantSwatches = {}, showInStock = true, s
   );
 
   const hasColours = colours.length > 1;
-  const hasLengths = lengths.length > 0;
+  const hasLengths = lengths.length > 1;
   const displayColumns = hasLengths ? lengths : [''];
 
   const [selectedColour, setSelectedColour] = useState(colours[0] ?? '');
@@ -269,10 +274,11 @@ function ProductBulkOrder({ product, variantSwatches = {}, showInStock = true, s
       const opts = ['', '', ''];
       if (colourOptionIndex >= 0) opts[colourOptionIndex] = colour;
       if (sizeOptionIndex   >= 0) opts[sizeOptionIndex]   = size;
-      if (lengthOptionIndex >= 0) opts[lengthOptionIndex] = length;
+      // When showing a single QTY column (length=''), fall back to the actual option value
+      if (lengthOptionIndex >= 0) opts[lengthOptionIndex] = length || lengths[0] || '';
       return variantMap[`${opts[0]}|${opts[1]}|${opts[2]}`];
     },
-    [variantMap, colourOptionIndex, sizeOptionIndex, lengthOptionIndex]
+    [variantMap, colourOptionIndex, sizeOptionIndex, lengthOptionIndex, lengths]
   );
 
   const visibleSizes = useMemo(
