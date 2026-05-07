@@ -34,7 +34,7 @@
 [{%- for variant in product.variants -%}{%- unless forloop.first -%},{%- endunless -%}{"id":{{ variant.id }},"color":{{ variant.metafields.custom.swatch_color.value | json }}}{%- endfor -%}]
     {%- endcapture -%}
     {%- capture variant_inventory_json -%}
-[{%- for variant in product.variants -%}{%- unless forloop.first -%},{%- endunless -%}{"id":{{ variant.id }},"inventory_quantity":{{ variant.inventory_quantity }},"inventory_management":{{ variant.inventory_management | json }},"inventory_policy":{{ variant.inventory_policy | json }}}{%- endfor -%}]
+[{%- for variant in product.variants -%}{%- unless forloop.first -%},{%- endunless -%}{"id":{{ variant.id }},"inventory_quantity":{{ variant.inventory_quantity }},"inventory_management":{{ variant.inventory_management | json }},"inventory_policy":{{ variant.inventory_policy | json }},"quantity_rule_increment":{{ variant.quantity_rule.increment | default: 1 }}}{%- endfor -%}]
     {%- endcapture -%}
     <div
       id="product-bulk-order-{{ section.id }}"
@@ -45,6 +45,7 @@
       data-show-in-stock="{{ section.settings.show_in_stock }}"
       data-show-sold-out="{{ section.settings.show_sold_out }}"
       data-show-not-available="{{ section.settings.show_not_available }}"
+      data-quantity-increment="{{ section.settings.quantity_increment }}"
     ></div>
   </div>
 </div>
@@ -127,6 +128,31 @@
       "id": "button_style_secondary_2",
       "label": "Button 2 — use outline style",
       "default": true
+    },
+    {
+      "type": "header",
+      "content": "Quantity increment"
+    },
+    {
+      "type": "paragraph",
+      "content": "Controls how much the quantity stepper increases or decreases per click. 'Use product's quantity rule' respects the increment set per variant in Shopify."
+    },
+    {
+      "type": "select",
+      "id": "quantity_increment",
+      "label": "Increment",
+      "default": "use_product_rule",
+      "options": [
+        { "value": "use_product_rule", "label": "Use product's quantity rule" },
+        { "value": "1", "label": "1" },
+        { "value": "2", "label": "2" },
+        { "value": "5", "label": "5" },
+        { "value": "6", "label": "6 — half-dozen" },
+        { "value": "10", "label": "10" },
+        { "value": "12", "label": "12 — dozen" },
+        { "value": "24", "label": "24 — case" },
+        { "value": "48", "label": "48 — double case" }
+      ]
     },
     {
       "type": "header",

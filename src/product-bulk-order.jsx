@@ -87,13 +87,13 @@ function StockBadge({ variant }) {
   return <span className={`pbo-stock pbo-stock--${status}`}>{label}</span>;
 }
 
-function QuantityStepper({ value, onChange, disabled }) {
+function QuantityStepper({ value, onChange, disabled, step = 1 }) {
   return (
     <div className={`pbo-stepper${disabled ? ' pbo-stepper--disabled' : ''}`}>
       <button
         type="button"
         className="pbo-stepper__btn"
-        onClick={() => onChange(Math.max(0, value - 1))}
+        onClick={() => onChange(Math.max(0, value - step))}
         disabled={disabled || value === 0}
         aria-label="Decrease quantity"
       >
@@ -104,15 +104,20 @@ function QuantityStepper({ value, onChange, disabled }) {
         type="number"
         inputMode="numeric"
         min="0"
+        step={step}
         value={value}
-        onChange={(e) => onChange(Math.max(0, parseInt(e.target.value, 10) || 0))}
+        onChange={(e) => {
+          const raw = parseInt(e.target.value, 10) || 0;
+          const snapped = step > 1 ? Math.round(raw / step) * step : raw;
+          onChange(Math.max(0, snapped));
+        }}
         disabled={disabled}
         aria-label="Quantity"
       />
       <button
         type="button"
         className="pbo-stepper__btn"
-        onClick={() => onChange(value + 1)}
+        onClick={() => onChange(value + step)}
         disabled={disabled}
         aria-label="Increase quantity"
       >
@@ -122,7 +127,7 @@ function QuantityStepper({ value, onChange, disabled }) {
   );
 }
 
-function ProductBulkOrder({ product, variantSwatches = {}, showInStock = true, showSoldOut = true, showNotAvailable = true }) {
+function ProductBulkOrder({ product, variantSwatches = {}, showInStock = true, showSoldOut = true, showNotAvailable = true, sectionIncrement = 'use_product_rule' }) {
   const options = product.options ?? [];
 
   // Detect which option position holds colour, size, and length by name
@@ -268,6 +273,14 @@ function ProductBulkOrder({ product, variantSwatches = {}, showInStock = true, s
     });
     return map;
   }, [product]);
+
+  const getStep = useCallback(
+    (variant) => {
+      if (sectionIncrement !== 'use_product_rule') return parseInt(sectionIncrement, 10) || 1;
+      return variant?.quantity_rule_increment ?? 1;
+    },
+    [sectionIncrement]
+  );
 
   const getVariant = useCallback(
     (colour, size, length = '') => {
@@ -494,6 +507,7 @@ function ProductBulkOrder({ product, variantSwatches = {}, showInStock = true, s
                               value={qty}
                               onChange={(val) => setQty(variant.id, val)}
                               disabled={isOOS}
+                              step={getStep(variant)}
                             />
                             <button
                               type="button"
@@ -587,8 +601,8 @@ document.querySelectorAll('[data-product-bulk-order]').forEach((el) => {
     if (!Array.isArray(productData.variants) || productData.variants.length === 0) return;
     const inventoryData = JSON.parse(el.dataset.variantInventory ?? '[]');
     const inventoryMap = {};
-    inventoryData.forEach(({ id, inventory_quantity, inventory_management, inventory_policy }) => {
-      inventoryMap[id] = { inventory_quantity, inventory_management, inventory_policy };
+    inventoryData.forEach(({ id, inventory_quantity, inventory_management, inventory_policy, quantity_rule_increment }) => {
+      inventoryMap[id] = { inventory_quantity, inventory_management, inventory_policy, quantity_rule_increment };
     });
     productData.variants = productData.variants.map((v) => ({ ...v, ...inventoryMap[v.id] }));
     const swatchData = JSON.parse(el.dataset.variantSwatches ?? '[]');
@@ -597,6 +611,7 @@ document.querySelectorAll('[data-product-bulk-order]').forEach((el) => {
     const showInStock = el.dataset.showInStock !== 'false';
     const showSoldOut = el.dataset.showSoldOut !== 'false';
     const showNotAvailable = el.dataset.showNotAvailable !== 'false';
+    const sectionIncrement = el.dataset.quantityIncrement || 'use_product_rule';
     createRoot(el).render(
       <ProductBulkOrder
         product={productData}
@@ -604,6 +619,7 @@ document.querySelectorAll('[data-product-bulk-order]').forEach((el) => {
         showInStock={showInStock}
         showSoldOut={showSoldOut}
         showNotAvailable={showNotAvailable}
+        sectionIncrement={sectionIncrement}
       />
     );
   } catch (e) {
