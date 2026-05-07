@@ -22,7 +22,6 @@ $pbo-radius-sm:    0.6rem;
 
 // ─── Wrapper ────────────────────────────────────────────────────────────────
 .pbo {
-  font-family: var(--font-body-family, inherit);
   color: $pbo-text;
 }
 
@@ -33,8 +32,6 @@ $pbo-radius-sm:    0.6rem;
 }
 
 .pbo__colour-heading {
-  font-size: var(--font-h2);
-  font-weight: 600;
   margin-bottom: 2rem;
   letter-spacing: 0;
 }
@@ -55,9 +52,6 @@ $pbo-radius-sm:    0.6rem;
   border-radius: $pbo-radius-pill;
   background: transparent;
   cursor: pointer;
-  font-family: inherit;
-  font-size: var(--font-h4);
-  font-weight: 500;
   color: $pbo-text;
   transition: border-color 0.15s, background-color 0.15s, color 0.15s;
 
@@ -115,8 +109,6 @@ $pbo-radius-sm:    0.6rem;
 .pbo__th {
   padding: 1.6rem 1.2rem;
   text-align: left;
-  font-size: var(--font-h6);
-  font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: $pbo-text-muted;
@@ -156,8 +148,6 @@ $pbo-radius-sm:    0.6rem;
 }
 
 .pbo__size-cell {
-  font-size: var(--font-body-size);
-  font-weight: 600;
   padding: 1.6rem 1.2rem 1.6rem 0;
   vertical-align: top;
   white-space: nowrap;
@@ -203,7 +193,6 @@ $pbo-radius-sm:    0.6rem;
   background: transparent;
   border: none;
   cursor: pointer;
-  font-size: var(--font-body-size);
   color: $pbo-text;
   display: flex;
   align-items: center;
@@ -228,9 +217,6 @@ $pbo-radius-sm:    0.6rem;
   border-left: 1px solid $pbo-border;
   border-right: 1px solid $pbo-border;
   text-align: center;
-  font-size: var(--font-h4);
-  font-family: inherit;
-  font-weight: 500;
   color: $pbo-text;
   background: transparent;
   padding: 0;
@@ -282,7 +268,6 @@ $pbo-radius-sm:    0.6rem;
 
 // ─── Price per item ──────────────────────────────────────────────────────────
 .pbo__price {
-  font-size: var(--font-h6);
   color: $pbo-text-muted;
   white-space: nowrap;
 
@@ -296,8 +281,6 @@ $pbo-radius-sm:    0.6rem;
   display: inline-block;
   padding: 0.3rem 1rem;
   border-radius: $pbo-radius-sm;
-  font-size: var(--font-h6);
-  font-weight: 600;
   letter-spacing: 0.02em;
   white-space: nowrap;
 
@@ -320,8 +303,6 @@ $pbo-radius-sm:    0.6rem;
 // ─── Row total ───────────────────────────────────────────────────────────────
 .pbo__row-total {
   text-align: right;
-  font-size: var(--font-h4);
-  font-weight: 600;
   white-space: nowrap;
   padding: 1.6rem 0 1.6rem 1.2rem;
   vertical-align: top;
@@ -329,7 +310,6 @@ $pbo-radius-sm:    0.6rem;
 
 .pbo__row-total--empty {
   color: $pbo-text-muted;
-  font-weight: 400;
 }
 
 // ─── Footer ──────────────────────────────────────────────────────────────────
@@ -365,9 +345,6 @@ $pbo-radius-sm:    0.6rem;
   border: 1.5px solid $pbo-text;
   border-radius: $pbo-radius-pill;
   background: transparent;
-  font-family: inherit;
-  font-size: var(--font-h4);
-  font-weight: 500;
   color: $pbo-text;
   cursor: pointer;
   min-width: 14rem;
@@ -386,7 +363,6 @@ $pbo-radius-sm:    0.6rem;
 }
 
 .pbo__status--error {
-  font-size: var(--font-h5);
   color: $pbo-red;
 }
 
@@ -398,9 +374,6 @@ $pbo-radius-sm:    0.6rem;
   background: transparent;
   border: none;
   cursor: pointer;
-  font-family: inherit;
-  font-size: var(--font-h5);
-  font-weight: 500;
   color: $pbo-text-muted;
   padding: 0;
 
@@ -433,22 +406,15 @@ $pbo-radius-sm:    0.6rem;
 
 .pbo__col-total-value,
 .pbo__subtotal-value {
-  font-size: var(--font-h3);
-  font-weight: 700;
   color: $pbo-text;
 }
 
 .pbo__col-total-label,
 .pbo__subtotal-label {
-  font-size: var(--font-h6);
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: $pbo-text-muted;
   white-space: nowrap;
-}
-
-.pbo__subtotal-value {
-  font-size: var(--font-h3);
 }
 
 // ─── Mobile overrides ────────────────────────────────────────────────────────
@@ -459,7 +425,6 @@ $pbo-radius-sm:    0.6rem;
 
   .pbo__colour-btn {
     padding: 0.6rem 1.4rem 0.6rem 0.6rem;
-    font-size: var(--font-h5);
   }
 
   .pbo__colour-swatch {
@@ -474,9 +439,5 @@ $pbo-radius-sm:    0.6rem;
 
   .pbo__footer-totals {
     gap: 2rem;
-  }
-
-  .pbo__subtotal-value {
-    font-size: var(--font-h3);
   }
 }
