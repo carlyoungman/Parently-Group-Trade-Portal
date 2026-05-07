@@ -195,12 +195,6 @@ $pbo-radius-sm:    0.6rem;
   vertical-align: top;
   text-align: center;
 
-  &--outofstock,
-  &--unavailable {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
 }
 
 .pbo__cell-inner {
