@@ -32,7 +32,11 @@
   color: rgb(var(--color-button-text));
   font-size: inherit;
   line-height: var(--font-body-line-height);
-  letter-spacing: 0.07rem;
+  letter-spacing: 0.1rem;
+  border-radius: var(--buttons-radius-outset);
+  font-weight: 400;
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 .shopify-payment-button__button--unbranded::selection {
@@ -41,7 +45,8 @@
 
 .shopify-payment-button__button--unbranded:hover,
 .shopify-payment-button__button--unbranded:hover:not([disabled]) {
-  background-color: rgba(var(--color-button), var(--alpha-button-background));
+  background-color: rgb(var(--color-button-hover));
+  color: rgb(var(--color-button-text-hover));
 }
 
 .shopify-payment-button__more-options {
