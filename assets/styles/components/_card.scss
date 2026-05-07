@@ -136,7 +136,7 @@
     .caption-with-letter-spacing{
       color: #73AE70;
       margin-bottom: 1rem;
-      font-size: 1.4rem;
+      font-size: var(--font-h4);
     }
   }
 
@@ -486,7 +486,7 @@
 .card-information {
   text-align: var(--text-alignment);
   margin-top: 1.5rem;
-  font-size: 2rem;
+  font-size: var(--font-h3);
   width: 100%;
 
   > * + * {

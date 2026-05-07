@@ -33,7 +33,7 @@ $pbo-radius-sm:    0.6rem;
 }
 
 .pbo__colour-heading {
-  font-size: 2.4rem;
+  font-size: var(--font-h2);
   font-weight: 600;
   margin-bottom: 2rem;
   letter-spacing: 0;
@@ -56,7 +56,7 @@ $pbo-radius-sm:    0.6rem;
   background: transparent;
   cursor: pointer;
   font-family: inherit;
-  font-size: 1.5rem;
+  font-size: var(--font-h4);
   font-weight: 500;
   color: $pbo-text;
   transition: border-color 0.15s, background-color 0.15s, color 0.15s;
@@ -115,7 +115,7 @@ $pbo-radius-sm:    0.6rem;
 .pbo__th {
   padding: 1.6rem 1.2rem;
   text-align: left;
-  font-size: 1.1rem;
+  font-size: var(--font-h6);
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -156,7 +156,7 @@ $pbo-radius-sm:    0.6rem;
 }
 
 .pbo__size-cell {
-  font-size: 1.6rem;
+  font-size: var(--font-body-size);
   font-weight: 600;
   padding: 1.6rem 1.2rem 1.6rem 0;
   vertical-align: top;
@@ -203,7 +203,7 @@ $pbo-radius-sm:    0.6rem;
   background: transparent;
   border: none;
   cursor: pointer;
-  font-size: 1.6rem;
+  font-size: var(--font-body-size);
   color: $pbo-text;
   display: flex;
   align-items: center;
@@ -228,7 +228,7 @@ $pbo-radius-sm:    0.6rem;
   border-left: 1px solid $pbo-border;
   border-right: 1px solid $pbo-border;
   text-align: center;
-  font-size: 1.4rem;
+  font-size: var(--font-h4);
   font-family: inherit;
   font-weight: 500;
   color: $pbo-text;
@@ -282,7 +282,7 @@ $pbo-radius-sm:    0.6rem;
 
 // ─── Price per item ──────────────────────────────────────────────────────────
 .pbo__price {
-  font-size: 1.2rem;
+  font-size: var(--font-h6);
   color: $pbo-text-muted;
   white-space: nowrap;
 
@@ -296,7 +296,7 @@ $pbo-radius-sm:    0.6rem;
   display: inline-block;
   padding: 0.3rem 1rem;
   border-radius: $pbo-radius-sm;
-  font-size: 1.1rem;
+  font-size: var(--font-h6);
   font-weight: 600;
   letter-spacing: 0.02em;
   white-space: nowrap;
@@ -320,7 +320,7 @@ $pbo-radius-sm:    0.6rem;
 // ─── Row total ───────────────────────────────────────────────────────────────
 .pbo__row-total {
   text-align: right;
-  font-size: 1.5rem;
+  font-size: var(--font-h4);
   font-weight: 600;
   white-space: nowrap;
   padding: 1.6rem 0 1.6rem 1.2rem;
@@ -366,7 +366,7 @@ $pbo-radius-sm:    0.6rem;
   border-radius: $pbo-radius-pill;
   background: transparent;
   font-family: inherit;
-  font-size: 1.4rem;
+  font-size: var(--font-h4);
   font-weight: 500;
   color: $pbo-text;
   cursor: pointer;
@@ -386,7 +386,7 @@ $pbo-radius-sm:    0.6rem;
 }
 
 .pbo__status--error {
-  font-size: 1.3rem;
+  font-size: var(--font-h5);
   color: $pbo-red;
 }
 
@@ -399,7 +399,7 @@ $pbo-radius-sm:    0.6rem;
   border: none;
   cursor: pointer;
   font-family: inherit;
-  font-size: 1.3rem;
+  font-size: var(--font-h5);
   font-weight: 500;
   color: $pbo-text-muted;
   padding: 0;
@@ -433,14 +433,14 @@ $pbo-radius-sm:    0.6rem;
 
 .pbo__col-total-value,
 .pbo__subtotal-value {
-  font-size: 1.8rem;
+  font-size: var(--font-h3);
   font-weight: 700;
   color: $pbo-text;
 }
 
 .pbo__col-total-label,
 .pbo__subtotal-label {
-  font-size: 1.1rem;
+  font-size: var(--font-h6);
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: $pbo-text-muted;
@@ -448,7 +448,7 @@ $pbo-radius-sm:    0.6rem;
 }
 
 .pbo__subtotal-value {
-  font-size: 2rem;
+  font-size: var(--font-h3);
 }
 
 // ─── Mobile overrides ────────────────────────────────────────────────────────
@@ -459,7 +459,7 @@ $pbo-radius-sm:    0.6rem;
 
   .pbo__colour-btn {
     padding: 0.6rem 1.4rem 0.6rem 0.6rem;
-    font-size: 1.3rem;
+    font-size: var(--font-h5);
   }
 
   .pbo__colour-swatch {
@@ -477,6 +477,6 @@ $pbo-radius-sm:    0.6rem;
   }
 
   .pbo__subtotal-value {
-    font-size: 1.8rem;
+    font-size: var(--font-h3);
   }
 }
