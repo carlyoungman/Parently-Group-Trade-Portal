@@ -33,11 +33,15 @@
     {%- capture variant_swatches_json -%}
 [{%- for variant in product.variants -%}{%- unless forloop.first -%},{%- endunless -%}{"id":{{ variant.id }},"color":{{ variant.metafields.custom.swatch_color.value | json }}}{%- endfor -%}]
     {%- endcapture -%}
+    {%- capture variant_inventory_json -%}
+[{%- for variant in product.variants -%}{%- unless forloop.first -%},{%- endunless -%}{"id":{{ variant.id }},"inventory_quantity":{{ variant.inventory_quantity }},"inventory_management":{{ variant.inventory_management | json }},"inventory_policy":{{ variant.inventory_policy | json }}}{%- endfor -%}]
+    {%- endcapture -%}
     <div
       id="product-bulk-order-{{ section.id }}"
       data-product-bulk-order
       data-product="{{ product | json | escape }}"
       data-variant-swatches="{{ variant_swatches_json | strip | escape }}"
+      data-variant-inventory="{{ variant_inventory_json | strip | escape }}"
       data-show-in-stock="{{ section.settings.show_in_stock }}"
       data-show-sold-out="{{ section.settings.show_sold_out }}"
       data-show-not-available="{{ section.settings.show_not_available }}"

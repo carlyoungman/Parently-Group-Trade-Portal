@@ -585,6 +585,12 @@ document.querySelectorAll('[data-product-bulk-order]').forEach((el) => {
   try {
     const productData = JSON.parse(el.dataset.product ?? '{}');
     if (!Array.isArray(productData.variants) || productData.variants.length === 0) return;
+    const inventoryData = JSON.parse(el.dataset.variantInventory ?? '[]');
+    const inventoryMap = {};
+    inventoryData.forEach(({ id, inventory_quantity, inventory_management, inventory_policy }) => {
+      inventoryMap[id] = { inventory_quantity, inventory_management, inventory_policy };
+    });
+    productData.variants = productData.variants.map((v) => ({ ...v, ...inventoryMap[v.id] }));
     const swatchData = JSON.parse(el.dataset.variantSwatches ?? '[]');
     const variantSwatches = {};
     swatchData.forEach(({ id, color }) => { if (color) variantSwatches[id] = color; });
