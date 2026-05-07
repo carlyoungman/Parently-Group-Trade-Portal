@@ -471,23 +471,25 @@ function ProductBulkOrder({ product, showInStock = true, showSoldOut = true, sho
                   return (
                     <td key={len || 'qty'} className="pbo__cell">
                       <div className="pbo__cell-inner">
-                        <div className="pbo__stepper-row">
-                          <QuantityStepper
-                            value={qty}
-                            onChange={(val) => variant && setQty(variant.id, val)}
-                            disabled={isOOS}
-                          />
-                          <button
-                            type="button"
-                            className={`pbo__delete-btn${qty === 0 || isOOS ? ' pbo__delete-btn--hidden' : ''}`}
-                            onClick={() => variant && setQty(variant.id, 0)}
-                            aria-label={`Remove ${size} ${len}`}
-                            tabIndex={qty > 0 && !isOOS ? 0 : -1}
-                            aria-hidden={qty > 0 && !isOOS ? undefined : 'true'}
-                          >
-                            <TrashIcon />
-                          </button>
-                        </div>
+                        {!isOOS && (
+                          <div className="pbo__stepper-row">
+                            <QuantityStepper
+                              value={qty}
+                              onChange={(val) => setQty(variant.id, val)}
+                              disabled={isOOS}
+                            />
+                            <button
+                              type="button"
+                              className={`pbo__delete-btn${qty === 0 || isOOS ? ' pbo__delete-btn--hidden' : ''}`}
+                              onClick={() => setQty(variant.id, 0)}
+                              aria-label={`Remove ${size} ${len}`}
+                              tabIndex={qty > 0 && !isOOS ? 0 : -1}
+                              aria-hidden={qty > 0 && !isOOS ? undefined : 'true'}
+                            >
+                              <TrashIcon />
+                            </button>
+                          </div>
+                        )}
                         {variant && (
                           <div className="pbo__price">{formatMoney(variant.price)} Each</div>
                         )}
