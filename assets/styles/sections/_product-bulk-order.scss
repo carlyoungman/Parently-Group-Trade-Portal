@@ -199,7 +199,7 @@ $pbo-radius-sm:    0.6rem;
 .pbo__cell-inner {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
   width: 100%;
   gap: 0.6rem;
 }
@@ -207,6 +207,7 @@ $pbo-radius-sm:    0.6rem;
 .pbo__stepper-row {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.6rem;
 }
 
@@ -316,11 +317,12 @@ $pbo-radius-sm:    0.6rem;
 
 // ─── Stock badges ─────────────────────────────────────────────────────────────
 .pbo-stock {
-  display: inline-block;
+  display: block;
   padding: 0.3rem 1rem;
   border-radius: $pbo-radius-sm;
   letter-spacing: 0.02em;
   white-space: nowrap;
+  text-align: center;
 
   &--in {
     background-color: rgb(var(--color-secondary-background));
@@ -333,9 +335,6 @@ $pbo-radius-sm:    0.6rem;
   }
 
   &--out {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     background-color: $pbo-red;
     color: #fff;
   }
