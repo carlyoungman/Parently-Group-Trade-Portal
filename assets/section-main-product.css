@@ -119,7 +119,11 @@ product-info {
   color: rgb(var(--color-button-text));
   font-size: inherit;
   line-height: 1.2;
-  letter-spacing: 0.07rem;
+  letter-spacing: 0.1rem;
+  border-radius: var(--buttons-radius-outset);
+  font-weight: 400;
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 .shopify-payment-button__button--unbranded::selection {
@@ -128,7 +132,8 @@ product-info {
 
 .shopify-payment-button__button--unbranded:hover,
 .shopify-payment-button__button--unbranded:hover:not([disabled]) {
-  background-color: rgba(var(--color-button), var(--alpha-button-background));
+  background-color: rgb(var(--color-button-hover));
+  color: rgb(var(--color-button-text-hover));
 }
 
 .shopify-payment-button__more-options {
