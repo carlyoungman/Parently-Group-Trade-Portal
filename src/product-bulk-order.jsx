@@ -551,9 +551,10 @@ function ProductBulkOrder({ product, variantSwatches = {}, showInStock = true, s
                   const variant = getVariant(selectedColour, size, len);
                   const qty = variant ? getQty(variant.id) : 0;
                   const isOOS = !variant || !variant.available;
+                  const stockStatus = getStockStatus(variant);
 
                   return (
-                    <td key={len || 'qty'} className="pbo__cell">
+                    <td key={len || 'qty'} className={`pbo__cell pbo__cell--${stockStatus === 'out' ? 'outofstock' : stockStatus === 'low' ? 'lowstock' : 'instock'}`}>
                       <div className="pbo__cell-inner">
                         {!isOOS && (
                           <div className="pbo__stepper-row">
