@@ -390,24 +390,59 @@ $pbo-radius-sm:    0.6rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem 2.8rem;
-  border: 1.5px solid $pbo-text;
-  border-radius: $pbo-radius-pill;
-  background: transparent;
-  color: $pbo-text;
+  padding: 1.5rem 3rem;
+  border: none;
+  border-radius: var(--buttons-radius-outset);
+  background-color: rgba(var(--color-button), var(--alpha-button-background));
+  color: rgb(var(--color-button-text));
   cursor: pointer;
-  min-width: 14rem;
+  min-width: calc(12rem + var(--buttons-border-width) * 2);
+  min-height: calc(4.5rem + var(--buttons-border-width) * 2);
   text-decoration: none;
-  transition: background-color 0.15s, color 0.15s;
+  font-family: inherit;
+  font-size: inherit;
+  letter-spacing: 0.1rem;
+  font-weight: 400;
+  position: relative;
 
-  &:hover:not(:disabled) {
-    background-color: $pbo-text;
-    color: #fff;
+  --shadow-horizontal-offset: var(--buttons-shadow-horizontal-offset);
+  --shadow-vertical-offset: var(--buttons-shadow-vertical-offset);
+  --shadow-blur-radius: var(--buttons-shadow-blur-radius);
+  --shadow-opacity: var(--buttons-shadow-opacity);
+  --shadow-visible: var(--buttons-shadow-visible);
+  --border-offset: var(--buttons-border-offset);
+  --border-opacity: calc(1 - var(--buttons-border-opacity));
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: var(--buttons-radius-outset);
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: var(--buttons-border-width);
+    z-index: 1;
+    border-radius: var(--buttons-radius);
+  }
+
+  &:not(:disabled):hover,
+  &:not(:disabled):active {
+    background-color: rgb(var(--color-button-hover));
+    color: rgb(var(--color-button-text-hover));
+    border-color: rgb(var(--color-button-border-hover));
+  }
+
+  &:not(:disabled):hover::after {
+    --border-offset: 1.3px;
   }
 
   &:disabled {
-    opacity: 0.45;
-    cursor: default;
+    cursor: not-allowed;
+    opacity: 0.5;
   }
 }
 
