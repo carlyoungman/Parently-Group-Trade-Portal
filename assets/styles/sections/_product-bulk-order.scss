@@ -24,6 +24,9 @@ $pbo-radius-sm:    0.6rem;
 .pbo {
   font-family: var(--font-body-family, inherit);
   color: $pbo-text;
+  // Clip the -9999px ::before bleed technique on sticky header/footer without
+  // creating a scroll container (which would break position:sticky children).
+  overflow-x: clip;
 }
 
 // ─── Colour selector ────────────────────────────────────────────────────────
