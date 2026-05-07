@@ -90,17 +90,37 @@
         "columns_desktop": 4,
         "columns_mobile": "2",
         "image_ratio": "square",
-        "image_shape": "default",
         "show_secondary_image": true,
         "show_vendor": false,
         "show_rating": false,
         "padding_top": 36,
         "padding_bottom": 28
       }
+    },
+    "product_bulk_order_LLgpQf": {
+      "type": "product-bulk-order",
+      "name": "Product Bulk Order",
+      "settings": {
+        "heading": "",
+        "heading_size": "h2",
+        "content": "",
+        "button_label_1": "",
+        "button_link_1": "",
+        "button_style_secondary_1": false,
+        "button_label_2": "",
+        "button_link_2": "",
+        "button_style_secondary_2": true,
+        "show_in_stock": true,
+        "show_sold_out": true,
+        "show_not_available": true,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
     "main",
+    "product_bulk_order_LLgpQf",
     "related-products"
   ]
 }
