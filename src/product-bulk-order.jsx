@@ -471,7 +471,7 @@ function ProductBulkOrder({ product, showInStock = true, showSoldOut = true, sho
                   return (
                     <td key={len || 'qty'} className="pbo__cell">
                       <div className="pbo__cell-inner">
-                        {variant && (
+                        {!isOOS && (
                           <div className="pbo__stepper-row">
                             <QuantityStepper
                               value={qty}
