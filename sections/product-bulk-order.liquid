@@ -30,10 +30,14 @@
       button_container_class: 'pbo__section-buttons'
     -%}
 
+    {%- capture variant_swatches_json -%}
+[{%- for variant in product.variants -%}{%- unless forloop.first -%},{%- endunless -%}{"id":{{ variant.id }},"color":{{ variant.metafields.custom.swatch_color.value | json }}}{%- endfor -%}]
+    {%- endcapture -%}
     <div
       id="product-bulk-order-{{ section.id }}"
       data-product-bulk-order
       data-product="{{ product | json | escape }}"
+      data-variant-swatches="{{ variant_swatches_json | strip | escape }}"
       data-show-in-stock="{{ section.settings.show_in_stock }}"
       data-show-sold-out="{{ section.settings.show_sold_out }}"
       data-show-not-available="{{ section.settings.show_not_available }}"
