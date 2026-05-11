@@ -97,7 +97,7 @@
         "padding_bottom": 28
       }
     },
-    "product_bulk_order_LLgpQf": {
+    "product_bulk_order_qb8gjm": {
       "type": "product-bulk-order",
       "name": "Product Bulk Order",
       "settings": {
@@ -110,6 +110,7 @@
         "button_label_2": "",
         "button_link_2": "",
         "button_style_secondary_2": true,
+        "quantity_increment": "use_product_rule",
         "show_in_stock": true,
         "show_sold_out": true,
         "show_not_available": true,
@@ -120,7 +121,7 @@
   },
   "order": [
     "main",
-    "product_bulk_order_LLgpQf",
+    "product_bulk_order_qb8gjm",
     "related-products"
   ]
 }
