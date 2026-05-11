@@ -1,42 +1,41 @@
 // Converted from component-totals.css
 @use '../utilities/mixins' as *;
+
 .totals {
   display: flex;
   justify-content: center;
   align-items: flex-end;
-}
 
-.totals > * {
-  font-size: inherit;
-  margin: 0;
-}
+  > * {
+    font-size: inherit;
+    margin: 0;
+  }
 
-.totals > h2 {
-  font-size: inherit;
-}
+  > h2 {
+    font-size: inherit;
+  }
 
-.totals * {
-  line-height: var(--font-body-line-height);
-}
+  * {
+    line-height: var(--font-body-line-height);
+  }
 
-.totals > * + * {
-  margin-left: 2rem;
-}
+  > * + * {
+    margin-left: 2rem;
+  }
 
-.totals__total {
-  margin-top: .5rem;
-}
+  &__total {
+    margin-top: .5rem;
+  }
 
-.totals__total-value {
-  font-size: var(--font-h4);
+  &__total-value {
+    font-size: var(--font-h4);
+  }
+
+  @include breakpoint-sm {
+    justify-content: flex-end;
+  }
 }
 
 .cart__ctas + .totals {
   margin-top: 2rem;
-}
-
-@include breakpoint-sm {
-  .totals {
-    justify-content: flex-end;
-  }
 }

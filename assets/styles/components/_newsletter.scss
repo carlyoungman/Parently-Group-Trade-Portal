@@ -1,5 +1,6 @@
 // Converted from component-newsletter.css
 @use '../utilities/mixins' as *;
+
 .newsletter-form {
   display: flex;
   flex-direction: column;
@@ -7,67 +8,63 @@
   align-items: center;
   width: 100%;
   position: relative;
-}
 
-@include breakpoint-sm {
-  .newsletter-form {
+  @include breakpoint-sm {
     align-items: flex-start;
     margin: 0 auto;
     max-width: 36rem;
   }
-}
 
-.newsletter-form__field-wrapper {
-  width: 100%;
-}
+  &__field-wrapper {
+    width: 100%;
 
-.newsletter-form__field-wrapper .field__input {
-  padding-right: 5rem;
-}
+    .field__input {
+      padding-right: 5rem;
+    }
 
-.newsletter-form__field-wrapper .field {
-  z-index: 0;
-}
-
-.newsletter-form__message {
-  justify-content: center;
-  margin-bottom: 0;
-}
-
-.newsletter-form__message--success {
-  margin-top: 2rem;
-}
-
-@include breakpoint-sm {
-  .newsletter-form__message {
-    justify-content: flex-start;
+    .field {
+      z-index: 0;
+    }
   }
-}
 
-.newsletter-form__button {
-  width: 4.4rem;
-  margin: 0;
-  right: var(--inputs-border-width);
-  top: 0;
-  height: 100%;
-  z-index: 2;
-}
+  &__message {
+    justify-content: center;
+    margin-bottom: 0;
 
-.newsletter-form__button:focus-visible {
-  box-shadow: 0 0 0 0.3rem rgb(var(--color-background)), 0 0 0 0.4rem rgba(var(--color-foreground));
-  background-color: rgb(var(--color-background));
-}
+    @include breakpoint-sm {
+      justify-content: flex-start;
+    }
 
-.newsletter-form__button:focus {
-  box-shadow: 0 0 0 0.3rem rgb(var(--color-background)), 0 0 0 0.4rem rgba(var(--color-foreground));
-  background-color: rgb(var(--color-background));
-}
+    &--success {
+      margin-top: 2rem;
+    }
+  }
 
-.newsletter-form__button:not(:focus-visible):not(.focused) {
-  box-shadow: inherit;
-  background-color: inherit;
-}
+  &__button {
+    width: 4.4rem;
+    margin: 0;
+    right: var(--inputs-border-width);
+    top: 0;
+    height: 100%;
+    z-index: 2;
 
-.newsletter-form__button .icon {
-  width: 1.5rem;
+    &:focus-visible {
+      box-shadow: 0 0 0 0.3rem rgb(var(--color-background)), 0 0 0 0.4rem rgba(var(--color-foreground));
+      background-color: rgb(var(--color-background));
+    }
+
+    &:focus {
+      box-shadow: 0 0 0 0.3rem rgb(var(--color-background)), 0 0 0 0.4rem rgba(var(--color-foreground));
+      background-color: rgb(var(--color-background));
+    }
+
+    &:not(:focus-visible):not(.focused) {
+      box-shadow: inherit;
+      background-color: inherit;
+    }
+
+    .icon {
+      width: 1.5rem;
+    }
+  }
 }

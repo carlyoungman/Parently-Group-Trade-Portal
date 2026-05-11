@@ -3,51 +3,69 @@
 .collection-list {
   margin-top: 0;
   margin-bottom: 0;
+
+  &:not(.slider) {
+    padding-left: 0;
+    padding-right: 0;
+
+    @include breakpoint-sm {
+      padding-left: revert;
+      padding-right: revert;
+    }
+  }
+
+  &__item {
+    &:only-child {
+      max-width: 100%;
+      width: 100%;
+    }
+
+    @include breakpoint-sm {
+      a:hover {
+        box-shadow: none;
+      }
+    }
+  }
+
+  &.slider .collection-list__item {
+    max-width: 100%;
+
+    @include breakpoint-md {
+      max-width: revert;
+    }
+  }
+
+  &--1-items {
+    &.slider {
+      padding-bottom: 0;
+    }
+  }
 }
 
 .collection-list-title {
   margin: 0;
 }
 
-.collection-list:not(.slider) {
-  padding-left: 0;
-  padding-right: 0;
-}
+.section-collection-list {
+  .page-width {
+    padding-left: 0;
+    padding-right: 0;
 
-.section-collection-list .page-width {
-  padding-left: 0;
-  padding-right: 0;
-}
+    @include breakpoint-sm {
+      padding-left: revert;
+      padding-right: revert;
+    }
+  }
 
-.section-collection-list .collection-list:not(.slider) {
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-}
-
-@include breakpoint-sm {
   .collection-list:not(.slider) {
-    padding-left: revert;
-    padding-right: revert;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+
+    @include breakpoint-sm {
+      padding-left: revert;
+      padding-right: revert;
+    }
   }
-
-  .section-collection-list .page-width {
-    padding-left: revert;
-    padding-right: revert;
-  }
-
-  .section-collection-list .collection-list:not(.slider) {
-    padding-left: revert;
-    padding-right: revert;
-  }
-}
-
-.collection-list__item:only-child {
-  max-width: 100%;
-  width: 100%;
-}
-
-.slider.collection-list--1-items {
-  padding-bottom: 0;
 }
 
 @include breakpoint-sm {
@@ -65,22 +83,6 @@
   .slider.collection-list--3-items,
   .slider.collection-list--4-items {
     padding-bottom: revert;
-  }
-}
-
-@include breakpoint-sm {
-  .collection-list__item a:hover {
-    box-shadow: none;
-  }
-}
-
-.collection-list.slider .collection-list__item {
-  max-width: 100%;
-}
-
-@include breakpoint-md {
-  .collection-list.slider .collection-list__item {
-    max-width: revert;
   }
 }
 

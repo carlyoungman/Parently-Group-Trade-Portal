@@ -1,5 +1,6 @@
 // Converted from component-list-payment.css
 @use '../utilities/mixins' as *;
+
 .list-payment {
   display: flex;
   flex-wrap: wrap;
@@ -7,18 +8,16 @@
   margin: -0.5rem 0;
   padding-top: 1rem;
   padding-left: 0;
-}
 
-@include breakpoint-sm {
-  .list-payment {
+  @include breakpoint-sm {
     justify-content: flex-end;
     margin: -0.5rem;
     padding-top: 0;
   }
-}
 
-.list-payment__item {
-  align-items: center;
-  display: flex;
-  padding: 0.5rem;
+  &__item {
+    align-items: center;
+    display: flex;
+    padding: 0.5rem;
+  }
 }
