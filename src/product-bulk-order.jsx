@@ -96,6 +96,7 @@ function QuantityStepper({ value, onChange, disabled, step = 1, max }) {
         onClick={() => onChange(Math.max(0, value - step))}
         disabled={disabled || value === 0}
         aria-label="Decrease quantity"
+        tabIndex={-1}
       >
         −
       </button>
@@ -123,6 +124,7 @@ function QuantityStepper({ value, onChange, disabled, step = 1, max }) {
         onClick={() => onChange(Math.min(max != null ? max : Infinity, value + step))}
         disabled={disabled || (max != null && value >= max)}
         aria-label="Increase quantity"
+        tabIndex={-1}
       >
         +
       </button>
@@ -577,7 +579,7 @@ function ProductBulkOrder({ product, variantSwatches = {}, showInStock = true, s
                               className={`pbo__delete-btn${qty === 0 || isOOS ? ' pbo__delete-btn--hidden' : ''}`}
                               onClick={() => setQty(variant.id, 0)}
                               aria-label={`Remove ${size} ${len}`}
-                              tabIndex={qty > 0 && !isOOS ? 0 : -1}
+                              tabIndex={-1}
                               aria-hidden={qty > 0 && !isOOS ? undefined : 'true'}
                             >
                               <TrashIcon />
