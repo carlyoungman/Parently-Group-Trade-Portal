@@ -87,7 +87,7 @@ function StockBadge({ variant }) {
   return <span className={`pbo-stock pbo-stock--${status}`}>{label}</span>;
 }
 
-function QuantityStepper({ value, onChange, disabled, step = 1 }) {
+function QuantityStepper({ value, onChange, disabled, step = 1, max }) {
   return (
     <div className={`pbo-stepper${disabled ? ' pbo-stepper--disabled' : ''}`}>
       <button
@@ -104,12 +104,15 @@ function QuantityStepper({ value, onChange, disabled, step = 1 }) {
         type="number"
         inputMode="numeric"
         min="0"
+        max={max}
         step={step}
         value={value}
+        onFocus={(e) => e.target.select()}
         onChange={(e) => {
           const raw = parseInt(e.target.value, 10) || 0;
           const snapped = step > 1 ? Math.round(raw / step) * step : raw;
-          onChange(Math.max(0, snapped));
+          const capped = max != null ? Math.min(snapped, max) : snapped;
+          onChange(Math.max(0, capped));
         }}
         disabled={disabled}
         aria-label="Quantity"
@@ -117,8 +120,8 @@ function QuantityStepper({ value, onChange, disabled, step = 1 }) {
       <button
         type="button"
         className="pbo-stepper__btn"
-        onClick={() => onChange(value + step)}
-        disabled={disabled}
+        onClick={() => onChange(Math.min(max != null ? max : Infinity, value + step))}
+        disabled={disabled || (max != null && value >= max)}
         aria-label="Increase quantity"
       >
         +
@@ -553,6 +556,10 @@ function ProductBulkOrder({ product, variantSwatches = {}, showInStock = true, s
                   const isOOS = !variant || !variant.available;
                   const stockStatus = getStockStatus(variant);
 
+                  const maxQty = variant && variant.inventory_management && variant.inventory_policy !== 'continue'
+                    ? variant.inventory_quantity
+                    : undefined;
+
                   return (
                     <td key={len || 'qty'} className={`pbo__cell pbo__cell--${stockStatus === 'out' ? 'outofstock' : stockStatus === 'low' ? 'lowstock' : 'instock'}`}>
                       <div className="pbo__cell-inner">
@@ -563,6 +570,7 @@ function ProductBulkOrder({ product, variantSwatches = {}, showInStock = true, s
                               onChange={(val) => setQty(variant.id, val)}
                               disabled={isOOS}
                               step={getStep(variant)}
+                              max={maxQty}
                             />
                             <button
                               type="button"
