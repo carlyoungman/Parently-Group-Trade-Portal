@@ -1,5 +1,6 @@
 // Converted from component-rating.css
 @use '../utilities/mixins' as *;
+
 .product--no-media .rating-wrapper {
   text-align: center;
 }
@@ -7,16 +8,6 @@
 .rating {
   display: inline-block;
   margin: 0;
-}
-
-.product .rating-star {
-  --letter-spacing: 0.8;
-  --font-size: 1.7;
-}
-
-.card-wrapper .rating-star {
-  --letter-spacing: 0.7;
-  --font-size: 1.4;
 }
 
 .rating-star {
@@ -33,17 +24,27 @@
   display: inline-block;
   font-family: Times;
   margin: 0;
+
+  &::before {
+    content: '★★★★★';
+    background: linear-gradient(
+      90deg,
+      var(--color-rating-star) var(--percent),
+      rgba(var(--color-foreground), 0.15) var(--percent)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 }
 
-.rating-star::before {
-  content: '★★★★★';
-  background: linear-gradient(
-    90deg,
-    var(--color-rating-star) var(--percent),
-    rgba(var(--color-foreground), 0.15) var(--percent)
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.product .rating-star {
+  --letter-spacing: 0.8;
+  --font-size: 1.7;
+}
+
+.card-wrapper .rating-star {
+  --letter-spacing: 0.7;
+  --font-size: 1.4;
 }
 
 .rating-text {
