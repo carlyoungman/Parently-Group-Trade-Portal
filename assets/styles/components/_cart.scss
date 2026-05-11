@@ -1,11 +1,6 @@
 // Converted from component-cart.css
 @use '../utilities/mixins' as *;
 
-.cart {
-  position: relative;
-  display: block;
-}
-
 .cart__empty-text,
 .is-empty .cart__contents,
 cart-items.is-empty .title-wrapper-with-link,
@@ -19,6 +14,9 @@ cart-items.is-empty .title-wrapper-with-link,
 }
 
 .cart {
+  position: relative;
+  display: block;
+
   &__warnings {
     display: none;
     text-align: center;
