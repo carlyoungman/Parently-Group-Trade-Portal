@@ -1,34 +1,35 @@
 // Converted from component-list-social.css
 @use '../utilities/mixins' as *;
+
 .list-social {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-}
 
-@include breakpoint-sm {
-  .list-social {
+  @include breakpoint-sm {
     justify-content: flex-end;
   }
-}
 
-.list-social__item .icon {
-  height: 2.2rem;
-  width: 2.2rem;
-}
+  &__item {
+    .icon {
+      height: 2.2rem;
+      width: 2.2rem;
+    }
+  }
 
-.list-social__link {
-  align-items: center;
-  display: flex;
-  padding: 1.1rem;
-  color: rgb(var(--color-foreground));
+  &__link {
+    align-items: center;
+    display: flex;
+    padding: 1.1rem;
+    color: rgb(var(--color-foreground));
+
+    &:hover .icon {
+      transform: scale(1.07);
+    }
+  }
 }
 
 .utility-bar .list-social__link {
   padding: 0 0.8rem;
   height: 3.8rem;
-}
-
-.list-social__link:hover .icon {
-  transform: scale(1.07);
 }
