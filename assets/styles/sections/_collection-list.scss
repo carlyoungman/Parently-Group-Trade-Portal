@@ -34,6 +34,12 @@
       max-width: revert;
     }
   }
+
+  &--1-items {
+    &.slider {
+      padding-bottom: 0;
+    }
+  }
 }
 
 .collection-list-title {
@@ -60,10 +66,6 @@
       padding-right: revert;
     }
   }
-}
-
-.slider.collection-list--1-items {
-  padding-bottom: 0;
 }
 
 @include breakpoint-sm {

@@ -37,11 +37,11 @@
       --color-button-text: revert;
     }
   }
-}
 
-@include breakpoint-sm {
-  .email-signup-banner:not(.banner--desktop-transparent) .email-signup-banner__box {
-    width: 100%;
+  @include breakpoint-sm {
+    &:not(.banner--desktop-transparent) &__box {
+      width: 100%;
+    }
   }
 }
 

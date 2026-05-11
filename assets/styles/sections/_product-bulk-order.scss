@@ -15,201 +15,441 @@ $pbo-text:         #111827;
 $pbo-radius-pill:  9999px;
 $pbo-radius-sm:    0.6rem;
 
-// ─── Section heading ────────────────────────────────────────────────────────
-.pbo__section-heading {
-  margin-bottom: 3.2rem;
-}
-
 // ─── Wrapper ────────────────────────────────────────────────────────────────
 .pbo {
   color: $pbo-text;
   // Clip the -9999px ::before bleed technique on sticky header/footer without
   // creating a scroll container (which would break position:sticky children).
   overflow-x: clip;
-}
 
-// ─── Colour selector ────────────────────────────────────────────────────────
-.pbo__colour-selector {
-  margin-bottom: 4rem;
-  text-align: center;
-}
-
-.pbo__colour-heading {
-  margin-bottom: 2rem;
-  letter-spacing: 0;
-}
-
-.pbo__colour-options {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.2rem;
-  justify-content: center;
-}
-
-.pbo__colour-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 0.8rem 2rem 0.8rem 0.8rem;
-  border: 1.5px solid $pbo-border;
-  border-radius: $pbo-radius-pill;
-  background: transparent;
-  cursor: pointer;
-  color: $pbo-text;
-  transition: border-color 0.15s, background-color 0.15s, color 0.15s;
-
-  &:hover:not(.pbo__colour-btn--active) {
-    border-color: color.adjust($pbo-border, $lightness: -15%);
+  // ─── Section heading ──────────────────────────────────────────────────────
+  &__section-heading {
+    margin-bottom: 3.2rem;
   }
 
-  &--active {
-    background-color: rgb(var(--color-secondary-background));
-    border-color: rgb(var(--color-secondary-background));
-    color: #fff;
+  // ─── Colour selector ──────────────────────────────────────────────────────
+  &__colour-selector {
+    margin-bottom: 4rem;
+    text-align: center;
   }
-}
 
-.pbo__colour-swatch {
-  display: inline-block;
-  width: 3.2rem;
-  height: 3.2rem;
-  border-radius: 50%;
-  border: 1.5px solid rgba(0, 0, 0, 0.12);
-  flex-shrink: 0;
-}
+  &__colour-heading {
+    margin-bottom: 2rem;
+    letter-spacing: 0;
+  }
 
-// ─── Sentinel (IntersectionObserver anchor) ──────────────────────────────────
-.pbo__sentinel {
-  position: relative;
-  height: 0;
-  overflow: hidden;
-  visibility: hidden;
-  pointer-events: none;
-}
+  &__colour-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    justify-content: center;
 
-// ─── Sticky header wrap ──────────────────────────────────────────────────────
-// Handles position:sticky and the full-width background extension.
-// The inner .pbo__table-header-scroll keeps overflow-x:auto; ::before/::after
-// placed on that element would be clipped, so they live on this wrapper instead.
-.pbo__table-header-wrap {
-  position: sticky;
-  top: var(--header-height, 0px);
-  z-index: 2;
+    @media screen and (max-width: 749px) {
+      gap: 0.8rem;
+    }
+  }
 
-  &::before {
-    content: '';
-    position: absolute;
-    inset-block: 0;
-    left: -9999px;
-    right: -9999px;
+  &__colour-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.8rem 2rem 0.8rem 0.8rem;
+    border: 1.5px solid $pbo-border;
+    border-radius: $pbo-radius-pill;
+    background: transparent;
+    cursor: pointer;
+    color: $pbo-text;
+    transition: border-color 0.15s, background-color 0.15s, color 0.15s;
+
+    &:hover:not(&--active) {
+      border-color: color.adjust($pbo-border, $lightness: -15%);
+    }
+
+    &--active {
+      background-color: rgb(var(--color-secondary-background));
+      border-color: rgb(var(--color-secondary-background));
+      color: #fff;
+    }
+
+    @media screen and (max-width: 749px) {
+      padding: 0.6rem 1.4rem 0.6rem 0.6rem;
+    }
+  }
+
+  &__colour-swatch {
+    display: inline-block;
+    width: 3.2rem;
+    height: 3.2rem;
+    border-radius: 50%;
+    border: 1.5px solid rgba(0, 0, 0, 0.12);
+    flex-shrink: 0;
+
+    @media screen and (max-width: 749px) {
+      width: 2.6rem;
+      height: 2.6rem;
+    }
+  }
+
+  // ─── Sentinel (IntersectionObserver anchor) ────────────────────────────────
+  &__sentinel {
+    position: relative;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  // ─── Sticky header wrap ───────────────────────────────────────────────────
+  // Handles position:sticky and the full-width background extension.
+  // The inner .pbo__table-header-scroll keeps overflow-x:auto; ::before/::after
+  // placed on that element would be clipped, so they live on this wrapper instead.
+  &__table-header-wrap {
+    position: sticky;
+    top: var(--header-height, 0px);
+    z-index: 2;
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset-block: 0;
+      left: -9999px;
+      right: -9999px;
+      background-color: #fff;
+      z-index: -1;
+      box-shadow: none;
+      transition: box-shadow 0.15s ease;
+    }
+
+    &--stuck::before {
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+  }
+
+  // ─── Sticky header scroll (inner overflow container) ──────────────────────
+  &__table-header-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
     background-color: #fff;
-    z-index: -1;
-    box-shadow: none;
-    transition: box-shadow 0.15s ease;
+    border-top: 1.5px solid $pbo-border;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 
-  &--stuck::before {
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  }
-}
-
-// ─── Sticky header scroll (inner overflow container) ─────────────────────────
-.pbo__table-header-scroll {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  background-color: #fff;
-  border-top: 1.5px solid $pbo-border;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
-}
-
-// ─── Table wrapper (horizontal scroll on small screens) ─────────────────────
-.pbo__table-wrapper {
-  width: 100%;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-}
-
-// ─── Matrix table ────────────────────────────────────────────────────────────
-.pbo__table {
-  width: 100%;
-  border-collapse: collapse;
-  min-width: 60rem;
-  table-layout: fixed;
-}
-
-.pbo__th {
-  padding: 1.6rem 1.2rem;
-  text-align: center;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: $pbo-text-muted;
-  background-color: #fff;
-  border-bottom: 1.5px solid $pbo-border;
-
-  &--size {
-    text-align: left;
-    padding-left: 0;
+  // ─── Table wrapper (horizontal scroll on small screens) ───────────────────
+  &__table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
-  &--total {
+  // ─── Matrix table ──────────────────────────────────────────────────────────
+  &__table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 60rem;
+    table-layout: fixed;
+  }
+
+  &__th {
+    padding: 1.6rem 1.2rem;
+    text-align: center;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: $pbo-text-muted;
+    background-color: #fff;
+    border-bottom: 1.5px solid $pbo-border;
+
+    &--size {
+      text-align: left;
+      padding-left: 0;
+    }
+
+    &--total {
+      text-align: right;
+      white-space: nowrap;
+      padding-right: 0;
+    }
+  }
+
+  // ─── Screen-reader-only thead in body table ───────────────────────────────
+  &__thead--sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  // ─── Table rows ────────────────────────────────────────────────────────────
+  &__row {
+    border-bottom: 1px solid $pbo-border;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  &__size-cell {
+    padding: 1.6rem 1.2rem 1.6rem 0;
+    vertical-align: top;
+    white-space: nowrap;
+  }
+
+  &__cell {
+    padding: 1.6rem 1.2rem;
+    vertical-align: top;
+    text-align: center;
+  }
+
+  &__cell-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: 0.6rem;
+  }
+
+  &__stepper-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+  }
+
+  // ─── Delete button ─────────────────────────────────────────────────────────
+  &__delete-btn {
+    width: 3.2rem;
+    height: 3.2rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: $pbo-text-muted;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border-radius: 50%;
+    flex-shrink: 0;
+
+    &:hover {
+      color: $pbo-red;
+      background-color: $pbo-red-light;
+    }
+
+    &--hidden {
+      visibility: hidden;
+      pointer-events: none;
+    }
+  }
+
+  // ─── Price per item ────────────────────────────────────────────────────────
+  &__price {
+    color: $pbo-text-muted;
+    white-space: nowrap;
+
+    &--na {
+      color: color.adjust($pbo-text-muted, $lightness: 20%);
+    }
+  }
+
+  // ─── Row total ─────────────────────────────────────────────────────────────
+  &__row-total {
     text-align: right;
     white-space: nowrap;
-    padding-right: 0;
+    padding: 1.6rem 0 1.6rem 1.2rem;
+    vertical-align: top;
+
+    &--empty {
+      color: $pbo-text-muted;
+    }
   }
-}
 
-// ─── Screen-reader-only thead in body table ──────────────────────────────────
-.pbo__thead--sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
+  // ─── Footer ────────────────────────────────────────────────────────────────
+  &__footer {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 0;
+    padding-top: 2.4rem;
+    border-top: 1.5px solid $pbo-border;
+    margin-top: 0.4rem;
+    position: sticky;
+    bottom: 0;
+    z-index: 2;
+    padding-bottom: 1.6rem;
 
-// ─── Table rows ──────────────────────────────────────────────────────────────
-.pbo__row {
-  border-bottom: 1px solid $pbo-border;
+    &::before {
+      content: '';
+      position: absolute;
+      inset-block: 0;
+      left: -9999px;
+      right: -9999px;
+      background-color: #fff;
+      z-index: -1;
+      box-shadow: none;
+      transition: box-shadow 0.15s ease;
+    }
 
-  &:last-child {
-    border-bottom: none;
+    &--stuck::before {
+      box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    @media screen and (max-width: 749px) {
+      flex-direction: column;
+      gap: 1.6rem;
+    }
   }
-}
 
-.pbo__size-cell {
-  padding: 1.6rem 1.2rem 1.6rem 0;
-  vertical-align: top;
-  white-space: nowrap;
-}
+  &__footer-left {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    flex-shrink: 0;
+  }
 
-.pbo__cell {
-  padding: 1.6rem 1.2rem;
-  vertical-align: top;
-  text-align: center;
+  // ─── Cart button ───────────────────────────────────────────────────────────
+  &__cart-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem 3rem;
+    border: none;
+    border-radius: var(--buttons-radius-outset);
+    background-color: rgba(var(--color-button), var(--alpha-button-background));
+    color: rgb(var(--color-button-text));
+    cursor: pointer;
+    min-width: calc(12rem + var(--buttons-border-width) * 2);
+    min-height: calc(4.5rem + var(--buttons-border-width) * 2);
+    text-decoration: none;
+    font-family: inherit;
+    font-size: inherit;
+    letter-spacing: 0.1rem;
+    font-weight: 400;
+    position: relative;
 
-}
+    --shadow-horizontal-offset: var(--buttons-shadow-horizontal-offset);
+    --shadow-vertical-offset: var(--buttons-shadow-vertical-offset);
+    --shadow-blur-radius: var(--buttons-shadow-blur-radius);
+    --shadow-opacity: var(--buttons-shadow-opacity);
+    --shadow-visible: var(--buttons-shadow-visible);
+    --border-offset: var(--buttons-border-offset);
+    --border-opacity: calc(1 - var(--buttons-border-opacity));
 
-.pbo__cell-inner {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  width: 100%;
-  gap: 0.6rem;
-}
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      border-radius: var(--buttons-radius-outset);
+    }
 
-.pbo__stepper-row {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.6rem;
+    &::after {
+      content: '';
+      position: absolute;
+      inset: var(--buttons-border-width);
+      z-index: 1;
+      border-radius: var(--buttons-radius);
+    }
+
+    &:not(:disabled):hover,
+    &:not(:disabled):active {
+      background-color: rgb(var(--color-button-hover));
+      color: rgb(var(--color-button-text-hover));
+      border-color: rgb(var(--color-button-border-hover));
+    }
+
+    &:not(:disabled):hover::after {
+      --border-offset: 1.3px;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+  }
+
+  &__status--error {
+    color: $pbo-red;
+  }
+
+  // ─── Remove all ────────────────────────────────────────────────────────────
+  &__remove-all {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: $pbo-text-muted;
+    padding: 0;
+
+    &:hover {
+      color: $pbo-red;
+    }
+
+    svg {
+      width: 1.4rem;
+      height: 1.4rem;
+    }
+  }
+
+  // ─── Footer totals ─────────────────────────────────────────────────────────
+  &__footer-totals-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    flex: 1 1 0;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    @media screen and (max-width: 749px) {
+      width: 100%;
+      overflow-x: auto;
+    }
+  }
+
+  &__footer-totals {
+    display: flex;
+    align-items: flex-start;
+    // width / min-width set by JS to match body table data columns
+
+    // Right-align subtotal to match the TOTAL column
+    .pbo__subtotal {
+      align-items: flex-end;
+    }
+  }
+
+  &__col-total,
+  &__subtotal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+    flex-shrink: 0;
+    // width / min-width set by JS to match corresponding table column
+  }
+
+  &__col-total-value,
+  &__subtotal-value {
+    color: $pbo-text;
+  }
+
+  &__col-total-label,
+  &__subtotal-label {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: $pbo-text-muted;
+    white-space: nowrap;
+  }
 }
 
 // ─── Quantity stepper ────────────────────────────────────────────────────────
@@ -225,94 +465,58 @@ $pbo-radius-sm:    0.6rem;
     opacity: 0.45;
     pointer-events: none;
   }
-}
 
-.pbo-stepper__btn {
-  width: 3.2rem;
-  height: 100%;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  color: $pbo-text;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  flex-shrink: 0;
+  &__btn {
+    width: 3.2rem;
+    height: 100%;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: $pbo-text;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    flex-shrink: 0;
 
-  &:hover:not(:disabled) {
-    background-color: rgba(0, 0, 0, 0.05);
+    &:hover:not(:disabled) {
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+
+    &:disabled {
+      opacity: 0.4;
+      cursor: default;
+    }
   }
 
-  &:disabled {
-    opacity: 0.4;
-    cursor: default;
-  }
-}
-
-.pbo-stepper__input {
-  width: 4rem;
-  height: 100%;
-  border: none;
-  border-left: 1px solid $pbo-border;
-  border-right: 1px solid $pbo-border;
-  text-align: center;
-  color: $pbo-text;
-  background: transparent;
-  padding: 0;
-  appearance: none;
-  -moz-appearance: textfield;
-
-  &::-webkit-inner-spin-button,
-  &::-webkit-outer-spin-button {
+  &__input {
+    width: 4rem;
+    height: 100%;
+    border: none;
+    border-left: 1px solid $pbo-border;
+    border-right: 1px solid $pbo-border;
+    text-align: center;
+    color: $pbo-text;
+    background: transparent;
+    padding: 0;
     appearance: none;
-    margin: 0;
-  }
+    -moz-appearance: textfield;
 
-  &:focus {
-    outline: none;
-    background-color: rgba(var(--color-secondary-background), 0.06);
-  }
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+      appearance: none;
+      margin: 0;
+    }
 
-  &:disabled {
-    opacity: 0.4;
-    cursor: default;
-  }
-}
+    &:focus {
+      outline: none;
+      background-color: rgba(var(--color-secondary-background), 0.06);
+    }
 
-// ─── Delete button ───────────────────────────────────────────────────────────
-.pbo__delete-btn {
-  width: 3.2rem;
-  height: 3.2rem;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  color: $pbo-text-muted;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  border-radius: 50%;
-  flex-shrink: 0;
-
-  &:hover {
-    color: $pbo-red;
-    background-color: $pbo-red-light;
-  }
-
-  &--hidden {
-    visibility: hidden;
-    pointer-events: none;
-  }
-}
-
-// ─── Price per item ──────────────────────────────────────────────────────────
-.pbo__price {
-  color: $pbo-text-muted;
-  white-space: nowrap;
-
-  &--na {
-    color: color.adjust($pbo-text-muted, $lightness: 20%);
+    &:disabled {
+      opacity: 0.4;
+      cursor: default;
+    }
   }
 }
 
@@ -338,213 +542,5 @@ $pbo-radius-sm:    0.6rem;
   &--out {
     background-color: $pbo-red;
     color: #fff;
-  }
-}
-
-// ─── Row total ───────────────────────────────────────────────────────────────
-.pbo__row-total {
-  text-align: right;
-  white-space: nowrap;
-  padding: 1.6rem 0 1.6rem 1.2rem;
-  vertical-align: top;
-}
-
-.pbo__row-total--empty {
-  color: $pbo-text-muted;
-}
-
-// ─── Footer ──────────────────────────────────────────────────────────────────
-.pbo__footer {
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-  gap: 0;
-  padding-top: 2.4rem;
-  border-top: 1.5px solid $pbo-border;
-  margin-top: 0.4rem;
-  position: sticky;
-  bottom: 0;
-  z-index: 2;
-  padding-bottom: 1.6rem;
-
-  &::before {
-    content: '';
-    position: absolute;
-    inset-block: 0;
-    left: -9999px;
-    right: -9999px;
-    background-color: #fff;
-    z-index: -1;
-    box-shadow: none;
-    transition: box-shadow 0.15s ease;
-  }
-
-  &--stuck::before {
-    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.08);
-  }
-}
-
-.pbo__footer-left {
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-  flex-shrink: 0;
-}
-
-// ─── Cart button ─────────────────────────────────────────────────────────────
-.pbo__cart-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1.5rem 3rem;
-  border: none;
-  border-radius: var(--buttons-radius-outset);
-  background-color: rgba(var(--color-button), var(--alpha-button-background));
-  color: rgb(var(--color-button-text));
-  cursor: pointer;
-  min-width: calc(12rem + var(--buttons-border-width) * 2);
-  min-height: calc(4.5rem + var(--buttons-border-width) * 2);
-  text-decoration: none;
-  font-family: inherit;
-  font-size: inherit;
-  letter-spacing: 0.1rem;
-  font-weight: 400;
-  position: relative;
-
-  --shadow-horizontal-offset: var(--buttons-shadow-horizontal-offset);
-  --shadow-vertical-offset: var(--buttons-shadow-vertical-offset);
-  --shadow-blur-radius: var(--buttons-shadow-blur-radius);
-  --shadow-opacity: var(--buttons-shadow-opacity);
-  --shadow-visible: var(--buttons-shadow-visible);
-  --border-offset: var(--buttons-border-offset);
-  --border-opacity: calc(1 - var(--buttons-border-opacity));
-
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    border-radius: var(--buttons-radius-outset);
-  }
-
-  &::after {
-    content: '';
-    position: absolute;
-    inset: var(--buttons-border-width);
-    z-index: 1;
-    border-radius: var(--buttons-radius);
-  }
-
-  &:not(:disabled):hover,
-  &:not(:disabled):active {
-    background-color: rgb(var(--color-button-hover));
-    color: rgb(var(--color-button-text-hover));
-    border-color: rgb(var(--color-button-border-hover));
-  }
-
-  &:not(:disabled):hover::after {
-    --border-offset: 1.3px;
-  }
-
-  &:disabled {
-    cursor: not-allowed;
-    opacity: 0.5;
-  }
-}
-
-.pbo__status--error {
-  color: $pbo-red;
-}
-
-// ─── Remove all ──────────────────────────────────────────────────────────────
-.pbo__remove-all {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  color: $pbo-text-muted;
-  padding: 0;
-
-  &:hover {
-    color: $pbo-red;
-  }
-
-  svg {
-    width: 1.4rem;
-    height: 1.4rem;
-  }
-}
-
-// ─── Footer totals ───────────────────────────────────────────────────────────
-.pbo__footer-totals-scroll {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  flex: 1 1 0;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
-}
-
-.pbo__footer-totals {
-  display: flex;
-  align-items: flex-start;
-  // width / min-width set by JS to match body table data columns
-}
-
-.pbo__col-total,
-.pbo__subtotal {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.2rem;
-  flex-shrink: 0;
-  // width / min-width set by JS to match corresponding table column
-}
-
-// Right-align subtotal to match the TOTAL column
-.pbo__footer-totals .pbo__subtotal {
-  align-items: flex-end;
-}
-
-.pbo__col-total-value,
-.pbo__subtotal-value {
-  color: $pbo-text;
-}
-
-.pbo__col-total-label,
-.pbo__subtotal-label {
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: $pbo-text-muted;
-  white-space: nowrap;
-}
-
-// ─── Mobile overrides ────────────────────────────────────────────────────────
-@media screen and (max-width: 749px) {
-  .pbo__colour-options {
-    gap: 0.8rem;
-  }
-
-  .pbo__colour-btn {
-    padding: 0.6rem 1.4rem 0.6rem 0.6rem;
-  }
-
-  .pbo__colour-swatch {
-    width: 2.6rem;
-    height: 2.6rem;
-  }
-
-  .pbo__footer {
-    flex-direction: column;
-    gap: 1.6rem;
-  }
-
-  .pbo__footer-totals-scroll {
-    width: 100%;
-    overflow-x: auto;
   }
 }

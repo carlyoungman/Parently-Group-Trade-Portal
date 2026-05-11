@@ -1,32 +1,31 @@
 // Converted from component-discounts.css
 @use '../utilities/mixins' as *;
+
 .discounts {
   font-size: var(--font-small);
-}
 
-.discounts__discount {
-  display: flex;
-  align-items: center;
-  line-height: var(--font-body-line-height);
-}
+  &__discount {
+    display: flex;
+    align-items: center;
+    line-height: var(--font-body-line-height);
 
-.discounts__discount svg {
-  color: rgba(var(--color-button), var(--alpha-button-background));
-}
+    svg {
+      color: rgba(var(--color-button), var(--alpha-button-background));
+    }
 
-.discounts__discount--position {
-  justify-content: center;
-}
+    > .icon {
+      color: rgb(var(--color-foreground));
+      width: 1.2rem;
+      height: 1.2rem;
+      margin-right: 0.7rem;
+    }
 
-@include breakpoint-sm {
-  .discounts__discount--position {
-    justify-content: flex-end;
+    &--position {
+      justify-content: center;
+
+      @include breakpoint-sm {
+        justify-content: flex-end;
+      }
+    }
   }
-}
-
-.discounts__discount > .icon {
-  color: rgb(var(--color-foreground));
-  width: 1.2rem;
-  height: 1.2rem;
-  margin-right: 0.7rem;
 }

@@ -81,10 +81,8 @@ blockquote {
   color: rgba(var(--color-foreground), 0.75);
   border-left: 0.2rem solid rgba(var(--color-foreground), 0.2);
   padding-left: 1rem;
-}
 
-@include breakpoint-sm {
-  blockquote {
+  @include breakpoint-sm {
     padding-left: 1.5rem;
   }
 }
@@ -93,61 +91,97 @@ blockquote {
   font-size: var(--font-small);
   letter-spacing: 0.07rem;
   line-height: var(--font-body-line-height);
-}
 
-@include breakpoint-sm {
-  .caption {
+  @include breakpoint-sm {
     font-size: var(--font-h6);
   }
 }
 
 .caption-with-letter-spacing {
   text-transform: uppercase;
+
+  &--medium {
+    font-size: var(--font-h6);
+    letter-spacing: 0.16rem;
+  }
+
+  &--large {
+    font-size: var(--font-h4);
+    letter-spacing: 0.18rem;
+  }
+
+  &--supersize {
+    font-size: var(--font-supersize);
+  }
+
+  &--h1 {
+    font-size: var(--font-h1);
+  }
+
+  &--h2 {
+    font-size: var(--font-h2);
+  }
+
+  &--h3 {
+    font-size: var(--font-h3);
+  }
+
+  &--h4 {
+    font-size: var(--font-h4);
+  }
+
+  &--h5 {
+    font-size: var(--font-h5);
+  }
+
+  &--h6 {
+    font-size: var(--font-h6);
+  }
 }
 
-.caption-with-letter-spacing--medium {
-  font-size: var(--font-h6);
-  letter-spacing: 0.16rem;
-}
-
-.caption-with-letter-spacing--large {
-  font-size: var(--font-h4);
-  letter-spacing: 0.18rem;
-}
-
-.caption-with-letter-spacing--supersize,
-.subtitle--supersize {
-  font-size: var(--font-supersize);
-}
-
-.caption-with-letter-spacing--h1,
-.subtitle--h1 {
-  font-size: var(--font-h1);
-}
-
-.caption-with-letter-spacing--h2,
-.subtitle--h2 {
-  font-size: var(--font-h2);
-}
-
-.caption-with-letter-spacing--h3,
-.subtitle--h3 {
+.subtitle {
   font-size: var(--font-h3);
-}
+  line-height: var(--font-body-line-height);
+  letter-spacing: 0.06rem;
+  color: rgba(var(--color-foreground), 0.7);
 
-.caption-with-letter-spacing--h4,
-.subtitle--h4 {
-  font-size: var(--font-h4);
-}
+  &--supersize {
+    font-size: var(--font-supersize);
+  }
 
-.caption-with-letter-spacing--h5,
-.subtitle--h5 {
-  font-size: var(--font-h5);
-}
+  &--h1 {
+    font-size: var(--font-h1);
+  }
 
-.caption-with-letter-spacing--h6,
-.subtitle--h6 {
-  font-size: var(--font-h6);
+  &--h2 {
+    font-size: var(--font-h2);
+  }
+
+  &--h3 {
+    font-size: var(--font-h3);
+  }
+
+  &--h4 {
+    font-size: var(--font-h4);
+  }
+
+  &--h5 {
+    font-size: var(--font-h5);
+  }
+
+  &--h6 {
+    font-size: var(--font-h6);
+  }
+
+  &--small {
+    font-size: inherit;
+    letter-spacing: 0.1rem;
+  }
+
+  &--medium {
+    font-size: inherit;
+    letter-spacing: 0.08rem;
+  }
 }
 
 .caption-large,
@@ -214,12 +248,14 @@ table:not([class]) th {
   font-family: inherit;
 }
 
-.link--text {
-  color: rgb(var(--color-foreground));
-}
+.link {
+  &--text {
+    color: rgb(var(--color-foreground));
 
-.link--text:hover {
-  color: rgba(var(--color-foreground), 0.75);
+    &:hover {
+      color: rgba(var(--color-foreground), 0.75);
+    }
+  }
 }
 
 .link-with-icon {
@@ -230,24 +266,26 @@ table:not([class]) th {
   text-decoration: none;
   margin-bottom: 4.5rem;
   white-space: nowrap;
-}
 
-.link-with-icon .icon {
-  width: 1.5rem;
-  margin-left: 1rem;
+  .icon {
+    width: 1.5rem;
+    margin-left: 1rem;
+  }
 }
 
 a:not([href]) {
   cursor: not-allowed;
 }
 
-.circle-divider::after {
-  content: '\2022';
-  margin: 0 1.3rem 0 1.5rem;
-}
+.circle-divider {
+  &::after {
+    content: '\2022';
+    margin: 0 1.3rem 0 1.5rem;
+  }
 
-.circle-divider:last-of-type::after {
-  display: none;
+  &:last-of-type::after {
+    display: none;
+  }
 }
 
 hr {
@@ -256,10 +294,8 @@ hr {
   background-color: rgba(var(--color-foreground), 0.2);
   display: block;
   margin: 5rem 0;
-}
 
-@include breakpoint-sm {
-  hr {
+  @include breakpoint-sm {
     margin: 7rem 0;
   }
 }
@@ -295,21 +331,4 @@ hr {
 .inline-richtext a:hover {
   color: rgb(var(--color-link));
   text-decoration-thickness: 0.2rem;
-}
-
-.subtitle {
-  font-size: var(--font-h3);
-  line-height: var(--font-body-line-height);
-  letter-spacing: 0.06rem;
-  color: rgba(var(--color-foreground), 0.7);
-}
-
-.subtitle--small {
-  font-size: inherit;
-  letter-spacing: 0.1rem;
-}
-
-.subtitle--medium {
-  font-size: inherit;
-  letter-spacing: 0.08rem;
 }

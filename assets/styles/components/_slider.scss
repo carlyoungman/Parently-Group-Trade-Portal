@@ -23,17 +23,17 @@ slider-component.page-width {
   }
 }
 
-.slider__slide {
-  --focus-outline-padding: 0.5rem;
-  scroll-snap-align: start;
-  flex-shrink: 0;
-  padding-bottom: 0;
-}
-
 .slider {
   scrollbar-color: rgb(var(--color-foreground)) rgba(var(--color-foreground), 0.04);
   -ms-overflow-style: none;
   scrollbar-width: none;
+
+  &__slide {
+    --focus-outline-padding: 0.5rem;
+    scroll-snap-align: start;
+    flex-shrink: 0;
+    padding-bottom: 0;
+  }
 
   &::-webkit-scrollbar {
     height: 0.4rem;
