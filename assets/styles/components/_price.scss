@@ -1,92 +1,105 @@
 // Converted from component-price.css
 @use '../utilities/mixins' as *;
+
 .price {
   color: #000;
-}
 
-.price > * {
-  display: inline-block;
-  vertical-align: top;
-}
+  > * {
+    display: inline-block;
+    vertical-align: top;
+  }
 
-.price.price--unavailable {
-  visibility: hidden;
-}
+  &.price--unavailable {
+    visibility: hidden;
+  }
 
-.price--end {
-  text-align: right;
-}
+  .price-item {
+    display: inline-block;
+    margin: 0 1rem 0 0;
+  }
 
-.price .price-item {
-  display: inline-block;
-  margin: 0 1rem 0 0;
-}
+  &:not(.price--show-badge) .price-item--last:last-of-type {
+    margin: 0;
+  }
 
-.price__regular .price-item--regular {
-  margin-right: 0;
-}
-
-.price:not(.price--show-badge) .price-item--last:last-of-type {
-  margin: 0;
-}
-
-@include breakpoint-sm {
-  .price {
+  @include breakpoint-sm {
     margin-bottom: 0;
   }
-}
 
-.price--large {
-  font-size: inherit;
-  line-height: var(--font-body-line-height);
-  letter-spacing: 0.13rem;
-}
+  &--end {
+    text-align: right;
+  }
 
-@include breakpoint-sm {
-  .price--large {
-    font-size: var(--font-h4);
+  &--large {
+    font-size: inherit;
+    line-height: var(--font-body-line-height);
+    letter-spacing: 0.13rem;
+
+    @include breakpoint-sm {
+      font-size: var(--font-h4);
+    }
+  }
+
+  &--sold-out {
+    .price__availability {
+      display: block;
+    }
+
+    .price__badge-sold-out {
+      display: inline-block;
+    }
+  }
+
+  &--on-sale {
+    .price__regular,
+    .price__availability {
+      display: none;
+    }
+
+    .price__badge-sale {
+      display: inline-block;
+    }
+
+    .price__sale {
+      display: initial;
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+
+    .price-item--regular {
+      text-decoration: line-through;
+      color: rgba(var(--color-foreground), 0.75);
+      font-size: var(--font-small);
+    }
+  }
+
+  &--center {
+    display: initial;
+    justify-content: center;
+  }
+
+  &__regular {
+    display: block;
+
+    .price-item--regular {
+      margin-right: 0;
+    }
+  }
+
+  &__sale,
+  &__availability {
+    display: none;
+  }
+
+  &__badge-sale,
+  &__badge-sold-out {
+    display: none;
   }
 }
 
-.price--sold-out .price__availability,
-.price__regular {
-  display: block;
-}
-
-.price__sale,
-.price__availability,
-.price .price__badge-sale,
-.price .price__badge-sold-out,
-.price--on-sale .price__regular,
-.price--on-sale .price__availability {
-  display: none;
-}
-
-.price--sold-out .price__badge-sold-out,
-.price--on-sale .price__badge-sale,
 .volume-pricing--sale-badge .price__badge-sale {
   display: inline-block;
-}
-
-.volume-pricing--sale-badge .price__badge-sale {
   margin-left: 0.5rem;
-}
-
-.price--on-sale .price__sale {
-  display: initial;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
-
-.price--center {
-  display: initial;
-  justify-content: center;
-}
-
-.price--on-sale .price-item--regular {
-  text-decoration: line-through;
-  color: rgba(var(--color-foreground), 0.75);
-  font-size: var(--font-small);
 }
 
 .unit-price {

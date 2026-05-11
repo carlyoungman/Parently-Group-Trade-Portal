@@ -1,52 +1,50 @@
 // Converted from newsletter-section.css
 @use '../utilities/mixins' as *;
-.newsletter__wrapper {
-  padding-right: 4rem;
-  padding-left: 4rem;
-}
+.newsletter {
+  &__wrapper {
+    padding-right: 4rem;
+    padding-left: 4rem;
 
-@include breakpoint-sm {
-  .newsletter__wrapper {
-    padding-right: 9rem;
-    padding-left: 9rem;
+    @include breakpoint-sm {
+      padding-right: 9rem;
+      padding-left: 9rem;
+    }
+
+    > * {
+      margin-top: 0;
+      margin-bottom: 0;
+
+      + * {
+        margin-top: 2rem;
+      }
+
+      + .newsletter-form {
+        margin-top: 3rem;
+      }
+    }
+
+    .newsletter-form__field-wrapper {
+      max-width: 36rem;
+    }
   }
-}
 
-.newsletter__wrapper > * {
-  margin-top: 0;
-  margin-bottom: 0;
-}
+  &__subheading {
+    max-width: 70rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
 
-.newsletter__wrapper > * + * {
-  margin-top: 2rem;
-}
+  &__button {
+    margin-top: 3rem;
+    width: fit-content;
 
-.newsletter__wrapper > * + .newsletter-form {
-  margin-top: 3rem;
-}
-
-.newsletter__subheading {
-  max-width: 70rem;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.newsletter__wrapper .newsletter-form__field-wrapper {
-  max-width: 36rem;
+    @include breakpoint-sm {
+      flex-shrink: 0;
+      margin: 0 0 0 1rem;
+    }
+  }
 }
 
 .newsletter-form__field-wrapper .newsletter-form__message {
   margin-top: 1.5rem;
-}
-
-.newsletter__button {
-  margin-top: 3rem;
-  width: fit-content;
-}
-
-@include breakpoint-sm {
-  .newsletter__button {
-    flex-shrink: 0;
-    margin: 0 0 0 1rem;
-  }
 }

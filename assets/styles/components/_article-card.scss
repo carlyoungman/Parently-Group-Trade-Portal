@@ -1,137 +1,140 @@
 // Converted from component-article-card.css
 @use '../utilities/mixins' as *;
-.articles-wrapper .article {
-  width: 100%;
-}
 
-@include breakpoint-sm {
-  .articles-wrapper .article {
-    width: auto;
+.articles-wrapper {
+  .article {
+    width: 100%;
+
+    @include breakpoint-sm {
+      width: auto;
+    }
   }
 }
 
 .article {
   display: flex;
   align-items: center;
-}
 
-.article.grid__item {
-  padding: 0;
+  &.grid__item {
+    padding: 0;
+  }
 }
 
 .grid--peek .article-card {
   box-sizing: border-box;
 }
 
-.article-card__image-wrapper > a {
-  display: block;
-}
+.article-card {
+  .card__heading {
+    margin-bottom: 0.6rem;
+  }
 
-.article-card__title {
-  text-decoration: none;
-  word-break: break-word;
-}
+  &__image-wrapper {
+    > a {
+      display: block;
+    }
 
-.article-card__title a:after {
-  bottom: 0;
-  content: '';
-  height: 100%;
-  left: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 100%;
-  z-index: 1;
-}
+    &--small .ratio::before {
+      padding-bottom: 11rem;
+    }
 
-.article-card__link.link {
-  padding: 0;
-}
+    &--medium .ratio::before {
+      padding-bottom: 22rem;
+    }
 
-.article-card__link {
-  text-underline-offset: 0.3rem;
-}
+    &--large .ratio::before {
+      padding-bottom: 33rem;
+    }
 
-.article-card .card__heading {
-  margin-bottom: 0.6rem;
+    @include breakpoint-sm {
+      &--small .ratio::before {
+        padding-bottom: 14.3rem;
+      }
+
+      &--medium .ratio::before {
+        padding-bottom: 21.9rem;
+      }
+
+      &--large .ratio::before {
+        padding-bottom: 27.5rem;
+      }
+    }
+
+    @include breakpoint-md {
+      &--small .ratio::before {
+        padding-bottom: 17.7rem;
+      }
+
+      &--medium .ratio::before {
+        padding-bottom: 30.7rem;
+      }
+
+      &--large .ratio::before {
+        padding-bottom: 40.7rem;
+      }
+    }
+  }
+
+  &__title {
+    text-decoration: none;
+    word-break: break-word;
+
+    a:after {
+      bottom: 0;
+      content: '';
+      height: 100%;
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 100%;
+      z-index: 1;
+    }
+  }
+
+  &__link {
+    text-underline-offset: 0.3rem;
+
+    &.link {
+      padding: 0;
+    }
+
+    &:not(:only-child) {
+      margin-right: 3rem;
+
+      @include breakpoint-md {
+        margin-right: 4rem;
+      }
+    }
+  }
+
+  &__info {
+    padding-top: 0.4rem;
+  }
+
+  &__footer {
+    letter-spacing: 0.1rem;
+    font-size: inherit;
+
+    &:not(:last-child) {
+      margin-bottom: 1rem;
+    }
+
+    &:last-child {
+      margin-top: auto;
+    }
+  }
+
+  &__excerpt {
+    width: 100%;
+    margin-top: 1.2rem;
+  }
 }
 
 .blog-articles .article-card .card__information,
 .blog__posts .article-card .card__information {
   padding-left: 2rem;
   padding-right: 2rem;
-}
-
-.article-card__info {
-  padding-top: 0.4rem;
-}
-
-.article-card__footer {
-  letter-spacing: 0.1rem;
-  font-size: inherit;
-}
-
-.article-card__footer:not(:last-child) {
-  margin-bottom: 1rem;
-}
-
-.article-card__footer:last-child {
-  margin-top: auto;
-}
-
-.article-card__excerpt {
-  width: 100%;
-  margin-top: 1.2rem;
-}
-
-.article-card__link:not(:only-child) {
-  margin-right: 3rem;
-}
-
-@include breakpoint-md {
-  .article-card__link:not(:only-child) {
-    margin-right: 4rem;
-  }
-}
-
-.article-card__image--small .ratio::before {
-  padding-bottom: 11rem;
-}
-
-.article-card__image--medium .ratio::before {
-  padding-bottom: 22rem;
-}
-
-.article-card__image--large .ratio::before {
-  padding-bottom: 33rem;
-}
-
-@include breakpoint-sm {
-  .article-card__image--small .ratio::before {
-    padding-bottom: 14.3rem;
-  }
-
-  .article-card__image--medium .ratio::before {
-    padding-bottom: 21.9rem;
-  }
-
-  .article-card__image--large .ratio::before {
-    padding-bottom: 27.5rem;
-  }
-}
-
-@include breakpoint-md {
-  .article-card__image--small .ratio::before {
-    padding-bottom: 17.7rem;
-  }
-
-  .article-card__image--medium .ratio::before {
-    padding-bottom: 30.7rem;
-  }
-
-  .article-card__image--large .ratio::before {
-    padding-bottom: 40.7rem;
-  }
 }
 
 /* check for flexbox gap in older Safari versions */

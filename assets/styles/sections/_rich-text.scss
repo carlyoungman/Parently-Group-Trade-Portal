@@ -2,87 +2,87 @@
 @use '../utilities/mixins' as *;
 .rich-text {
   z-index: 1;
-}
 
-.rich-text__wrapper {
-  display: flex;
-  justify-content: center;
-  width: calc(100% - 4rem);
-}
+  &:not(.rich-text--full-width) .rich-text__wrapper {
+    margin: auto;
+    width: calc(100% - 8rem);
+  }
 
-.rich-text:not(.rich-text--full-width) .rich-text__wrapper {
-  margin: auto;
-  width: calc(100% - 8rem);
-}
+  &__wrapper {
+    display: flex;
+    justify-content: center;
+    width: calc(100% - 4rem);
 
-.rich-text__blocks {
-  width: 100%;
-}
+    @include breakpoint-sm {
+      width: 100%;
+    }
 
-@include breakpoint-sm {
-  .rich-text__wrapper {
+    &--left {
+      @include breakpoint-sm {
+        justify-content: flex-start;
+      }
+    }
+
+    &--right {
+      @include breakpoint-sm {
+        justify-content: flex-end;
+      }
+    }
+  }
+
+  &__blocks {
     width: 100%;
+
+    @include breakpoint-sm {
+      max-width: 50rem;
+    }
+
+    @include breakpoint-md {
+      max-width: 78rem;
+    }
+
+    * {
+      overflow-wrap: break-word;
+    }
+
+    > * {
+      margin-top: 0;
+      margin-bottom: 0;
+
+      + * {
+        margin-top: 2rem;
+      }
+
+      + a {
+        margin-top: 3rem;
+      }
+    }
+
+    &.left .rich-text__buttons {
+      justify-content: flex-start;
+    }
+
+    &.right .rich-text__buttons {
+      justify-content: flex-end;
+    }
   }
 
-  .rich-text__wrapper--left {
-    justify-content: flex-start;
+  &__buttons {
+    display: inline-flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    width: 100%;
+    max-width: 45rem;
+    word-break: break-word;
+
+    &--multiple > * {
+      flex-grow: 1;
+      min-width: 22rem;
+    }
+
+    + .rich-text__buttons {
+      margin-top: 1rem;
+    }
   }
-
-  .rich-text__wrapper--right {
-    justify-content: flex-end;
-  }
-
-  .rich-text__blocks {
-    max-width: 50rem;
-  }
-}
-
-@include breakpoint-md {
-  .rich-text__blocks {
-    max-width: 78rem;
-  }
-}
-
-.rich-text__blocks * {
-  overflow-wrap: break-word;
-}
-
-.rich-text__blocks > * {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.rich-text__blocks > * + * {
-  margin-top: 2rem;
-}
-
-.rich-text__blocks > * + a {
-  margin-top: 3rem;
-}
-
-.rich-text__buttons {
-  display: inline-flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 1rem;
-  width: 100%;
-  max-width: 45rem;
-  word-break: break-word;
-}
-
-.rich-text__buttons--multiple > * {
-  flex-grow: 1;
-  min-width: 22rem;
-}
-
-.rich-text__buttons + .rich-text__buttons {
-  margin-top: 1rem;
-}
-
-.rich-text__blocks.left .rich-text__buttons {
-  justify-content: flex-start;
-}
-
-.rich-text__blocks.right .rich-text__buttons {
-  justify-content: flex-end;
 }

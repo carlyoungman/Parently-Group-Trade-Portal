@@ -7,34 +7,38 @@ menu-drawer + .header__search {
   display: none;
 }
 
-.header > .header__search {
-  grid-area: left-icons;
-  justify-self: start;
-}
+.header {
+  > .header__search {
+    grid-area: left-icons;
+    justify-self: start;
+  }
 
-.header--top-center.drawer-menu > .header__search {
-  margin-left: 3.2rem;
-}
+  &:not(.header--has-menu) * > .header__search {
+    display: none;
+  }
 
-.header--top-center header-drawer {
-  grid-area: left-icons;
-}
+  &--top-center {
+    &.drawer-menu > .header__search {
+      margin-left: 3.2rem;
+    }
 
-.header:not(.header--has-menu) * > .header__search {
-  display: none;
+    header-drawer {
+      grid-area: left-icons;
+    }
+
+    > .header__search {
+      display: none;
+    }
+
+    * > .header__search {
+      display: inline-flex;
+    }
+  }
 }
 
 .header__search {
   display: inline-flex;
   line-height: 0;
-}
-
-.header--top-center > .header__search {
-  display: none;
-}
-
-.header--top-center * > .header__search {
-  display: inline-flex;
 }
 
 @include breakpoint-md {
@@ -56,16 +60,16 @@ details[open] > .search-modal {
 
 details[open] .modal-overlay {
   display: block;
-}
 
-details[open] .modal-overlay::after {
-  position: absolute;
-  content: '';
-  background-color: rgb(var(--color-foreground), 0.5);
-  top: 100%;
-  left: 0;
-  right: 0;
-  height: 100vh;
+  &::after {
+    position: absolute;
+    content: '';
+    background-color: rgb(var(--color-foreground), 0.5);
+    top: 100%;
+    left: 0;
+    right: 0;
+    height: 100vh;
+  }
 }
 
 .search-modal {
@@ -73,53 +77,53 @@ details[open] .modal-overlay::after {
   border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.08);
   min-height: calc(100% + var(--inputs-margin-offset) + (2 * var(--inputs-border-width)));
   height: 100%;
-}
 
-.search-modal__content {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  padding: 0 5rem 0 1rem;
-  line-height: var(--font-body-line-height);
-  position: relative;
-}
+  &__content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 0 5rem 0 1rem;
+    line-height: var(--font-body-line-height);
+    position: relative;
 
-.search-modal__content-bottom {
-  bottom: calc((var(--inputs-margin-offset) / 2));
-}
+    @include breakpoint-sm {
+      padding: 0 6rem;
+    }
 
-.search-modal__content-top {
-  top: calc((var(--inputs-margin-offset) / 2));
-}
+    @include breakpoint-md {
+      // no additional padding change needed; close-button handles itself
+    }
 
-.search-modal__form {
-  width: 100%;
-}
+    &-bottom {
+      bottom: calc((var(--inputs-margin-offset) / 2));
+    }
 
-.search-modal__close-button {
-  position: absolute;
-  right: 0.3rem;
-}
-
-@include breakpoint-sm {
-  .search-modal__close-button {
-    right: 1rem;
+    &-top {
+      top: calc((var(--inputs-margin-offset) / 2));
+    }
   }
 
-  .search-modal__content {
-    padding: 0 6rem;
-  }
-}
+  &__form {
+    width: 100%;
 
-@include breakpoint-md {
-  .search-modal__form {
-    max-width: 74.2rem;
+    @include breakpoint-md {
+      max-width: 74.2rem;
+    }
   }
 
-  .search-modal__close-button {
-    position: initial;
-    margin-left: 0.5rem;
+  &__close-button {
+    position: absolute;
+    right: 0.3rem;
+
+    @include breakpoint-sm {
+      right: 1rem;
+    }
+
+    @include breakpoint-md {
+      position: initial;
+      margin-left: 0.5rem;
+    }
   }
 }

@@ -149,26 +149,6 @@
 }
 
 
-// Secondary logo
-.header__heading-logo {
-  display: none;
-
-  @include breakpoint-sm {
-    display: block;
-  }
-
-  &--secondary {
-    display: block;
-  }
-
-  &--secondary {
-    @include breakpoint-sm {
-      display: none;
-    }
-  }
-}
-
-
 .header {
   display: grid;
   grid-template-areas: 'left-icons heading icons';
@@ -210,9 +190,23 @@
     }
   }
 
+  // Secondary logo
   &__heading-logo {
+    display: none;
     height: auto;
     max-width: 100%;
+
+    @include breakpoint-sm {
+      display: block;
+    }
+
+    &--secondary {
+      display: block;
+
+      @include breakpoint-sm {
+        display: none;
+      }
+    }
 
     &-wrapper {
       width: 100%;

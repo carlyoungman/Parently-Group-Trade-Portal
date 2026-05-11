@@ -1,41 +1,39 @@
 // Converted from section-contact-form.css
 @use '../utilities/mixins' as *;
-.contact img {
-  max-width: 100%;
-}
-
-.contact .form__message {
-  align-items: flex-start;
-}
-
-.contact .icon-success {
-  margin-top: 0.2rem;
-}
-
-.contact .field {
-  margin-bottom: 1.5rem;
-}
-
-@include breakpoint-sm {
-  .contact .field {
-    margin-bottom: 2rem;
+.contact {
+  img {
+    max-width: 100%;
   }
-}
 
-.contact__button {
-  margin-top: 3rem;
-}
-
-@include breakpoint-sm {
-  .contact__button {
-    margin-top: 4rem;
+  .form__message {
+    align-items: flex-start;
   }
-}
 
-@include breakpoint-sm {
-  .contact__fields {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-column-gap: var(--grid-desktop-horizontal-spacing);
+  .icon-success {
+    margin-top: 0.2rem;
+  }
+
+  .field {
+    margin-bottom: 1.5rem;
+
+    @include breakpoint-sm {
+      margin-bottom: 2rem;
+    }
+  }
+
+  &__button {
+    margin-top: 3rem;
+
+    @include breakpoint-sm {
+      margin-top: 4rem;
+    }
+  }
+
+  &__fields {
+    @include breakpoint-sm {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-column-gap: var(--grid-desktop-horizontal-spacing);
+    }
   }
 }
