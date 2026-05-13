@@ -10,6 +10,19 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+
+  #shopify-section-{{ section.id }} .rich-text {
+    background-color: {{ section.settings.background_color }};
+  }
+
+  #shopify-section-{{ section.id }} .rich-text__heading,
+  #shopify-section-{{ section.id }} .rich-text__caption,
+  #shopify-section-{{ section.id }} .rich-text__text,
+  #shopify-section-{{ section.id }} .rich-text__text p,
+  #shopify-section-{{ section.id }} .rich-text__text li,
+  #shopify-section-{{ section.id }} .rich-text__text a {
+    color: {{ section.settings.text_color }};
+  }
 {%- endstyle -%}
 
 <div class="isolate{% unless section.settings.full_width %} page-width{% endunless %}">
@@ -18,6 +31,19 @@
       <div class="rich-text__blocks {{ section.settings.content_alignment }}">
         {%- for block in section.blocks -%}
           {%- case block.type -%}
+            {%- when 'image' -%}
+              {%- if block.settings.image != blank -%}
+                <div class="rich-text__content-image rich-text__content-image--{{ block.settings.image_width }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}" {{ block.shopify_attributes }}>
+                  {{
+                    block.settings.image
+                    | image_url: width: 800
+                    | image_tag:
+                      width: block.settings.image.width,
+                      height: block.settings.image.height,
+                      class: 'rich-text__content-image-img'
+                  }}
+                </div>
+              {%- endif -%}
             {%- when 'heading' -%}
               <h2
                 class="rich-text__heading rte inline-richtext {{ block.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
@@ -42,7 +68,7 @@
               </p>
             {%- when 'text' -%}
               <div
-                class="rich-text__text rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                class="rich-text__text rte {{ block.settings.text_style }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
                 {{ block.shopify_attributes }}
                 {% if settings.animations_reveal_on_scroll %}
                   data-cascade
@@ -149,6 +175,22 @@
     },
     {
       "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "t:sections.rich-text.settings.background_color.label",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "t:sections.rich-text.settings.text_color.label",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
       "content": "t:sections.all.padding.section_padding_heading"
     },
     {
@@ -173,6 +215,29 @@
     }
   ],
   "blocks": [
+    {
+      "type": "image",
+      "name": "Image / Logo",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "select",
+          "id": "image_width",
+          "label": "Image width",
+          "options": [
+            { "value": "small",  "label": "Small"  },
+            { "value": "medium", "label": "Medium" },
+            { "value": "large",  "label": "Large"  }
+          ],
+          "default": "medium"
+        }
+      ]
+    },
     {
       "type": "heading",
       "name": "t:sections.rich-text.blocks.heading.name",
@@ -313,6 +378,18 @@
           "id": "text",
           "default": "t:sections.rich-text.blocks.text.settings.text.default",
           "label": "t:sections.rich-text.blocks.text.settings.text.label"
+        },
+        {
+          "type": "select",
+          "id": "text_style",
+          "label": "t:sections.rich-text.blocks.text.settings.text_style.label",
+          "options": [
+            { "value": "body",                       "label": "t:sections.rich-text.blocks.text.settings.text_style.options__1.label" },
+            { "value": "large",                      "label": "t:sections.rich-text.blocks.text.settings.text_style.options__2.label" },
+            { "value": "subtitle",                   "label": "t:sections.rich-text.blocks.text.settings.text_style.options__3.label" },
+            { "value": "caption-with-letter-spacing", "label": "t:sections.rich-text.blocks.text.settings.text_style.options__4.label" }
+          ],
+          "default": "body"
         }
       ]
     },
