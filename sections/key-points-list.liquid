@@ -21,7 +21,7 @@
           {%- when 'text' -%}
             {%- if block.settings.text != blank -%}
               <div
-                class="key-points-list__text rte"
+                class="key-points-list__text rte {{ block.settings.text_style }}"
                 {{ block.shopify_attributes }}
               >
                 {{ block.settings.text }}
@@ -50,12 +50,12 @@
         {%- if block.type == 'key_point' -%}
           <div class="key-points-list__point" {{ block.shopify_attributes }}>
             {%- if block.settings.heading != blank -%}
-                 <h4 class="key-points-list__point-heading inline-richtext">
+                 <h4 class="key-points-list__point-heading inline-richtext {{ block.settings.heading_size }}">
                 {{ block.settings.heading }}
               </h4>
             {%- endif -%}
             {%- if block.settings.content != blank -%}
-              <div class="key-points-list__point-body rte">
+              <div class="key-points-list__point-body rte {{ block.settings.text_style }}">
                 {{ block.settings.content }}
               </div>
             {%- endif -%}
@@ -155,6 +155,18 @@
           "id": "text",
           "default": "<p>What we can bring to every partnership, across every brand.</p>",
           "label": "Content"
+        },
+        {
+          "type": "select",
+          "id": "text_style",
+          "options": [
+            { "value": "body", "label": "t:sections.all.text_style.options__1.label" },
+            { "value": "large", "label": "t:sections.all.text_style.options__2.label" },
+            { "value": "subtitle", "label": "t:sections.all.text_style.options__3.label" },
+            { "value": "caption-with-letter-spacing", "label": "t:sections.all.text_style.options__4.label" }
+          ],
+          "default": "body",
+          "label": "t:sections.all.text_style.label"
         }
       ]
     },
@@ -222,10 +234,35 @@
           "label": "Heading"
         },
         {
+          "type": "select",
+          "id": "heading_size",
+          "options": [
+            { "value": "h2", "label": "t:sections.all.heading_size.options__3.label" },
+            { "value": "h3", "label": "t:sections.all.heading_size.options__4.label" },
+            { "value": "h4", "label": "t:sections.all.heading_size.options__5.label" },
+            { "value": "h5", "label": "t:sections.all.heading_size.options__6.label" },
+            { "value": "h6", "label": "t:sections.all.heading_size.options__7.label" }
+          ],
+          "default": "h4",
+          "label": "t:sections.all.heading_size.label"
+        },
+        {
           "type": "richtext",
           "id": "content",
           "default": "<p>Describe this key point in a short, clear sentence or two.</p>",
           "label": "Content"
+        },
+        {
+          "type": "select",
+          "id": "text_style",
+          "options": [
+            { "value": "body", "label": "t:sections.all.text_style.options__1.label" },
+            { "value": "large", "label": "t:sections.all.text_style.options__2.label" },
+            { "value": "subtitle", "label": "t:sections.all.text_style.options__3.label" },
+            { "value": "caption-with-letter-spacing", "label": "t:sections.all.text_style.options__4.label" }
+          ],
+          "default": "body",
+          "label": "t:sections.all.text_style.label"
         },
         {
           "type": "header",

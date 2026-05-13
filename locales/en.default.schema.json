@@ -509,6 +509,21 @@
           "label": "Small"
         }
       },
+      "text_style": {
+        "label": "Text style",
+        "options__1": {
+          "label": "Body"
+        },
+        "options__2": {
+          "label": "Large"
+        },
+        "options__3": {
+          "label": "Subtitle"
+        },
+        "options__4": {
+          "label": "Uppercase"
+        }
+      },
       "image_shape": {
         "options__1": {
           "label": "Default"
