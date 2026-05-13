@@ -12,18 +12,18 @@
     "hero_banner_KjxajN": {
       "type": "hero-banner",
       "blocks": {
-        "text_WcJJU7": {
-          "type": "text",
-          "settings": {
-            "text": "Welcome to The Parently Group Trade Portal",
-            "text_style": "caption-with-letter-spacing"
-          }
-        },
         "heading_3AFj7W": {
           "type": "heading",
           "settings": {
-            "heading": "We're passionate about growing brands that fit family lifestyles",
+            "heading": "The children's brands group",
             "heading_size": "supersize"
+          }
+        },
+        "text_WcJJU7": {
+          "type": "text",
+          "settings": {
+            "text": "Supporting retailers since 1982 with ranges that sell and service that delivers.",
+            "text_style": "body"
           }
         },
         "buttons_L3Re7V": {
@@ -39,8 +39,8 @@
         }
       },
       "block_order": [
-        "text_WcJJU7",
         "heading_3AFj7W",
+        "text_WcJJU7",
         "buttons_L3Re7V"
       ],
       "name": "t:sections.hero-banner.presets.name",
@@ -140,14 +140,14 @@
         "heading_74PFpa": {
           "type": "heading",
           "settings": {
-            "heading": "Your trusted B2B partner for premium children's and schoolwear brands.",
+            "heading": "We're The Parently Goup, the children’s brands  group that retail partners choose to build their business around.",
             "heading_size": "h2"
           }
         },
         "text_U39hRc": {
           "type": "text",
           "settings": {
-            "text": "<p>Access exclusive wholesale pricing, streamlined ordering, and dedicated retailer support.</p>"
+            "text": "<p>One account. Six brands. A complete head-to-toe range across school, sport, outdoor and fashion.</p>"
           }
         },
         "buttons_CafG9b": {
@@ -374,8 +374,8 @@
         "heading_DQeqzC": {
           "type": "heading",
           "settings": {
-            "heading": "Why the Parently Group...",
-            "heading_size": "h2"
+            "heading": "Why The Parently Group...",
+            "heading_size": "h1"
           }
         },
         "text_MayeRd": {
@@ -398,8 +398,8 @@
         "key_point_zFRTYg": {
           "type": "key_point",
           "settings": {
-            "heading": "One partner,  multiple categories",
-            "content": "<p>One account, one order process, one relationship, a complete kidswear + footwear offer.</p>",
+            "heading": "<strong>Built for trade</strong>",
+            "content": "<p>We are a wholesale business. We exist to enable our retail partners.</p>",
             "button_label": "",
             "button_link": "",
             "button_style_secondary": false
@@ -408,8 +408,8 @@
         "key_point_TPfyyw": {
           "type": "key_point",
           "settings": {
-            "heading": "Providing support that feels persona",
-            "content": "<p>Collaborative planning, marketing support and campaign assets to help sell-through.</p>",
+            "heading": "<strong>We show up</strong>",
+            "content": "<p>Good stock, real service, and a partnership built for the long term — not just the season.</p>",
             "button_label": "",
             "button_link": "",
             "button_style_secondary": false
@@ -418,8 +418,8 @@
         "key_point_PhHQXg": {
           "type": "key_point",
           "settings": {
-            "heading": "Stock reliability",
-            "content": "<p>Strong availability and dependable replenishment  to keep sales flowing.</p>",
+            "heading": "<strong>Head to toe</strong>",
+            "content": "<p>Six brands across school, sport, outdoor and fashion. One group that covers everything parents need — from first uniform to favourite wellies.</p>",
             "button_label": "",
             "button_link": "",
             "button_style_secondary": false
@@ -428,8 +428,8 @@
         "key_point_xxVzTW": {
           "type": "key_point",
           "settings": {
-            "heading": "Proven brands",
-            "content": "<p>Trusted names with loyal followings - from heritage schoolwear to playful fashion.</p>",
+            "heading": "<strong>Grow with us</strong>",
+            "content": "<p>Our portfolio grows as the market grows. Retailers who work with us can expand their range without taking on new risk.</p>",
             "button_label": "",
             "button_link": "",
             "button_style_secondary": false
@@ -438,8 +438,8 @@
         "key_point_e3VbJQ": {
           "type": "key_point",
           "settings": {
-            "heading": "Commercial focus",
-            "content": "<p>Clear pricing architecture and margin-friendly ranges.</p>",
+            "heading": "<strong>One relationship</strong>",
+            "content": "<p>One account, one order, one warehouse, one team. Access to multiple brands, made simple.</p>",
             "button_label": "",
             "button_link": "",
             "button_style_secondary": false
@@ -448,8 +448,8 @@
         "key_point_6jtM4j": {
           "type": "key_point",
           "settings": {
-            "heading": "Key point heading",
-            "content": "<p>Shop multiple brands in one place, explore product diversification with reduced risk.</p>",
+            "heading": "<strong>Doing things right</strong>",
+            "content": "<p>Four decades of honest and open trading with our partners. Our reputation is yours to lean on.</p>",
             "button_label": "",
             "button_link": "",
             "button_style_secondary": false
