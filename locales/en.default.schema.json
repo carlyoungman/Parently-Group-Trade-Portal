@@ -3049,6 +3049,12 @@
         },
         "full_width": {
           "label": "Full width"
+        },
+        "background_color": {
+          "label": "Background colour"
+        },
+        "text_color": {
+          "label": "Text colour"
         }
       },
       "blocks": {
@@ -3103,6 +3109,13 @@
             "text": {
               "label": "Text",
               "default": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>"
+            },
+            "text_style": {
+              "label": "Style",
+              "options__1": { "label": "Body" },
+              "options__2": { "label": "Large" },
+              "options__3": { "label": "Subheading" },
+              "options__4": { "label": "Uppercase" }
             }
           }
         },

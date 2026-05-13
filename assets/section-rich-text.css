@@ -84,3 +84,28 @@
 .rich-text__blocks.right .rich-text__buttons {
   justify-content: flex-end;
 }
+
+/* Rich Text — image / logo block */
+.rich-text__content-image {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.6rem;
+}
+
+.rich-text__content-image-img {
+  display: block;
+  height: auto;
+  width: 100%;
+}
+
+.rich-text__content-image--small .rich-text__content-image-img {
+  max-width: 10rem;
+}
+
+.rich-text__content-image--medium .rich-text__content-image-img {
+  max-width: 20rem;
+}
+
+.rich-text__content-image--large .rich-text__content-image-img {
+  max-width: 32rem;
+}
