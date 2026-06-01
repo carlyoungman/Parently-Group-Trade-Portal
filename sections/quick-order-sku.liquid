@@ -1,11 +1,24 @@
-{% comment %} ============================================================ QUICK ORDER — 4-Tab Trade Portal Section The
-Parently Group Tabs: 1. Order by SKU — search by SKU/name, add to order 2. CSV Upload — drop an Excel/CSV order file 3.
-Suggested Order — based on customer order history 4. Re-buy Order — look up a previous order by reference SETUP: 1.
-sections/quick-order-sku.liquid ← this file 2. templates/page.quick-order-sku.json 3. Collection handle:
-trade-quick-order (all variants need SKUs) 4. Assign page template, add to nav
-============================================================ {% endcomment %}
+{% comment %}
+  ============================================================
+  QUICK ORDER — 4-Tab Trade Portal Section
+  The Parently Group
+  
+  Tabs:
+  1. Order by SKU      — search by SKU/name, add to order
+  2. CSV Upload        — drop an Excel/CSV order file
+  3. Suggested Order   — based on customer order history
+  4. Re-buy Order      — look up a previous order by reference
+  
+  SETUP:
+  1. sections/quick-order-sku.liquid  ← this file
+  2. templates/page.quick-order-sku.json
+  3. Collection handle: trade-quick-order (all variants need SKUs)
+  4. Assign page template, add to nav
+  ============================================================
+{% endcomment %}
 
 <div class="qo-wrap" id="qo-app">
+
   <!-- PAGE HEADER -->
   <div class="qo-page-header">
     <div>
@@ -13,8 +26,7 @@ trade-quick-order (all variants need SKUs) 4. Assign page template, add to nav
       <p class="qo-page-sub">Build your order your way — search, upload, or re-order</p>
     </div>
     <div class="qo-support">
-      Need help?
-      <a href="tel:{{ section.settings.phone_number | remove: ' ' }}">{{ section.settings.phone_number }}</a>
+      Need help? <a href="tel:{{ section.settings.phone_number | remove: ' ' }}">{{ section.settings.phone_number }}</a>
       &nbsp;·&nbsp; <a href="mailto:{{ section.settings.support_email }}">{{ section.settings.support_email }}</a>
     </div>
   </div>
@@ -22,36 +34,19 @@ trade-quick-order (all variants need SKUs) 4. Assign page template, add to nav
   <!-- TABS -->
   <div class="qo-tabs" role="tablist">
     <button class="qo-tab is-active" data-tab="sku" role="tab" aria-selected="true">
-      <svg viewBox="0 0 20 20" fill="none" width="16" height="16">
-        <circle cx="9" cy="9" r="6" stroke="currentColor" stroke-width="1.5" />
-        <path d="M13.5 13.5L17 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
-      </svg>
+      <svg viewBox="0 0 20 20" fill="none" width="16" height="16"><circle cx="9" cy="9" r="6" stroke="currentColor" stroke-width="1.5"/><path d="M13.5 13.5L17 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
       Order by SKU
     </button>
     <button class="qo-tab" data-tab="csv" role="tab" aria-selected="false">
-      <svg viewBox="0 0 20 20" fill="none" width="16" height="16">
-        <path d="M4 4h8l4 4v8H4V4z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
-        <path d="M12 4v4h4" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
-        <path d="M7 11h6M7 14h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
-      </svg>
+      <svg viewBox="0 0 20 20" fill="none" width="16" height="16"><path d="M4 4h8l4 4v8H4V4z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M12 4v4h4" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M7 11h6M7 14h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
       CSV Upload
     </button>
     <button class="qo-tab" data-tab="suggested" role="tab" aria-selected="false">
-      <svg viewBox="0 0 20 20" fill="none" width="16" height="16">
-        <path
-          d="M10 2l2.4 4.9 5.4.8-3.9 3.8.9 5.4L10 14.4l-4.8 2.5.9-5.4L2.2 7.7l5.4-.8L10 2z"
-          stroke="currentColor"
-          stroke-width="1.5"
-          stroke-linejoin="round"
-        />
-      </svg>
+      <svg viewBox="0 0 20 20" fill="none" width="16" height="16"><path d="M10 2l2.4 4.9 5.4.8-3.9 3.8.9 5.4L10 14.4l-4.8 2.5.9-5.4L2.2 7.7l5.4-.8L10 2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
       Suggested Order
     </button>
     <button class="qo-tab" data-tab="rebuy" role="tab" aria-selected="false">
-      <svg viewBox="0 0 20 20" fill="none" width="16" height="16">
-        <path d="M4 10a6 6 0 1 1 1.5 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
-        <path d="M4 14v-4h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-      </svg>
+      <svg viewBox="0 0 20 20" fill="none" width="16" height="16"><path d="M4 10a6 6 0 1 1 1.5 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M4 14v-4h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       Re-buy Order
     </button>
   </div>
@@ -59,6 +54,7 @@ trade-quick-order (all variants need SKUs) 4. Assign page template, add to nav
   <!-- MAIN LAYOUT -->
   <div class="qo-layout">
     <div class="qo-main">
+
       <!-- ══════════════════════════════════════
            TAB 1: ORDER BY SKU
       ══════════════════════════════════════ -->
@@ -66,23 +62,13 @@ trade-quick-order (all variants need SKUs) 4. Assign page template, add to nav
         <div class="qo-search-panel">
           <label class="qo-label" for="qo-sku-input">Search by SKU or product name</label>
           <div class="qo-search-bar">
-            <svg class="qo-search-icon" viewBox="0 0 20 20" fill="none" width="18" height="18">
-              <circle cx="9" cy="9" r="6" stroke="currentColor" stroke-width="1.5" />
-              <path d="M13.5 13.5L17 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
-            </svg>
-            <input
-              type="text"
-              id="qo-sku-input"
-              class="qo-input"
-              placeholder="e.g. GA309, Term Polo, 451-WHT..."
-              autocomplete="off"
-              spellcheck="false"
-            />
-            <button class="qo-input-clear" id="qo-input-clear" style="display: none" aria-label="Clear">✕</button>
+            <svg class="qo-search-icon" viewBox="0 0 20 20" fill="none" width="18" height="18"><circle cx="9" cy="9" r="6" stroke="currentColor" stroke-width="1.5"/><path d="M13.5 13.5L17 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <input type="text" id="qo-sku-input" class="qo-input" placeholder="e.g. GA309, Term Polo, 451-WHT..." autocomplete="off" spellcheck="false" />
+            <button class="qo-input-clear" id="qo-input-clear" style="display:none" aria-label="Clear">✕</button>
           </div>
-          <div class="qo-dropdown" id="qo-dropdown" style="display: none"></div>
+          <div class="qo-dropdown" id="qo-dropdown" style="display:none"></div>
 
-          <div class="qo-qty-row" id="qo-qty-row" style="display: none">
+          <div class="qo-qty-row" id="qo-qty-row" style="display:none">
             <span class="qo-label">Qty:</span>
             <div class="qo-qty-ctrl">
               <button class="qo-qty-btn" id="qo-qty-dec">−</button>
@@ -90,16 +76,14 @@ trade-quick-order (all variants need SKUs) 4. Assign page template, add to nav
               <button class="qo-qty-btn" id="qo-qty-inc">+</button>
             </div>
             <button class="qo-add-btn" id="qo-add-btn">
-              <svg viewBox="0 0 20 20" fill="none" width="15" height="15">
-                <path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-              </svg>
+              <svg viewBox="0 0 20 20" fill="none" width="15" height="15"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
               Add to Order
             </button>
           </div>
         </div>
 
         <!-- Selected product card -->
-        <div class="qo-product-card" id="qo-product-card" style="display: none">
+        <div class="qo-product-card" id="qo-product-card" style="display:none">
           <img id="qo-sel-img" src="" alt="" class="qo-product-card__img" />
           <div class="qo-product-card__body">
             <div class="qo-product-card__brand" id="qo-sel-brand"></div>
@@ -114,41 +98,22 @@ trade-quick-order (all variants need SKUs) 4. Assign page template, add to nav
         </div>
 
         <!-- Order lines table -->
-        <div class="qo-lines-panel" id="qo-lines-panel" style="display: none">
+        <div class="qo-lines-panel" id="qo-lines-panel" style="display:none">
           <div class="qo-lines-header">
             <h2 class="qo-lines-title">Order Lines <span class="qo-badge" id="qo-lines-count">0</span></h2>
             <button class="qo-ghost-danger" id="qo-clear-lines">Clear all</button>
           </div>
           <div class="qo-table-scroll">
             <table class="qo-table">
-              <thead>
-                <tr>
-                  <th>Product</th>
-                  <th>SKU</th>
-                  <th>Price</th>
-                  <th>Qty</th>
-                  <th>Line total</th>
-                  <th></th>
-                </tr>
-              </thead>
+              <thead><tr><th>Product</th><th>SKU</th><th>Price</th><th>Qty</th><th>Line total</th><th></th></tr></thead>
               <tbody id="qo-lines-tbody"></tbody>
-              <tfoot>
-                <tr class="qo-tfoot">
-                  <td colspan="4">Subtotal (ex VAT)</td>
-                  <td id="qo-lines-subtotal">£0.00</td>
-                  <td></td>
-                </tr>
-              </tfoot>
+              <tfoot><tr class="qo-tfoot"><td colspan="4">Subtotal (ex VAT)</td><td id="qo-lines-subtotal">£0.00</td><td></td></tr></tfoot>
             </table>
           </div>
         </div>
 
         <div class="qo-empty-state" id="qo-empty-state">
-          <svg viewBox="0 0 48 48" fill="none" width="40" height="40">
-            <rect x="6" y="12" width="36" height="30" rx="3" stroke="currentColor" stroke-width="1.5" />
-            <path d="M16 12V9a8 8 0 0116 0v3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
-            <circle cx="24" cy="27" r="3" stroke="currentColor" stroke-width="1.5" />
-          </svg>
+          <svg viewBox="0 0 48 48" fill="none" width="40" height="40"><rect x="6" y="12" width="36" height="30" rx="3" stroke="currentColor" stroke-width="1.5"/><path d="M16 12V9a8 8 0 0116 0v3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="24" cy="27" r="3" stroke="currentColor" stroke-width="1.5"/></svg>
           <p>Search for a product above to start building your order</p>
         </div>
       </div>
@@ -159,48 +124,27 @@ trade-quick-order (all variants need SKUs) 4. Assign page template, add to nav
       <div class="qo-panel" id="qo-panel-csv">
         <div class="qo-csv-intro">
           <h2 class="qo-section-title">Upload an order from Excel or CSV</h2>
-          <p class="qo-section-desc">
-            Export your order from a spreadsheet and upload it here. Your file needs two columns:
-            <strong>SKU</strong> and <strong>Quantity</strong>.
-          </p>
+          <p class="qo-section-desc">Export your order from a spreadsheet and upload it here. Your file needs two columns: <strong>SKU</strong> and <strong>Quantity</strong>.</p>
           <a href="#" class="qo-link" id="qo-csv-template-dl">Download template CSV ↓</a>
         </div>
 
         <div class="qo-drop-zone" id="qo-drop-zone">
-          <input type="file" id="qo-file-input" accept=".csv,.xlsx,.xls" style="display: none" />
-          <svg viewBox="0 0 48 48" fill="none" width="40" height="40">
-            <path
-              d="M24 8v24M16 24l8-16 8 16"
-              stroke="currentColor"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-            <path d="M8 36h32" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
-          </svg>
+          <input type="file" id="qo-file-input" accept=".csv,.xlsx,.xls" style="display:none" />
+          <svg viewBox="0 0 48 48" fill="none" width="40" height="40"><path d="M24 8v24M16 24l8-16 8 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 36h32" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
           <p class="qo-drop-title">Drop your CSV or Excel file here</p>
           <p class="qo-drop-sub">or <button class="qo-inline-btn" id="qo-browse-btn">browse to upload</button></p>
           <p class="qo-drop-formats">Accepts .csv, .xlsx, .xls</p>
         </div>
 
-        <div class="qo-csv-results" id="qo-csv-results" style="display: none">
+        <div class="qo-csv-results" id="qo-csv-results" style="display:none">
           <div class="qo-csv-results__header">
             <h3 class="qo-section-title" id="qo-csv-title">Parsed 0 lines</h3>
             <button class="qo-ghost-danger" id="qo-csv-clear">Clear file</button>
           </div>
-          <div class="qo-csv-errors" id="qo-csv-errors" style="display: none"></div>
+          <div class="qo-csv-errors" id="qo-csv-errors" style="display:none"></div>
           <div class="qo-table-scroll">
             <table class="qo-table">
-              <thead>
-                <tr>
-                  <th>Product</th>
-                  <th>SKU</th>
-                  <th>Price</th>
-                  <th>Qty</th>
-                  <th>Line total</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
+              <thead><tr><th>Product</th><th>SKU</th><th>Price</th><th>Qty</th><th>Line total</th><th>Status</th></tr></thead>
               <tbody id="qo-csv-tbody"></tbody>
             </table>
           </div>
@@ -214,10 +158,7 @@ trade-quick-order (all variants need SKUs) 4. Assign page template, add to nav
       <div class="qo-panel" id="qo-panel-suggested">
         <div class="qo-suggested-intro">
           <h2 class="qo-section-title">Suggested Order</h2>
-          <p class="qo-section-desc">
-            Based on your previous orders, here are the products you order most frequently. Quantities shown are your
-            average order size.
-          </p>
+          <p class="qo-section-desc">Based on your previous orders, here are the products you order most frequently. Quantities shown are your average order size.</p>
         </div>
 
         <div class="qo-suggested-loading" id="qo-suggested-loading">
@@ -225,17 +166,14 @@ trade-quick-order (all variants need SKUs) 4. Assign page template, add to nav
           <span>Loading your order history…</span>
         </div>
 
-        <div class="qo-suggested-empty" id="qo-suggested-empty" style="display: none">
-          <svg viewBox="0 0 48 48" fill="none" width="40" height="40">
-            <path d="M24 8v8M8 24h8M32 24h8M24 32v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
-            <circle cx="24" cy="24" r="6" stroke="currentColor" stroke-width="1.5" />
-          </svg>
+        <div class="qo-suggested-empty" id="qo-suggested-empty" style="display:none">
+          <svg viewBox="0 0 48 48" fill="none" width="40" height="40"><path d="M24 8v8M8 24h8M32 24h8M24 32v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="24" cy="24" r="6" stroke="currentColor" stroke-width="1.5"/></svg>
           <p>No order history found. Place your first order to unlock suggestions.</p>
         </div>
 
-        <div class="qo-suggested-grid" id="qo-suggested-grid" style="display: none"></div>
+        <div class="qo-suggested-grid" id="qo-suggested-grid" style="display:none"></div>
 
-        <div class="qo-suggested-actions" id="qo-suggested-actions" style="display: none">
+        <div class="qo-suggested-actions" id="qo-suggested-actions" style="display:none">
           <button class="qo-primary-btn" id="qo-suggested-add-all">Add all suggested items to order</button>
         </div>
       </div>
@@ -246,25 +184,14 @@ trade-quick-order (all variants need SKUs) 4. Assign page template, add to nav
       <div class="qo-panel" id="qo-panel-rebuy">
         <div class="qo-rebuy-intro">
           <h2 class="qo-section-title">Re-buy a Previous Order</h2>
-          <p class="qo-section-desc">
-            Enter your order reference number to load all items from that order and add them to your basket.
-          </p>
+          <p class="qo-section-desc">Enter your order reference number to load all items from that order and add them to your basket.</p>
         </div>
 
         <div class="qo-rebuy-search">
           <label class="qo-label" for="qo-order-ref">Order reference</label>
           <div class="qo-search-bar">
-            <svg class="qo-search-icon" viewBox="0 0 20 20" fill="none" width="18" height="18">
-              <rect x="3" y="3" width="14" height="14" rx="2" stroke="currentColor" stroke-width="1.5" />
-              <path d="M7 8h6M7 11h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
-            </svg>
-            <input
-              type="text"
-              id="qo-order-ref"
-              class="qo-input"
-              placeholder="e.g. #1042, PG-10042..."
-              autocomplete="off"
-            />
+            <svg class="qo-search-icon" viewBox="0 0 20 20" fill="none" width="18" height="18"><rect x="3" y="3" width="14" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M7 8h6M7 11h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <input type="text" id="qo-order-ref" class="qo-input" placeholder="e.g. #1042, PG-10042..." autocomplete="off" />
           </div>
           <button class="qo-primary-btn qo-rebuy-lookup-btn" id="qo-rebuy-lookup">Look up order</button>
         </div>
@@ -276,12 +203,12 @@ trade-quick-order (all variants need SKUs) 4. Assign page template, add to nav
             <div class="qo-spinner"></div>
             <span>Loading recent orders…</span>
           </div>
-          <div class="qo-recent-list" id="qo-recent-list" style="display: none"></div>
-          <div class="qo-recent-empty" id="qo-recent-empty" style="display: none">No previous orders found.</div>
+          <div class="qo-recent-list" id="qo-recent-list" style="display:none"></div>
+          <div class="qo-recent-empty" id="qo-recent-empty" style="display:none">No previous orders found.</div>
         </div>
 
         <!-- Rebuy results -->
-        <div class="qo-rebuy-results" id="qo-rebuy-results" style="display: none">
+        <div class="qo-rebuy-results" id="qo-rebuy-results" style="display:none">
           <div class="qo-rebuy-results__header">
             <div>
               <h3 class="qo-section-title" id="qo-rebuy-order-title">Order #—</h3>
@@ -291,41 +218,22 @@ trade-quick-order (all variants need SKUs) 4. Assign page template, add to nav
           </div>
           <div class="qo-table-scroll">
             <table class="qo-table">
-              <thead>
-                <tr>
-                  <th>Product</th>
-                  <th>SKU</th>
-                  <th>Original qty</th>
-                  <th>Add qty</th>
-                  <th>Price</th>
-                  <th></th>
-                </tr>
-              </thead>
+              <thead><tr><th>Product</th><th>SKU</th><th>Original qty</th><th>Add qty</th><th>Price</th><th></th></tr></thead>
               <tbody id="qo-rebuy-tbody"></tbody>
             </table>
           </div>
           <button class="qo-primary-btn" id="qo-rebuy-add-all">Add all items to order</button>
         </div>
       </div>
-    </div>
-    <!-- /qo-main -->
+
+    </div><!-- /qo-main -->
 
     <!-- BASKET SIDEBAR -->
     <div class="qo-sidebar">
       <div class="qo-basket">
         <div class="qo-basket__head">
           <span class="qo-basket__title">
-            <svg viewBox="0 0 20 20" fill="none" width="16" height="16">
-              <path
-                d="M2.5 3.5h2l2.5 9h8l2-6H6"
-                stroke="currentColor"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <circle cx="9" cy="16" r="1" fill="currentColor" />
-              <circle cx="14" cy="16" r="1" fill="currentColor" />
-            </svg>
+            <svg viewBox="0 0 20 20" fill="none" width="16" height="16"><path d="M2.5 3.5h2l2.5 9h8l2-6H6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="16" r="1" fill="currentColor"/><circle cx="14" cy="16" r="1" fill="currentColor"/></svg>
             Your Order
           </span>
           <span class="qo-basket__count" id="qo-basket-count">0 items</span>
@@ -336,2189 +244,892 @@ trade-quick-order (all variants need SKUs) 4. Assign page template, add to nav
         <div class="qo-basket__totals">
           <div class="qo-basket__row"><span>Subtotal (ex VAT)</span><strong id="qo-b-sub">£0.00</strong></div>
           <div class="qo-basket__row qo-basket__row--light"><span>VAT (20%)</span><span id="qo-b-vat">£0.00</span></div>
-          <div class="qo-basket__row qo-basket__row--total">
-            <span>Total (inc VAT)</span><strong id="qo-b-total">£0.00</strong>
-          </div>
+          <div class="qo-basket__row qo-basket__row--total"><span>Total (inc VAT)</span><strong id="qo-b-total">£0.00</strong></div>
         </div>
         <div class="qo-basket__actions">
           <button class="qo-primary-btn" id="qo-checkout-btn" disabled>Proceed to Checkout</button>
           <button class="qo-dark-btn" id="qo-draft-btn">Save as Draft</button>
           <button class="qo-ghost-btn" id="qo-clear-basket">Clear Order</button>
         </div>
-        <div class="qo-draft-notice" id="qo-draft-notice" style="display: none">
-          <svg viewBox="0 0 16 16" fill="none" width="12" height="12">
-            <circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5" />
-            <path d="M8 5v3l2 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
-          </svg>
+        <div class="qo-draft-notice" id="qo-draft-notice" style="display:none">
+          <svg viewBox="0 0 16 16" fill="none" width="12" height="12"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5"/><path d="M8 5v3l2 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
           Draft restored
           <button class="qo-draft-dismiss" id="qo-draft-dismiss">✕</button>
         </div>
       </div>
     </div>
-  </div>
-  <!-- /qo-layout -->
+
+  </div><!-- /qo-layout -->
 
   <div class="qo-toast" id="qo-toast"></div>
 </div>
 
+
 <style>
-  .qo-wrap {
-    --g: #2e7d32;
-    --g2: #4caf50;
-    --g-bg: #f1f8e9;
-    --dark: #111;
-    --mid: #555;
-    --light: #999;
-    --border: #e4e4e0;
-    --bg: #f8f8f6;
-    --white: #fff;
-    --red: #c62828;
-    --amber: #e65100;
-    --r: 8px;
-    font-family:
-      'DM Sans',
-      -apple-system,
-      BlinkMacSystemFont,
-      sans-serif;
-    color: var(--dark);
-    background: var(--bg);
-    padding: 32px 24px 80px;
-    max-width: 1380px;
-    margin: 0 auto;
-  }
+.qo-wrap {
+  --g: #2E7D32;
+  --g2: #4CAF50;
+  --g-bg: #F1F8E9;
+  --dark: #111;
+  --mid: #555;
+  --light: #999;
+  --border: #E4E4E0;
+  --bg: #F8F8F6;
+  --white: #fff;
+  --red: #C62828;
+  --amber: #E65100;
+  --r: 8px;
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--dark);
+  background: var(--bg);
+  padding: 32px 24px 80px;
+  max-width: 1380px;
+  margin: 0 auto;
+}
 
-  /* ── Page header ─── */
-  .qo-page-header {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-bottom: 28px;
-  }
-  .qo-page-title {
-    font-size: 26px;
-    font-weight: 700;
-    letter-spacing: -0.5px;
-    margin: 0 0 4px;
-  }
-  .qo-page-sub {
-    font-size: 14px;
-    color: var(--mid);
-    margin: 0;
-  }
-  .qo-support {
-    font-size: 13px;
-    color: var(--mid);
-  }
-  .qo-support a {
-    color: var(--g);
-    font-weight: 600;
-    text-decoration: none;
-  }
-  .qo-support a:hover {
-    text-decoration: underline;
-  }
+/* ── Page header ─── */
+.qo-page-header { display:flex; align-items:flex-end; justify-content:space-between; flex-wrap:wrap; gap:12px; margin-bottom:28px; }
+.qo-page-title  { font-size:26px; font-weight:700; letter-spacing:-0.5px; margin:0 0 4px; }
+.qo-page-sub    { font-size:14px; color:var(--mid); margin:0; }
+.qo-support     { font-size:13px; color:var(--mid); }
+.qo-support a   { color:var(--g); font-weight:600; text-decoration:none; }
+.qo-support a:hover { text-decoration:underline; }
 
-  /* ── Tabs ─── */
-  .qo-tabs {
-    display: flex;
-    gap: 0;
-    border-bottom: 2px solid var(--border);
-    margin-bottom: 24px;
-    overflow-x: auto;
-    scrollbar-width: none;
-  }
-  .qo-tabs::-webkit-scrollbar {
-    display: none;
-  }
-  .qo-tab {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    padding: 11px 20px;
-    border: none;
-    background: none;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--light);
-    font-family: inherit;
-    border-bottom: 2px solid transparent;
-    margin-bottom: -2px;
-    white-space: nowrap;
-    transition:
-      color 0.15s,
-      border-color 0.15s;
-  }
-  .qo-tab:hover {
-    color: var(--dark);
-  }
-  .qo-tab.is-active {
-    color: var(--g);
-    border-bottom-color: var(--g);
-    font-weight: 700;
-  }
+/* ── Tabs ─── */
+.qo-tabs { display:flex; gap:0; border-bottom:2px solid var(--border); margin-bottom:24px; overflow-x:auto; scrollbar-width:none; }
+.qo-tabs::-webkit-scrollbar { display:none; }
+.qo-tab {
+  display:flex; align-items:center; gap:7px;
+  padding:11px 20px; border:none; background:none; cursor:pointer;
+  font-size:14px; font-weight:500; color:var(--light);
+  font-family:inherit; border-bottom:2px solid transparent; margin-bottom:-2px;
+  white-space:nowrap; transition:color .15s, border-color .15s;
+}
+.qo-tab:hover { color:var(--dark); }
+.qo-tab.is-active { color:var(--g); border-bottom-color:var(--g); font-weight:700; }
 
-  /* ── Layout ─── */
-  .qo-layout {
-    display: grid;
-    grid-template-columns: 1fr 320px;
-    gap: 20px;
-    align-items: start;
-  }
-  @media (max-width: 880px) {
-    .qo-layout {
-      grid-template-columns: 1fr;
-    }
-    .qo-sidebar {
-      order: -1;
-    }
-  }
+/* ── Layout ─── */
+.qo-layout { display:grid; grid-template-columns:1fr 320px; gap:20px; align-items:start; }
+@media(max-width:880px){ .qo-layout{ grid-template-columns:1fr; } .qo-sidebar{ order:-1; } }
 
-  /* ── Panels ─── */
-  .qo-panel {
-    display: none;
-  }
-  .qo-panel.is-active {
-    display: block;
-  }
+/* ── Panels ─── */
+.qo-panel { display:none; }
+.qo-panel.is-active { display:block; }
 
-  /* ── Shared form elements ─── */
-  .qo-label {
-    display: block;
-    font-size: 12px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.6px;
-    color: var(--mid);
-    margin-bottom: 8px;
-  }
-  .qo-search-bar {
-    position: relative;
-    display: flex;
-    align-items: center;
-  }
-  .qo-search-icon {
-    position: absolute;
-    left: 13px;
-    color: #bbb;
-    pointer-events: none;
-  }
-  .qo-input {
-    width: 100%;
-    height: 46px;
-    padding: 0 40px 0 42px;
-    border: 2px solid var(--border);
-    border-radius: var(--r);
-    font-size: 15px;
-    font-family: inherit;
-    color: var(--dark);
-    background: var(--white);
-    outline: none;
-    transition: border-color 0.15s;
-  }
-  .qo-input:focus {
-    border-color: var(--g);
-  }
-  .qo-input::placeholder {
-    color: #ccc;
-  }
-  .qo-input-clear {
-    position: absolute;
-    right: 12px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: #bbb;
-    font-size: 14px;
-    padding: 4px;
-  }
-  .qo-input-clear:hover {
-    color: var(--dark);
-  }
+/* ── Shared form elements ─── */
+.qo-label { display:block; font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.6px; color:var(--mid); margin-bottom:8px; }
+.qo-search-bar { position:relative; display:flex; align-items:center; }
+.qo-search-icon { position:absolute; left:13px; color:#BBB; pointer-events:none; }
+.qo-input {
+  width:100%; height:46px; padding:0 40px 0 42px;
+  border:2px solid var(--border); border-radius:var(--r);
+  font-size:15px; font-family:inherit; color:var(--dark); background:var(--white);
+  outline:none; transition:border-color .15s;
+}
+.qo-input:focus { border-color:var(--g); }
+.qo-input::placeholder { color:#CCC; }
+.qo-input-clear { position:absolute; right:12px; background:none; border:none; cursor:pointer; color:#BBB; font-size:14px; padding:4px; }
+.qo-input-clear:hover { color:var(--dark); }
 
-  /* ── Search dropdown ─── */
-  .qo-search-panel {
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: var(--r);
-    padding: 20px;
-    margin-bottom: 14px;
-    position: relative;
-  }
-  .qo-dropdown {
-    position: absolute;
-    left: 20px;
-    right: 20px;
-    top: calc(20px + 18px + 8px + 46px);
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: var(--r);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.13);
-    z-index: 200;
-    max-height: 360px;
-    overflow-y: auto;
-    scrollbar-width: thin;
-  }
-  .qo-dg-label {
-    display: block;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: #bbb;
-    padding: 8px 12px 3px;
-    border-top: 1px solid var(--border);
-  }
-  .qo-dg:first-child .qo-dg-label {
-    border-top: none;
-  }
-  .qo-di {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 9px 12px;
-    cursor: pointer;
-    transition: background 0.1s;
-  }
-  .qo-di:hover,
-  .qo-di.focused {
-    background: var(--g-bg);
-  }
-  .qo-di__img {
-    width: 36px;
-    height: 36px;
-    border-radius: 4px;
-    object-fit: cover;
-    background: #f5f5f5;
-    flex-shrink: 0;
-  }
-  .qo-di__info {
-    flex: 1;
-    min-width: 0;
-  }
-  .qo-di__name {
-    font-size: 13px;
-    font-weight: 600;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  .qo-di__sub {
-    font-size: 12px;
-    color: var(--mid);
-  }
-  .qo-di__price {
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--g);
-    white-space: nowrap;
-  }
-  .qo-di__stock {
-    font-size: 11px;
-    font-weight: 600;
-    padding: 2px 7px;
-    border-radius: 20px;
-    white-space: nowrap;
-  }
-  .stock-in {
-    background: #e8f5e9;
-    color: #2e7d32;
-  }
-  .stock-low {
-    background: #fff3e0;
-    color: #e65100;
-  }
-  .stock-out {
-    background: #ffebee;
-    color: #c62828;
-  }
-  .qo-d-empty,
-  .qo-d-loading {
-    padding: 16px 12px;
-    font-size: 13px;
-    color: var(--mid);
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-  }
+/* ── Search dropdown ─── */
+.qo-search-panel { background:var(--white); border:1px solid var(--border); border-radius:var(--r); padding:20px; margin-bottom:14px; position:relative; }
+.qo-dropdown {
+  position:absolute; left:20px; right:20px; top:calc(20px + 18px + 8px + 46px);
+  background:var(--white); border:1px solid var(--border); border-radius:var(--r);
+  box-shadow:0 8px 32px rgba(0,0,0,.13); z-index:200; max-height:360px; overflow-y:auto;
+  scrollbar-width:thin;
+}
+.qo-dg-label { display:block; font-size:10px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#BBB; padding:8px 12px 3px; border-top:1px solid var(--border); }
+.qo-dg:first-child .qo-dg-label { border-top:none; }
+.qo-di { display:flex; align-items:center; gap:10px; padding:9px 12px; cursor:pointer; transition:background .1s; }
+.qo-di:hover, .qo-di.focused { background:var(--g-bg); }
+.qo-di__img { width:36px; height:36px; border-radius:4px; object-fit:cover; background:#F5F5F5; flex-shrink:0; }
+.qo-di__info { flex:1; min-width:0; }
+.qo-di__name { font-size:13px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.qo-di__sub  { font-size:12px; color:var(--mid); }
+.qo-di__price{ font-size:13px; font-weight:700; color:var(--g); white-space:nowrap; }
+.qo-di__stock{ font-size:11px; font-weight:600; padding:2px 7px; border-radius:20px; white-space:nowrap; }
+.stock-in  { background:#E8F5E9; color:#2E7D32; }
+.stock-low { background:#FFF3E0; color:#E65100; }
+.stock-out { background:#FFEBEE; color:#C62828; }
+.qo-d-empty, .qo-d-loading { padding:16px 12px; font-size:13px; color:var(--mid); text-align:center; display:flex; align-items:center; justify-content:center; gap:8px; }
 
-  /* ── Qty row ─── */
-  .qo-qty-row {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-top: 14px;
-    padding-top: 14px;
-    border-top: 1px solid var(--border);
-    flex-wrap: wrap;
-  }
-  .qo-qty-ctrl {
-    display: flex;
-    align-items: center;
-    border: 2px solid var(--border);
-    border-radius: var(--r);
-    overflow: hidden;
-  }
-  .qo-qty-btn {
-    width: 34px;
-    height: 34px;
-    background: #f5f5f5;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    color: var(--dark);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.12s;
-  }
-  .qo-qty-btn:hover {
-    background: #eee;
-  }
-  .qo-qty-num {
-    width: 48px;
-    height: 34px;
-    border: none;
-    text-align: center;
-    font-size: 14px;
-    font-weight: 700;
-    font-family: inherit;
-    background: var(--white);
-    color: var(--dark);
-    outline: none;
-    -moz-appearance: textfield;
-  }
-  .qo-qty-num::-webkit-inner-spin-button,
-  .qo-qty-num::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-  }
-  .qo-add-btn {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    background: var(--g);
-    color: white;
-    border: none;
-    border-radius: var(--r);
-    padding: 0 18px;
-    height: 38px;
-    font-size: 14px;
-    font-weight: 700;
-    font-family: inherit;
-    cursor: pointer;
-    transition:
-      background 0.15s,
-      transform 0.1s;
-  }
-  .qo-add-btn:hover {
-    background: #1b5e20;
-  }
-  .qo-add-btn:active {
-    transform: scale(0.97);
-  }
-  .qo-add-btn:disabled {
-    background: #c8e6c9;
-    cursor: not-allowed;
-  }
+/* ── Qty row ─── */
+.qo-qty-row { display:flex; align-items:center; gap:10px; margin-top:14px; padding-top:14px; border-top:1px solid var(--border); flex-wrap:wrap; }
+.qo-qty-ctrl { display:flex; align-items:center; border:2px solid var(--border); border-radius:var(--r); overflow:hidden; }
+.qo-qty-btn { width:34px; height:34px; background:#F5F5F5; border:none; cursor:pointer; font-size:16px; color:var(--dark); display:flex; align-items:center; justify-content:center; transition:background .12s; }
+.qo-qty-btn:hover { background:#EEE; }
+.qo-qty-num { width:48px; height:34px; border:none; text-align:center; font-size:14px; font-weight:700; font-family:inherit; background:var(--white); color:var(--dark); outline:none; -moz-appearance:textfield; }
+.qo-qty-num::-webkit-inner-spin-button, .qo-qty-num::-webkit-outer-spin-button { -webkit-appearance:none; }
+.qo-add-btn { display:flex; align-items:center; gap:6px; background:var(--g); color:white; border:none; border-radius:var(--r); padding:0 18px; height:38px; font-size:14px; font-weight:700; font-family:inherit; cursor:pointer; transition:background .15s, transform .1s; }
+.qo-add-btn:hover { background:#1B5E20; }
+.qo-add-btn:active { transform:scale(.97); }
+.qo-add-btn:disabled { background:#C8E6C9; cursor:not-allowed; }
 
-  /* ── Product card ─── */
-  .qo-product-card {
-    display: flex;
-    gap: 14px;
-    align-items: center;
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-left: 3px solid var(--g);
-    border-radius: var(--r);
-    padding: 14px;
-    margin-bottom: 14px;
-    animation: qo-in 0.15s ease;
-  }
-  .qo-product-card__img {
-    width: 56px;
-    height: 56px;
-    border-radius: 4px;
-    object-fit: cover;
-    background: #f5f5f5;
-    flex-shrink: 0;
-  }
-  .qo-product-card__brand {
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.8px;
-    text-transform: uppercase;
-    color: var(--g);
-  }
-  .qo-product-card__title {
-    font-size: 15px;
-    font-weight: 600;
-    margin: 2px 0;
-  }
-  .qo-product-card__variant {
-    font-size: 13px;
-    color: var(--mid);
-  }
-  .qo-product-card__meta {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    flex-wrap: wrap;
-    margin-top: 4px;
-  }
-  .qo-sku-tag {
-    font-size: 12px;
-    font-family: monospace;
-    background: #f5f5f5;
-    padding: 2px 8px;
-    border-radius: 4px;
-    color: var(--mid);
-  }
-  .qo-price-tag {
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--g);
-  }
-  .qo-stock {
-    font-size: 11px;
-    font-weight: 600;
-    padding: 2px 8px;
-    border-radius: 20px;
-  }
+/* ── Product card ─── */
+.qo-product-card { display:flex; gap:14px; align-items:center; background:var(--white); border:1px solid var(--border); border-left:3px solid var(--g); border-radius:var(--r); padding:14px; margin-bottom:14px; animation:qo-in .15s ease; }
+.qo-product-card__img { width:56px; height:56px; border-radius:4px; object-fit:cover; background:#F5F5F5; flex-shrink:0; }
+.qo-product-card__brand { font-size:10px; font-weight:700; letter-spacing:.8px; text-transform:uppercase; color:var(--g); }
+.qo-product-card__title { font-size:15px; font-weight:600; margin:2px 0; }
+.qo-product-card__variant { font-size:13px; color:var(--mid); }
+.qo-product-card__meta { display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:4px; }
+.qo-sku-tag { font-size:12px; font-family:monospace; background:#F5F5F5; padding:2px 8px; border-radius:4px; color:var(--mid); }
+.qo-price-tag { font-size:14px; font-weight:700; color:var(--g); }
+.qo-stock { font-size:11px; font-weight:600; padding:2px 8px; border-radius:20px; }
 
-  /* ── Lines table ─── */
-  .qo-lines-panel {
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: var(--r);
-    overflow: hidden;
-    margin-bottom: 14px;
-  }
-  .qo-lines-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 14px 18px;
-    border-bottom: 1px solid var(--border);
-  }
-  .qo-lines-title {
-    font-size: 15px;
-    font-weight: 700;
-    margin: 0;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .qo-badge {
-    background: var(--g);
-    color: white;
-    font-size: 11px;
-    font-weight: 700;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .qo-table-scroll {
-    overflow-x: auto;
-  }
-  .qo-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 13px;
-  }
-  .qo-table thead th {
-    padding: 9px 14px;
-    text-align: left;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    color: #bbb;
-    background: #fafafa;
-    border-bottom: 1px solid var(--border);
-    white-space: nowrap;
-  }
-  .qo-table tbody tr {
-    border-bottom: 1px solid var(--border);
-    transition: background 0.1s;
-  }
-  .qo-table tbody tr:hover {
-    background: #fafafa;
-  }
-  .qo-table tbody tr:last-child {
-    border-bottom: none;
-  }
-  .qo-table td {
-    padding: 11px 14px;
-    vertical-align: middle;
-  }
-  .qo-t-product {
-    display: flex;
-    align-items: center;
-    gap: 9px;
-  }
-  .qo-t-thumb {
-    width: 32px;
-    height: 32px;
-    border-radius: 3px;
-    object-fit: cover;
-    background: #f5f5f5;
-    flex-shrink: 0;
-  }
-  .qo-t-name {
-    font-weight: 600;
-    font-size: 13px;
-  }
-  .qo-t-var {
-    font-size: 11px;
-    color: var(--mid);
-  }
-  .qo-t-sku {
-    font-size: 12px;
-    font-family: monospace;
-    color: var(--mid);
-  }
-  .qo-t-price {
-    font-weight: 600;
-  }
-  .qo-t-line {
-    font-weight: 700;
-    color: var(--g);
-  }
-  .qo-t-qty {
-    display: flex;
-    align-items: center;
-    border: 1px solid var(--border);
-    border-radius: 5px;
-    overflow: hidden;
-    width: fit-content;
-  }
-  .qo-t-qb {
-    width: 26px;
-    height: 26px;
-    background: #f5f5f5;
-    border: none;
-    cursor: pointer;
-    font-size: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--dark);
-  }
-  .qo-t-qb:hover {
-    background: #eee;
-  }
-  .qo-t-qn {
-    width: 32px;
-    text-align: center;
-    font-size: 13px;
-    font-weight: 700;
-    border: none;
-    background: white;
-    font-family: inherit;
-    color: var(--dark);
-    -moz-appearance: textfield;
-    outline: none;
-  }
-  .qo-t-qn::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-  }
-  .qo-t-rm {
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: #ddd;
-    font-size: 15px;
-    padding: 3px;
-    border-radius: 3px;
-    transition:
-      color 0.12s,
-      background 0.12s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .qo-t-rm:hover {
-    color: var(--red);
-    background: #ffebee;
-  }
-  .qo-tfoot td {
-    padding: 11px 14px;
-    font-weight: 700;
-    background: #fafafa;
-    border-top: 2px solid var(--border);
-  }
-  .qo-tfoot td:first-child {
-    font-size: 11px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    color: var(--mid);
-  }
-  .qo-tfoot td:nth-child(2) {
-    font-size: 15px;
-    color: var(--g);
-  }
+/* ── Lines table ─── */
+.qo-lines-panel { background:var(--white); border:1px solid var(--border); border-radius:var(--r); overflow:hidden; margin-bottom:14px; }
+.qo-lines-header { display:flex; align-items:center; justify-content:space-between; padding:14px 18px; border-bottom:1px solid var(--border); }
+.qo-lines-title { font-size:15px; font-weight:700; margin:0; display:flex; align-items:center; gap:8px; }
+.qo-badge { background:var(--g); color:white; font-size:11px; font-weight:700; width:20px; height:20px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; }
+.qo-table-scroll { overflow-x:auto; }
+.qo-table { width:100%; border-collapse:collapse; font-size:13px; }
+.qo-table thead th { padding:9px 14px; text-align:left; font-size:10px; font-weight:700; letter-spacing:.5px; text-transform:uppercase; color:#BBB; background:#FAFAFA; border-bottom:1px solid var(--border); white-space:nowrap; }
+.qo-table tbody tr { border-bottom:1px solid var(--border); transition:background .1s; }
+.qo-table tbody tr:hover { background:#FAFAFA; }
+.qo-table tbody tr:last-child { border-bottom:none; }
+.qo-table td { padding:11px 14px; vertical-align:middle; }
+.qo-t-product { display:flex; align-items:center; gap:9px; }
+.qo-t-thumb { width:32px; height:32px; border-radius:3px; object-fit:cover; background:#F5F5F5; flex-shrink:0; }
+.qo-t-name { font-weight:600; font-size:13px; }
+.qo-t-var  { font-size:11px; color:var(--mid); }
+.qo-t-sku  { font-size:12px; font-family:monospace; color:var(--mid); }
+.qo-t-price{ font-weight:600; }
+.qo-t-line { font-weight:700; color:var(--g); }
+.qo-t-qty  { display:flex; align-items:center; border:1px solid var(--border); border-radius:5px; overflow:hidden; width:fit-content; }
+.qo-t-qb   { width:26px; height:26px; background:#F5F5F5; border:none; cursor:pointer; font-size:14px; display:flex; align-items:center; justify-content:center; color:var(--dark); }
+.qo-t-qb:hover { background:#EEE; }
+.qo-t-qn   { width:32px; text-align:center; font-size:13px; font-weight:700; border:none; background:white; font-family:inherit; color:var(--dark); -moz-appearance:textfield; outline:none; }
+.qo-t-qn::-webkit-inner-spin-button { -webkit-appearance:none; }
+.qo-t-rm   { background:none; border:none; cursor:pointer; color:#DDD; font-size:15px; padding:3px; border-radius:3px; transition:color .12s, background .12s; display:flex; align-items:center; justify-content:center; }
+.qo-t-rm:hover { color:var(--red); background:#FFEBEE; }
+.qo-tfoot td { padding:11px 14px; font-weight:700; background:#FAFAFA; border-top:2px solid var(--border); }
+.qo-tfoot td:first-child { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.5px; color:var(--mid); }
+.qo-tfoot td:nth-child(2) { font-size:15px; color:var(--g); }
 
-  /* ── Empty state ─── */
-  .qo-empty-state {
-    background: var(--white);
-    border: 2px dashed var(--border);
-    border-radius: var(--r);
-    padding: 48px 24px;
-    text-align: center;
-    color: #ccc;
-  }
-  .qo-empty-state svg {
-    margin-bottom: 10px;
-  }
-  .qo-empty-state p {
-    font-size: 14px;
-  }
+/* ── Empty state ─── */
+.qo-empty-state { background:var(--white); border:2px dashed var(--border); border-radius:var(--r); padding:48px 24px; text-align:center; color:#CCC; }
+.qo-empty-state svg { margin-bottom:10px; }
+.qo-empty-state p { font-size:14px; }
 
-  /* ── CSV tab ─── */
-  .qo-csv-intro,
-  .qo-suggested-intro,
-  .qo-rebuy-intro {
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: var(--r);
-    padding: 20px;
-    margin-bottom: 16px;
-  }
-  .qo-section-title {
-    font-size: 16px;
-    font-weight: 700;
-    margin: 0 0 6px;
-  }
-  .qo-section-title--sm {
-    font-size: 14px;
-    font-weight: 700;
-    margin: 0 0 12px;
-    color: var(--mid);
-  }
-  .qo-section-desc {
-    font-size: 14px;
-    color: var(--mid);
-    margin: 0 0 10px;
-    line-height: 1.5;
-  }
-  .qo-link {
-    font-size: 13px;
-    color: var(--g);
-    font-weight: 600;
-    text-decoration: none;
-  }
-  .qo-link:hover {
-    text-decoration: underline;
-  }
-  .qo-drop-zone {
-    background: var(--white);
-    border: 2px dashed var(--border);
-    border-radius: var(--r);
-    padding: 40px 24px;
-    text-align: center;
-    cursor: pointer;
-    transition:
-      border-color 0.15s,
-      background 0.15s;
-    margin-bottom: 16px;
-  }
-  .qo-drop-zone.is-over {
-    border-color: var(--g);
-    background: var(--g-bg);
-  }
-  .qo-drop-title {
-    font-size: 15px;
-    font-weight: 600;
-    margin: 10px 0 4px;
-  }
-  .qo-drop-sub {
-    font-size: 14px;
-    color: var(--mid);
-    margin: 0 0 6px;
-  }
-  .qo-drop-formats {
-    font-size: 12px;
-    color: #bbb;
-    margin: 0;
-  }
-  .qo-inline-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: var(--g);
-    font-weight: 600;
-    font-size: 14px;
-    font-family: inherit;
-    padding: 0;
-    text-decoration: underline;
-  }
-  .qo-csv-results__header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 12px;
-  }
-  .qo-csv-errors {
-    background: #fff3e0;
-    border: 1px solid #ffb74d;
-    border-radius: var(--r);
-    padding: 12px 16px;
-    margin-bottom: 12px;
-    font-size: 13px;
-    color: #e65100;
-  }
-  .qo-csv-errors ul {
-    margin: 4px 0 0 16px;
-    padding: 0;
-  }
-  .qo-t-status-ok {
-    color: #2e7d32;
-    font-weight: 600;
-    font-size: 12px;
-  }
-  .qo-t-status-err {
-    color: #c62828;
-    font-weight: 600;
-    font-size: 12px;
-  }
+/* ── CSV tab ─── */
+.qo-csv-intro, .qo-suggested-intro, .qo-rebuy-intro { background:var(--white); border:1px solid var(--border); border-radius:var(--r); padding:20px; margin-bottom:16px; }
+.qo-section-title { font-size:16px; font-weight:700; margin:0 0 6px; }
+.qo-section-title--sm { font-size:14px; font-weight:700; margin:0 0 12px; color:var(--mid); }
+.qo-section-desc { font-size:14px; color:var(--mid); margin:0 0 10px; line-height:1.5; }
+.qo-link { font-size:13px; color:var(--g); font-weight:600; text-decoration:none; }
+.qo-link:hover { text-decoration:underline; }
+.qo-drop-zone {
+  background:var(--white); border:2px dashed var(--border); border-radius:var(--r);
+  padding:40px 24px; text-align:center; cursor:pointer; transition:border-color .15s, background .15s;
+  margin-bottom:16px;
+}
+.qo-drop-zone.is-over { border-color:var(--g); background:var(--g-bg); }
+.qo-drop-title { font-size:15px; font-weight:600; margin:10px 0 4px; }
+.qo-drop-sub   { font-size:14px; color:var(--mid); margin:0 0 6px; }
+.qo-drop-formats { font-size:12px; color:#BBB; margin:0; }
+.qo-inline-btn { background:none; border:none; cursor:pointer; color:var(--g); font-weight:600; font-size:14px; font-family:inherit; padding:0; text-decoration:underline; }
+.qo-csv-results__header { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
+.qo-csv-errors { background:#FFF3E0; border:1px solid #FFB74D; border-radius:var(--r); padding:12px 16px; margin-bottom:12px; font-size:13px; color:#E65100; }
+.qo-csv-errors ul { margin:4px 0 0 16px; padding:0; }
+.qo-t-status-ok  { color:#2E7D32; font-weight:600; font-size:12px; }
+.qo-t-status-err { color:#C62828; font-weight:600; font-size:12px; }
 
-  /* ── Suggested tab ─── */
-  .qo-suggested-loading,
-  .qo-recent-loading {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 24px;
-    font-size: 14px;
-    color: var(--mid);
-  }
-  .qo-suggested-empty,
-  .qo-recent-empty {
-    padding: 40px 24px;
-    text-align: center;
-    color: #bbb;
-    font-size: 14px;
-  }
-  .qo-suggested-empty svg {
-    margin-bottom: 10px;
-  }
-  .qo-suggested-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 12px;
-    margin-bottom: 16px;
-  }
-  .qo-sg-card {
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: var(--r);
-    padding: 14px;
-    display: flex;
-    gap: 12px;
-    align-items: center;
-    transition:
-      border-color 0.15s,
-      box-shadow 0.15s;
-  }
-  .qo-sg-card:hover {
-    border-color: var(--g);
-    box-shadow: 0 2px 12px rgba(46, 125, 50, 0.1);
-  }
-  .qo-sg-img {
-    width: 48px;
-    height: 48px;
-    border-radius: 4px;
-    object-fit: cover;
-    background: #f5f5f5;
-    flex-shrink: 0;
-  }
-  .qo-sg-info {
-    flex: 1;
-    min-width: 0;
-  }
-  .qo-sg-title {
-    font-size: 13px;
-    font-weight: 600;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  .qo-sg-var {
-    font-size: 12px;
-    color: var(--mid);
-  }
-  .qo-sg-meta {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 6px;
-  }
-  .qo-sg-price {
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--g);
-  }
-  .qo-sg-qty {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    font-size: 12px;
-    color: var(--mid);
-  }
-  .qo-sg-qty input {
-    width: 40px;
-    height: 28px;
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    text-align: center;
-    font-size: 13px;
-    font-weight: 700;
-    font-family: inherit;
-    color: var(--dark);
-    -moz-appearance: textfield;
-    outline: none;
-  }
-  .qo-sg-qty input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-  }
-  .qo-sg-add {
-    background: none;
-    border: 1px solid var(--g);
-    color: var(--g);
-    border-radius: 4px;
-    padding: 3px 8px;
-    font-size: 12px;
-    font-weight: 700;
-    cursor: pointer;
-    font-family: inherit;
-    transition:
-      background 0.12s,
-      color 0.12s;
-    white-space: nowrap;
-  }
-  .qo-sg-add:hover {
-    background: var(--g);
-    color: white;
-  }
-  .qo-suggested-actions {
-    padding-top: 4px;
-  }
+/* ── Suggested tab ─── */
+.qo-suggested-loading, .qo-recent-loading { display:flex; align-items:center; gap:10px; padding:24px; font-size:14px; color:var(--mid); }
+.qo-suggested-empty, .qo-recent-empty { padding:40px 24px; text-align:center; color:#BBB; font-size:14px; }
+.qo-suggested-empty svg { margin-bottom:10px; }
+.qo-suggested-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:12px; margin-bottom:16px; }
+.qo-sg-card { background:var(--white); border:1px solid var(--border); border-radius:var(--r); padding:14px; display:flex; gap:12px; align-items:center; transition:border-color .15s, box-shadow .15s; }
+.qo-sg-card:hover { border-color:var(--g); box-shadow:0 2px 12px rgba(46,125,50,.1); }
+.qo-sg-img  { width:48px; height:48px; border-radius:4px; object-fit:cover; background:#F5F5F5; flex-shrink:0; }
+.qo-sg-info { flex:1; min-width:0; }
+.qo-sg-title{ font-size:13px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.qo-sg-var  { font-size:12px; color:var(--mid); }
+.qo-sg-meta { display:flex; align-items:center; justify-content:space-between; margin-top:6px; }
+.qo-sg-price{ font-size:13px; font-weight:700; color:var(--g); }
+.qo-sg-qty  { display:flex; align-items:center; gap:4px; font-size:12px; color:var(--mid); }
+.qo-sg-qty input { width:40px; height:28px; border:1px solid var(--border); border-radius:4px; text-align:center; font-size:13px; font-weight:700; font-family:inherit; color:var(--dark); -moz-appearance:textfield; outline:none; }
+.qo-sg-qty input::-webkit-inner-spin-button { -webkit-appearance:none; }
+.qo-sg-add  { background:none; border:1px solid var(--g); color:var(--g); border-radius:4px; padding:3px 8px; font-size:12px; font-weight:700; cursor:pointer; font-family:inherit; transition:background .12s, color .12s; white-space:nowrap; }
+.qo-sg-add:hover { background:var(--g); color:white; }
+.qo-suggested-actions { padding-top:4px; }
 
-  /* ── Re-buy tab ─── */
-  .qo-rebuy-search {
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: var(--r);
-    padding: 20px;
-    margin-bottom: 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  .qo-rebuy-lookup-btn {
-    align-self: flex-start;
-  }
-  .qo-recent-orders {
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: var(--r);
-    padding: 20px;
-    margin-bottom: 16px;
-  }
-  .qo-recent-list {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-  .qo-order-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 12px 14px;
-    border: 1px solid var(--border);
-    border-radius: var(--r);
-    cursor: pointer;
-    transition:
-      border-color 0.15s,
-      background 0.15s;
-    gap: 12px;
-    flex-wrap: wrap;
-  }
-  .qo-order-row:hover {
-    border-color: var(--g);
-    background: var(--g-bg);
-  }
-  .qo-order-row__ref {
-    font-weight: 700;
-    font-size: 14px;
-  }
-  .qo-order-row__meta {
-    font-size: 12px;
-    color: var(--mid);
-  }
-  .qo-order-row__total {
-    font-weight: 700;
-    font-size: 14px;
-    color: var(--g);
-  }
-  .qo-order-row__btn {
-    font-size: 12px;
-    font-weight: 700;
-    color: var(--g);
-    background: none;
-    border: 1px solid var(--g);
-    border-radius: 4px;
-    padding: 3px 10px;
-    cursor: pointer;
-    font-family: inherit;
-    transition:
-      background 0.12s,
-      color 0.12s;
-    white-space: nowrap;
-  }
-  .qo-order-row:hover .qo-order-row__btn {
-    background: var(--g);
-    color: white;
-  }
-  .qo-rebuy-results__header {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    margin-bottom: 14px;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-  .qo-rebuy-order-meta {
-    font-size: 13px;
-    color: var(--mid);
-    margin: 4px 0 0;
-  }
+/* ── Re-buy tab ─── */
+.qo-rebuy-search { background:var(--white); border:1px solid var(--border); border-radius:var(--r); padding:20px; margin-bottom:16px; display:flex; flex-direction:column; gap:10px; }
+.qo-rebuy-lookup-btn { align-self:flex-start; }
+.qo-recent-orders { background:var(--white); border:1px solid var(--border); border-radius:var(--r); padding:20px; margin-bottom:16px; }
+.qo-recent-list { display:flex; flex-direction:column; gap:8px; }
+.qo-order-row { display:flex; align-items:center; justify-content:space-between; padding:12px 14px; border:1px solid var(--border); border-radius:var(--r); cursor:pointer; transition:border-color .15s, background .15s; gap:12px; flex-wrap:wrap; }
+.qo-order-row:hover { border-color:var(--g); background:var(--g-bg); }
+.qo-order-row__ref   { font-weight:700; font-size:14px; }
+.qo-order-row__meta  { font-size:12px; color:var(--mid); }
+.qo-order-row__total { font-weight:700; font-size:14px; color:var(--g); }
+.qo-order-row__btn   { font-size:12px; font-weight:700; color:var(--g); background:none; border:1px solid var(--g); border-radius:4px; padding:3px 10px; cursor:pointer; font-family:inherit; transition:background .12s, color .12s; white-space:nowrap; }
+.qo-order-row:hover .qo-order-row__btn { background:var(--g); color:white; }
+.qo-rebuy-results__header { display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:14px; flex-wrap:wrap; gap:8px; }
+.qo-rebuy-order-meta { font-size:13px; color:var(--mid); margin:4px 0 0; }
 
-  /* ── Basket sidebar ─── */
-  .qo-basket {
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: var(--r);
-    overflow: hidden;
-    position: sticky;
-    top: 80px;
-  }
-  .qo-basket__head {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 14px 18px;
-    background: var(--dark);
-    color: white;
-  }
-  .qo-basket__title {
-    font-size: 14px;
-    font-weight: 700;
-    color: white;
-    display: flex;
-    align-items: center;
-    gap: 7px;
-  }
-  .qo-basket__count {
-    font-size: 12px;
-    color: rgba(255, 255, 255, 0.5);
-  }
-  .qo-basket__lines {
-    padding: 6px 0;
-    max-height: 260px;
-    overflow-y: auto;
-    scrollbar-width: thin;
-  }
-  .qo-basket__empty-msg {
-    padding: 20px;
-    font-size: 13px;
-    color: #ccc;
-    text-align: center;
-  }
-  .qo-basket__line {
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-    padding: 9px 14px;
-    border-bottom: 1px solid #f5f5f5;
-    animation: qo-in 0.15s ease;
-  }
-  .qo-basket__line:last-child {
-    border-bottom: none;
-  }
-  .qo-basket__line-info {
-    flex: 1;
-    min-width: 0;
-  }
-  .qo-basket__line-title {
-    font-size: 13px;
-    font-weight: 600;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  .qo-basket__line-sub {
-    font-size: 12px;
-    color: var(--mid);
-  }
-  .qo-basket__line-price {
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--g);
-    white-space: nowrap;
-  }
-  .qo-basket__totals {
-    padding: 14px 18px;
-    border-top: 1px solid var(--border);
-    background: #fafafa;
-  }
-  .qo-basket__row {
-    display: flex;
-    justify-content: space-between;
-    font-size: 13px;
-    color: var(--mid);
-    margin-bottom: 5px;
-  }
-  .qo-basket__row:last-child {
-    margin-bottom: 0;
-  }
-  .qo-basket__row--light {
-    color: var(--light);
-  }
-  .qo-basket__row--total {
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--dark);
-    border-top: 1px solid var(--border);
-    padding-top: 9px;
-    margin-top: 5px;
-  }
-  .qo-basket__actions {
-    padding: 14px;
-    display: flex;
-    flex-direction: column;
-    gap: 7px;
-    border-top: 1px solid var(--border);
-  }
-  .qo-draft-notice {
-    margin: 0 14px 14px;
-    background: var(--g-bg);
-    color: var(--g);
-    border-radius: 5px;
-    padding: 7px 10px;
-    font-size: 12px;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-  }
-  .qo-draft-dismiss {
-    margin-left: auto;
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: var(--g);
-    font-size: 12px;
-    padding: 0;
-  }
+/* ── Basket sidebar ─── */
+.qo-basket { background:var(--white); border:1px solid var(--border); border-radius:var(--r); overflow:hidden; position:sticky; top:80px; }
+.qo-basket__head { display:flex; align-items:center; justify-content:space-between; padding:14px 18px; background:var(--dark); color:white; }
+.qo-basket__title { font-size:14px; font-weight:700; color:white; display:flex; align-items:center; gap:7px; }
+.qo-basket__count { font-size:12px; color:rgba(255,255,255,.5); }
+.qo-basket__lines { padding:6px 0; max-height:260px; overflow-y:auto; scrollbar-width:thin; }
+.qo-basket__empty-msg { padding:20px; font-size:13px; color:#CCC; text-align:center; }
+.qo-basket__line { display:flex; align-items:flex-start; gap:8px; padding:9px 14px; border-bottom:1px solid #F5F5F5; animation:qo-in .15s ease; }
+.qo-basket__line:last-child { border-bottom:none; }
+.qo-basket__line-info { flex:1; min-width:0; }
+.qo-basket__line-title { font-size:13px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.qo-basket__line-sub   { font-size:12px; color:var(--mid); }
+.qo-basket__line-price { font-size:13px; font-weight:700; color:var(--g); white-space:nowrap; }
+.qo-basket__totals { padding:14px 18px; border-top:1px solid var(--border); background:#FAFAFA; }
+.qo-basket__row { display:flex; justify-content:space-between; font-size:13px; color:var(--mid); margin-bottom:5px; }
+.qo-basket__row:last-child { margin-bottom:0; }
+.qo-basket__row--light { color:var(--light); }
+.qo-basket__row--total { font-size:15px; font-weight:700; color:var(--dark); border-top:1px solid var(--border); padding-top:9px; margin-top:5px; }
+.qo-basket__actions { padding:14px; display:flex; flex-direction:column; gap:7px; border-top:1px solid var(--border); }
+.qo-draft-notice { margin:0 14px 14px; background:var(--g-bg); color:var(--g); border-radius:5px; padding:7px 10px; font-size:12px; font-weight:600; display:flex; align-items:center; gap:5px; }
+.qo-draft-dismiss { margin-left:auto; background:none; border:none; cursor:pointer; color:var(--g); font-size:12px; padding:0; }
 
-  /* ── Buttons ─── */
-  .qo-primary-btn {
-    width: 100%;
-    height: 40px;
-    background: var(--g);
-    color: white;
-    border: none;
-    border-radius: var(--r);
-    font-size: 14px;
-    font-weight: 700;
-    font-family: inherit;
-    cursor: pointer;
-    transition: background 0.15s;
-  }
-  .qo-primary-btn:hover:not(:disabled) {
-    background: #1b5e20;
-  }
-  .qo-primary-btn:disabled {
-    background: #c8e6c9;
-    cursor: not-allowed;
-  }
-  .qo-dark-btn {
-    width: 100%;
-    height: 40px;
-    background: var(--dark);
-    color: white;
-    border: none;
-    border-radius: var(--r);
-    font-size: 14px;
-    font-weight: 700;
-    font-family: inherit;
-    cursor: pointer;
-  }
-  .qo-dark-btn:hover {
-    background: #333;
-  }
-  .qo-ghost-btn {
-    width: 100%;
-    height: 38px;
-    background: transparent;
-    color: var(--mid);
-    border: 1px solid var(--border);
-    border-radius: var(--r);
-    font-size: 13px;
-    font-weight: 600;
-    font-family: inherit;
-    cursor: pointer;
-  }
-  .qo-ghost-btn:hover {
-    background: #f5f5f5;
-  }
-  .qo-ghost-danger {
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: var(--red);
-    font-size: 13px;
-    font-family: inherit;
-    padding: 3px 8px;
-    border-radius: 4px;
-    transition: background 0.12s;
-  }
-  .qo-ghost-danger:hover {
-    background: #ffebee;
-  }
+/* ── Buttons ─── */
+.qo-primary-btn { width:100%; height:40px; background:var(--g); color:white; border:none; border-radius:var(--r); font-size:14px; font-weight:700; font-family:inherit; cursor:pointer; transition:background .15s; }
+.qo-primary-btn:hover:not(:disabled) { background:#1B5E20; }
+.qo-primary-btn:disabled { background:#C8E6C9; cursor:not-allowed; }
+.qo-dark-btn { width:100%; height:40px; background:var(--dark); color:white; border:none; border-radius:var(--r); font-size:14px; font-weight:700; font-family:inherit; cursor:pointer; }
+.qo-dark-btn:hover { background:#333; }
+.qo-ghost-btn { width:100%; height:38px; background:transparent; color:var(--mid); border:1px solid var(--border); border-radius:var(--r); font-size:13px; font-weight:600; font-family:inherit; cursor:pointer; }
+.qo-ghost-btn:hover { background:#F5F5F5; }
+.qo-ghost-danger { background:none; border:none; cursor:pointer; color:var(--red); font-size:13px; font-family:inherit; padding:3px 8px; border-radius:4px; transition:background .12s; }
+.qo-ghost-danger:hover { background:#FFEBEE; }
 
-  /* ── Spinner ─── */
-  .qo-spinner {
-    width: 16px;
-    height: 16px;
-    border: 2px solid var(--border);
-    border-top-color: var(--g);
-    border-radius: 50%;
-    animation: qo-spin 0.6s linear infinite;
-    flex-shrink: 0;
-  }
-  @keyframes qo-spin {
-    to {
-      transform: rotate(360deg);
-    }
-  }
+/* ── Spinner ─── */
+.qo-spinner { width:16px; height:16px; border:2px solid var(--border); border-top-color:var(--g); border-radius:50%; animation:qo-spin .6s linear infinite; flex-shrink:0; }
+@keyframes qo-spin { to{ transform:rotate(360deg); } }
 
-  /* ── Toast ─── */
-  .qo-toast {
-    position: fixed;
-    bottom: 24px;
-    left: 50%;
-    transform: translateX(-50%) translateY(80px);
-    background: var(--dark);
-    color: white;
-    padding: 11px 22px;
-    border-radius: 24px;
-    font-size: 14px;
-    font-weight: 500;
-    z-index: 9999;
-    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
-    pointer-events: none;
-    white-space: nowrap;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
-  }
-  .qo-toast.on {
-    transform: translateX(-50%) translateY(0);
-  }
-  .qo-toast.ok {
-    background: var(--g);
-  }
-  .qo-toast.err {
-    background: var(--red);
-  }
+/* ── Toast ─── */
+.qo-toast { position:fixed; bottom:24px; left:50%; transform:translateX(-50%) translateY(80px); background:var(--dark); color:white; padding:11px 22px; border-radius:24px; font-size:14px; font-weight:500; z-index:9999; transition:transform .25s cubic-bezier(.34,1.56,.64,1); pointer-events:none; white-space:nowrap; box-shadow:0 4px 20px rgba(0,0,0,.25); }
+.qo-toast.on { transform:translateX(-50%) translateY(0); }
+.qo-toast.ok  { background:var(--g); }
+.qo-toast.err { background:var(--red); }
 
-  @keyframes qo-in {
-    from {
-      opacity: 0;
-      transform: translateY(-4px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
+@keyframes qo-in { from{ opacity:0; transform:translateY(-4px); } to{ opacity:1; transform:translateY(0); } }
 </style>
 
+
 <script>
-  (function () {
-    'use strict';
+(function(){
+'use strict';
 
-    /* ── Config ─────────────────────────────────────── */
-    var DRAFT_KEY = 'qo_draft_{{ shop.permanent_domain | remove: "." | remove: ".myshopify" }}';
-    var COLL_HANDLE = '{{ section.settings.collection.handle | default: "trade-quick-order" }}';
-    var VAT = 0.2;
+/* ── Config ─────────────────────────────────────── */
+var DRAFT_KEY = 'qo_draft_{{ shop.permanent_domain | remove: "." | remove: ".myshopify" }}';
+var COLL_HANDLE = '{{ section.settings.collection.handle | default: "trade-quick-order" }}';
+var VAT = 0.20;
 
-    /* ── State ──────────────────────────────────────── */
-    var basket = [];
-    var variants = [];
-    var selected = null;
-    var searchTimer = null;
-    var focusIdx = -1;
+/* ── State ──────────────────────────────────────── */
+var basket = [];
+var variants = [];
+var selected = null;
+var searchTimer = null;
+var focusIdx = -1;
 
-    /* ── DOM shortcuts ──────────────────────────────── */
-    function $(id) {
-      return document.getElementById(id);
-    }
-    function esc(s) {
-      return String(s || '')
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;');
-    }
-    function fmt(p) {
-      // Handle legacy drafts where price was stored as a decimal string e.g. "13.00"
-      var n = parseFloat(p);
-      if (isNaN(n)) return '£0.00';
-      // If value looks like a decimal pounds amount (< 500) rather than pence, convert
-      if (n > 0 && n < 500 && String(p).indexOf('.') !== -1) n = Math.round(n * 100);
-      return '£' + (n / 100).toFixed(2);
-    }
-    function stockBadge(qty) {
-      if (qty == null) return { cls: 'stock-in', label: 'In stock' };
-      if (qty <= 0) return { cls: 'stock-out', label: 'Out of stock' };
-      if (qty <= 5) return { cls: 'stock-low', label: 'Low (' + qty + ')' };
-      return { cls: 'stock-in', label: 'In stock' };
-    }
+/* ── DOM shortcuts ──────────────────────────────── */
+function $(id){ return document.getElementById(id); }
+function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function fmt(p){
+  // Handle legacy drafts where price was stored as a decimal string e.g. "13.00"
+  var n=parseFloat(p);
+  if(isNaN(n)) return '£0.00';
+  // If value looks like a decimal pounds amount (< 500) rather than pence, convert
+  if(n > 0 && n < 500 && String(p).indexOf('.')!==-1) n=Math.round(n*100);
+  return '£'+(n/100).toFixed(2);
+}
+function stockBadge(qty){
+  if(qty==null) return {cls:'stock-in',label:'In stock'};
+  if(qty<=0)    return {cls:'stock-out',label:'Out of stock'};
+  if(qty<=5)    return {cls:'stock-low',label:'Low ('+qty+')'};
+  return {cls:'stock-in',label:'In stock'};
+}
 
-    var toastT;
-    function toast(msg, type) {
-      var t = $('qo-toast');
-      t.textContent = msg;
-      t.className = 'qo-toast ' + (type || 'ok') + ' on';
-      clearTimeout(toastT);
-      toastT = setTimeout(function () {
-        t.className = 'qo-toast';
-      }, 2600);
-    }
+var toastT;
+function toast(msg,type){
+  var t=$('qo-toast');
+  t.textContent=msg; t.className='qo-toast '+(type||'ok')+' on';
+  clearTimeout(toastT);
+  toastT=setTimeout(function(){ t.className='qo-toast'; },2600);
+}
 
-    /* ── Load products ──────────────────────────────── */
-    function loadProducts() {
-      fetch('/collections/' + COLL_HANDLE + '/products.json?limit=250')
-        .then(function (r) {
-          return r.json();
-        })
-        .then(function (d) {
-          variants = [];
-          (d.products || []).forEach(function (p) {
-            var brand = p.vendor || '';
-            var img = p.images && p.images[0] ? p.images[0].src : '';
-            p.variants.forEach(function (v) {
-              if (!v.sku) return;
-              variants.push({
-                id: v.id,
-                sku: v.sku.toUpperCase(),
-                title: p.title,
-                variant: [v.option1, v.option2, v.option3].filter(Boolean).join(' / '),
-                brand: brand,
-                price: Math.round(parseFloat(v.price) * 100),
-                inventory: v.inventory_quantity,
-                available: v.available,
-                image: v.featured_image && v.featured_image.src ? v.featured_image.src : img,
-                handle: p.handle,
-              });
-            });
+/* ── Load products ──────────────────────────────── */
+function loadProducts(){
+  fetch('/collections/'+COLL_HANDLE+'/products.json?limit=250')
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      variants=[];
+      (d.products||[]).forEach(function(p){
+        var brand=p.vendor||'';
+        var img=p.images&&p.images[0]?p.images[0].src:'';
+        p.variants.forEach(function(v){
+          if(!v.sku) return;
+          variants.push({
+            id:v.id, sku:v.sku.toUpperCase(),
+            title:p.title,
+            variant:[v.option1,v.option2,v.option3].filter(Boolean).join(' / '),
+            brand:brand,
+            price:Math.round(parseFloat(v.price)*100),
+            inventory:v.inventory_quantity,
+            available:v.available,
+            image:(v.featured_image&&v.featured_image.src)?v.featured_image.src:img,
+            handle:p.handle
           });
-          loadSuggested();
-        })
-        .catch(function (e) {
-          console.warn('[QO] load failed', e);
         });
-    }
+      });
+      loadSuggested();
+    })
+    .catch(function(e){ console.warn('[QO] load failed',e); });
+}
 
-    /* ════════════════════════════════════════════════
+/* ════════════════════════════════════════════════
    TAB 1: ORDER BY SKU
 ════════════════════════════════════════════════ */
-    var inp = $('qo-sku-input');
-    var dd = $('qo-dropdown');
+var inp=$('qo-sku-input');
+var dd=$('qo-dropdown');
 
-    inp.addEventListener('input', function () {
-      var v = this.value.trim();
-      $('qo-input-clear').style.display = v ? 'block' : 'none';
-      clearTimeout(searchTimer);
-      if (!v) {
-        dd.style.display = 'none';
-        return;
-      }
-      searchTimer = setTimeout(function () {
-        doSearch(v);
-      }, 260);
+inp.addEventListener('input',function(){
+  var v=this.value.trim();
+  $('qo-input-clear').style.display=v?'block':'none';
+  clearTimeout(searchTimer);
+  if(!v){dd.style.display='none';return;}
+  searchTimer=setTimeout(function(){ doSearch(v); },260);
+});
+$('qo-input-clear').addEventListener('click',function(){
+  inp.value=''; this.style.display='none';
+  $('qo-product-card').style.display='none';
+  $('qo-qty-row').style.display='none';
+  selected=null; dd.style.display='none'; inp.focus();
+});
+inp.addEventListener('keydown',function(e){
+  var items=dd.querySelectorAll('.qo-di');
+  if(e.key==='ArrowDown'){ e.preventDefault(); focusIdx=Math.min(focusIdx+1,items.length-1); setFocus(items); }
+  else if(e.key==='ArrowUp'){ e.preventDefault(); focusIdx=Math.max(focusIdx-1,0); setFocus(items); }
+  else if(e.key==='Enter'){ e.preventDefault(); if(focusIdx>=0&&items[focusIdx]) pickVariant(items[focusIdx].dataset.sku); else if(selected) addToBasket(); }
+  else if(e.key==='Escape') dd.style.display='none';
+});
+document.addEventListener('click',function(e){ if(!e.target.closest('#qo-panel-sku .qo-search-panel')) dd.style.display='none'; });
+
+function setFocus(items){
+  items.forEach(function(i,n){ i.classList.toggle('focused',n===focusIdx); });
+}
+
+function doSearch(q){
+  var query=q.toUpperCase();
+  dd.innerHTML='<div class="qo-d-loading"><div class="qo-spinner"></div>Searching…</div>';
+  dd.style.display='block';
+  var res=variants.filter(function(v){
+    return v.sku.indexOf(query)!==-1||v.title.toUpperCase().indexOf(query)!==-1||v.brand.toUpperCase().indexOf(query)!==-1||v.variant.toUpperCase().indexOf(query)!==-1;
+  }).slice(0,28);
+  focusIdx=-1;
+  if(!res.length){ dd.innerHTML='<div class="qo-d-empty">No products found</div>'; return; }
+  var groups={},order=[];
+  res.forEach(function(v){ var b=v.brand||'Other'; if(!groups[b]){groups[b]=[];order.push(b);} groups[b].push(v); });
+  var html='';
+  order.forEach(function(brand){
+    html+='<div class="qo-dg"><span class="qo-dg-label">'+esc(brand)+'</span>';
+    groups[brand].forEach(function(v){
+      var s=stockBadge(v.inventory);
+      var imgSrc=v.image?v.image.replace(/\.(jpg|png|webp)(\?.*)?$/,'_80x80.$1'):'';
+      html+='<div class="qo-di" data-sku="'+esc(v.sku)+'">';
+      html+=imgSrc?'<img class="qo-di__img" src="'+esc(imgSrc)+'" alt="" loading="lazy">':'<div class="qo-di__img"></div>';
+      html+='<div class="qo-di__info"><div class="qo-di__name">'+esc(v.title)+'</div><div class="qo-di__sub">'+esc(v.variant)+' · '+esc(v.sku)+'</div></div>';
+      html+='<span class="qo-di__stock '+s.cls+'">'+s.label+'</span>';
+      html+='<span class="qo-di__price">'+fmt(v.price)+'</span>';
+      html+='</div>';
     });
-    $('qo-input-clear').addEventListener('click', function () {
-      inp.value = '';
-      this.style.display = 'none';
-      $('qo-product-card').style.display = 'none';
-      $('qo-qty-row').style.display = 'none';
-      selected = null;
-      dd.style.display = 'none';
-      inp.focus();
-    });
-    inp.addEventListener('keydown', function (e) {
-      var items = dd.querySelectorAll('.qo-di');
-      if (e.key === 'ArrowDown') {
-        e.preventDefault();
-        focusIdx = Math.min(focusIdx + 1, items.length - 1);
-        setFocus(items);
-      } else if (e.key === 'ArrowUp') {
-        e.preventDefault();
-        focusIdx = Math.max(focusIdx - 1, 0);
-        setFocus(items);
-      } else if (e.key === 'Enter') {
-        e.preventDefault();
-        if (focusIdx >= 0 && items[focusIdx]) pickVariant(items[focusIdx].dataset.sku);
-        else if (selected) addToBasket();
-      } else if (e.key === 'Escape') dd.style.display = 'none';
-    });
-    document.addEventListener('click', function (e) {
-      if (!e.target.closest('#qo-panel-sku .qo-search-panel')) dd.style.display = 'none';
-    });
+    html+='</div>';
+  });
+  dd.innerHTML=html;
+  dd.querySelectorAll('.qo-di').forEach(function(el){
+    el.addEventListener('mousedown',function(e){ e.preventDefault(); pickVariant(el.dataset.sku); });
+  });
+}
 
-    function setFocus(items) {
-      items.forEach(function (i, n) {
-        i.classList.toggle('focused', n === focusIdx);
-      });
-    }
+function pickVariant(sku){
+  var v=variants.find(function(x){ return x.sku===sku; });
+  if(!v) return;
+  selected=v; dd.style.display='none';
+  inp.value=v.sku; $('qo-input-clear').style.display='block';
+  var s=stockBadge(v.inventory);
+  var card=$('qo-product-card');
+  $('qo-sel-img').src=v.image||''; $('qo-sel-img').alt=v.title;
+  $('qo-sel-brand').textContent=v.brand;
+  $('qo-sel-title').textContent=v.title;
+  $('qo-sel-variant').textContent=v.variant;
+  $('qo-sel-sku').textContent='SKU: '+v.sku;
+  $('qo-sel-price').textContent=fmt(v.price);
+  $('qo-sel-stock').textContent=s.label;
+  $('qo-sel-stock').className='qo-stock '+s.cls;
+  card.style.display='flex';
+  $('qo-qty-val').value=1;
+  $('qo-qty-row').style.display='flex';
+  $('qo-add-btn').disabled=!v.available;
+}
 
-    function doSearch(q) {
-      var query = q.toUpperCase();
-      dd.innerHTML = '<div class="qo-d-loading"><div class="qo-spinner"></div>Searching…</div>';
-      dd.style.display = 'block';
-      var res = variants
-        .filter(function (v) {
-          return (
-            v.sku.indexOf(query) !== -1 ||
-            v.title.toUpperCase().indexOf(query) !== -1 ||
-            v.brand.toUpperCase().indexOf(query) !== -1 ||
-            v.variant.toUpperCase().indexOf(query) !== -1
-          );
-        })
-        .slice(0, 28);
-      focusIdx = -1;
-      if (!res.length) {
-        dd.innerHTML = '<div class="qo-d-empty">No products found</div>';
-        return;
-      }
-      var groups = {},
-        order = [];
-      res.forEach(function (v) {
-        var b = v.brand || 'Other';
-        if (!groups[b]) {
-          groups[b] = [];
-          order.push(b);
-        }
-        groups[b].push(v);
-      });
-      var html = '';
-      order.forEach(function (brand) {
-        html += '<div class="qo-dg"><span class="qo-dg-label">' + esc(brand) + '</span>';
-        groups[brand].forEach(function (v) {
-          var s = stockBadge(v.inventory);
-          var imgSrc = v.image ? v.image.replace(/\.(jpg|png|webp)(\?.*)?$/, '_80x80.$1') : '';
-          html += '<div class="qo-di" data-sku="' + esc(v.sku) + '">';
-          html += imgSrc
-            ? '<img class="qo-di__img" src="' + esc(imgSrc) + '" alt="" loading="lazy">'
-            : '<div class="qo-di__img"></div>';
-          html +=
-            '<div class="qo-di__info"><div class="qo-di__name">' +
-            esc(v.title) +
-            '</div><div class="qo-di__sub">' +
-            esc(v.variant) +
-            ' · ' +
-            esc(v.sku) +
-            '</div></div>';
-          html += '<span class="qo-di__stock ' + s.cls + '">' + s.label + '</span>';
-          html += '<span class="qo-di__price">' + fmt(v.price) + '</span>';
-          html += '</div>';
-        });
-        html += '</div>';
-      });
-      dd.innerHTML = html;
-      dd.querySelectorAll('.qo-di').forEach(function (el) {
-        el.addEventListener('mousedown', function (e) {
-          e.preventDefault();
-          pickVariant(el.dataset.sku);
-        });
-      });
-    }
+$('qo-qty-dec').addEventListener('click',function(){ $('qo-qty-val').value=Math.max(1,parseInt($('qo-qty-val').value)-1); });
+$('qo-qty-inc').addEventListener('click',function(){ $('qo-qty-val').value=Math.max(1,parseInt($('qo-qty-val').value)+1); });
+$('qo-add-btn').addEventListener('click',addToBasket);
 
-    function pickVariant(sku) {
-      var v = variants.find(function (x) {
-        return x.sku === sku;
-      });
-      if (!v) return;
-      selected = v;
-      dd.style.display = 'none';
-      inp.value = v.sku;
-      $('qo-input-clear').style.display = 'block';
-      var s = stockBadge(v.inventory);
-      var card = $('qo-product-card');
-      $('qo-sel-img').src = v.image || '';
-      $('qo-sel-img').alt = v.title;
-      $('qo-sel-brand').textContent = v.brand;
-      $('qo-sel-title').textContent = v.title;
-      $('qo-sel-variant').textContent = v.variant;
-      $('qo-sel-sku').textContent = 'SKU: ' + v.sku;
-      $('qo-sel-price').textContent = fmt(v.price);
-      $('qo-sel-stock').textContent = s.label;
-      $('qo-sel-stock').className = 'qo-stock ' + s.cls;
-      card.style.display = 'flex';
-      $('qo-qty-val').value = 1;
-      $('qo-qty-row').style.display = 'flex';
-      $('qo-add-btn').disabled = !v.available;
-    }
+function addToBasket(v,qty){
+  var item=v||selected;
+  var q=qty||Math.max(1,parseInt($('qo-qty-val').value)||1);
+  if(!item) return;
+  var ex=basket.find(function(b){ return b.variantId===item.id; });
+  if(ex) ex.qty+=q;
+  else basket.push({variantId:item.id,sku:item.sku,title:item.title,variant:item.variant,brand:item.brand,price:item.price,image:item.image,qty:q});
+  renderLines(); renderBasket(); saveDraftSilent();
+  toast('✓ '+item.sku+' × '+q+' added');
+  inp.value=''; $('qo-input-clear').style.display='none';
+  $('qo-product-card').style.display='none';
+  $('qo-qty-row').style.display='none';
+  selected=null; inp.focus();
+}
 
-    $('qo-qty-dec').addEventListener('click', function () {
-      $('qo-qty-val').value = Math.max(1, parseInt($('qo-qty-val').value) - 1);
-    });
-    $('qo-qty-inc').addEventListener('click', function () {
-      $('qo-qty-val').value = Math.max(1, parseInt($('qo-qty-val').value) + 1);
-    });
-    $('qo-add-btn').addEventListener('click', addToBasket);
+/* ── Render order lines ─────────────────────────── */
+function renderLines(){
+  var empty=basket.length===0;
+  $('qo-empty-state').style.display=empty?'block':'none';
+  $('qo-lines-panel').style.display=empty?'none':'block';
+  if(empty) return;
+  var sub=0,html='';
+  basket.forEach(function(item,i){
+    var line=item.price*item.qty; sub+=line;
+    var img=item.image?item.image.replace(/\.(jpg|png|webp)(\?.*)?$/,'_60x60.$1'):'';
+    html+='<tr>';
+    html+='<td><div class="qo-t-product">'+(img?'<img class="qo-t-thumb" src="'+esc(img)+'" alt="" loading="lazy">':'<div class="qo-t-thumb"></div>')+'<div><div class="qo-t-name">'+esc(item.title)+'</div><div class="qo-t-var">'+esc(item.variant)+'</div></div></div></td>';
+    html+='<td class="qo-t-sku">'+esc(item.sku)+'</td>';
+    html+='<td class="qo-t-price">'+fmt(item.price)+'</td>';
+    html+='<td><div class="qo-t-qty"><button class="qo-t-qb" onclick="_QO.dq('+i+',-1)">−</button><input type="number" class="qo-t-qn" value="'+item.qty+'" onchange="_QO.sq('+i+',this.value)"><button class="qo-t-qb" onclick="_QO.dq('+i+',1)">+</button></div></td>';
+    html+='<td class="qo-t-line">'+fmt(line)+'</td>';
+    html+='<td><button class="qo-t-rm" onclick="_QO.rm('+i+')" title="Remove">×</button></td>';
+    html+='</tr>';
+  });
+  $('qo-lines-tbody').innerHTML=html;
+  $('qo-lines-count').textContent=basket.length;
+  $('qo-lines-subtotal').textContent=fmt(sub);
+}
 
-    function addToBasket(v, qty) {
-      var item = v || selected;
-      var q = qty || Math.max(1, parseInt($('qo-qty-val').value) || 1);
-      if (!item) return;
-      var ex = basket.find(function (b) {
-        return b.variantId === item.id;
-      });
-      if (ex) ex.qty += q;
-      else
-        basket.push({
-          variantId: item.id,
-          sku: item.sku,
-          title: item.title,
-          variant: item.variant,
-          brand: item.brand,
-          price: item.price,
-          image: item.image,
-          qty: q,
-        });
-      renderLines();
-      renderBasket();
-      saveDraftSilent();
-      toast('✓ ' + item.sku + ' × ' + q + ' added');
-      inp.value = '';
-      $('qo-input-clear').style.display = 'none';
-      $('qo-product-card').style.display = 'none';
-      $('qo-qty-row').style.display = 'none';
-      selected = null;
-      inp.focus();
-    }
+/* ── Render basket sidebar ──────────────────────── */
+function renderBasket(){
+  var empty=basket.length===0;
+  var sub=basket.reduce(function(s,b){ return s+b.price*b.qty; },0);
+  var vat=Math.round(sub*VAT);
+  var total=sub+vat;
+  var count=basket.reduce(function(s,b){ return s+b.qty; },0);
+  $('qo-basket-count').textContent=count+' item'+(count!==1?'s':'');
+  $('qo-b-sub').textContent=fmt(sub);
+  $('qo-b-vat').textContent=fmt(vat);
+  $('qo-b-total').textContent=fmt(total);
+  $('qo-checkout-btn').disabled=empty;
+  if(empty){ $('qo-basket-lines').innerHTML='<div class="qo-basket__empty-msg">No items yet</div>'; return; }
+  var html='';
+  basket.forEach(function(item){
+    html+='<div class="qo-basket__line"><div class="qo-basket__line-info"><div class="qo-basket__line-title">'+esc(item.title)+'</div><div class="qo-basket__line-sub">'+esc(item.variant)+' · ×'+item.qty+'</div></div><div class="qo-basket__line-price">'+fmt(item.price*item.qty)+'</div></div>';
+  });
+  $('qo-basket-lines').innerHTML=html;
+}
 
-    /* ── Render order lines ─────────────────────────── */
-    function renderLines() {
-      var empty = basket.length === 0;
-      $('qo-empty-state').style.display = empty ? 'block' : 'none';
-      $('qo-lines-panel').style.display = empty ? 'none' : 'block';
-      if (empty) return;
-      var sub = 0,
-        html = '';
-      basket.forEach(function (item, i) {
-        var line = item.price * item.qty;
-        sub += line;
-        var img = item.image ? item.image.replace(/\.(jpg|png|webp)(\?.*)?$/, '_60x60.$1') : '';
-        html += '<tr>';
-        html +=
-          '<td><div class="qo-t-product">' +
-          (img
-            ? '<img class="qo-t-thumb" src="' + esc(img) + '" alt="" loading="lazy">'
-            : '<div class="qo-t-thumb"></div>') +
-          '<div><div class="qo-t-name">' +
-          esc(item.title) +
-          '</div><div class="qo-t-var">' +
-          esc(item.variant) +
-          '</div></div></div></td>';
-        html += '<td class="qo-t-sku">' + esc(item.sku) + '</td>';
-        html += '<td class="qo-t-price">' + fmt(item.price) + '</td>';
-        html +=
-          '<td><div class="qo-t-qty"><button class="qo-t-qb" onclick="_QO.dq(' +
-          i +
-          ',-1)">−</button><input type="number" class="qo-t-qn" value="' +
-          item.qty +
-          '" onchange="_QO.sq(' +
-          i +
-          ',this.value)"><button class="qo-t-qb" onclick="_QO.dq(' +
-          i +
-          ',1)">+</button></div></td>';
-        html += '<td class="qo-t-line">' + fmt(line) + '</td>';
-        html += '<td><button class="qo-t-rm" onclick="_QO.rm(' + i + ')" title="Remove">×</button></td>';
-        html += '</tr>';
-      });
-      $('qo-lines-tbody').innerHTML = html;
-      $('qo-lines-count').textContent = basket.length;
-      $('qo-lines-subtotal').textContent = fmt(sub);
-    }
+/* ── Checkout ────────────────────────────────────── */
+$('qo-checkout-btn').addEventListener('click',function(){
+  if(!basket.length) return;
+  var btn=this; btn.disabled=true; btn.textContent='Adding to cart…';
+  fetch('/cart/clear.js',{method:'POST'})
+    .then(function(){ return fetch('/cart/add.js',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({items:basket.map(function(b){ return {id:b.variantId,quantity:b.qty}; })})}); })
+    .then(function(r){ if(!r.ok) throw new Error(); clearDraft(); window.location.href='/checkout'; })
+    .catch(function(){ toast('Failed to add to cart. Please try again.','err'); btn.disabled=false; btn.textContent='Proceed to Checkout'; });
+});
 
-    /* ── Render basket sidebar ──────────────────────── */
-    function renderBasket() {
-      var empty = basket.length === 0;
-      var sub = basket.reduce(function (s, b) {
-        return s + b.price * b.qty;
-      }, 0);
-      var vat = Math.round(sub * VAT);
-      var total = sub + vat;
-      var count = basket.reduce(function (s, b) {
-        return s + b.qty;
-      }, 0);
-      $('qo-basket-count').textContent = count + ' item' + (count !== 1 ? 's' : '');
-      $('qo-b-sub').textContent = fmt(sub);
-      $('qo-b-vat').textContent = fmt(vat);
-      $('qo-b-total').textContent = fmt(total);
-      $('qo-checkout-btn').disabled = empty;
-      if (empty) {
-        $('qo-basket-lines').innerHTML = '<div class="qo-basket__empty-msg">No items yet</div>';
-        return;
-      }
-      var html = '';
-      basket.forEach(function (item) {
-        html +=
-          '<div class="qo-basket__line"><div class="qo-basket__line-info"><div class="qo-basket__line-title">' +
-          esc(item.title) +
-          '</div><div class="qo-basket__line-sub">' +
-          esc(item.variant) +
-          ' · ×' +
-          item.qty +
-          '</div></div><div class="qo-basket__line-price">' +
-          fmt(item.price * item.qty) +
-          '</div></div>';
-      });
-      $('qo-basket-lines').innerHTML = html;
-    }
+/* ── Draft ──────────────────────────────────────── */
+function saveDraftSilent(){ try{ sessionStorage.setItem(DRAFT_KEY,JSON.stringify(basket)); }catch(e){} }
+$('qo-draft-btn').addEventListener('click',function(){ saveDraftSilent(); toast('Draft saved'); });
+function clearDraft(){ try{ sessionStorage.removeItem(DRAFT_KEY); }catch(e){} }
+function sanitiseBasket(items){
+  // Normalise prices: old drafts stored decimal strings, new code uses integer pence
+  return (items||[]).filter(function(b){ return b&&b.variantId&&b.sku; }).map(function(b){
+    var p=parseFloat(b.price);
+    if(isNaN(p)) p=0;
+    // If price looks like pounds (e.g. 13.00) rather than pence (1300), convert
+    if(p > 0 && p < 500 && String(b.price).indexOf('.')!==-1) p=Math.round(p*100);
+    return Object.assign({},b,{price:Math.round(p), qty:Math.max(1,parseInt(b.qty)||1)});
+  });
+}
+function loadDraft(){
+  try{
+    var raw=sessionStorage.getItem(DRAFT_KEY);
+    if(!raw) return;
+    var saved=JSON.parse(raw);
+    var clean=sanitiseBasket(saved);
+    if(clean&&clean.length){ basket=clean; renderLines(); renderBasket(); $('qo-draft-notice').style.display='flex'; }
+    else if(saved&&saved.length) clearDraft(); // corrupt draft — discard silently
+  }catch(e){ clearDraft(); }
+}
+$('qo-draft-dismiss').addEventListener('click',function(){ $('qo-draft-notice').style.display='none'; });
+function clearAll(){ basket=[]; renderLines(); renderBasket(); clearDraft(); toast('Order cleared'); }
+$('qo-clear-basket').addEventListener('click',clearAll);
+$('qo-clear-lines').addEventListener('click',clearAll);
 
-    /* ── Checkout ────────────────────────────────────── */
-    $('qo-checkout-btn').addEventListener('click', function () {
-      if (!basket.length) return;
-      var btn = this;
-      btn.disabled = true;
-      btn.textContent = 'Adding to cart…';
-      fetch('/cart/clear.js', { method: 'POST' })
-        .then(function () {
-          return fetch('/cart/add.js', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              items: basket.map(function (b) {
-                return { id: b.variantId, quantity: b.qty };
-              }),
-            }),
-          });
-        })
-        .then(function (r) {
-          if (!r.ok) throw new Error();
-          clearDraft();
-          window.location.href = '/checkout';
-        })
-        .catch(function () {
-          toast('Failed to add to cart. Please try again.', 'err');
-          btn.disabled = false;
-          btn.textContent = 'Proceed to Checkout';
-        });
-    });
-
-    /* ── Draft ──────────────────────────────────────── */
-    function saveDraftSilent() {
-      try {
-        sessionStorage.setItem(DRAFT_KEY, JSON.stringify(basket));
-      } catch (e) {}
-    }
-    $('qo-draft-btn').addEventListener('click', function () {
-      saveDraftSilent();
-      toast('Draft saved');
-    });
-    function clearDraft() {
-      try {
-        sessionStorage.removeItem(DRAFT_KEY);
-      } catch (e) {}
-    }
-    function sanitiseBasket(items) {
-      // Normalise prices: old drafts stored decimal strings, new code uses integer pence
-      return (items || [])
-        .filter(function (b) {
-          return b && b.variantId && b.sku;
-        })
-        .map(function (b) {
-          var p = parseFloat(b.price);
-          if (isNaN(p)) p = 0;
-          // If price looks like pounds (e.g. 13.00) rather than pence (1300), convert
-          if (p > 0 && p < 500 && String(b.price).indexOf('.') !== -1) p = Math.round(p * 100);
-          return Object.assign({}, b, { price: Math.round(p), qty: Math.max(1, parseInt(b.qty) || 1) });
-        });
-    }
-    function loadDraft() {
-      try {
-        var raw = sessionStorage.getItem(DRAFT_KEY);
-        if (!raw) return;
-        var saved = JSON.parse(raw);
-        var clean = sanitiseBasket(saved);
-        if (clean && clean.length) {
-          basket = clean;
-          renderLines();
-          renderBasket();
-          $('qo-draft-notice').style.display = 'flex';
-        } else if (saved && saved.length) clearDraft(); // corrupt draft — discard silently
-      } catch (e) {
-        clearDraft();
-      }
-    }
-    $('qo-draft-dismiss').addEventListener('click', function () {
-      $('qo-draft-notice').style.display = 'none';
-    });
-    function clearAll() {
-      basket = [];
-      renderLines();
-      renderBasket();
-      clearDraft();
-      toast('Order cleared');
-    }
-    $('qo-clear-basket').addEventListener('click', clearAll);
-    $('qo-clear-lines').addEventListener('click', clearAll);
-
-    /* ════════════════════════════════════════════════
+/* ════════════════════════════════════════════════
    TAB 2: CSV UPLOAD
 ════════════════════════════════════════════════ */
-    var dropZone = $('qo-drop-zone');
-    var fileInput = $('qo-file-input');
+var dropZone=$('qo-drop-zone');
+var fileInput=$('qo-file-input');
 
-    // Template download
-    $('qo-csv-template-dl').addEventListener('click', function (e) {
-      e.preventDefault();
-      var csv = 'SKU,Quantity\nGA309-RED-S-5/6,12\nGA309-RED-S-7/8,6\n451-WHTBOT-12/13,3\n';
-      var blob = new Blob([csv], { type: 'text/csv' });
-      var url = URL.createObjectURL(blob);
-      var a = document.createElement('a');
-      a.href = url;
-      a.download = 'quick-order-template.csv';
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-    });
+// Template download
+$('qo-csv-template-dl').addEventListener('click',function(e){
+  e.preventDefault();
+  var csv='SKU,Quantity\nGA309-RED-S-5/6,12\nGA309-RED-S-7/8,6\n451-WHTBOT-12/13,3\n';
+  var blob=new Blob([csv],{type:'text/csv'});
+  var url=URL.createObjectURL(blob);
+  var a=document.createElement('a'); a.href=url; a.download='quick-order-template.csv';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
+});
 
-    $('qo-browse-btn').addEventListener('click', function () {
-      fileInput.click();
-    });
-    fileInput.addEventListener('change', function () {
-      if (this.files[0]) parseFile(this.files[0]);
-    });
-    dropZone.addEventListener('dragover', function (e) {
-      e.preventDefault();
-      this.classList.add('is-over');
-    });
-    dropZone.addEventListener('dragleave', function () {
-      this.classList.remove('is-over');
-    });
-    dropZone.addEventListener('drop', function (e) {
-      e.preventDefault();
-      this.classList.remove('is-over');
-      if (e.dataTransfer.files[0]) parseFile(e.dataTransfer.files[0]);
-    });
-    $('qo-csv-clear').addEventListener('click', function () {
-      $('qo-csv-results').style.display = 'none';
-      dropZone.style.display = 'block';
-      fileInput.value = '';
-    });
+$('qo-browse-btn').addEventListener('click',function(){ fileInput.click(); });
+fileInput.addEventListener('change',function(){ if(this.files[0]) parseFile(this.files[0]); });
+dropZone.addEventListener('dragover',function(e){ e.preventDefault(); this.classList.add('is-over'); });
+dropZone.addEventListener('dragleave',function(){ this.classList.remove('is-over'); });
+dropZone.addEventListener('drop',function(e){
+  e.preventDefault(); this.classList.remove('is-over');
+  if(e.dataTransfer.files[0]) parseFile(e.dataTransfer.files[0]);
+});
+$('qo-csv-clear').addEventListener('click',function(){
+  $('qo-csv-results').style.display='none';
+  dropZone.style.display='block';
+  fileInput.value='';
+});
 
-    function parseFile(file) {
-      var name = file.name.toLowerCase();
-      if (name.endsWith('.csv')) {
-        var reader = new FileReader();
-        reader.onload = function (e) {
-          processCSV(e.target.result);
-        };
-        reader.readAsText(file);
-      } else {
-        toast('Only .csv files supported in this browser. Please export as CSV from Excel.', 'err');
-      }
+function parseFile(file){
+  var name=file.name.toLowerCase();
+  if(name.endsWith('.csv')){
+    var reader=new FileReader();
+    reader.onload=function(e){ processCSV(e.target.result); };
+    reader.readAsText(file);
+  } else {
+    toast('Only .csv files supported in this browser. Please export as CSV from Excel.','err');
+  }
+}
+
+function processCSV(text){
+  var lines=text.split(/\r?\n/).filter(function(l){ return l.trim(); });
+  if(!lines.length){ toast('Empty file','err'); return; }
+  // Detect header row
+  var start=0;
+  var firstLower=lines[0].toLowerCase();
+  if(firstLower.indexOf('sku')!==-1||firstLower.indexOf('quantity')!==-1||firstLower.indexOf('qty')!==-1) start=1;
+  var parsed=[]; var errors=[];
+  for(var i=start;i<lines.length;i++){
+    var cols=lines[i].split(',');
+    var sku=(cols[0]||'').trim().toUpperCase();
+    var qty=parseInt((cols[1]||'').trim(),10);
+    if(!sku) continue;
+    if(isNaN(qty)||qty<=0){ errors.push('Row '+(i+1)+': invalid quantity for SKU '+sku); qty=1; }
+    var v=variants.find(function(x){ return x.sku===sku; });
+    parsed.push({sku:sku,qty:qty,variant:v||null});
+  }
+  renderCSVResults(parsed,errors);
+}
+
+function renderCSVResults(parsed,errors){
+  dropZone.style.display='none';
+  var res=$('qo-csv-results');
+  res.style.display='block';
+  $('qo-csv-title').textContent='Parsed '+parsed.length+' line'+(parsed.length!==1?'s':'');
+  var errBox=$('qo-csv-errors');
+  if(errors.length){ errBox.style.display='block'; errBox.innerHTML='<strong>'+errors.length+' warning'+(errors.length!==1?'s':'')+':</strong><ul>'+errors.map(function(e){ return '<li>'+esc(e)+'</li>'; }).join('')+'</ul>'; }
+  else errBox.style.display='none';
+  var html='';
+  parsed.forEach(function(row,i){
+    var v=row.variant;
+    if(v){
+      var img=v.image?v.image.replace(/\.(jpg|png|webp)(\?.*)?$/,'_60x60.$1'):'';
+      html+='<tr data-csv-idx="'+i+'">';
+      html+='<td><div class="qo-t-product">'+(img?'<img class="qo-t-thumb" src="'+esc(img)+'" alt="">':'<div class="qo-t-thumb"></div>')+'<div><div class="qo-t-name">'+esc(v.title)+'</div><div class="qo-t-var">'+esc(v.variant)+'</div></div></div></td>';
+      html+='<td class="qo-t-sku">'+esc(row.sku)+'</td>';
+      html+='<td class="qo-t-price">'+fmt(v.price)+'</td>';
+      html+='<td>'+row.qty+'</td>';
+      html+='<td class="qo-t-line">'+fmt(v.price*row.qty)+'</td>';
+      html+='<td class="qo-t-status-ok">✓ Matched</td>';
+    } else {
+      html+='<tr><td colspan="5" style="color:var(--red);font-size:13px;padding:10px 14px;">SKU <code>'+esc(row.sku)+'</code> not found in trade catalogue</td><td class="qo-t-status-err">✗ Not found</td></tr>';
     }
+  });
+  $('qo-csv-tbody').innerHTML=html;
+  // Store for bulk add
+  res._parsedRows=parsed;
+}
 
-    function processCSV(text) {
-      var lines = text.split(/\r?\n/).filter(function (l) {
-        return l.trim();
-      });
-      if (!lines.length) {
-        toast('Empty file', 'err');
-        return;
-      }
-      // Detect header row
-      var start = 0;
-      var firstLower = lines[0].toLowerCase();
-      if (firstLower.indexOf('sku') !== -1 || firstLower.indexOf('quantity') !== -1 || firstLower.indexOf('qty') !== -1)
-        start = 1;
-      var parsed = [];
-      var errors = [];
-      for (var i = start; i < lines.length; i++) {
-        var cols = lines[i].split(',');
-        var sku = (cols[0] || '').trim().toUpperCase();
-        var qty = parseInt((cols[1] || '').trim(), 10);
-        if (!sku) continue;
-        if (isNaN(qty) || qty <= 0) {
-          errors.push('Row ' + (i + 1) + ': invalid quantity for SKU ' + sku);
-          qty = 1;
-        }
-        var v = variants.find(function (x) {
-          return x.sku === sku;
-        });
-        parsed.push({ sku: sku, qty: qty, variant: v || null });
-      }
-      renderCSVResults(parsed, errors);
-    }
+$('qo-csv-add-all').addEventListener('click',function(){
+  var res=$('qo-csv-results');
+  var rows=res._parsedRows||[];
+  var added=0;
+  rows.forEach(function(row){
+    if(!row.variant) return;
+    var ex=basket.find(function(b){ return b.variantId===row.variant.id; });
+    if(ex) ex.qty+=row.qty;
+    else basket.push({variantId:row.variant.id,sku:row.variant.sku,title:row.variant.title,variant:row.variant.variant,brand:row.variant.brand,price:row.variant.price,image:row.variant.image,qty:row.qty});
+    added++;
+  });
+  renderLines(); renderBasket(); saveDraftSilent();
+  toast('✓ '+added+' line'+(added!==1?'s':'')+' added to order');
+  // Switch to SKU tab
+  switchTab('sku');
+});
 
-    function renderCSVResults(parsed, errors) {
-      dropZone.style.display = 'none';
-      var res = $('qo-csv-results');
-      res.style.display = 'block';
-      $('qo-csv-title').textContent = 'Parsed ' + parsed.length + ' line' + (parsed.length !== 1 ? 's' : '');
-      var errBox = $('qo-csv-errors');
-      if (errors.length) {
-        errBox.style.display = 'block';
-        errBox.innerHTML =
-          '<strong>' +
-          errors.length +
-          ' warning' +
-          (errors.length !== 1 ? 's' : '') +
-          ':</strong><ul>' +
-          errors
-            .map(function (e) {
-              return '<li>' + esc(e) + '</li>';
-            })
-            .join('') +
-          '</ul>';
-      } else errBox.style.display = 'none';
-      var html = '';
-      parsed.forEach(function (row, i) {
-        var v = row.variant;
-        if (v) {
-          var img = v.image ? v.image.replace(/\.(jpg|png|webp)(\?.*)?$/, '_60x60.$1') : '';
-          html += '<tr data-csv-idx="' + i + '">';
-          html +=
-            '<td><div class="qo-t-product">' +
-            (img ? '<img class="qo-t-thumb" src="' + esc(img) + '" alt="">' : '<div class="qo-t-thumb"></div>') +
-            '<div><div class="qo-t-name">' +
-            esc(v.title) +
-            '</div><div class="qo-t-var">' +
-            esc(v.variant) +
-            '</div></div></div></td>';
-          html += '<td class="qo-t-sku">' + esc(row.sku) + '</td>';
-          html += '<td class="qo-t-price">' + fmt(v.price) + '</td>';
-          html += '<td>' + row.qty + '</td>';
-          html += '<td class="qo-t-line">' + fmt(v.price * row.qty) + '</td>';
-          html += '<td class="qo-t-status-ok">✓ Matched</td>';
-        } else {
-          html +=
-            '<tr><td colspan="5" style="color:var(--red);font-size:13px;padding:10px 14px;">SKU <code>' +
-            esc(row.sku) +
-            '</code> not found in trade catalogue</td><td class="qo-t-status-err">✗ Not found</td></tr>';
-        }
-      });
-      $('qo-csv-tbody').innerHTML = html;
-      // Store for bulk add
-      res._parsedRows = parsed;
-    }
-
-    $('qo-csv-add-all').addEventListener('click', function () {
-      var res = $('qo-csv-results');
-      var rows = res._parsedRows || [];
-      var added = 0;
-      rows.forEach(function (row) {
-        if (!row.variant) return;
-        var ex = basket.find(function (b) {
-          return b.variantId === row.variant.id;
-        });
-        if (ex) ex.qty += row.qty;
-        else
-          basket.push({
-            variantId: row.variant.id,
-            sku: row.variant.sku,
-            title: row.variant.title,
-            variant: row.variant.variant,
-            brand: row.variant.brand,
-            price: row.variant.price,
-            image: row.variant.image,
-            qty: row.qty,
-          });
-        added++;
-      });
-      renderLines();
-      renderBasket();
-      saveDraftSilent();
-      toast('✓ ' + added + ' line' + (added !== 1 ? 's' : '') + ' added to order');
-      // Switch to SKU tab
-      switchTab('sku');
-    });
-
-    /* ════════════════════════════════════════════════
+/* ════════════════════════════════════════════════
    TAB 3: SUGGESTED ORDER
 ════════════════════════════════════════════════ */
-    function loadSuggested() {
-      // Fetch customer order history via Shopify AJAX
-      fetch('/account.json')
-        .then(function (r) {
-          return r.json();
-        })
-        .then(function (data) {
-          if (!data.customer) {
-            showSuggestedEmpty();
-            return;
-          }
-          return fetch('/account/orders.json?limit=10');
-        })
-        .then(function (r) {
-          if (!r) return;
-          return r.json();
-        })
-        .then(function (data) {
-          if (!data || !data.orders || !data.orders.length) {
-            showSuggestedEmpty();
-            return;
-          }
-          buildSuggestions(data.orders);
-        })
-        .catch(function () {
-          showSuggestedEmpty();
-        });
-    }
+function loadSuggested(){
+  // Fetch customer order history via Shopify AJAX
+  fetch('/account.json')
+    .then(function(r){ return r.json(); })
+    .then(function(data){
+      if(!data.customer){ showSuggestedEmpty(); return; }
+      return fetch('/account/orders.json?limit=10');
+    })
+    .then(function(r){ if(!r) return; return r.json(); })
+    .then(function(data){
+      if(!data||!data.orders||!data.orders.length){ showSuggestedEmpty(); return; }
+      buildSuggestions(data.orders);
+    })
+    .catch(function(){ showSuggestedEmpty(); });
+}
 
-    function showSuggestedEmpty() {
-      $('qo-suggested-loading').style.display = 'none';
-      $('qo-suggested-empty').style.display = 'block';
-    }
+function showSuggestedEmpty(){
+  $('qo-suggested-loading').style.display='none';
+  $('qo-suggested-empty').style.display='block';
+}
 
-    function buildSuggestions(orders) {
-      // Tally SKU frequencies and avg quantities
-      var tally = {};
-      orders.forEach(function (order) {
-        (order.line_items || []).forEach(function (item) {
-          var sku = (item.sku || '').toUpperCase();
-          if (!sku) return;
-          if (!tally[sku]) tally[sku] = { count: 0, totalQty: 0, variantId: item.variant_id };
-          tally[sku].count++;
-          tally[sku].totalQty += item.quantity;
-        });
-      });
-      var skus = Object.keys(tally)
-        .sort(function (a, b) {
-          return tally[b].count - tally[a].count;
-        })
-        .slice(0, 12);
-      if (!skus.length) {
-        showSuggestedEmpty();
-        return;
-      }
-      var suggested = [];
-      skus.forEach(function (sku) {
-        var v = variants.find(function (x) {
-          return x.sku === sku;
-        });
-        if (!v) return;
-        suggested.push({
-          variant: v,
-          avgQty: Math.round(tally[sku].totalQty / tally[sku].count),
-          orderCount: tally[sku].count,
-        });
-      });
-      $('qo-suggested-loading').style.display = 'none';
-      if (!suggested.length) {
-        showSuggestedEmpty();
-        return;
-      }
-      var grid = $('qo-suggested-grid');
-      var html = '';
-      suggested.forEach(function (item, i) {
-        var v = item.variant;
-        var img = v.image ? v.image.replace(/\.(jpg|png|webp)(\?.*)?$/, '_100x100.$1') : '';
-        var s = stockBadge(v.inventory);
-        html += '<div class="qo-sg-card">';
-        html += img
-          ? '<img class="qo-sg-img" src="' + esc(img) + '" alt="" loading="lazy">'
-          : '<div class="qo-sg-img"></div>';
-        html += '<div class="qo-sg-info">';
-        html += '<div class="qo-sg-title">' + esc(v.title) + '</div>';
-        html += '<div class="qo-sg-var">' + esc(v.variant) + '</div>';
-        html += '<div class="qo-sg-meta">';
-        html += '<span class="qo-sg-price">' + fmt(v.price) + '</span>';
-        html +=
-          '<div class="qo-sg-qty">Qty <input type="number" id="qo-sg-qty-' +
-          i +
-          '" value="' +
-          item.avgQty +
-          '" min="1" style="width:44px;height:28px;border:1px solid var(--border);border-radius:4px;text-align:center;font-size:13px;font-weight:700;font-family:inherit;-moz-appearance:textfield;outline:none;">';
-        html +=
-          '<button class="qo-sg-add" onclick="_QO.sgAdd(\'' + esc(v.sku) + "','qo-sg-qty-" + i + '\')">+ Add</button>';
-        html += '</div></div></div></div>';
-      });
-      grid.innerHTML = html;
-      grid.style.display = 'grid';
-      $('qo-suggested-actions').style.display = 'block';
-      $('qo-suggested-actions')._suggested = suggested;
-    }
-
-    $('qo-suggested-add-all').addEventListener('click', function () {
-      var suggested = (this.closest('.qo-suggested-actions') || this.parentElement)._suggested || [];
-      var added = 0;
-      document.querySelectorAll('[id^="qo-sg-qty-"]').forEach(function (input, i) {
-        var idx = parseInt(input.id.replace('qo-sg-qty-', ''), 10);
-        var s = $('qo-suggested-actions')._suggested;
-        if (!s || !s[idx]) return;
-        var qty = Math.max(1, parseInt(input.value) || 1);
-        var v = s[idx].variant;
-        var ex = basket.find(function (b) {
-          return b.variantId === v.id;
-        });
-        if (ex) ex.qty += qty;
-        else
-          basket.push({
-            variantId: v.id,
-            sku: v.sku,
-            title: v.title,
-            variant: v.variant,
-            brand: v.brand,
-            price: v.price,
-            image: v.image,
-            qty: qty,
-          });
-        added++;
-      });
-      renderLines();
-      renderBasket();
-      saveDraftSilent();
-      toast('✓ ' + added + ' suggested item' + (added !== 1 ? 's' : '') + ' added');
-      switchTab('sku');
+function buildSuggestions(orders){
+  // Tally SKU frequencies and avg quantities
+  var tally={};
+  orders.forEach(function(order){
+    (order.line_items||[]).forEach(function(item){
+      var sku=(item.sku||'').toUpperCase();
+      if(!sku) return;
+      if(!tally[sku]) tally[sku]={count:0,totalQty:0,variantId:item.variant_id};
+      tally[sku].count++;
+      tally[sku].totalQty+=item.quantity;
     });
+  });
+  var skus=Object.keys(tally).sort(function(a,b){ return tally[b].count-tally[a].count; }).slice(0,12);
+  if(!skus.length){ showSuggestedEmpty(); return; }
+  var suggested=[];
+  skus.forEach(function(sku){
+    var v=variants.find(function(x){ return x.sku===sku; });
+    if(!v) return;
+    suggested.push({variant:v, avgQty:Math.round(tally[sku].totalQty/tally[sku].count), orderCount:tally[sku].count});
+  });
+  $('qo-suggested-loading').style.display='none';
+  if(!suggested.length){ showSuggestedEmpty(); return; }
+  var grid=$('qo-suggested-grid');
+  var html='';
+  suggested.forEach(function(item,i){
+    var v=item.variant;
+    var img=v.image?v.image.replace(/\.(jpg|png|webp)(\?.*)?$/,'_100x100.$1'):'';
+    var s=stockBadge(v.inventory);
+    html+='<div class="qo-sg-card">';
+    html+=img?'<img class="qo-sg-img" src="'+esc(img)+'" alt="" loading="lazy">':'<div class="qo-sg-img"></div>';
+    html+='<div class="qo-sg-info">';
+    html+='<div class="qo-sg-title">'+esc(v.title)+'</div>';
+    html+='<div class="qo-sg-var">'+esc(v.variant)+'</div>';
+    html+='<div class="qo-sg-meta">';
+    html+='<span class="qo-sg-price">'+fmt(v.price)+'</span>';
+    html+='<div class="qo-sg-qty">Qty <input type="number" id="qo-sg-qty-'+i+'" value="'+item.avgQty+'" min="1" style="width:44px;height:28px;border:1px solid var(--border);border-radius:4px;text-align:center;font-size:13px;font-weight:700;font-family:inherit;-moz-appearance:textfield;outline:none;">';
+    html+='<button class="qo-sg-add" onclick="_QO.sgAdd(\''+esc(v.sku)+'\',\'qo-sg-qty-'+i+'\')">+ Add</button>';
+    html+='</div></div></div></div>';
+  });
+  grid.innerHTML=html;
+  grid.style.display='grid';
+  $('qo-suggested-actions').style.display='block';
+  $('qo-suggested-actions')._suggested=suggested;
+}
 
-    /* ════════════════════════════════════════════════
+$('qo-suggested-add-all').addEventListener('click',function(){
+  var suggested=(this.closest('.qo-suggested-actions')||this.parentElement)._suggested||[];
+  var added=0;
+  document.querySelectorAll('[id^="qo-sg-qty-"]').forEach(function(input,i){
+    var idx=parseInt(input.id.replace('qo-sg-qty-',''),10);
+    var s=$('qo-suggested-actions')._suggested;
+    if(!s||!s[idx]) return;
+    var qty=Math.max(1,parseInt(input.value)||1);
+    var v=s[idx].variant;
+    var ex=basket.find(function(b){ return b.variantId===v.id; });
+    if(ex) ex.qty+=qty;
+    else basket.push({variantId:v.id,sku:v.sku,title:v.title,variant:v.variant,brand:v.brand,price:v.price,image:v.image,qty:qty});
+    added++;
+  });
+  renderLines(); renderBasket(); saveDraftSilent();
+  toast('✓ '+added+' suggested item'+(added!==1?'s':'')+' added');
+  switchTab('sku');
+});
+
+/* ════════════════════════════════════════════════
    TAB 4: RE-BUY ORDER
 ════════════════════════════════════════════════ */
-    function loadRecentOrders() {
-      fetch('/account/orders.json?limit=8')
-        .then(function (r) {
-          return r.json();
-        })
-        .then(function (data) {
-          $('qo-recent-loading').style.display = 'none';
-          if (!data.orders || !data.orders.length) {
-            $('qo-recent-empty').style.display = 'block';
-            return;
-          }
-          renderRecentOrders(data.orders);
-        })
-        .catch(function () {
-          $('qo-recent-loading').style.display = 'none';
-          $('qo-recent-empty').style.display = 'block';
-        });
+function loadRecentOrders(){
+  fetch('/account/orders.json?limit=8')
+    .then(function(r){ return r.json(); })
+    .then(function(data){
+      $('qo-recent-loading').style.display='none';
+      if(!data.orders||!data.orders.length){ $('qo-recent-empty').style.display='block'; return; }
+      renderRecentOrders(data.orders);
+    })
+    .catch(function(){
+      $('qo-recent-loading').style.display='none';
+      $('qo-recent-empty').style.display='block';
+    });
+}
+
+function renderRecentOrders(orders){
+  var list=$('qo-recent-list');
+  var html='';
+  orders.forEach(function(order){
+    var total=fmt(Math.round(parseFloat(order.total_price)*100));
+    var date=order.created_at?new Date(order.created_at).toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'}):'';
+    var items=order.line_items?order.line_items.length:0;
+    html+='<div class="qo-order-row" data-order-id="'+order.id+'">';
+    html+='<div><div class="qo-order-row__ref">'+esc(order.name)+'</div>';
+    html+='<div class="qo-order-row__meta">'+date+' · '+items+' line'+(items!==1?'s':'')+'</div></div>';
+    html+='<div class="qo-order-row__total">'+total+'</div>';
+    html+='<button class="qo-order-row__btn" onclick="_QO.loadOrder('+order.id+',\''+esc(order.name)+'\',\''+date+'\')">Re-buy →</button>';
+    html+='</div>';
+  });
+  list.innerHTML=html;
+  list.style.display='flex';
+}
+
+$('qo-rebuy-lookup').addEventListener('click',function(){
+  var ref=$('qo-order-ref').value.trim();
+  if(!ref){ toast('Please enter an order reference','err'); return; }
+  // Search through recent orders list by name
+  var rows=$('qo-recent-list').querySelectorAll('.qo-order-row');
+  var found=false;
+  rows.forEach(function(row){
+    var refText=row.querySelector('.qo-order-row__ref');
+    if(refText&&refText.textContent.toUpperCase().indexOf(ref.toUpperCase())!==-1){
+      row.querySelector('.qo-order-row__btn').click();
+      found=true;
     }
+  });
+  if(!found) toast('Order "'+ref+'" not found in your recent orders','err');
+});
 
-    function renderRecentOrders(orders) {
-      var list = $('qo-recent-list');
-      var html = '';
-      orders.forEach(function (order) {
-        var total = fmt(Math.round(parseFloat(order.total_price) * 100));
-        var date = order.created_at
-          ? new Date(order.created_at).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })
-          : '';
-        var items = order.line_items ? order.line_items.length : 0;
-        html += '<div class="qo-order-row" data-order-id="' + order.id + '">';
-        html += '<div><div class="qo-order-row__ref">' + esc(order.name) + '</div>';
-        html +=
-          '<div class="qo-order-row__meta">' +
-          date +
-          ' · ' +
-          items +
-          ' line' +
-          (items !== 1 ? 's' : '') +
-          '</div></div>';
-        html += '<div class="qo-order-row__total">' + total + '</div>';
-        html +=
-          '<button class="qo-order-row__btn" onclick="_QO.loadOrder(' +
-          order.id +
-          ",'" +
-          esc(order.name) +
-          "','" +
-          date +
-          '\')">Re-buy →</button>';
-        html += '</div>';
-      });
-      list.innerHTML = html;
-      list.style.display = 'flex';
-    }
+$('qo-rebuy-back').addEventListener('click',function(){
+  $('qo-rebuy-results').style.display='none';
+  $('qo-recent-orders').style.display='block';
+});
 
-    $('qo-rebuy-lookup').addEventListener('click', function () {
-      var ref = $('qo-order-ref').value.trim();
-      if (!ref) {
-        toast('Please enter an order reference', 'err');
-        return;
-      }
-      // Search through recent orders list by name
-      var rows = $('qo-recent-list').querySelectorAll('.qo-order-row');
-      var found = false;
-      rows.forEach(function (row) {
-        var refText = row.querySelector('.qo-order-row__ref');
-        if (refText && refText.textContent.toUpperCase().indexOf(ref.toUpperCase()) !== -1) {
-          row.querySelector('.qo-order-row__btn').click();
-          found = true;
-        }
-      });
-      if (!found) toast('Order "' + ref + '" not found in your recent orders', 'err');
-    });
+$('qo-rebuy-add-all').addEventListener('click',function(){
+  var rows=document.querySelectorAll('#qo-rebuy-tbody tr');
+  var added=0;
+  rows.forEach(function(row){
+    var qtyInput=row.querySelector('.qo-rebuy-qty');
+    var sku=row.dataset.sku;
+    if(!sku||!qtyInput) return;
+    var qty=Math.max(1,parseInt(qtyInput.value)||1);
+    var v=variants.find(function(x){ return x.sku===sku; });
+    if(!v) return;
+    var ex=basket.find(function(b){ return b.variantId===v.id; });
+    if(ex) ex.qty+=qty;
+    else basket.push({variantId:v.id,sku:v.sku,title:v.title,variant:v.variant,brand:v.brand,price:v.price,image:v.image,qty:qty});
+    added++;
+  });
+  renderLines(); renderBasket(); saveDraftSilent();
+  toast('✓ '+added+' item'+(added!==1?'s':'')+' added from order');
+  switchTab('sku');
+});
 
-    $('qo-rebuy-back').addEventListener('click', function () {
-      $('qo-rebuy-results').style.display = 'none';
-      $('qo-recent-orders').style.display = 'block';
-    });
+/* ── Tab switching ──────────────────────────────── */
+document.querySelectorAll('.qo-tab').forEach(function(tab){
+  tab.addEventListener('click',function(){ switchTab(this.dataset.tab); });
+});
 
-    $('qo-rebuy-add-all').addEventListener('click', function () {
-      var rows = document.querySelectorAll('#qo-rebuy-tbody tr');
-      var added = 0;
-      rows.forEach(function (row) {
-        var qtyInput = row.querySelector('.qo-rebuy-qty');
-        var sku = row.dataset.sku;
-        if (!sku || !qtyInput) return;
-        var qty = Math.max(1, parseInt(qtyInput.value) || 1);
-        var v = variants.find(function (x) {
-          return x.sku === sku;
+function switchTab(name){
+  document.querySelectorAll('.qo-tab').forEach(function(t){ t.classList.toggle('is-active',t.dataset.tab===name); });
+  document.querySelectorAll('.qo-panel').forEach(function(p){ p.classList.toggle('is-active',p.id==='qo-panel-'+name); });
+  if(name==='rebuy'&&$('qo-recent-loading').style.display!=='none') loadRecentOrders();
+}
+
+/* ── Public API ─────────────────────────────────── */
+window._QO={
+  dq:function(i,d){ if(!basket[i])return; basket[i].qty=Math.max(1,basket[i].qty+d); renderLines(); renderBasket(); saveDraftSilent(); },
+  sq:function(i,v){ if(!basket[i])return; basket[i].qty=Math.max(1,parseInt(v)||1); renderLines(); renderBasket(); saveDraftSilent(); },
+  rm:function(i){ basket.splice(i,1); renderLines(); renderBasket(); saveDraftSilent(); toast('Item removed'); },
+  sgAdd:function(sku,qtyId){
+    var v=variants.find(function(x){ return x.sku===sku; });
+    if(!v) return;
+    var qty=Math.max(1,parseInt($(qtyId)?$(qtyId).value:1)||1);
+    addToBasket(v,qty);
+  },
+  loadOrder:function(orderId,name,date){
+    fetch('/account/orders/'+orderId+'.json')
+      .then(function(r){ return r.json(); })
+      .then(function(data){
+        var order=data.order||data;
+        $('qo-rebuy-order-title').textContent=name;
+        $('qo-rebuy-order-meta').textContent=date+' · '+((order.line_items||[]).length)+' lines';
+        var html='';
+        (order.line_items||[]).forEach(function(item){
+          var sku=(item.sku||'').toUpperCase();
+          var v=variants.find(function(x){ return x.sku===sku; });
+          var img=v&&v.image?v.image.replace(/\.(jpg|png|webp)(\?.*)?$/,'_60x60.$1'):'';
+          html+='<tr data-sku="'+esc(sku)+'">';
+          html+='<td><div class="qo-t-product">'+(img?'<img class="qo-t-thumb" src="'+esc(img)+'" alt="">':'<div class="qo-t-thumb"></div>')+'<div><div class="qo-t-name">'+esc(item.name||item.title)+'</div></div></div></td>';
+          html+='<td class="qo-t-sku">'+esc(sku)+'</td>';
+          html+='<td>'+item.quantity+'</td>';
+          html+='<td><input type="number" class="qo-rebuy-qty qo-t-qn" value="'+item.quantity+'" min="1" style="width:54px;height:30px;border:1px solid var(--border);border-radius:4px;text-align:center;font-size:13px;font-weight:700;font-family:inherit;-moz-appearance:textfield;outline:none;"></td>';
+          html+='<td class="qo-t-price">'+(v?fmt(v.price):'—')+'</td>';
+          html+='<td>'+(v?'<span class="qo-t-status-ok">✓</span>':'<span class="qo-t-status-err">SKU not in catalogue</span>')+'</td>';
+          html+='</tr>';
         });
-        if (!v) return;
-        var ex = basket.find(function (b) {
-          return b.variantId === v.id;
-        });
-        if (ex) ex.qty += qty;
-        else
-          basket.push({
-            variantId: v.id,
-            sku: v.sku,
-            title: v.title,
-            variant: v.variant,
-            brand: v.brand,
-            price: v.price,
-            image: v.image,
-            qty: qty,
-          });
-        added++;
-      });
-      renderLines();
-      renderBasket();
-      saveDraftSilent();
-      toast('✓ ' + added + ' item' + (added !== 1 ? 's' : '') + ' added from order');
-      switchTab('sku');
-    });
+        $('qo-rebuy-tbody').innerHTML=html;
+        $('qo-recent-orders').style.display='none';
+        $('qo-rebuy-results').style.display='block';
+      })
+      .catch(function(){ toast('Could not load order details','err'); });
+  }
+};
 
-    /* ── Tab switching ──────────────────────────────── */
-    document.querySelectorAll('.qo-tab').forEach(function (tab) {
-      tab.addEventListener('click', function () {
-        switchTab(this.dataset.tab);
-      });
-    });
+/* ── Init ───────────────────────────────────────── */
+loadProducts();
+loadDraft();
 
-    function switchTab(name) {
-      document.querySelectorAll('.qo-tab').forEach(function (t) {
-        t.classList.toggle('is-active', t.dataset.tab === name);
-      });
-      document.querySelectorAll('.qo-panel').forEach(function (p) {
-        p.classList.toggle('is-active', p.id === 'qo-panel-' + name);
-      });
-      if (name === 'rebuy' && $('qo-recent-loading').style.display !== 'none') loadRecentOrders();
-    }
-
-    /* ── Public API ─────────────────────────────────── */
-    window._QO = {
-      dq: function (i, d) {
-        if (!basket[i]) return;
-        basket[i].qty = Math.max(1, basket[i].qty + d);
-        renderLines();
-        renderBasket();
-        saveDraftSilent();
-      },
-      sq: function (i, v) {
-        if (!basket[i]) return;
-        basket[i].qty = Math.max(1, parseInt(v) || 1);
-        renderLines();
-        renderBasket();
-        saveDraftSilent();
-      },
-      rm: function (i) {
-        basket.splice(i, 1);
-        renderLines();
-        renderBasket();
-        saveDraftSilent();
-        toast('Item removed');
-      },
-      sgAdd: function (sku, qtyId) {
-        var v = variants.find(function (x) {
-          return x.sku === sku;
-        });
-        if (!v) return;
-        var qty = Math.max(1, parseInt($(qtyId) ? $(qtyId).value : 1) || 1);
-        addToBasket(v, qty);
-      },
-      loadOrder: function (orderId, name, date) {
-        fetch('/account/orders/' + orderId + '.json')
-          .then(function (r) {
-            return r.json();
-          })
-          .then(function (data) {
-            var order = data.order || data;
-            $('qo-rebuy-order-title').textContent = name;
-            $('qo-rebuy-order-meta').textContent = date + ' · ' + (order.line_items || []).length + ' lines';
-            var html = '';
-            (order.line_items || []).forEach(function (item) {
-              var sku = (item.sku || '').toUpperCase();
-              var v = variants.find(function (x) {
-                return x.sku === sku;
-              });
-              var img = v && v.image ? v.image.replace(/\.(jpg|png|webp)(\?.*)?$/, '_60x60.$1') : '';
-              html += '<tr data-sku="' + esc(sku) + '">';
-              html +=
-                '<td><div class="qo-t-product">' +
-                (img ? '<img class="qo-t-thumb" src="' + esc(img) + '" alt="">' : '<div class="qo-t-thumb"></div>') +
-                '<div><div class="qo-t-name">' +
-                esc(item.name || item.title) +
-                '</div></div></div></td>';
-              html += '<td class="qo-t-sku">' + esc(sku) + '</td>';
-              html += '<td>' + item.quantity + '</td>';
-              html +=
-                '<td><input type="number" class="qo-rebuy-qty qo-t-qn" value="' +
-                item.quantity +
-                '" min="1" style="width:54px;height:30px;border:1px solid var(--border);border-radius:4px;text-align:center;font-size:13px;font-weight:700;font-family:inherit;-moz-appearance:textfield;outline:none;"></td>';
-              html += '<td class="qo-t-price">' + (v ? fmt(v.price) : '—') + '</td>';
-              html +=
-                '<td>' +
-                (v
-                  ? '<span class="qo-t-status-ok">✓</span>'
-                  : '<span class="qo-t-status-err">SKU not in catalogue</span>') +
-                '</td>';
-              html += '</tr>';
-            });
-            $('qo-rebuy-tbody').innerHTML = html;
-            $('qo-recent-orders').style.display = 'none';
-            $('qo-rebuy-results').style.display = 'block';
-          })
-          .catch(function () {
-            toast('Could not load order details', 'err');
-          });
-      },
-    };
-
-    /* ── Init ───────────────────────────────────────── */
-    loadProducts();
-    loadDraft();
-  })();
+})();
 </script>
 
-{% schema %} { "name": "Quick Order", "tag": "section", "class": "qo-section", "settings": [ { "type": "collection",
-"id": "collection", "label": "Product Collection", "info": "The collection to search from. Every variant must have a SKU
-set." }, { "type": "text", "id": "phone_number", "label": "Support Phone Number", "default": "0161 234 5678" }, {
-"type": "text", "id": "support_email", "label": "Support Email", "default": "trade@parentlygroup.com" } ], "presets": [{
-"name": "Quick Order" }] } {% endschema %}
+
+{% schema %}
+{
+  "name": "Quick Order",
+  "tag": "section",
+  "class": "qo-section",
+  "settings": [
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Product Collection",
+      "info": "The collection to search from. Every variant must have a SKU set."
+    },
+    {
+      "type": "text",
+      "id": "phone_number",
+      "label": "Support Phone Number",
+      "default": "0161 234 5678"
+    },
+    {
+      "type": "text",
+      "id": "support_email",
+      "label": "Support Email",
+      "default": "trade@parentlygroup.com"
+    }
+  ],
+  "presets": [{ "name": "Quick Order" }]
+}
+{% endschema %}
