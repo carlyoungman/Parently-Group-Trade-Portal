@@ -1,6 +1,13 @@
-{% comment %} Renders cart notification Accepts: - color_scheme: {String} sets the color scheme of the notification
-(optional) - desktop_menu_type: {String} passes the desktop menu type which allows us to use the right css class
-(optional) Usage: {% render 'cart-notification' %} {% endcomment %}
+{% comment %}
+  Renders cart notification
+
+  Accepts:
+  - color_scheme: {String} sets the color scheme of the notification (optional)
+  - desktop_menu_type: {String} passes the desktop menu type which allows us to use the right css class (optional)
+
+  Usage:
+  {% render 'cart-notification' %}
+{% endcomment %}
 
 <cart-notification>
   <div class="cart-notification-wrapper{% if desktop_menu_type != 'drawer' %} page-width{% endif %}">
@@ -14,14 +21,17 @@
     >
       <div class="cart-notification__header">
         <h2 class="cart-notification__heading caption-large text-body">
-          {{- 'icon-checkmark.svg' | inline_asset_content -}} {{ 'general.cart.item_added' | t }}
+          {{- 'icon-checkmark.svg' | inline_asset_content -}}
+          {{ 'general.cart.item_added' | t }}
         </h2>
         <button
           type="button"
           class="cart-notification__close modal__close-button link link--text focus-inset"
           aria-label="{{ 'accessibility.close' | t }}"
         >
-          <span class="svg-wrapper"> {{- 'icon-close.svg' | inline_asset_content -}} </span>
+          <span class="svg-wrapper">
+            {{- 'icon-close.svg' | inline_asset_content -}}
+          </span>
         </button>
       </div>
       <div id="cart-notification-product" class="cart-notification-product"></div>
@@ -43,4 +53,8 @@
     </div>
   </div>
 </cart-notification>
-{% style %} .cart-notification { display: none; } {% endstyle %}
+{% style %}
+  .cart-notification {
+    display: none;
+  }
+{% endstyle %}
