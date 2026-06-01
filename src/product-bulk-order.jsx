@@ -412,6 +412,14 @@ function ProductBulkOrder({ product, variantSwatches = {}, showInStock = true, s
       return v ? sum + getQty(v.id) * v.price : sum;
     }, 0);
 
+  const getRowTaxable = (size) => {
+    for (const len of visibleColumns) {
+      const v = getVariant(selectedColour, size, len);
+      if (v) return v.taxable ?? false;
+    }
+    return false;
+  };
+
   // Column item count (across all visible sizes for a given length)
   const colItemCount = (len) =>
     visibleSizes.reduce((sum, size) => {
@@ -600,6 +608,7 @@ function ProductBulkOrder({ product, variantSwatches = {}, showInStock = true, s
                 })}
                 <td className="pbo__row-total">
                   {rowTotal(size) > 0 ? formatMoney(rowTotal(size)) : <span className="pbo__row-total--empty">£0.00</span>}
+                  <span className="pbo__vat-label">{getRowTaxable(size) ? '20% VAT' : '0% VAT'}</span>
                 </td>
               </tr>
             ))}

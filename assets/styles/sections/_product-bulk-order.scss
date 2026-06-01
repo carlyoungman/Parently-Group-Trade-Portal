@@ -271,6 +271,15 @@ $pbo-radius-sm:    0.6rem;
     }
   }
 
+  &__vat-label {
+    color: $pbo-text-muted;
+    display: block;
+    font-size: 1.1rem;
+    margin-top: 0.4rem;
+    text-align: right;
+    white-space: nowrap;
+  }
+
   // ─── Footer ────────────────────────────────────────────────────────────────
   &__footer {
     display: flex;
