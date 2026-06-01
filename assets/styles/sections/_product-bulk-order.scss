@@ -163,14 +163,12 @@ $pbo-radius-sm:    0.6rem;
     border-bottom: 1.5px solid $pbo-border;
 
     &--size {
-      padding-left: 0;
-      text-align: left;
+      text-align: center;
       width: 200px;
     }
 
     &--total {
-      padding-right: 0;
-      text-align: right;
+      text-align: center;
       white-space: nowrap;
       width: 200px;
     }
@@ -203,7 +201,8 @@ $pbo-radius-sm:    0.6rem;
   }
 
   &__size-cell {
-    padding: 1.6rem 1.2rem 1.6rem 0;
+    padding: 1.6rem 1.2rem;
+    text-align: center;
     vertical-align: top;
     white-space: nowrap;
     width: 200px;
@@ -268,8 +267,8 @@ $pbo-radius-sm:    0.6rem;
 
   // ─── Row total ─────────────────────────────────────────────────────────────
   &__row-total {
-    padding: 1.6rem 0 1.6rem 1.2rem;
-    text-align: right;
+    padding: 1.6rem 1.2rem;
+    text-align: center;
     vertical-align: top;
     white-space: nowrap;
     width: 200px;
@@ -284,7 +283,7 @@ $pbo-radius-sm:    0.6rem;
     display: block;
     font-size: 1.1rem;
     margin-top: 0.4rem;
-    text-align: right;
+    text-align: center;
     white-space: nowrap;
   }
 
