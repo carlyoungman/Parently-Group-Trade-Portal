@@ -1,308 +1,118 @@
 <script src="{{ 'section-vertical-image-links.js' | asset_url }}" defer="defer"></script>
 
-{%- render 'section-padding-style' -%}
+{%- render 'section-padding-style' -%} {%- style -%} .section-{{ section.id }} .vertical-image-links__card {
+aspect-ratio: {{ section.settings.card_aspect_ratio }}; } {%- endstyle -%} {%- liquid assign has_image_links = false for
+block in section.blocks if block.type == 'image_link' assign has_image_links = true break endif endfor -%}
 
-{%- style -%}
-  .section-{{ section.id }} .vertical-image-links__card {
-    aspect-ratio: {{ section.settings.card_aspect_ratio }};
-  }
-{%- endstyle -%}
-
-{%- liquid
-  assign has_image_links = false
-  for block in section.blocks
-    if block.type == 'image_link'
-      assign has_image_links = true
-      break
-    endif
-  endfor
--%}
-
-<vertical-image-links-component class="vertical-image-links color-scheme-1 section-{{ section.id }}-padding section-{{ section.id }}">
+<vertical-image-links-component
+  class="vertical-image-links color-scheme-1 section-{{ section.id }}-padding section-{{ section.id }}"
+>
   <div class="vertical-image-links__inner page-width">
-
     {%- comment -%} LEFT COLUMN — heading, text, buttons {%- endcomment -%}
     <div class="vertical-image-links__content">
-      {%- for block in section.blocks -%}
-        {%- case block.type -%}
-
-          {%- when 'heading' -%}
-            {%- if block.settings.heading != blank -%}
-              <h2
-                class="vertical-image-links__heading inline-richtext {{ block.settings.heading_size }}"
-                {{ block.shopify_attributes }}
-              >
-                {{ block.settings.heading }}
-              </h2>
-            {%- endif -%}
-
-          {%- when 'text' -%}
-            {%- if block.settings.text != blank -%}
-              <div
-                class="vertical-image-links__text rte {{ block.settings.text_style }}"
-                {{ block.shopify_attributes }}
-              >
-                {{ block.settings.text }}
-              </div>
-            {%- endif -%}
-
-          {%- when 'buttons' -%}
-            {%- render 'button-pair',
-              button_label_1: block.settings.button_label_1,
-              button_link_1: block.settings.button_link_1,
-              button_style_secondary_1: block.settings.button_style_secondary_1,
-              button_label_2: block.settings.button_label_2,
-              button_link_2: block.settings.button_link_2,
-              button_style_secondary_2: block.settings.button_style_secondary_2,
-              container_class: 'vertical-image-links__buttons',
-              shopify_attributes: block.shopify_attributes
-            -%}
-
-        {%- endcase -%}
-      {%- endfor -%}
+      {%- for block in section.blocks -%} {%- case block.type -%} {%- when 'heading' -%} {%- if block.settings.heading
+      != blank -%}
+      <h2
+        class="vertical-image-links__heading inline-richtext {{ block.settings.heading_size }}"
+        {{
+        block.shopify_attributes
+        }}
+      >
+        {{ block.settings.heading }}
+      </h2>
+      {%- endif -%} {%- when 'text' -%} {%- if block.settings.text != blank -%}
+      <div class="vertical-image-links__text rte {{ block.settings.text_style }}" {{ block.shopify_attributes }}>
+        {{ block.settings.text }}
+      </div>
+      {%- endif -%} {%- when 'buttons' -%} {%- render 'button-pair', button_label_1: block.settings.button_label_1,
+      button_link_1: block.settings.button_link_1, button_style_secondary_1: block.settings.button_style_secondary_1,
+      button_label_2: block.settings.button_label_2, button_link_2: block.settings.button_link_2,
+      button_style_secondary_2: block.settings.button_style_secondary_2, container_class:
+      'vertical-image-links__buttons', shopify_attributes: block.shopify_attributes -%} {%- endcase -%} {%- endfor -%}
     </div>
 
     {%- comment -%} RIGHT COLUMN — scrollable image-link cards {%- endcomment -%}
     <div class="vertical-image-links__carousel-outer">
-      <ul
-        class="vertical-image-links__carousel-track"
-        role="list"
-        aria-label="Image links"
-      >
-        {%- for block in section.blocks -%}
-          {%- if block.type == 'image_link' -%}
-            {%- liquid
-              assign bg_image = block.settings.background_image
-              assign logo_image = block.settings.logo_image
-              assign card_link = block.settings.link
-            -%}
-            <li
-              class="vertical-image-links__card"
-              {{ block.shopify_attributes }}
-            >
-              <a
-                {% if card_link != blank %}
-                  href="{{ card_link }}"
-                {% else %}
-                  role="link" aria-disabled="true"
-                {% endif %}
-                class="vertical-image-links__card-link{% if bg_image == blank %} vertical-image-links__card-link--placeholder{% endif %}"
-                {% if bg_image != blank %}
-                  style="background-image: url('{{ bg_image | image_url: width: 800 }}');"
-                {% endif %}
-                aria-label="{{ logo_image.alt | default: 'Image link' | escape }}"
-              >
-                {%- if logo_image != blank -%}
-                  <div class="vertical-image-links__card-logo">
-                    {{
-                      logo_image
-                      | image_url: width: 400
-                      | image_tag:
-                        widths: '100, 150, 200, 300, 400',
-                        sizes: '200px',
-                        loading: 'lazy',
-                        alt: logo_image.alt | default: ''
-                    }}
-                  </div>
-                {%- endif -%}
-              </a>
-            </li>
-          {%- endif -%}
-        {%- endfor -%}
+      <ul class="vertical-image-links__carousel-track" role="list" aria-label="Image links">
+        {%- for block in section.blocks -%} {%- if block.type == 'image_link' -%} {%- liquid assign bg_image =
+        block.settings.background_image assign logo_image = block.settings.logo_image assign card_link =
+        block.settings.link -%}
+        <li class="vertical-image-links__card" {{ block.shopify_attributes }}>
+          <a
+            {%
+            if
+            card_link
+            !="blank"
+            %}
+            href="{{ card_link }}"
+            {%
+            else
+            %}
+            role="link"
+            aria-disabled="true"
+            {%
+            endif
+            %}
+            class="vertical-image-links__card-link{% if bg_image == blank %} vertical-image-links__card-link--placeholder{% endif %}"
+            {%
+            if
+            bg_image
+            !="blank"
+            %}
+            style="background-image: url('{{ bg_image | image_url: width: 800 }}');"
+            {%
+            endif
+            %}
+            aria-label="{{ logo_image.alt | default: 'Image link' | escape }}"
+          >
+            {%- if logo_image != blank -%}
+            <div class="vertical-image-links__card-logo">
+              {{ logo_image | image_url: width: 400 | image_tag: widths: '100, 150, 200, 300, 400', sizes: '200px',
+              loading: 'lazy', alt: logo_image.alt | default: '' }}
+            </div>
+            {%- endif -%}
+          </a>
+        </li>
+        {%- endif -%} {%- endfor -%}
       </ul>
     </div>
-
   </div>
 </vertical-image-links-component>
 
-{% schema %}
-{
-  "name": "Vertical image links",
-  "tag": "section",
-  "class": "section",
-  "disabled_on": {
-    "groups": ["header", "footer"]
-  },
-  "max_blocks": 12,
-  "settings": [
-    {
-      "type": "select",
-      "id": "card_aspect_ratio",
-      "label": "Card aspect ratio",
-      "info": "Controls how many cards are visible at once. Wider ratios show more cards.",
-      "default": "16 / 9",
-      "options": [
-        { "value": "3 / 4", "label": "Portrait (3:4) — ~1 card" },
-        { "value": "1 / 1", "label": "Square (1:1) — ~2 cards" },
-        { "value": "4 / 3", "label": "Landscape (4:3) — ~2 cards" },
-        { "value": "16 / 9", "label": "Widescreen (16:9) — ~3 cards" },
-        { "value": "2 / 1", "label": "Ultra-wide (2:1) — ~3–4 cards" }
-      ]
-    },
-    {
-      "type": "header",
-      "content": "Section padding"
-    },
-    {
-      "type": "range",
-      "id": "padding_top",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "Padding top",
-      "default": 0
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "Padding bottom",
-      "default": 0
-    }
-  ],
-  "blocks": [
-    {
-      "type": "heading",
-      "name": "Heading",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "inline_richtext",
-          "id": "heading",
-          "default": "Your heading here",
-          "label": "Heading"
-        },
-        {
-          "type": "select",
-          "id": "heading_size",
-          "label": "t:sections.all.heading_size.label",
-          "default": "h2",
-          "options": [
-            { "value": "supersize", "label": "t:sections.all.heading_size.options__1.label" },
-            { "value": "h1", "label": "t:sections.all.heading_size.options__2.label" },
-            { "value": "h2", "label": "t:sections.all.heading_size.options__3.label" },
-            { "value": "h3", "label": "t:sections.all.heading_size.options__4.label" },
-            { "value": "h4", "label": "t:sections.all.heading_size.options__5.label" },
-            { "value": "h5", "label": "t:sections.all.heading_size.options__6.label" },
-            { "value": "h6", "label": "t:sections.all.heading_size.options__7.label" },
-            { "value": "small", "label": "t:sections.all.heading_size.options__8.label" }
-          ]
-        }
-      ]
-    },
-    {
-      "type": "text",
-      "name": "Text",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "richtext",
-          "id": "text",
-          "default": "<p>Use this section to describe your brand partners or highlight featured categories.</p>",
-          "label": "Content"
-        },
-        {
-          "type": "select",
-          "id": "text_style",
-          "options": [
-            { "value": "body", "label": "t:sections.all.text_style.options__1.label" },
-            { "value": "large", "label": "t:sections.all.text_style.options__2.label" },
-            { "value": "subtitle", "label": "t:sections.all.text_style.options__3.label" },
-            { "value": "caption-with-letter-spacing", "label": "t:sections.all.text_style.options__4.label" }
-          ],
-          "default": "body",
-          "label": "t:sections.all.text_style.label"
-        }
-      ]
-    },
-    {
-      "type": "buttons",
-      "name": "Buttons",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "header",
-          "content": "Button 1"
-        },
-        {
-          "type": "text",
-          "id": "button_label_1",
-          "label": "Button label",
-          "default": "Explore brands",
-          "info": "Leave blank to hide this button."
-        },
-        {
-          "type": "url",
-          "id": "button_link_1",
-          "label": "Button link"
-        },
-        {
-          "type": "checkbox",
-          "id": "button_style_secondary_1",
-          "label": "Use outline style",
-          "default": false
-        },
-        {
-          "type": "header",
-          "content": "Button 2"
-        },
-        {
-          "type": "text",
-          "id": "button_label_2",
-          "label": "Button label",
-          "info": "Leave blank to hide this button."
-        },
-        {
-          "type": "url",
-          "id": "button_link_2",
-          "label": "Button link"
-        },
-        {
-          "type": "checkbox",
-          "id": "button_style_secondary_2",
-          "label": "Use outline style",
-          "default": true
-        }
-      ]
-    },
-    {
-      "type": "image_link",
-      "name": "Image link",
-      "settings": [
-        {
-          "type": "image_picker",
-          "id": "background_image",
-          "label": "Background image"
-        },
-        {
-          "type": "image_picker",
-          "id": "logo_image",
-          "label": "Logo image"
-        },
-        {
-          "type": "url",
-          "id": "link",
-          "label": "Link"
-        }
-      ]
-    }
-  ],
-  "presets": [
-    {
-      "name": "Vertical image links",
-      "blocks": [
-        { "type": "heading" },
-        { "type": "text" },
-        { "type": "buttons" },
-        { "type": "image_link" },
-        { "type": "image_link" },
-        { "type": "image_link" }
-      ]
-    }
-  ]
-}
-{% endschema %}
+{% schema %} { "name": "Vertical image links", "tag": "section", "class": "section", "disabled_on": { "groups":
+["header", "footer"] }, "max_blocks": 12, "settings": [ { "type": "select", "id": "card_aspect_ratio", "label": "Card
+aspect ratio", "info": "Controls how many cards are visible at once. Wider ratios show more cards.", "default": "16 /
+9", "options": [ { "value": "3 / 4", "label": "Portrait (3:4) — ~1 card" }, { "value": "1 / 1", "label": "Square (1:1) —
+~2 cards" }, { "value": "4 / 3", "label": "Landscape (4:3) — ~2 cards" }, { "value": "16 / 9", "label": "Widescreen
+(16:9) — ~3 cards" }, { "value": "2 / 1", "label": "Ultra-wide (2:1) — ~3–4 cards" } ] }, { "type": "header", "content":
+"Section padding" }, { "type": "range", "id": "padding_top", "min": 0, "max": 100, "step": 4, "unit": "px", "label":
+"Padding top", "default": 0 }, { "type": "range", "id": "padding_bottom", "min": 0, "max": 100, "step": 4, "unit": "px",
+"label": "Padding bottom", "default": 0 } ], "blocks": [ { "type": "heading", "name": "Heading", "limit": 1, "settings":
+[ { "type": "inline_richtext", "id": "heading", "default": "Your heading here", "label": "Heading" }, { "type":
+"select", "id": "heading_size", "label": "t:sections.all.heading_size.label", "default": "h2", "options": [ { "value":
+"supersize", "label": "t:sections.all.heading_size.options__1.label" }, { "value": "h1", "label":
+"t:sections.all.heading_size.options__2.label" }, { "value": "h2", "label":
+"t:sections.all.heading_size.options__3.label" }, { "value": "h3", "label":
+"t:sections.all.heading_size.options__4.label" }, { "value": "h4", "label":
+"t:sections.all.heading_size.options__5.label" }, { "value": "h5", "label":
+"t:sections.all.heading_size.options__6.label" }, { "value": "h6", "label":
+"t:sections.all.heading_size.options__7.label" }, { "value": "small", "label":
+"t:sections.all.heading_size.options__8.label" } ] } ] }, { "type": "text", "name": "Text", "limit": 1, "settings": [ {
+"type": "richtext", "id": "text", "default": "
+<p>Use this section to describe your brand partners or highlight featured categories.</p>
+", "label": "Content" }, { "type": "select", "id": "text_style", "options": [ { "value": "body", "label":
+"t:sections.all.text_style.options__1.label" }, { "value": "large", "label":
+"t:sections.all.text_style.options__2.label" }, { "value": "subtitle", "label":
+"t:sections.all.text_style.options__3.label" }, { "value": "caption-with-letter-spacing", "label":
+"t:sections.all.text_style.options__4.label" } ], "default": "body", "label": "t:sections.all.text_style.label" } ] }, {
+"type": "buttons", "name": "Buttons", "limit": 1, "settings": [ { "type": "header", "content": "Button 1" }, { "type":
+"text", "id": "button_label_1", "label": "Button label", "default": "Explore brands", "info": "Leave blank to hide this
+button." }, { "type": "url", "id": "button_link_1", "label": "Button link" }, { "type": "checkbox", "id":
+"button_style_secondary_1", "label": "Use outline style", "default": false }, { "type": "header", "content": "Button 2"
+}, { "type": "text", "id": "button_label_2", "label": "Button label", "info": "Leave blank to hide this button." }, {
+"type": "url", "id": "button_link_2", "label": "Button link" }, { "type": "checkbox", "id": "button_style_secondary_2",
+"label": "Use outline style", "default": true } ] }, { "type": "image_link", "name": "Image link", "settings": [ {
+"type": "image_picker", "id": "background_image", "label": "Background image" }, { "type": "image_picker", "id":
+"logo_image", "label": "Logo image" }, { "type": "url", "id": "link", "label": "Link" } ] } ], "presets": [ { "name":
+"Vertical image links", "blocks": [ { "type": "heading" }, { "type": "text" }, { "type": "buttons" }, { "type":
+"image_link" }, { "type": "image_link" }, { "type": "image_link" } ] } ] } {% endschema %}
