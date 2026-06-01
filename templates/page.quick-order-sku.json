@@ -10,14 +10,9 @@
 {
   "sections": {
     "main": {
-      "type": "main-page",
-      "settings": {
-        "padding_top": 4,
-        "padding_bottom": 0
-      }
+      "type": "quick-order-sku",
+      "settings": {}
     }
   },
-  "order": [
-    "main"
-  ]
+  "order": ["main"]
 }

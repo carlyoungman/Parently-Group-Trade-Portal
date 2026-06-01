@@ -11,10 +11,58 @@
   "sections": {
     "main": {
       "type": "main-404",
+      "disabled": true,
       "settings": {}
+    },
+    "blocks_nC4UAg": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_b3fd681_T9VPHX": {
+          "type": "ai_gen_block_b3fd681",
+          "settings": {
+            "desktop_width_percent": 100,
+            "gap": 20,
+            "border_radius": 20,
+            "show_text_on_hover": false,
+            "text_size": 16,
+            "text_color": "#ffffff",
+            "overlay_opacity": 0.5,
+            "title_1": "",
+            "link_1": "",
+            "title_2": "",
+            "link_2": "",
+            "title_3": "",
+            "link_3": "",
+            "title_4": "",
+            "link_4": "",
+            "title_5": "",
+            "link_5": "",
+            "title_6": "",
+            "link_6": ""
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_b3fd681_T9VPHX"
+      ],
+      "disabled": true,
+      "name": "Image grid row",
+      "settings": {}
+    },
+    "quick_order_sku_EcHV8F": {
+      "type": "quick-order-sku",
+      "name": "Quick Order SKU",
+      "settings": {
+        "collection": "",
+        "phone_number": "0161 234 5678",
+        "support_email": "trade@parentlygroup.com"
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "blocks_nC4UAg",
+    "quick_order_sku_EcHV8F"
   ]
 }

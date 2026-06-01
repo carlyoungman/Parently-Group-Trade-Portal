@@ -1,0 +1,107 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "padding_top": 36,
+        "padding_bottom": 0
+      }
+    },
+    "image_with_text_9WtNet": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_eeEAmh": {
+          "type": "heading",
+          "settings": {
+            "heading": "",
+            "heading_size": "h1"
+          }
+        },
+        "text_gGWU88": {
+          "type": "text",
+          "settings": {
+            "text": "<p>We’ve worked hard to get deeper into the circular story and really thought about how we might be able to support our retailers with this latest sustainable launch. With over a decade of experience in telling the Bottle to Blazer story it made sense to look at what has been popular over the years and which resources have really resonated with schools and our retailers, we’ve reviewed them and thought about how we might bring them to life with a circular spin.</p>",
+            "text_style": "body"
+          }
+        },
+        "button_9C9ppK": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button_label": "Button label",
+            "button_link": "",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_eeEAmh",
+        "text_gGWU88",
+        "button_9C9ppK"
+      ],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "image_background_color": "",
+        "text_background_color": "",
+        "content_text_color": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "rich_text_7496Yg": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_pPFB3j": {
+          "type": "heading",
+          "settings": {
+            "heading": "",
+            "heading_size": "h2"
+          }
+        },
+        "text_TWfx3H": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Having listened to the feedback from the industry as to what kind of assets are genuinely useful, another area we have developed are standalone items that you can incorporate into your own materials, whether that’s your own newsletters, your LinkedIn posts, in-store banners. There is a whole suite of resources that will be available to you.</p><p>We’ve done a lot of thinking about what we believe is going to be useful to bring this story to life but we’re also very open to adapting and personalising most of the below, please get in touch at <a href=\"mailto:%20sales@davidluke.com\" target=\"_blank\">sales@davidluke.com</a> to discuss your requirements.</p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "heading_pPFB3j",
+        "text_TWfx3H"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "full_width": true,
+        "background_color": "#ffffff",
+        "text_color": "#000000",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "main",
+    "image_with_text_9WtNet",
+    "rich_text_7496Yg"
+  ]
+}

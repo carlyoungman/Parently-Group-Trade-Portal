@@ -9,15 +9,14 @@
  */
 {
   "sections": {
-    "main": {
-      "type": "main-page",
+    "clearance": {
+      "type": "clearance",
       "settings": {
-        "padding_top": 4,
-        "padding_bottom": 0
+        "page_title": "Clearance",
+        "page_subtitle": "End of line and clearance stock — available while supplies last",
+        "require_login": true
       }
     }
   },
-  "order": [
-    "main"
-  ]
+  "order": ["clearance"]
 }

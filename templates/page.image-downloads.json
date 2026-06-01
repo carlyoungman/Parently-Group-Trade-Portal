@@ -1,0 +1,78 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "image_downloads": {
+      "type": "image-downloads",
+      "blocks": {
+        "asset_jMeCWb": {
+          "type": "asset",
+          "settings": {
+            "brand": "dl",
+            "asset_name": "DL-AW26-HERO-01",
+            "asset_url": "",
+            "asset_size": "0 MB · JPG",
+            "asset_type": "campaign"
+          }
+        },
+        "brand_section_VNEDEg": {
+          "type": "brand_section",
+          "settings": {
+            "brand": "dl",
+            "section_title": "Trousers"
+          }
+        },
+        "asset_7TWNnJ": {
+          "type": "asset",
+          "settings": {
+            "brand": "dl",
+            "thumbnail": "shopify://shop_images/DL990-ECO_Black_74b24fe3-dc8c-41f0-b7f6-be0efa9ac964.jpg",
+            "asset_name": "DL990",
+            "asset_url": "https://cdn.shopify.com/s/files/1/1022/1859/6616/files/DL990_shopify_images.zip?v=1779195800",
+            "asset_size": "0 MB · JPG",
+            "asset_type": "product"
+          }
+        },
+        "zip_pack_UbVmqe": {
+          "type": "zip_pack",
+          "settings": {
+            "brand": "dl",
+            "pack_name": "AW26 — full asset pack",
+            "pack_detail": "0 files · 0 MB",
+            "pack_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "asset_jMeCWb",
+        "brand_section_VNEDEg",
+        "asset_7TWNnJ",
+        "zip_pack_UbVmqe"
+      ],
+      "settings": {
+        "page_title": "Image Downloads",
+        "page_intro": "Download approved campaign, product, and lifestyle assets for your channels. Packs updated each season.",
+        "brand_1_label": "David Luke",
+        "brand_2_label": "Grass & Air",
+        "brand_3_label": "Lelli Kelly",
+        "brand_4_label": "Term",
+        "brand_5_label": "Little Classmates",
+        "brand_6_label": "Juco",
+        "require_login": true,
+        "required_tag": "",
+        "accent_color": "#4ea043",
+        "tab_active_color": "#4ea043"
+      }
+    }
+  },
+  "order": [
+    "image_downloads"
+  ]
+}

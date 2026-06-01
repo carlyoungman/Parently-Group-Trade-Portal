@@ -20,9 +20,50 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
+    },
+    "177919024303bf0d06": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_b3fd681_TAkyce": {
+          "type": "ai_gen_block_b3fd681",
+          "settings": {
+            "desktop_width_percent": 100,
+            "gap": 20,
+            "border_radius": 20,
+            "show_text_on_hover": false,
+            "text_size": 16,
+            "text_color": "#ffffff",
+            "overlay_opacity": 0.5,
+            "image_1": "shopify://shop_images/parently-group-trade-portal-brands-david-luke-logo.avif",
+            "title_1": "David Luke Images",
+            "link_1": "",
+            "image_2": "shopify://shop_images/parently-group-trade-portal-brands-grass-and-air-logo.webp",
+            "title_2": "Grass & Air Images",
+            "link_2": "",
+            "image_3": "shopify://shop_images/parently-group-trade-portal-brands-lelli-kelli-logo.png",
+            "title_3": "Lelli Kelly",
+            "link_3": "",
+            "image_4": "shopify://shop_images/Term_Footwear_-_BLUE_2.png",
+            "title_4": "Term Images",
+            "link_4": "",
+            "image_5": "shopify://shop_images/Little_Classmates_-_Full_Colour.jpg",
+            "title_5": "Little Classmates Images",
+            "link_5": "",
+            "image_6": "shopify://shop_images/JUCO_-_Black.png",
+            "title_6": "Juco Images",
+            "link_6": ""
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_b3fd681_TAkyce"
+      ],
+      "settings": {}
     }
   },
   "order": [
-    "main"
+    "main",
+    "177919024303bf0d06"
   ]
 }

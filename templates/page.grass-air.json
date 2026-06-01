@@ -62,7 +62,8 @@
         "text_AkdkkE": {
           "type": "text",
           "settings": {
-            "text": "<p>Our colour-revealing wellies are a staple of any day-trip while our outerwear, swimwear and accessories are fast establishing themselves as essential kit. Closing the loop on consumption is one of our brand goals, can you resist reading more?</p>"
+            "text": "<p>Our colour-revealing wellies are a staple of any day-trip while our outerwear, swimwear and accessories are fast establishing themselves as essential kit. Closing the loop on consumption is one of our brand goals, can you resist reading more?</p>",
+            "text_style": "body"
           }
         }
       },
@@ -75,6 +76,8 @@
         "desktop_content_position": "center",
         "content_alignment": "center",
         "full_width": true,
+        "background_color": "#ffffff",
+        "text_color": "#000000",
         "padding_top": 0,
         "padding_bottom": 0
       }
@@ -225,6 +228,39 @@
         "padding_bottom": 0
       }
     },
+    "rich_text_DPARXL": {
+      "type": "rich-text",
+      "blocks": {
+        "image_bcBiPV": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/image.svg",
+            "image_width": "small"
+          }
+        },
+        "text_QwYwyD": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>Lorem Ipsum</strong>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.<br/><br/></p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "image_bcBiPV",
+        "text_QwYwyD"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "full_width": true,
+        "background_color": "#335a94",
+        "text_color": "#ffffff",
+        "padding_top": 100,
+        "padding_bottom": 100
+      }
+    },
     "image_grid_with_content_wT8eaB": {
       "type": "image-grid-with-content",
       "name": "Image grid with content",
@@ -315,6 +351,7 @@
     "coloured_background_slider_b7L7wA",
     "link_panels_tAkifK",
     "tabbed_featured_collections_c8BL9N",
+    "rich_text_DPARXL",
     "image_grid_with_content_wT8eaB",
     "gallery_grid_NLQipr"
   ]

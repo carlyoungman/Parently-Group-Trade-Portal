@@ -1,0 +1,337 @@
+/* ==========================================================
+   Image Downloads — The Parently Group Trade Portal
+   File: assets/section-image-downloads.css
+   ========================================================== */
+
+/* ── Variables ── */
+:root {
+  --dl-green: #4ea043;
+  --dl-green-dark: #3a7a30;
+  --dl-dark: #1a1a1a;
+  --dl-mid: #555;
+  --dl-muted: #888;
+  --dl-light: #f4f4f2;
+  --dl-white: #ffffff;
+  --dl-border: rgba(0, 0, 0, 0.08);
+  --dl-radius: 8px;
+  --dl-radius-pill: 50px;
+}
+
+/* ── Wrapper ── */
+.pg-downloads {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 40px 60px;
+  font-family: var(--font-body-family, sans-serif);
+  color: var(--dl-dark);
+}
+
+@media (max-width: 768px) {
+  .pg-downloads {
+    padding: 0 16px 40px;
+  }
+}
+
+/* ── Brand tabs ── */
+.pg-downloads__tabs-wrap {
+  padding: 28px 0 0;
+  border-bottom: 1px solid var(--dl-border);
+  margin-bottom: 28px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.pg-downloads__tabs-wrap::-webkit-scrollbar { display: none; }
+
+.pg-downloads__tabs {
+  display: flex;
+  gap: 4px;
+  min-width: max-content;
+}
+
+.pg-downloads__tab {
+  padding: 10px 22px;
+  font-size: 13.5px;
+  font-weight: 500;
+  font-family: inherit;
+  border: none;
+  background: none;
+  color: var(--dl-muted);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition: color 0.15s, border-color 0.15s;
+  white-space: nowrap;
+}
+.pg-downloads__tab:hover { color: var(--dl-dark); }
+.pg-downloads__tab.is-active {
+  color: var(--dl-dark);
+  border-bottom-color: var(--dl-green);
+}
+
+/* ── Brand panels ── */
+.pg-downloads__panel { display: none; }
+.pg-downloads__panel.is-active { display: block; }
+
+/* ── Filter chips ── */
+.pg-downloads__filters {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+.pg-downloads__filter-label {
+  font-size: 12px;
+  color: var(--dl-muted);
+  margin-right: 4px;
+}
+.pg-downloads__chip {
+  padding: 5px 14px;
+  font-size: 12px;
+  font-family: inherit;
+  border-radius: var(--dl-radius-pill);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  background: transparent;
+  color: var(--dl-muted);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.pg-downloads__chip:hover {
+  border-color: rgba(0, 0, 0, 0.3);
+  color: var(--dl-dark);
+}
+.pg-downloads__chip.is-active {
+  background: var(--dl-green);
+  border-color: var(--dl-green);
+  color: #fff;
+  font-weight: 500;
+}
+
+/* ── Section heading ── */
+.pg-downloads__section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+.pg-downloads__section-title {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--dl-muted);
+}
+
+/* ── Ghost button ── */
+.pg-downloads__btn-ghost {
+  padding: 6px 14px;
+  font-size: 12px;
+  font-family: inherit;
+  font-weight: 500;
+  border-radius: var(--dl-radius-pill);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  background: transparent;
+  color: var(--dl-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.15s;
+}
+.pg-downloads__btn-ghost:hover {
+  border-color: var(--dl-green);
+  color: var(--dl-green);
+}
+
+/* ── Image grid ── */
+.pg-downloads__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+  margin-bottom: 36px;
+}
+
+@media (max-width: 600px) {
+  .pg-downloads__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ── Image card ── */
+.pg-downloads__card {
+  background: var(--dl-white);
+  border: 1px solid var(--dl-border);
+  border-radius: var(--dl-radius);
+  overflow: hidden;
+  transition: border-color 0.15s, transform 0.15s, box-shadow 0.15s;
+}
+.pg-downloads__card:hover {
+  border-color: rgba(78, 160, 67, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+/* ── Thumbnail ── */
+.pg-downloads__thumb {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background: #f0f0ee;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pg-downloads__thumb-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.pg-downloads__thumb-placeholder,
+.pg-downloads__thumb-file-icon {
+  color: #ccc;
+}
+
+/* ── Hover overlay ── */
+.pg-downloads__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  opacity: 0;
+  transition: opacity 0.18s;
+}
+.pg-downloads__card:hover .pg-downloads__overlay { opacity: 1; }
+
+.pg-downloads__oov-btn,
+.pg-downloads__ov-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.95);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--dl-dark);
+  text-decoration: none;
+  transition: transform 0.12s;
+}
+.pg-downloads__oov-btn:hover,
+.pg-downloads__ov-btn:hover { transform: scale(1.1); }
+.pg-downloads__oov-btn--green {
+  background: var(--dl-green);
+  color: #fff;
+}
+
+/* ── Card metadata ── */
+.pg-downloads__meta {
+  padding: 10px 12px 12px;
+  border-top: 1px solid var(--dl-border);
+  background: var(--dl-white);
+}
+.pg-downloads__asset-name {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--dl-dark);
+  margin-bottom: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.pg-downloads__asset-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.pg-downloads__asset-size {
+  font-size: 11px;
+  color: var(--dl-muted);
+}
+
+/* ── Badges ── */
+.pg-downloads__badge {
+  font-size: 10px;
+  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: 20px;
+  letter-spacing: 0.02em;
+}
+/* Brand-specific badge colours — extend as needed */
+.pg-downloads__badge--campaign   { background: #f0e6d6; color: #7a4a1a; }
+.pg-downloads__badge--product    { background: #e6f0e8; color: #2a5e30; }
+.pg-downloads__badge--lifestyle  { background: #e6eaf4; color: #2a3a7a; }
+.pg-downloads__badge--logos      { background: #f4e6f0; color: #6a2a5e; }
+
+/* ── ZIP pack cards ── */
+.pg-downloads__packs {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 40px;
+}
+.pg-downloads__pack-card {
+  background: var(--dl-light);
+  border: 1px solid var(--dl-border);
+  border-radius: var(--dl-radius);
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  transition: border-color 0.15s;
+}
+.pg-downloads__pack-card:hover { border-color: rgba(78, 160, 67, 0.35); }
+.pg-downloads__pack-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.pg-downloads__pack-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--dl-radius);
+  background: #e8f5e5;
+  color: var(--dl-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.pg-downloads__pack-name {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--dl-dark);
+  margin-bottom: 3px;
+}
+.pg-downloads__pack-sub {
+  font-size: 11.5px;
+  color: var(--dl-muted);
+}
+
+/* ── Green CTA button ── */
+.pg-downloads__btn-green {
+  padding: 8px 18px;
+  font-size: 12.5px;
+  font-family: inherit;
+  font-weight: 500;
+  border-radius: var(--dl-radius-pill);
+  border: none;
+  background: var(--dl-green);
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: background 0.15s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.pg-downloads__btn-green:hover { background: var(--dl-green-dark); }

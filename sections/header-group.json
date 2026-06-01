@@ -55,10 +55,21 @@
         "padding_top": 16,
         "padding_bottom": 16
       }
+    },
+    "quick_order_sku_NGQj9M": {
+      "type": "quick-order-sku",
+      "disabled": true,
+      "name": "Quick Order SKU",
+      "settings": {
+        "collection": "",
+        "phone_number": "0161 234 5678",
+        "support_email": "trade@parentlygroup.com"
+      }
     }
   },
   "order": [
     "announcement-bar",
-    "header"
+    "header",
+    "quick_order_sku_NGQj9M"
   ]
 }

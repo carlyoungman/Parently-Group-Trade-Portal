@@ -1,0 +1,207 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "media_hub": {
+      "type": "media-hub",
+      "disabled": true,
+      "settings": {
+        "page_title": "Media hub",
+        "page_subtitle": "Assets, press resources and brand materials for trade partners",
+        "require_login": true
+      }
+    },
+    "media_hub_h8byrW": {
+      "type": "media-hub",
+      "blocks": {
+        "resource_ER7pr7": {
+          "type": "resource",
+          "settings": {
+            "title": "Catalogues & lookbooks",
+            "subtitle": "Season catalogues, range lookbooks and buyer guides",
+            "category": "Marketing",
+            "resource_type": "Product sheets",
+            "brand": "All brands",
+            "icon": "book",
+            "thumb_style": "mktg",
+            "link": "shopify://pages/catalogue-2026"
+          }
+        },
+        "resource_xK6gTL": {
+          "type": "resource",
+          "settings": {
+            "title": "Image downloads",
+            "subtitle": "Product photography, lifestyle and campaign imagery",
+            "category": "Marketing",
+            "resource_type": "Imagery",
+            "brand": "All brands",
+            "icon": "image",
+            "thumb_style": "mktg",
+            "link": "shopify://pages/image-downloads"
+          }
+        },
+        "resource_mdTyeF": {
+          "type": "resource",
+          "settings": {
+            "title": "Point of sale",
+            "subtitle": "In-store POS materials, posters and display assets",
+            "category": "Marketing",
+            "resource_type": "Other",
+            "brand": "All brands",
+            "icon": "map-pin",
+            "thumb_style": "mktg",
+            "link": "shopify://pages/point-of-sale"
+          }
+        },
+        "resource_iAzzFp": {
+          "type": "resource",
+          "settings": {
+            "title": "Website & social assets",
+            "subtitle": "Digital banners, social crops and web-ready imagery",
+            "category": "Marketing",
+            "resource_type": "Social media",
+            "brand": "All brands",
+            "icon": "monitor",
+            "thumb_style": "mktg",
+            "link": "shopify://pages/social-assets"
+          }
+        },
+        "resource_z8bwJ7": {
+          "type": "resource",
+          "settings": {
+            "title": "Product descriptions",
+            "subtitle": "Approved copy, product specs and feature summaries",
+            "category": "Marketing",
+            "resource_type": "Product sheets",
+            "brand": "All brands",
+            "icon": "file-text",
+            "thumb_style": "mktg",
+            "link": "shopify://pages/product-descriptions"
+          }
+        },
+        "resource_ptq8AB": {
+          "type": "resource",
+          "settings": {
+            "title": "Videos",
+            "subtitle": "Product and brand video assets",
+            "category": "Marketing",
+            "resource_type": "Imagery",
+            "brand": "All brands",
+            "icon": "file-text",
+            "thumb_style": "mktg",
+            "link": ""
+          }
+        },
+        "resource_dD4gHR": {
+          "type": "resource",
+          "settings": {
+            "title": "Policies",
+            "subtitle": "Environmental, ethical trading and supply chain policies",
+            "category": "Sustainability",
+            "resource_type": "Policies",
+            "brand": "All brands",
+            "icon": "download",
+            "thumb_style": "sustain",
+            "link": "shopify://pages/our-policies"
+          }
+        },
+        "resource_wfEqN6": {
+          "type": "resource",
+          "settings": {
+            "title": "Compliance sheets",
+            "subtitle": "Product compliance, testing and certification documents",
+            "category": "Sustainability",
+            "resource_type": "Compliance",
+            "brand": "All brands",
+            "icon": "check-circle",
+            "thumb_style": "sustain",
+            "link": "shopify://pages/compliance-sheets"
+          }
+        },
+        "resource_wTVt7N": {
+          "type": "resource",
+          "settings": {
+            "title": "Circular assets",
+            "subtitle": "Recycling, end-of-life and circular economy materials",
+            "category": "Sustainability",
+            "resource_type": "Other",
+            "brand": "All brands",
+            "icon": "refresh",
+            "thumb_style": "sustain",
+            "link": "shopify://pages/circular-assets-1"
+          }
+        },
+        "resource_FBjw9h": {
+          "type": "resource",
+          "settings": {
+            "title": "Eco-uniform assets",
+            "subtitle": "Eco range marketing materials and sustainability claims",
+            "category": "Sustainability",
+            "resource_type": "Other",
+            "brand": "All brands",
+            "icon": "leaf",
+            "thumb_style": "sustain",
+            "link": "shopify://pages/eco-uniform"
+          }
+        },
+        "resource_fMLk9n": {
+          "type": "resource",
+          "settings": {
+            "title": "Re:Uniform",
+            "subtitle": "Resale and re-use programme assets and partner materials",
+            "category": "Sustainability",
+            "resource_type": "Other",
+            "brand": "All brands",
+            "icon": "repeat",
+            "thumb_style": "sustain",
+            "link": "shopify://pages/re-uniform"
+          }
+        },
+        "resource_wjVPkx": {
+          "type": "resource",
+          "settings": {
+            "title": "Lesson plans",
+            "subtitle": "Educational resources and sustainability lesson content",
+            "category": "Sustainability",
+            "resource_type": "Other",
+            "brand": "All brands",
+            "icon": "graduation",
+            "thumb_style": "sustain",
+            "link": "shopify://pages/lesson-plans"
+          }
+        }
+      },
+      "block_order": [
+        "resource_ER7pr7",
+        "resource_xK6gTL",
+        "resource_mdTyeF",
+        "resource_iAzzFp",
+        "resource_z8bwJ7",
+        "resource_ptq8AB",
+        "resource_dD4gHR",
+        "resource_wfEqN6",
+        "resource_wTVt7N",
+        "resource_FBjw9h",
+        "resource_fMLk9n",
+        "resource_wjVPkx"
+      ],
+      "name": "Media Hub",
+      "settings": {
+        "page_title": "Media hub",
+        "page_subtitle": "Image downloads, catalogues and marketing assets, everything you need at the Media Hub.",
+        "require_login": true
+      }
+    }
+  },
+  "order": [
+    "media_hub",
+    "media_hub_h8byrW"
+  ]
+}

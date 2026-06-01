@@ -1,0 +1,269 @@
+/* ==========================================================
+   Catalogues & Lookbooks — The Parently Group Trade Portal
+   File: assets/section-catalogues.css
+   ========================================================== */
+
+.cat-wrap {
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 14px;
+  color: #0e0e0e;
+  background: #f5f5f0;
+  min-height: 60vh;
+}
+
+/* ── Page header ── */
+.cat-page-header {
+  background: #0e0e0e;
+  padding: 24px 28px 0;
+  border-bottom: 3px solid #73ae70;
+}
+.cat-page-title {
+  font-size: 26px;
+  font-weight: 300;
+  color: #fff;
+  letter-spacing: 0.02em;
+  margin-bottom: 4px;
+}
+.cat-page-sub {
+  font-size: 12px;
+  color: rgba(255,255,255,0.5);
+  padding-bottom: 18px;
+}
+
+/* ── Body ── */
+.cat-body { padding: 24px 28px 48px; }
+
+/* ── Toolbar ── */
+.cat-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+.cat-search-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  border: 1.5px solid #d8d8d2;
+  border-radius: 8px;
+  padding: 9px 14px;
+  color: #6b6b65;
+  transition: border-color 0.15s;
+  min-width: 220px;
+}
+.cat-search-bar:focus-within { border-color: #73ae70; }
+.cat-search-bar input {
+  border: none;
+  outline: none;
+  font-size: 13px;
+  font-family: inherit;
+  color: #0e0e0e;
+  background: transparent;
+  width: 100%;
+}
+.cat-search-bar input::placeholder { color: #bbb; }
+
+/* ── Filter chips ── */
+.cat-chips {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.cat-chip {
+  padding: 5px 14px;
+  font-size: 11px;
+  font-weight: 500;
+  font-family: inherit;
+  border-radius: 20px;
+  border: 1px solid #d8d8d2;
+  background: #fff;
+  color: #6b6b65;
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+.cat-chip:hover { border-color: #73ae70; color: #4d8a4a; }
+.cat-chip.is-active {
+  background: #73ae70;
+  border-color: #73ae70;
+  color: #fff;
+}
+
+/* ── Section heading ── */
+.cat-section { margin-bottom: 32px; }
+.cat-section-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #73ae70;
+}
+.cat-section-title {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #0e0e0e;
+}
+.cat-section-count {
+  font-size: 11px;
+  color: #6b6b65;
+}
+
+/* ── Grid ── */
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+}
+@media (max-width: 600px) {
+  .cat-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .cat-body { padding: 16px; }
+}
+
+/* ── Card ── */
+.cat-card {
+  background: #fff;
+  border: 1px solid #d8d8d2;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: border-color 0.15s, transform 0.12s;
+}
+.cat-card:hover {
+  border-color: #73ae70;
+  transform: translateY(-2px);
+}
+
+/* ── Cover ── */
+.cat-cover {
+  aspect-ratio: 3 / 4;
+  background: #e8e8e2;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cat-cover-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.cat-cover-placeholder {
+  color: #888;
+}
+.cat-cover-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 8px 10px 10px;
+  background: rgba(14,14,14,0.78);
+}
+.cat-cover-brand {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #73ae70;
+  margin-bottom: 2px;
+}
+.cat-cover-title {
+  font-size: 11px;
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.3;
+}
+.cat-new-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: #73ae70;
+  color: #fff;
+  font-size: 9px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 10px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* ── Card body ── */
+.cat-card-body { padding: 10px 12px 12px; }
+.cat-card-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.cat-season-label {
+  font-size: 11px;
+  color: #6b6b65;
+}
+.cat-file-size {
+  font-size: 11px;
+  color: #6b6b65;
+}
+
+/* ── Buttons ── */
+.cat-card-actions {
+  display: flex;
+  gap: 6px;
+}
+.cat-btn-preview {
+  flex: 1;
+  padding: 6px 0;
+  font-size: 11px;
+  font-weight: 600;
+  font-family: inherit;
+  border: 1px solid #d8d8d2;
+  border-radius: 6px;
+  background: #fff;
+  color: #0e0e0e;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  text-decoration: none;
+  transition: border-color 0.15s;
+}
+.cat-btn-preview:hover { border-color: #0e0e0e; }
+.cat-btn-download {
+  flex: 1;
+  padding: 6px 0;
+  font-size: 11px;
+  font-weight: 600;
+  font-family: inherit;
+  border: none;
+  border-radius: 6px;
+  background: #73ae70;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  transition: background 0.15s;
+}
+.cat-btn-download:hover { background: #4d8a4a; }
+.cat-btn-coming {
+  flex: 1;
+  text-align: center;
+  font-size: 11px;
+  color: #bbb;
+  font-style: italic;
+  padding: 6px 0;
+  display: block;
+}
+
+/* ── States ── */
+.cat-empty,
+.cat-no-content {
+  font-size: 13px;
+  color: #6b6b65;
+  padding: 24px 0;
+}
