@@ -203,14 +203,14 @@ $pbo-radius-sm:    0.6rem;
   &__size-cell {
     padding: 1.6rem 1.2rem;
     text-align: center;
-    vertical-align: top;
+    vertical-align: middle;
     white-space: nowrap;
     width: 200px;
   }
 
   &__cell {
     padding: 1.6rem 1.2rem;
-    vertical-align: top;
+    vertical-align: middle;
     text-align: center;
   }
 
@@ -269,7 +269,7 @@ $pbo-radius-sm:    0.6rem;
   &__row-total {
     padding: 1.6rem 1.2rem;
     text-align: center;
-    vertical-align: top;
+    vertical-align: middle;
     white-space: nowrap;
     width: 200px;
 
