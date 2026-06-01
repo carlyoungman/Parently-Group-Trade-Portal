@@ -1,100 +1,397 @@
 <style>
-:root{--cl-putty:#f5f5f0;--cl-black:#0e0e0e;--cl-eco:#73ae70;--cl-eco-dark:#4d8a4a;--cl-muted:#6b6b65;--cl-border:#d8d8d2;--cl-white:#ffffff;--cl-red:#c0392b;--cl-red-light:#fdf0ee;--cl-font:'Nunito Sans',sans-serif}
-.cl-page-header{background:var(--cl-black);padding:24px 28px 0;border-bottom:3px solid var(--cl-eco)}
-.cl-page-title{font-size:26px;font-weight:300;color:#fff;letter-spacing:.02em;margin-bottom:4px;font-family:var(--cl-font)}
-.cl-page-sub{font-size:12px;color:rgba(255,255,255,.5);padding-bottom:18px;font-family:var(--cl-font)}
-.cl-wrap{background:var(--cl-putty);min-height:60vh;font-family:var(--cl-font);font-size:14px;color:var(--cl-black)}
-.cl-body{padding:24px 28px 48px}
-.cl-toolbar{display:flex;align-items:center;gap:12px;margin-bottom:24px;flex-wrap:wrap}
-.cl-search-bar{display:flex;align-items:center;gap:8px;background:#fff;border:1.5px solid var(--cl-border);border-radius:8px;padding:9px 14px;color:var(--cl-muted);transition:border-color .15s;min-width:220px}
-.cl-search-bar:focus-within{border-color:var(--cl-eco)}
-.cl-search-bar input{border:none;outline:none;font-size:13px;font-family:inherit;color:var(--cl-black);background:transparent;width:100%}
-.cl-search-bar input::placeholder{color:#bbb}
-.cl-chips{display:flex;gap:6px;flex-wrap:wrap}
-.cl-chip{padding:5px 14px;font-size:11px;font-weight:500;font-family:inherit;border-radius:20px;border:1px solid var(--cl-border);background:#fff;color:var(--cl-muted);cursor:pointer;transition:all .15s;white-space:nowrap}
-.cl-chip:hover{border-color:var(--cl-eco);color:var(--cl-eco-dark)}
-.cl-chip.is-active{background:var(--cl-eco);border-color:var(--cl-eco);color:#fff}
-.cl-sort{margin-left:auto;display:flex;align-items:center;gap:8px}
-.cl-sort label{font-size:12px;color:var(--cl-muted);white-space:nowrap}
-.cl-sort select{font-size:12px;font-family:inherit;border:1px solid var(--cl-border);border-radius:6px;padding:6px 10px;background:#fff;color:var(--cl-black);cursor:pointer;outline:none}
-.cl-sort select:focus{border-color:var(--cl-eco)}
-.cl-results-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
-.cl-results-count{font-size:12px;color:var(--cl-muted)}
-.cl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:16px}
-@media(max-width:600px){.cl-grid{grid-template-columns:repeat(2,1fr);gap:10px}.cl-body{padding:16px}}
-.cl-card{background:#fff;border:1px solid var(--cl-border);border-radius:10px;overflow:hidden;transition:border-color .15s,transform .12s;display:flex;flex-direction:column}
-.cl-card:hover{border-color:var(--cl-eco);transform:translateY(-2px)}
-.cl-img-wrap{aspect-ratio:1/1;background:#f0f0ee;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
-.cl-img-wrap img{width:100%;height:100%;object-fit:cover;display:block}
-.cl-img-placeholder{color:#ccc}
-.cl-badge-wrap{position:absolute;top:8px;left:8px;display:flex;flex-direction:column;gap:4px}
-.cl-badge-sale{background:var(--cl-red);color:#fff;font-size:9px;font-weight:700;padding:3px 8px;border-radius:10px;letter-spacing:.04em}
-.cl-badge-low{background:#f39c12;color:#fff;font-size:9px;font-weight:700;padding:3px 8px;border-radius:10px;letter-spacing:.04em}
-.cl-badge-brand{background:var(--cl-black);color:#fff;font-size:9px;font-weight:600;padding:3px 8px;border-radius:10px;letter-spacing:.04em}
-.cl-card-body{padding:12px 14px 14px;flex:1;display:flex;flex-direction:column}
-.cl-brand{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--cl-eco-dark);margin-bottom:4px}
-.cl-title{font-size:13px;font-weight:600;color:var(--cl-black);margin-bottom:6px;line-height:1.35}
-.cl-variants{font-size:11px;color:var(--cl-muted);margin-bottom:8px}
-.cl-price-row{display:flex;align-items:baseline;gap:8px;margin-bottom:12px;margin-top:auto}
-.cl-price{font-size:16px;font-weight:700;color:var(--cl-red)}
-.cl-compare{font-size:12px;color:var(--cl-muted);text-decoration:line-through}
-.cl-saving{font-size:11px;font-weight:600;color:var(--cl-red);background:var(--cl-red-light);padding:2px 7px;border-radius:10px}
-.cl-btn-add{width:100%;padding:9px 0;font-size:12px;font-weight:600;font-family:inherit;border:none;border-radius:7px;background:var(--cl-eco);color:#fff;cursor:pointer;transition:background .15s;display:flex;align-items:center;justify-content:center;gap:6px}
-.cl-btn-add:hover{background:var(--cl-eco-dark)}
-.cl-btn-add:disabled{background:#ccc;cursor:not-allowed}
-.cl-btn-view{width:100%;padding:9px 0;font-size:12px;font-weight:600;font-family:inherit;border:1px solid var(--cl-border);border-radius:7px;background:#fff;color:var(--cl-black);cursor:pointer;transition:border-color .15s;display:flex;align-items:center;justify-content:center;gap:6px;text-decoration:none;margin-top:6px}
-.cl-btn-view:hover{border-color:var(--cl-black)}
-.cl-empty{text-align:center;padding:48px 0;color:var(--cl-muted);font-size:14px}
-.cl-pagination{display:flex;justify-content:center;gap:8px;margin-top:32px;flex-wrap:wrap}
-.cl-page-btn{padding:7px 14px;font-size:12px;font-family:inherit;border:1px solid var(--cl-border);border-radius:6px;background:#fff;color:var(--cl-black);cursor:pointer;transition:all .15s}
-.cl-page-btn:hover{border-color:var(--cl-eco);color:var(--cl-eco-dark)}
-.cl-page-btn.is-active{background:var(--cl-eco);border-color:var(--cl-eco);color:#fff}
+  :root {
+    --cl-putty: #f5f5f0;
+    --cl-black: #0e0e0e;
+    --cl-eco: #73ae70;
+    --cl-eco-dark: #4d8a4a;
+    --cl-muted: #6b6b65;
+    --cl-border: #d8d8d2;
+    --cl-white: #ffffff;
+    --cl-red: #c0392b;
+    --cl-red-light: #fdf0ee;
+    --cl-font: 'Nunito Sans', sans-serif;
+  }
+  .cl-page-header {
+    background: var(--cl-black);
+    padding: 24px 28px 0;
+    border-bottom: 3px solid var(--cl-eco);
+  }
+  .cl-page-title {
+    font-size: 26px;
+    font-weight: 300;
+    color: #fff;
+    letter-spacing: 0.02em;
+    margin-bottom: 4px;
+    font-family: var(--cl-font);
+  }
+  .cl-page-sub {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.5);
+    padding-bottom: 18px;
+    font-family: var(--cl-font);
+  }
+  .cl-wrap {
+    background: var(--cl-putty);
+    min-height: 60vh;
+    font-family: var(--cl-font);
+    font-size: 14px;
+    color: var(--cl-black);
+  }
+  .cl-body {
+    padding: 24px 28px 48px;
+  }
+  .cl-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+  .cl-search-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #fff;
+    border: 1.5px solid var(--cl-border);
+    border-radius: 8px;
+    padding: 9px 14px;
+    color: var(--cl-muted);
+    transition: border-color 0.15s;
+    min-width: 220px;
+  }
+  .cl-search-bar:focus-within {
+    border-color: var(--cl-eco);
+  }
+  .cl-search-bar input {
+    border: none;
+    outline: none;
+    font-size: 13px;
+    font-family: inherit;
+    color: var(--cl-black);
+    background: transparent;
+    width: 100%;
+  }
+  .cl-search-bar input::placeholder {
+    color: #bbb;
+  }
+  .cl-chips {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .cl-chip {
+    padding: 5px 14px;
+    font-size: 11px;
+    font-weight: 500;
+    font-family: inherit;
+    border-radius: 20px;
+    border: 1px solid var(--cl-border);
+    background: #fff;
+    color: var(--cl-muted);
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .cl-chip:hover {
+    border-color: var(--cl-eco);
+    color: var(--cl-eco-dark);
+  }
+  .cl-chip.is-active {
+    background: var(--cl-eco);
+    border-color: var(--cl-eco);
+    color: #fff;
+  }
+  .cl-sort {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .cl-sort label {
+    font-size: 12px;
+    color: var(--cl-muted);
+    white-space: nowrap;
+  }
+  .cl-sort select {
+    font-size: 12px;
+    font-family: inherit;
+    border: 1px solid var(--cl-border);
+    border-radius: 6px;
+    padding: 6px 10px;
+    background: #fff;
+    color: var(--cl-black);
+    cursor: pointer;
+    outline: none;
+  }
+  .cl-sort select:focus {
+    border-color: var(--cl-eco);
+  }
+  .cl-results-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+  }
+  .cl-results-count {
+    font-size: 12px;
+    color: var(--cl-muted);
+  }
+  .cl-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    gap: 16px;
+  }
+  @media (max-width: 600px) {
+    .cl-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+    .cl-body {
+      padding: 16px;
+    }
+  }
+  .cl-card {
+    background: #fff;
+    border: 1px solid var(--cl-border);
+    border-radius: 10px;
+    overflow: hidden;
+    transition:
+      border-color 0.15s,
+      transform 0.12s;
+    display: flex;
+    flex-direction: column;
+  }
+  .cl-card:hover {
+    border-color: var(--cl-eco);
+    transform: translateY(-2px);
+  }
+  .cl-img-wrap {
+    aspect-ratio: 1/1;
+    background: #f0f0ee;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .cl-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .cl-img-placeholder {
+    color: #ccc;
+  }
+  .cl-badge-wrap {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .cl-badge-sale {
+    background: var(--cl-red);
+    color: #fff;
+    font-size: 9px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 10px;
+    letter-spacing: 0.04em;
+  }
+  .cl-badge-low {
+    background: #f39c12;
+    color: #fff;
+    font-size: 9px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 10px;
+    letter-spacing: 0.04em;
+  }
+  .cl-badge-brand {
+    background: var(--cl-black);
+    color: #fff;
+    font-size: 9px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 10px;
+    letter-spacing: 0.04em;
+  }
+  .cl-card-body {
+    padding: 12px 14px 14px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .cl-brand {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--cl-eco-dark);
+    margin-bottom: 4px;
+  }
+  .cl-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--cl-black);
+    margin-bottom: 6px;
+    line-height: 1.35;
+  }
+  .cl-variants {
+    font-size: 11px;
+    color: var(--cl-muted);
+    margin-bottom: 8px;
+  }
+  .cl-price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 12px;
+    margin-top: auto;
+  }
+  .cl-price {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--cl-red);
+  }
+  .cl-compare {
+    font-size: 12px;
+    color: var(--cl-muted);
+    text-decoration: line-through;
+  }
+  .cl-saving {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--cl-red);
+    background: var(--cl-red-light);
+    padding: 2px 7px;
+    border-radius: 10px;
+  }
+  .cl-btn-add {
+    width: 100%;
+    padding: 9px 0;
+    font-size: 12px;
+    font-weight: 600;
+    font-family: inherit;
+    border: none;
+    border-radius: 7px;
+    background: var(--cl-eco);
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+  .cl-btn-add:hover {
+    background: var(--cl-eco-dark);
+  }
+  .cl-btn-add:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+  }
+  .cl-btn-view {
+    width: 100%;
+    padding: 9px 0;
+    font-size: 12px;
+    font-weight: 600;
+    font-family: inherit;
+    border: 1px solid var(--cl-border);
+    border-radius: 7px;
+    background: #fff;
+    color: var(--cl-black);
+    cursor: pointer;
+    transition: border-color 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    text-decoration: none;
+    margin-top: 6px;
+  }
+  .cl-btn-view:hover {
+    border-color: var(--cl-black);
+  }
+  .cl-empty {
+    text-align: center;
+    padding: 48px 0;
+    color: var(--cl-muted);
+    font-size: 14px;
+  }
+  .cl-pagination {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 32px;
+    flex-wrap: wrap;
+  }
+  .cl-page-btn {
+    padding: 7px 14px;
+    font-size: 12px;
+    font-family: inherit;
+    border: 1px solid var(--cl-border);
+    border-radius: 6px;
+    background: #fff;
+    color: var(--cl-black);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .cl-page-btn:hover {
+    border-color: var(--cl-eco);
+    color: var(--cl-eco-dark);
+  }
+  .cl-page-btn.is-active {
+    background: var(--cl-eco);
+    border-color: var(--cl-eco);
+    color: #fff;
+  }
 </style>
 
-{%- unless request.design_mode -%}
-  {%- if section.settings.require_login -%}
-    {%- unless customer -%}
-      {%- assign return_url = request.path | url_encode -%}
-      <script>window.location = "/account/login?checkout_url={{ return_url }}";</script>
-    {%- endunless -%}
-  {%- endif -%}
-{%- endunless -%}
-
-{%- assign clearance = collections[section.settings.collection_handle] -%}
-{%- assign all_products = clearance.products -%}
-
-{%- comment %} Build unique brand list from vendor -%}
-{%- assign brand_list = '' -%}
-{%- for product in all_products -%}
-  {%- unless brand_list contains product.vendor -%}
-    {%- assign brand_list = brand_list | append: product.vendor | append: '~' -%}
-  {%- endunless -%}
-{%- endfor -%}
-{%- assign brands = brand_list | split: '~' -%}
-{%- endcomment -%}
+{%- unless request.design_mode -%} {%- if section.settings.require_login -%} {%- unless customer -%} {%- assign
+return_url = request.path | url_encode -%}
+<script>
+  window.location = '/account/login?checkout_url={{ return_url }}';
+</script>
+{%- endunless -%} {%- endif -%} {%- endunless -%} {%- assign clearance = collections[section.settings.collection_handle]
+-%} {%- assign all_products = clearance.products -%} {%- comment %} Build unique brand list from vendor -%} {%- assign
+brand_list = '' -%} {%- for product in all_products -%} {%- unless brand_list contains product.vendor -%} {%- assign
+brand_list = brand_list | append: product.vendor | append: '~' -%} {%- endunless -%} {%- endfor -%} {%- assign brands =
+brand_list | split: '~' -%} {%- endcomment -%}
 
 <div class="cl-wrap" id="section-{{ section.id }}">
-
   <div class="cl-page-header">
     <h1 class="cl-page-title">{{ section.settings.page_title }}</h1>
     <p class="cl-page-sub">{{ section.settings.page_subtitle }}</p>
   </div>
 
   <div class="cl-body">
-
     <div class="cl-toolbar">
       <div class="cl-search-bar">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        <input type="text" id="cl-search" placeholder="Search clearance..." autocomplete="off">
+        <svg
+          width="15"
+          height="15"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <circle cx="11" cy="11" r="8" />
+          <line x1="21" y1="21" x2="16.65" y2="16.65" />
+        </svg>
+        <input type="text" id="cl-search" placeholder="Search clearance..." autocomplete="off" />
       </div>
 
       <div class="cl-chips" id="cl-brand-chips">
         <button class="cl-chip is-active" data-brand="all">All brands</button>
-        {%- for brand in brands -%}
-          {%- if brand != blank -%}
-            <button class="cl-chip" data-brand="{{ brand | handleize }}">{{ brand }}</button>
-          {%- endif -%}
-        {%- endfor -%}
+        {%- for brand in brands -%} {%- if brand != blank -%}
+        <button class="cl-chip" data-brand="{{ brand | handleize }}">{{ brand }}</button>
+        {%- endif -%} {%- endfor -%}
       </div>
 
       <div class="cl-sort">
@@ -114,228 +411,235 @@
     </div>
 
     <div class="cl-grid" id="cl-grid">
-      {%- if all_products.size > 0 -%}
-        {%- for product in all_products -%}
-          {%- assign has_compare = false -%}
-          {%- if product.compare_at_price > product.price -%}
-            {%- assign has_compare = true -%}
-            {%- assign saving_amount = product.compare_at_price | minus: product.price -%}
-            {%- assign saving_pct = saving_amount | times: 100 | divided_by: product.compare_at_price -%}
-          {%- endif -%}
-          {%- assign variant_count = product.variants.size -%}
-          <div
-            class="cl-card"
-            data-brand="{{ product.vendor | handleize }}"
-            data-title="{{ product.title | downcase }}"
-            data-price="{{ product.price }}"
-            data-compare="{{ product.compare_at_price | default: product.price }}"
-            data-saving="{{ saving_amount | default: 0 }}"
-          >
-            <a href="{{ product.url }}" class="cl-img-wrap" tabindex="-1" aria-hidden="true">
-              {%- if product.featured_image -%}
-                {{ product.featured_image | image_url: width: 400 | image_tag: loading: 'lazy', alt: product.title }}
-              {%- else -%}
-                <div class="cl-img-placeholder">
-                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-                </div>
-              {%- endif -%}
-              <div class="cl-badge-wrap">
-                {%- if has_compare -%}
-                  <span class="cl-badge-sale">-{{ saving_pct }}%</span>
-                {%- endif -%}
-                {%- if product.available == false -%}
-                  <span class="cl-badge-low">Sold out</span>
-                {%- elsif variant_count == 1 and product.variants.first.inventory_quantity <= 5 and product.variants.first.inventory_quantity > 0 -%}
-                  <span class="cl-badge-low">Low stock</span>
-                {%- endif -%}
-                <span class="cl-badge-brand">{{ product.vendor }}</span>
-              </div>
-            </a>
-            <div class="cl-card-body">
-              <div class="cl-brand">{{ product.vendor }}</div>
-              <a href="{{ product.url }}" class="cl-title" style="text-decoration:none;color:inherit">{{ product.title }}</a>
-              {%- if variant_count > 1 -%}
-                <div class="cl-variants">{{ variant_count }} variants available</div>
-              {%- else -%}
-                <div class="cl-variants">{{ product.variants.first.title }}</div>
-              {%- endif -%}
-              <div class="cl-price-row">
-                <span class="cl-price">{{ product.price | money }}</span>
-                {%- if has_compare -%}
-                  <span class="cl-compare">{{ product.compare_at_price | money }}</span>
-                  <span class="cl-saving">Save {{ saving_amount | money }}</span>
-                {%- endif -%}
-              </div>
-              {%- if product.available -%}
-                {%- if variant_count == 1 -%}
-                  <button
-                    class="cl-btn-add"
-                    data-variant-id="{{ product.variants.first.id }}"
-                    onclick="clAddToCart(this)"
-                    aria-label="Add {{ product.title }} to cart"
-                  >
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 001.99 1.61h9.66a2 2 0 001.99-1.61L23 6H6"/></svg>
-                    Add to cart
-                  </button>
-                {%- else -%}
-                  <a href="{{ product.url }}" class="cl-btn-add" style="text-decoration:none">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 001.99 1.61h9.66a2 2 0 001.99-1.61L23 6H6"/></svg>
-                    Select options
-                  </a>
-                {%- endif -%}
-              {%- else -%}
-                <button class="cl-btn-add" disabled>Sold out</button>
-              {%- endif -%}
-              <a href="{{ product.url }}" class="cl-btn-view">View product</a>
-            </div>
+      {%- if all_products.size > 0 -%} {%- for product in all_products -%} {%- assign has_compare = false -%} {%- if
+      product.compare_at_price > product.price -%} {%- assign has_compare = true -%} {%- assign saving_amount =
+      product.compare_at_price | minus: product.price -%} {%- assign saving_pct = saving_amount | times: 100 |
+      divided_by: product.compare_at_price -%} {%- endif -%} {%- assign variant_count = product.variants.size -%}
+      <div
+        class="cl-card"
+        data-brand="{{ product.vendor | handleize }}"
+        data-title="{{ product.title | downcase }}"
+        data-price="{{ product.price }}"
+        data-compare="{{ product.compare_at_price | default: product.price }}"
+        data-saving="{{ saving_amount | default: 0 }}"
+      >
+        <a href="{{ product.url }}" class="cl-img-wrap" tabindex="-1" aria-hidden="true">
+          {%- if product.featured_image -%} {{ product.featured_image | image_url: width: 400 | image_tag: loading:
+          'lazy', alt: product.title }} {%- else -%}
+          <div class="cl-img-placeholder">
+            <svg
+              width="48"
+              height="48"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <rect x="3" y="3" width="18" height="18" rx="2" />
+              <circle cx="8.5" cy="8.5" r="1.5" />
+              <polyline points="21 15 16 10 5 21" />
+            </svg>
           </div>
-        {%- endfor -%}
-      {%- else -%}
-        <div class="cl-empty" style="grid-column:1/-1">
-          <p>No clearance products available at the moment. Check back soon.</p>
+          {%- endif -%}
+          <div class="cl-badge-wrap">
+            {%- if has_compare -%}
+            <span class="cl-badge-sale">-{{ saving_pct }}%</span>
+            {%- endif -%} {%- if product.available == false -%}
+            <span class="cl-badge-low">Sold out</span>
+            {%- elsif variant_count == 1 and product.variants.first.inventory_quantity <= 5 and
+            product.variants.first.inventory_quantity > 0 -%}
+            <span class="cl-badge-low">Low stock</span>
+            {%- endif -%}
+            <span class="cl-badge-brand">{{ product.vendor }}</span>
+          </div>
+        </a>
+        <div class="cl-card-body">
+          <div class="cl-brand">{{ product.vendor }}</div>
+          <a href="{{ product.url }}" class="cl-title" style="text-decoration: none; color: inherit"
+            >{{ product.title }}</a
+          >
+          {%- if variant_count > 1 -%}
+          <div class="cl-variants">{{ variant_count }} variants available</div>
+          {%- else -%}
+          <div class="cl-variants">{{ product.variants.first.title }}</div>
+          {%- endif -%}
+          <div class="cl-price-row">
+            <span class="cl-price">{{ product.price | money }}</span>
+            {%- if has_compare -%}
+            <span class="cl-compare">{{ product.compare_at_price | money }}</span>
+            <span class="cl-saving">Save {{ saving_amount | money }}</span>
+            {%- endif -%}
+          </div>
+          {%- if product.available -%} {%- if variant_count == 1 -%}
+          <button
+            class="cl-btn-add"
+            data-variant-id="{{ product.variants.first.id }}"
+            onclick="clAddToCart(this)"
+            aria-label="Add {{ product.title }} to cart"
+          >
+            <svg
+              width="13"
+              height="13"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <circle cx="9" cy="21" r="1" />
+              <circle cx="20" cy="21" r="1" />
+              <path d="M1 1h4l2.68 13.39a2 2 0 001.99 1.61h9.66a2 2 0 001.99-1.61L23 6H6" />
+            </svg>
+            Add to cart
+          </button>
+          {%- else -%}
+          <a href="{{ product.url }}" class="cl-btn-add" style="text-decoration: none">
+            <svg
+              width="13"
+              height="13"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <circle cx="9" cy="21" r="1" />
+              <circle cx="20" cy="21" r="1" />
+              <path d="M1 1h4l2.68 13.39a2 2 0 001.99 1.61h9.66a2 2 0 001.99-1.61L23 6H6" />
+            </svg>
+            Select options
+          </a>
+          {%- endif -%} {%- else -%}
+          <button class="cl-btn-add" disabled>Sold out</button>
+          {%- endif -%}
+          <a href="{{ product.url }}" class="cl-btn-view">View product</a>
         </div>
+      </div>
+      {%- endfor -%} {%- else -%}
+      <div class="cl-empty" style="grid-column: 1/-1">
+        <p>No clearance products available at the moment. Check back soon.</p>
+      </div>
       {%- endif -%}
     </div>
 
-    <div id="cl-empty-state" class="cl-empty" style="display:none">
+    <div id="cl-empty-state" class="cl-empty" style="display: none">
       <p>No products match your search.</p>
     </div>
-
   </div>
 </div>
 
 <script>
-(function () {
-  'use strict';
-  var grid        = document.getElementById('cl-grid');
-  var countEl     = document.getElementById('cl-count');
-  var emptyEl     = document.getElementById('cl-empty-state');
-  var searchInput = document.getElementById('cl-search');
-  var sortSelect  = document.getElementById('cl-sort-select');
-  var activeBrand = 'all';
+  (function () {
+    'use strict';
+    var grid = document.getElementById('cl-grid');
+    var countEl = document.getElementById('cl-count');
+    var emptyEl = document.getElementById('cl-empty-state');
+    var searchInput = document.getElementById('cl-search');
+    var sortSelect = document.getElementById('cl-sort-select');
+    var activeBrand = 'all';
 
-  // ── Brand filter chips ──
-  document.querySelectorAll('#section-{{ section.id }} .cl-chip').forEach(function (chip) {
-    chip.addEventListener('click', function () {
-      document.querySelectorAll('#section-{{ section.id }} .cl-chip').forEach(function (c) { c.classList.remove('is-active'); });
-      this.classList.add('is-active');
-      activeBrand = this.dataset.brand;
-      render();
-    });
-  });
-
-  // ── Search ──
-  if (searchInput) searchInput.addEventListener('input', render);
-
-  // ── Sort ──
-  if (sortSelect) sortSelect.addEventListener('change', render);
-
-  // ── Render ──
-  function render() {
-    var query = searchInput ? searchInput.value.toLowerCase().trim() : '';
-    var sort  = sortSelect ? sortSelect.value : 'default';
-    var cards = Array.from(grid.querySelectorAll('.cl-card'));
-
-    // Filter
-    var visible = cards.filter(function (card) {
-      var brandMatch = activeBrand === 'all' || card.dataset.brand === activeBrand;
-      var searchMatch = query === '' || (card.dataset.title || '').indexOf(query) > -1;
-      return brandMatch && searchMatch;
+    // ── Brand filter chips ──
+    document.querySelectorAll('#section-{{ section.id }} .cl-chip').forEach(function (chip) {
+      chip.addEventListener('click', function () {
+        document.querySelectorAll('#section-{{ section.id }} .cl-chip').forEach(function (c) {
+          c.classList.remove('is-active');
+        });
+        this.classList.add('is-active');
+        activeBrand = this.dataset.brand;
+        render();
+      });
     });
 
-    var hidden = cards.filter(function (card) { return visible.indexOf(card) === -1; });
-    hidden.forEach(function (c) { c.style.display = 'none'; });
+    // ── Search ──
+    if (searchInput) searchInput.addEventListener('input', render);
 
-    // Sort visible
-    visible.sort(function (a, b) {
-      if (sort === 'price-asc')  return parseInt(a.dataset.price) - parseInt(b.dataset.price);
-      if (sort === 'price-desc') return parseInt(b.dataset.price) - parseInt(a.dataset.price);
-      if (sort === 'saving')     return parseInt(b.dataset.saving) - parseInt(a.dataset.saving);
-      if (sort === 'title-asc')  return (a.dataset.title || '').localeCompare(b.dataset.title || '');
-      return 0;
-    });
+    // ── Sort ──
+    if (sortSelect) sortSelect.addEventListener('change', render);
 
-    visible.forEach(function (c) {
-      c.style.display = '';
-      grid.appendChild(c);
-    });
+    // ── Render ──
+    function render() {
+      var query = searchInput ? searchInput.value.toLowerCase().trim() : '';
+      var sort = sortSelect ? sortSelect.value : 'default';
+      var cards = Array.from(grid.querySelectorAll('.cl-card'));
 
-    // Count + empty state
-    if (countEl) countEl.textContent = visible.length + ' product' + (visible.length !== 1 ? 's' : '');
-    if (emptyEl) emptyEl.style.display = visible.length === 0 ? '' : 'none';
-    if (grid)    grid.style.display    = visible.length === 0 ? 'none' : '';
-  }
+      // Filter
+      var visible = cards.filter(function (card) {
+        var brandMatch = activeBrand === 'all' || card.dataset.brand === activeBrand;
+        var searchMatch = query === '' || (card.dataset.title || '').indexOf(query) > -1;
+        return brandMatch && searchMatch;
+      });
 
-  // ── Add to cart ──
-  window.clAddToCart = function (btn) {
-    var variantId = btn.dataset.variantId;
-    if (!variantId) return;
-    btn.disabled = true;
-    btn.textContent = 'Adding...';
-    fetch('/cart/add.js', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'XMLHttpRequest' },
-      body: JSON.stringify({ id: variantId, quantity: 1 })
-    })
-    .then(function (res) { return res.json(); })
-    .then(function () {
-      btn.textContent = 'Added!';
-      btn.style.background = '#4d8a4a';
-      setTimeout(function () {
-        btn.disabled = false;
-        btn.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 001.99 1.61h9.66a2 2 0 001.99-1.61L23 6H6"/></svg> Add to cart';
-        btn.style.background = '';
-        // Trigger cart drawer if theme has one
-        document.dispatchEvent(new CustomEvent('cart:refresh'));
-      }, 1800);
-    })
-    .catch(function () {
-      btn.disabled = false;
-      btn.textContent = 'Add to cart';
-    });
-  };
-}());
+      var hidden = cards.filter(function (card) {
+        return visible.indexOf(card) === -1;
+      });
+      hidden.forEach(function (c) {
+        c.style.display = 'none';
+      });
+
+      // Sort visible
+      visible.sort(function (a, b) {
+        if (sort === 'price-asc') return parseInt(a.dataset.price) - parseInt(b.dataset.price);
+        if (sort === 'price-desc') return parseInt(b.dataset.price) - parseInt(a.dataset.price);
+        if (sort === 'saving') return parseInt(b.dataset.saving) - parseInt(a.dataset.saving);
+        if (sort === 'title-asc') return (a.dataset.title || '').localeCompare(b.dataset.title || '');
+        return 0;
+      });
+
+      visible.forEach(function (c) {
+        c.style.display = '';
+        grid.appendChild(c);
+      });
+
+      // Count + empty state
+      if (countEl) countEl.textContent = visible.length + ' product' + (visible.length !== 1 ? 's' : '');
+      if (emptyEl) emptyEl.style.display = visible.length === 0 ? '' : 'none';
+      if (grid) grid.style.display = visible.length === 0 ? 'none' : '';
+    }
+
+    // ── Add to cart ──
+    window.clAddToCart = function (btn) {
+      var variantId = btn.dataset.variantId;
+      if (!variantId) return;
+      btn.disabled = true;
+      btn.textContent = 'Adding...';
+      fetch('/cart/add.js', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'XMLHttpRequest' },
+        body: JSON.stringify({ id: variantId, quantity: 1 }),
+      })
+        .then(function (res) {
+          return res.json();
+        })
+        .then(function () {
+          btn.textContent = 'Added!';
+          btn.style.background = '#4d8a4a';
+          setTimeout(function () {
+            btn.disabled = false;
+            btn.innerHTML =
+              '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 001.99 1.61h9.66a2 2 0 001.99-1.61L23 6H6"/></svg> Add to cart';
+            btn.style.background = '';
+            // Trigger cart drawer if theme has one
+            document.dispatchEvent(new CustomEvent('cart:refresh'));
+          }, 1800);
+        })
+        .catch(function () {
+          btn.disabled = false;
+          btn.textContent = 'Add to cart';
+        });
+    };
+  })();
 </script>
 
-{% schema %}
-{
-  "name": "Clearance",
-  "tag": "section",
-  "class": "section-clearance",
-  "settings": [
-    {
-      "type": "text",
-      "id": "page_title",
-      "label": "Page title",
-      "default": "Clearance"
-    },
-    {
-      "type": "text",
-      "id": "page_subtitle",
-      "label": "Subtitle",
-      "default": "End of line and clearance stock — available while supplies last"
-    },
-    {
-      "type": "collection",
-      "id": "collection_handle",
-      "label": "Clearance collection",
-      "info": "Select your clearance collection"
-    },
-    {
-      "type": "checkbox",
-      "id": "require_login",
-      "label": "Require customer login",
-      "default": true
-    }
-  ],
-  "presets": [
-    {
-      "name": "Clearance",
-      "settings": {
-        "page_title": "Clearance",
-        "page_subtitle": "End of line and clearance stock — available while supplies last"
-      }
-    }
-  ]
-}
-{% endschema %}
+{% schema %} { "name": "Clearance", "tag": "section", "class": "section-clearance", "settings": [ { "type": "text",
+"id": "page_title", "label": "Page title", "default": "Clearance" }, { "type": "text", "id": "page_subtitle", "label":
+"Subtitle", "default": "End of line and clearance stock — available while supplies last" }, { "type": "collection",
+"id": "collection_handle", "label": "Clearance collection", "info": "Select your clearance collection" }, { "type":
+"checkbox", "id": "require_login", "label": "Require customer login", "default": true } ], "presets": [ { "name":
+"Clearance", "settings": { "page_title": "Clearance", "page_subtitle": "End of line and clearance stock — available
+while supplies last" } } ] } {% endschema %}

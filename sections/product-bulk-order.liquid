@@ -1,41 +1,23 @@
-{%- style -%}
-  .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
-  }
-
-  @media screen and (min-width: 750px) {
-    .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
-    }
-  }
-{%- endstyle -%}
+{%- style -%} .section-{{ section.id }}-padding { padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0
+}}px; padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px; } @media screen and (min-width:
+750px) { .section-{{ section.id }}-padding { padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{
+section.settings.padding_bottom }}px; } } {%- endstyle -%}
 
 <div class="section-{{ section.id }}-padding">
   <div class="page-width">
-    {%- render 'section-heading-group',
-      heading: section.settings.heading,
-      heading_size: section.settings.heading_size,
-      content: section.settings.content,
-      button_label_1: section.settings.button_label_1,
-      button_link_1: section.settings.button_link_1,
-      button_style_secondary_1: section.settings.button_style_secondary_1,
-      button_label_2: section.settings.button_label_2,
-      button_link_2: section.settings.button_link_2,
-      button_style_secondary_2: section.settings.button_style_secondary_2,
-      wrapper_class: 'pbo__header',
-      heading_class: 'pbo__section-heading',
-      content_text_class: 'pbo__section-content',
-      button_container_class: 'pbo__section-buttons'
-    -%}
-
-    {%- capture variant_swatches_json -%}
-[{%- for variant in product.variants -%}{%- unless forloop.first -%},{%- endunless -%}{"id":{{ variant.id }},"color":{{ variant.metafields.custom.swatch_color.value | json }}}{%- endfor -%}]
-    {%- endcapture -%}
-    {%- capture variant_inventory_json -%}
-[{%- for variant in product.variants -%}{%- unless forloop.first -%},{%- endunless -%}{"id":{{ variant.id }},"inventory_quantity":{{ variant.inventory_quantity }},"inventory_management":{{ variant.inventory_management | json }},"inventory_policy":{{ variant.inventory_policy | json }},"quantity_rule_increment":{{ variant.quantity_rule.increment | default: 1 }}}{%- endfor -%}]
-    {%- endcapture -%}
+    {%- render 'section-heading-group', heading: section.settings.heading, heading_size: section.settings.heading_size,
+    content: section.settings.content, button_label_1: section.settings.button_label_1, button_link_1:
+    section.settings.button_link_1, button_style_secondary_1: section.settings.button_style_secondary_1, button_label_2:
+    section.settings.button_label_2, button_link_2: section.settings.button_link_2, button_style_secondary_2:
+    section.settings.button_style_secondary_2, wrapper_class: 'pbo__header', heading_class: 'pbo__section-heading',
+    content_text_class: 'pbo__section-content', button_container_class: 'pbo__section-buttons' -%} {%- capture
+    variant_swatches_json -%} [{%- for variant in product.variants -%}{%- unless forloop.first -%},{%- endunless
+    -%}{"id":{{ variant.id }},"color":{{ variant.metafields.custom.swatch_color.value | json }}}{%- endfor -%}] {%-
+    endcapture -%} {%- capture variant_inventory_json -%} [{%- for variant in product.variants -%}{%- unless
+    forloop.first -%},{%- endunless -%}{"id":{{ variant.id }},"inventory_quantity":{{ variant.inventory_quantity
+    }},"inventory_management":{{ variant.inventory_management | json }},"inventory_policy":{{ variant.inventory_policy |
+    json }},"quantity_rule_increment":{{ variant.quantity_rule.increment | default: 1 }},"taxable":{{ variant.taxable |
+    json }}}{%- endfor -%}] {%- endcapture -%}
     <div
       id="product-bulk-order-{{ section.id }}"
       data-product-bulk-order
@@ -52,159 +34,33 @@
 
 <script src="{{ 'product-bulk-order.js' | asset_url }}" defer="defer"></script>
 
-{% schema %}
-{
-  "name": "Product Bulk Order",
-  "limit": 1,
-  "enabled_on": {
-    "templates": ["product"]
-  },
-  "settings": [
-    {
-      "type": "header",
-      "content": "Section content"
-    },
-    {
-      "type": "inline_richtext",
-      "id": "heading",
-      "label": "Heading"
-    },
-    {
-      "type": "select",
-      "id": "heading_size",
-      "label": "Heading size",
-      "default": "h2",
-      "options": [
-        { "value": "supersize", "label": "t:sections.all.heading_size.options__1.label" },
-        { "value": "h1", "label": "t:sections.all.heading_size.options__2.label" },
-        { "value": "h2", "label": "t:sections.all.heading_size.options__3.label" },
-        { "value": "h3", "label": "t:sections.all.heading_size.options__4.label" },
-        { "value": "h4", "label": "t:sections.all.heading_size.options__5.label" },
-        { "value": "h5", "label": "t:sections.all.heading_size.options__6.label" },
-        { "value": "h6", "label": "t:sections.all.heading_size.options__7.label" },
-        { "value": "small", "label": "t:sections.all.heading_size.options__8.label" }
-      ]
-    },
-    {
-      "type": "richtext",
-      "id": "content",
-      "label": "Content",
-      "info": "Optional body text displayed below the heading."
-    },
-    {
-      "type": "header",
-      "content": "Section buttons"
-    },
-    {
-      "type": "text",
-      "id": "button_label_1",
-      "label": "Button 1 label",
-      "info": "Leave blank to hide."
-    },
-    {
-      "type": "url",
-      "id": "button_link_1",
-      "label": "Button 1 link"
-    },
-    {
-      "type": "checkbox",
-      "id": "button_style_secondary_1",
-      "label": "Button 1 — use outline style",
-      "default": false
-    },
-    {
-      "type": "text",
-      "id": "button_label_2",
-      "label": "Button 2 label",
-      "info": "Leave blank to hide."
-    },
-    {
-      "type": "url",
-      "id": "button_link_2",
-      "label": "Button 2 link"
-    },
-    {
-      "type": "checkbox",
-      "id": "button_style_secondary_2",
-      "label": "Button 2 — use outline style",
-      "default": true
-    },
-    {
-      "type": "header",
-      "content": "Quantity increment"
-    },
-    {
-      "type": "paragraph",
-      "content": "Controls how much the quantity stepper increases or decreases per click. 'Use product's quantity rule' respects the increment set per variant in Shopify."
-    },
-    {
-      "type": "select",
-      "id": "quantity_increment",
-      "label": "Increment",
-      "default": "use_product_rule",
-      "options": [
-        { "value": "use_product_rule", "label": "Use product's quantity rule" },
-        { "value": "1", "label": "1" },
-        { "value": "2", "label": "2" },
-        { "value": "5", "label": "5" },
-        { "value": "6", "label": "6 — half-dozen" },
-        { "value": "10", "label": "10" },
-        { "value": "12", "label": "12 — dozen" },
-        { "value": "24", "label": "24 — case" },
-        { "value": "48", "label": "48 — double case" }
-      ]
-    },
-    {
-      "type": "header",
-      "content": "Stock filters"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_in_stock",
-      "label": "Show in stock variants",
-      "default": true
-    },
-    {
-      "type": "checkbox",
-      "id": "show_sold_out",
-      "label": "Show sold out variants",
-      "default": true
-    },
-    {
-      "type": "checkbox",
-      "id": "show_not_available",
-      "label": "Show unavailable variants",
-      "default": true
-    },
-    {
-      "type": "header",
-      "content": "Section padding"
-    },
-    {
-      "type": "range",
-      "id": "padding_top",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "Padding top",
-      "default": 36
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "Padding bottom",
-      "default": 36
-    }
-  ],
-  "presets": [
-    {
-      "name": "Product Bulk Order"
-    }
-  ]
-}
-{% endschema %}
+{% schema %} { "name": "Product Bulk Order", "limit": 1, "enabled_on": { "templates": ["product"] }, "settings": [ {
+"type": "header", "content": "Section content" }, { "type": "inline_richtext", "id": "heading", "label": "Heading" }, {
+"type": "select", "id": "heading_size", "label": "Heading size", "default": "h2", "options": [ { "value": "supersize",
+"label": "t:sections.all.heading_size.options__1.label" }, { "value": "h1", "label":
+"t:sections.all.heading_size.options__2.label" }, { "value": "h2", "label":
+"t:sections.all.heading_size.options__3.label" }, { "value": "h3", "label":
+"t:sections.all.heading_size.options__4.label" }, { "value": "h4", "label":
+"t:sections.all.heading_size.options__5.label" }, { "value": "h5", "label":
+"t:sections.all.heading_size.options__6.label" }, { "value": "h6", "label":
+"t:sections.all.heading_size.options__7.label" }, { "value": "small", "label":
+"t:sections.all.heading_size.options__8.label" } ] }, { "type": "richtext", "id": "content", "label": "Content", "info":
+"Optional body text displayed below the heading." }, { "type": "header", "content": "Section buttons" }, { "type":
+"text", "id": "button_label_1", "label": "Button 1 label", "info": "Leave blank to hide." }, { "type": "url", "id":
+"button_link_1", "label": "Button 1 link" }, { "type": "checkbox", "id": "button_style_secondary_1", "label": "Button 1
+— use outline style", "default": false }, { "type": "text", "id": "button_label_2", "label": "Button 2 label", "info":
+"Leave blank to hide." }, { "type": "url", "id": "button_link_2", "label": "Button 2 link" }, { "type": "checkbox",
+"id": "button_style_secondary_2", "label": "Button 2 — use outline style", "default": true }, { "type": "header",
+"content": "Quantity increment" }, { "type": "paragraph", "content": "Controls how much the quantity stepper increases
+or decreases per click. 'Use product's quantity rule' respects the increment set per variant in Shopify." }, { "type":
+"select", "id": "quantity_increment", "label": "Increment", "default": "use_product_rule", "options": [ { "value":
+"use_product_rule", "label": "Use product's quantity rule" }, { "value": "1", "label": "1" }, { "value": "2", "label":
+"2" }, { "value": "5", "label": "5" }, { "value": "6", "label": "6 — half-dozen" }, { "value": "10", "label": "10" }, {
+"value": "12", "label": "12 — dozen" }, { "value": "24", "label": "24 — case" }, { "value": "48", "label": "48 — double
+case" } ] }, { "type": "header", "content": "Stock filters" }, { "type": "checkbox", "id": "show_in_stock", "label":
+"Show in stock variants", "default": true }, { "type": "checkbox", "id": "show_sold_out", "label": "Show sold out
+variants", "default": true }, { "type": "checkbox", "id": "show_not_available", "label": "Show unavailable variants",
+"default": true }, { "type": "header", "content": "Section padding" }, { "type": "range", "id": "padding_top", "min": 0,
+"max": 100, "step": 4, "unit": "px", "label": "Padding top", "default": 36 }, { "type": "range", "id": "padding_bottom",
+"min": 0, "max": 100, "step": 4, "unit": "px", "label": "Padding bottom", "default": 36 } ], "presets": [ { "name":
+"Product Bulk Order" } ] } {% endschema %}
