@@ -1,399 +1,600 @@
 <style>
-:root{--mh-putty:#f5f5f0;--mh-black:#0e0e0e;--mh-eco:#73ae70;--mh-eco-dark:#4d8a4a;--mh-muted:#6b6b65;--mh-border:#d8d8d2;--mh-white:#ffffff;--mh-font:'Nunito Sans',sans-serif}
-.mh-page-header{background:var(--mh-black);padding:24px 28px 0;border-bottom:3px solid var(--mh-eco)}
-.mh-page-title{font-size:26px;font-weight:300;color:#fff;letter-spacing:.02em;margin-bottom:4px;font-family:var(--mh-font)}
-.mh-page-sub{font-size:12px;color:rgba(255,255,255,.5);padding-bottom:18px;font-family:var(--mh-font)}
-.mh-wrap{background:var(--mh-putty);min-height:calc(100vh - 104px);font-family:var(--mh-font);font-size:14px;color:var(--mh-black)}
-.mh-layout{display:grid;grid-template-columns:210px 1fr;min-height:calc(100vh - 104px)}
-@media(max-width:768px){.mh-layout{grid-template-columns:1fr}.mh-sidebar{border-right:none!important;border-bottom:1px solid var(--mh-border)}}
-.mh-sidebar{background:var(--mh-white);border-right:1px solid var(--mh-border);padding:24px 18px}
-.mh-sb-section{margin-bottom:24px}
-.mh-sb-label{font-size:10px;font-weight:700;letter-spacing:.1em;color:var(--mh-muted);text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--mh-border)}
-.mh-cb-row{display:flex;align-items:center;gap:9px;padding:6px 0;cursor:pointer;user-select:none}
-.mh-cb-row:hover .mh-cb-label{color:var(--mh-eco-dark)}
-.mh-cb{width:15px;height:15px;border:1.5px solid var(--mh-border);border-radius:3px;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:background .15s,border-color .15s}
-.mh-cb.is-checked{background:var(--mh-eco);border-color:var(--mh-eco)}
-.mh-cb.is-checked::after{content:'';width:8px;height:5px;border-left:2px solid #fff;border-bottom:2px solid #fff;transform:rotate(-45deg) translateY(-1px);display:block}
-.mh-cb-label{font-size:12px;color:var(--mh-black)}
-.mh-main{padding:24px 28px}
-.mh-active-filter{display:flex;align-items:center;gap:10px;background:#f3eefe;border:1px solid #c9a8f5;border-radius:8px;padding:10px 14px;margin-bottom:16px}
-.mh-filter-icon{color:#7831d7;flex-shrink:0;line-height:1}
-.mh-active-filter-text{font-size:12px;color:#7831d7;font-weight:600;flex:1}
-.mh-active-filter-clear{font-size:11px;color:#7831d7;opacity:.7;cursor:pointer;background:none;border:none;text-decoration:underline;font-family:var(--mh-font);white-space:nowrap}
-.mh-active-filter-clear:hover{opacity:1}
-.mh-search-bar{display:flex;align-items:center;gap:10px;background:var(--mh-white);border:1.5px solid var(--mh-border);border-radius:8px;padding:11px 16px;margin-bottom:28px;transition:border-color .15s;color:var(--mh-muted)}
-.mh-search-bar:focus-within{border-color:var(--mh-eco)}
-.mh-search-bar input{flex:1;border:none;outline:none;font-size:14px;font-family:var(--mh-font);color:var(--mh-black);background:transparent}
-.mh-search-bar input::placeholder{color:#bbb}
-.mh-cat-group{margin-bottom:32px}
-.mh-cat-header{margin-bottom:16px;padding-bottom:10px;border-bottom:2px solid var(--mh-eco)}
-.mh-cat-title{font-size:16px;font-weight:700;letter-spacing:.04em;color:var(--mh-black)}
-.mh-tile-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-@media(max-width:900px){.mh-tile-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:540px){.mh-tile-grid{grid-template-columns:1fr}}
-.mh-tile{background:var(--mh-white);border:1px solid var(--mh-border);border-radius:10px;overflow:hidden;cursor:pointer;transition:border-color .2s,transform .1s}
-.mh-tile:hover{border-color:var(--mh-eco);transform:translateY(-1px)}
-.mh-tile-thumb{height:64px;display:flex;align-items:center;justify-content:center}
-.mh-tile-thumb svg{width:26px;height:26px;stroke-width:1.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
-.mh-tile-body{padding:12px 14px 16px}
-.mh-tile-title{font-size:12px;font-weight:700;margin-bottom:4px;color:var(--mh-black)}
-.mh-tile-sub{font-size:11px;color:var(--mh-muted);line-height:1.5}
-.mh-thumb-mktg{background:#e8f3e7}
-.mh-thumb-mktg svg{stroke:var(--mh-eco)}
-.mh-thumb-sustain{background:#e8f0fb}
-.mh-thumb-sustain svg{stroke:#185FA5}
-.mh-thumb-neutral{background:#f0f0ee}
-.mh-thumb-neutral svg{stroke:#888}
-.mh-empty,.mh-no-content{font-size:13px;color:var(--mh-muted);padding:24px 0}
+  :root {
+    --mh-putty: #f5f5f0;
+    --mh-black: #0e0e0e;
+    --mh-eco: #73ae70;
+    --mh-eco-dark: #4d8a4a;
+    --mh-muted: #6b6b65;
+    --mh-border: #d8d8d2;
+    --mh-white: #ffffff;
+    --mh-font: 'Nunito Sans', sans-serif;
+  }
+  .mh-page-header {
+    background: var(--mh-black);
+    padding: 24px 28px 0;
+    border-bottom: 3px solid var(--mh-eco);
+  }
+  .mh-page-title {
+    font-size: 26px;
+    font-weight: 300;
+    color: #fff;
+    letter-spacing: 0.02em;
+    margin-bottom: 4px;
+    font-family: var(--mh-font);
+  }
+  .mh-page-sub {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.5);
+    padding-bottom: 18px;
+    font-family: var(--mh-font);
+  }
+  .mh-wrap {
+    background: var(--mh-putty);
+    min-height: calc(100vh - 104px);
+    font-family: var(--mh-font);
+    font-size: 14px;
+    color: var(--mh-black);
+  }
+  .mh-layout {
+    display: grid;
+    grid-template-columns: 210px 1fr;
+    min-height: calc(100vh - 104px);
+  }
+  @media (max-width: 768px) {
+    .mh-layout {
+      grid-template-columns: 1fr;
+    }
+    .mh-sidebar {
+      border-right: none !important;
+      border-bottom: 1px solid var(--mh-border);
+    }
+  }
+  .mh-sidebar {
+    background: var(--mh-white);
+    border-right: 1px solid var(--mh-border);
+    padding: 24px 18px;
+  }
+  .mh-sb-section {
+    margin-bottom: 24px;
+  }
+  .mh-sb-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--mh-muted);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--mh-border);
+  }
+  .mh-cb-row {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 6px 0;
+    cursor: pointer;
+    user-select: none;
+  }
+  .mh-cb-row:hover .mh-cb-label {
+    color: var(--mh-eco-dark);
+  }
+  .mh-cb {
+    width: 15px;
+    height: 15px;
+    border: 1.5px solid var(--mh-border);
+    border-radius: 3px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition:
+      background 0.15s,
+      border-color 0.15s;
+  }
+  .mh-cb.is-checked {
+    background: var(--mh-eco);
+    border-color: var(--mh-eco);
+  }
+  .mh-cb.is-checked::after {
+    content: '';
+    width: 8px;
+    height: 5px;
+    border-left: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    transform: rotate(-45deg) translateY(-1px);
+    display: block;
+  }
+  .mh-cb-label {
+    font-size: 12px;
+    color: var(--mh-black);
+  }
+  .mh-main {
+    padding: 24px 28px;
+  }
+  .mh-active-filter {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #f3eefe;
+    border: 1px solid #c9a8f5;
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-bottom: 16px;
+  }
+  .mh-filter-icon {
+    color: #7831d7;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+  .mh-active-filter-text {
+    font-size: 12px;
+    color: #7831d7;
+    font-weight: 600;
+    flex: 1;
+  }
+  .mh-active-filter-clear {
+    font-size: 11px;
+    color: #7831d7;
+    opacity: 0.7;
+    cursor: pointer;
+    background: none;
+    border: none;
+    text-decoration: underline;
+    font-family: var(--mh-font);
+    white-space: nowrap;
+  }
+  .mh-active-filter-clear:hover {
+    opacity: 1;
+  }
+  .mh-search-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--mh-white);
+    border: 1.5px solid var(--mh-border);
+    border-radius: 8px;
+    padding: 11px 16px;
+    margin-bottom: 28px;
+    transition: border-color 0.15s;
+    color: var(--mh-muted);
+  }
+  .mh-search-bar:focus-within {
+    border-color: var(--mh-eco);
+  }
+  .mh-search-bar input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    font-family: var(--mh-font);
+    color: var(--mh-black);
+    background: transparent;
+  }
+  .mh-search-bar input::placeholder {
+    color: #bbb;
+  }
+  .mh-cat-group {
+    margin-bottom: 32px;
+  }
+  .mh-cat-header {
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--mh-eco);
+  }
+  .mh-cat-title {
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--mh-black);
+  }
+  .mh-tile-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+  }
+  @media (max-width: 900px) {
+    .mh-tile-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (max-width: 540px) {
+    .mh-tile-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  .mh-tile {
+    background: var(--mh-white);
+    border: 1px solid var(--mh-border);
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    transition:
+      border-color 0.2s,
+      transform 0.1s;
+  }
+  .mh-tile:hover {
+    border-color: var(--mh-eco);
+    transform: translateY(-1px);
+  }
+  .mh-tile-thumb {
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .mh-tile-thumb svg {
+    width: 26px;
+    height: 26px;
+    stroke-width: 1.5;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .mh-tile-body {
+    padding: 12px 14px 16px;
+  }
+  .mh-tile-title {
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    color: var(--mh-black);
+  }
+  .mh-tile-sub {
+    font-size: 11px;
+    color: var(--mh-muted);
+    line-height: 1.5;
+  }
+  .mh-thumb-mktg {
+    background: #e8f3e7;
+  }
+  .mh-thumb-mktg svg {
+    stroke: var(--mh-eco);
+  }
+  .mh-thumb-sustain {
+    background: #e8f0fb;
+  }
+  .mh-thumb-sustain svg {
+    stroke: #185fa5;
+  }
+  .mh-thumb-neutral {
+    background: #f0f0ee;
+  }
+  .mh-thumb-neutral svg {
+    stroke: #888;
+  }
+  .mh-empty,
+  .mh-no-content {
+    font-size: 13px;
+    color: var(--mh-muted);
+    padding: 24px 0;
+  }
 </style>
 
-{%- unless request.design_mode -%}
-  {%- if section.settings.require_login -%}
-    {%- unless customer -%}
-      {%- assign return_url = request.path | url_encode -%}
-      <script>window.location = "/account/login?checkout_url={{ return_url }}";</script>
-    {%- endunless -%}
-  {%- endif -%}
-{%- endunless -%}
-
-{%- assign all_resources = section.blocks | where: 'type', 'resource' -%}
+{%- unless request.design_mode -%} {%- if section.settings.require_login -%} {%- unless customer -%} {%- assign
+return_url = request.path | url_encode -%}
+<script>
+  window.location = '/account/login?checkout_url={{ return_url }}';
+</script>
+{%- endunless -%} {%- endif -%} {%- endunless -%} {%- assign all_resources = section.blocks | where: 'type', 'resource'
+-%}
 
 <div class="mh-wrap" id="section-{{ section.id }}">
-
   <div class="mh-page-header">
     <h1 class="mh-page-title">{{ section.settings.page_title }}</h1>
     <p class="mh-page-sub">{{ section.settings.page_subtitle }}</p>
   </div>
 
   <div class="mh-layout">
-
     <aside class="mh-sidebar">
       <div class="mh-sb-section">
         <div class="mh-sb-label">Resources</div>
-        {%- assign shown_types = '' -%}
-        {%- for block in all_resources -%}
-          {%- assign t = block.settings.resource_type -%}
-          {%- unless shown_types contains t -%}
-            {%- assign shown_types = shown_types | append: t | append: '~' -%}
-            <label class="mh-cb-row" data-filter-type="type" data-filter-value="{{ t | handleize }}">
-              <div class="mh-cb" data-cb></div>
-              <span class="mh-cb-label">{{ t }}</span>
-            </label>
-          {%- endunless -%}
-        {%- endfor -%}
+        {%- assign shown_types = '' -%} {%- for block in all_resources -%} {%- assign t = block.settings.resource_type
+        -%} {%- unless shown_types contains t -%} {%- assign shown_types = shown_types | append: t | append: '~' -%}
+        <label class="mh-cb-row" data-filter-type="type" data-filter-value="{{ t | handleize }}">
+          <div class="mh-cb" data-cb></div>
+          <span class="mh-cb-label">{{ t }}</span>
+        </label>
+        {%- endunless -%} {%- endfor -%}
       </div>
       <div class="mh-sb-section">
         <div class="mh-sb-label">Brand</div>
-        {%- assign shown_brands = '' -%}
-        {%- for block in all_resources -%}
-          {%- assign b = block.settings.brand -%}
-          {%- unless shown_brands contains b -%}
-            {%- assign shown_brands = shown_brands | append: b | append: '~' -%}
-            <label class="mh-cb-row" data-filter-type="brand" data-filter-value="{{ b | handleize }}">
-              <div class="mh-cb" data-cb></div>
-              <span class="mh-cb-label">{{ b }}</span>
-            </label>
-          {%- endunless -%}
-        {%- endfor -%}
+        {%- assign shown_brands = '' -%} {%- for block in all_resources -%} {%- assign b = block.settings.brand -%} {%-
+        unless shown_brands contains b -%} {%- assign shown_brands = shown_brands | append: b | append: '~' -%}
+        <label class="mh-cb-row" data-filter-type="brand" data-filter-value="{{ b | handleize }}">
+          <div class="mh-cb" data-cb></div>
+          <span class="mh-cb-label">{{ b }}</span>
+        </label>
+        {%- endunless -%} {%- endfor -%}
       </div>
     </aside>
 
     <main class="mh-main">
-
-      <div class="mh-active-filter" id="mh-active-filter" style="display:none">
+      <div class="mh-active-filter" id="mh-active-filter" style="display: none">
         <span class="mh-filter-icon">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
+          </svg>
         </span>
         <span class="mh-active-filter-text" id="mh-filter-text">Filtered by: All</span>
         <button class="mh-active-filter-clear" id="mh-clear-filters">Clear filters</button>
       </div>
 
       <div class="mh-search-bar">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        <input type="text" id="mh-search" placeholder="Search resources..." autocomplete="off">
+        <svg
+          width="15"
+          height="15"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <circle cx="11" cy="11" r="8" />
+          <line x1="21" y1="21" x2="16.65" y2="16.65" />
+        </svg>
+        <input type="text" id="mh-search" placeholder="Search resources..." autocomplete="off" />
       </div>
 
-      <div class="mh-empty" id="mh-empty" style="display:none"><p>No resources match your filters.</p></div>
+      <div class="mh-empty" id="mh-empty" style="display: none"><p>No resources match your filters.</p></div>
 
-      {%- assign shown_cats = '' -%}
-      {%- for block in all_resources -%}
-        {%- assign c = block.settings.category -%}
-        {%- unless shown_cats contains c -%}
-          {%- assign shown_cats = shown_cats | append: c | append: '~' -%}
-        {%- endunless -%}
-      {%- endfor -%}
-      {%- assign cats_array = shown_cats | split: '~' -%}
-
-      {%- for cat in cats_array -%}
-        {%- if cat != blank -%}
-          {%- assign cat_slug = cat | handleize -%}
-          <div class="mh-cat-group" id="mh-cat-{{ cat_slug }}">
-            <div class="mh-cat-header"><span class="mh-cat-title">{{ cat }}</span></div>
-            <div class="mh-tile-grid">
-              {%- for block in all_resources -%}
-                {%- if block.settings.category == cat -%}
-                  {%- assign brand_slug = block.settings.brand | handleize -%}
-                  {%- assign type_slug = block.settings.resource_type | handleize -%}
-                  <div class="mh-tile" data-brand="{{ brand_slug }}" data-type="{{ type_slug }}" data-title="{{ block.settings.title | downcase }}" data-desc="{{ block.settings.subtitle | downcase }}" {{ block.shopify_attributes }}{% if block.settings.link != blank %} role="link" tabindex="0" data-href="{{ block.settings.link }}"{% endif %}>
-                    <div class="mh-tile-thumb mh-thumb-{{ block.settings.thumb_style }}">
-                      {%- case block.settings.icon -%}
-                        {%- when 'book' -%}<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
-                        {%- when 'image' -%}<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-                        {%- when 'award' -%}<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 3H3v7a6 6 0 006 6h6a6 6 0 006-6V3z"/><line x1="12" y1="16" x2="12" y2="21"/><line x1="8" y1="21" x2="16" y2="21"/></svg>
-                        {%- when 'map-pin' -%}<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                        {%- when 'monitor' -%}<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-                        {%- when 'file-text' -%}<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-                        {%- when 'download' -%}<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><polyline points="9 15 12 18 15 15"/><line x1="12" y1="12" x2="12" y2="18"/></svg>
-                        {%- when 'check-circle' -%}<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
-                        {%- when 'refresh' -%}<svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="1 4 1 10 7 10"/><polyline points="23 20 23 14 17 14"/><path d="M20.49 9A9 9 0 005.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 013.51 15"/></svg>
-                        {%- when 'leaf' -%}<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 8C8 10 5.9 16.17 3.82 19.11M4.82 14C7 12 9 11 9 9c0-2-1-3-2-4m8 3c-1 1-2 2-2 4s1 3 2 4M15.77 15a3 3 0 01-5.54 0"/></svg>
-                        {%- when 'repeat' -%}<svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 014-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 01-4 4H3"/></svg>
-                        {%- when 'graduation' -%}<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 10v6M2 10l10-7 10 7-10 7z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-                        {%- else -%}<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-                      {%- endcase -%}
-                    </div>
-                    <div class="mh-tile-body">
-                      <div class="mh-tile-title">{{ block.settings.title }}</div>
-                      <div class="mh-tile-sub">{{ block.settings.subtitle }}</div>
-                    </div>
-                  </div>
-                {%- endif -%}
-              {%- endfor -%}
+      {%- assign shown_cats = '' -%} {%- for block in all_resources -%} {%- assign c = block.settings.category -%} {%-
+      unless shown_cats contains c -%} {%- assign shown_cats = shown_cats | append: c | append: '~' -%} {%- endunless
+      -%} {%- endfor -%} {%- assign cats_array = shown_cats | split: '~' -%} {%- for cat in cats_array -%} {%- if cat !=
+      blank -%} {%- assign cat_slug = cat | handleize -%}
+      <div class="mh-cat-group" id="mh-cat-{{ cat_slug }}">
+        <div class="mh-cat-header"><span class="mh-cat-title">{{ cat }}</span></div>
+        <div class="mh-tile-grid">
+          {%- for block in all_resources -%} {%- if block.settings.category == cat -%} {%- assign brand_slug =
+          block.settings.brand | handleize -%} {%- assign type_slug = block.settings.resource_type | handleize -%}
+          <div
+            class="mh-tile"
+            data-brand="{{ brand_slug }}"
+            data-type="{{ type_slug }}"
+            data-title="{{ block.settings.title | downcase }}"
+            data-desc="{{ block.settings.subtitle | downcase }}"
+            {{
+            block.shopify_attributes
+            }}{%
+            if
+            block.settings.link
+            !="blank"
+            %}
+            role="link"
+            tabindex="0"
+            data-href="{{ block.settings.link }}"
+            {%
+            endif
+            %}
+          >
+            <div class="mh-tile-thumb mh-thumb-{{ block.settings.thumb_style }}">
+              {%- case block.settings.icon -%} {%- when 'book' -%}<svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 19.5A2.5 2.5 0 016.5 17H20" />
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" />
+              </svg>
+              {%- when 'image' -%}<svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="3" y="3" width="18" height="18" rx="2" />
+                <circle cx="8.5" cy="8.5" r="1.5" />
+                <polyline points="21 15 16 10 5 21" />
+              </svg>
+              {%- when 'award' -%}<svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M21 3H3v7a6 6 0 006 6h6a6 6 0 006-6V3z" />
+                <line x1="12" y1="16" x2="12" y2="21" />
+                <line x1="8" y1="21" x2="16" y2="21" />
+              </svg>
+              {%- when 'map-pin' -%}<svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+              {%- when 'monitor' -%}<svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="2" y="3" width="20" height="14" rx="2" />
+                <line x1="8" y1="21" x2="16" y2="21" />
+                <line x1="12" y1="17" x2="12" y2="21" />
+              </svg>
+              {%- when 'file-text' -%}<svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+                <polyline points="14 2 14 8 20 8" />
+                <line x1="16" y1="13" x2="8" y2="13" />
+                <line x1="16" y1="17" x2="8" y2="17" />
+                <polyline points="10 9 9 9 8 9" />
+              </svg>
+              {%- when 'download' -%}<svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+                <polyline points="14 2 14 8 20 8" />
+                <polyline points="9 15 12 18 15 15" />
+                <line x1="12" y1="12" x2="12" y2="18" />
+              </svg>
+              {%- when 'check-circle' -%}<svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="9 11 12 14 22 4" />
+                <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" />
+              </svg>
+              {%- when 'refresh' -%}<svg viewBox="0 0 24 24" aria-hidden="true">
+                <polyline points="1 4 1 10 7 10" />
+                <polyline points="23 20 23 14 17 14" />
+                <path d="M20.49 9A9 9 0 005.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 013.51 15" />
+              </svg>
+              {%- when 'leaf' -%}<svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M17 8C8 10 5.9 16.17 3.82 19.11M4.82 14C7 12 9 11 9 9c0-2-1-3-2-4m8 3c-1 1-2 2-2 4s1 3 2 4M15.77 15a3 3 0 01-5.54 0"
+                />
+              </svg>
+              {%- when 'repeat' -%}<svg viewBox="0 0 24 24" aria-hidden="true">
+                <polyline points="17 1 21 5 17 9" />
+                <path d="M3 11V9a4 4 0 014-4h14" />
+                <polyline points="7 23 3 19 7 15" />
+                <path d="M21 13v2a4 4 0 01-4 4H3" />
+              </svg>
+              {%- when 'graduation' -%}<svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M22 10v6M2 10l10-7 10 7-10 7z" />
+                <path d="M6 12v5c3 3 9 3 12 0v-5" />
+              </svg>
+              {%- else -%}<svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+                <polyline points="14 2 14 8 20 8" />
+              </svg>
+              {%- endcase -%}
+            </div>
+            <div class="mh-tile-body">
+              <div class="mh-tile-title">{{ block.settings.title }}</div>
+              <div class="mh-tile-sub">{{ block.settings.subtitle }}</div>
             </div>
           </div>
-        {%- endif -%}
-      {%- endfor -%}
-
-      {%- if all_resources.size == 0 -%}
-        <p class="mh-no-content">No resources added yet. Add blocks in the theme editor.</p>
+          {%- endif -%} {%- endfor -%}
+        </div>
+      </div>
+      {%- endif -%} {%- endfor -%} {%- if all_resources.size == 0 -%}
+      <p class="mh-no-content">No resources added yet. Add blocks in the theme editor.</p>
       {%- endif -%}
-
     </main>
   </div>
 </div>
 
 <script>
-(function () {
-  'use strict';
-  var activeFilters = { brand: [], type: [] };
-  var sid = 'section-{{ section.id }}';
+  (function () {
+    'use strict';
+    var activeFilters = { brand: [], type: [] };
+    var sid = 'section-{{ section.id }}';
 
-  document.querySelectorAll('#' + sid + ' .mh-cb-row').forEach(function (row) {
-    row.addEventListener('click', function () {
-      var cb = this.querySelector('[data-cb]');
-      var fType = this.dataset.filterType;
-      var fValue = this.dataset.filterValue;
-      if (cb.classList.contains('is-checked')) {
-        cb.classList.remove('is-checked');
-        activeFilters[fType] = activeFilters[fType].filter(function (v) { return v !== fValue; });
-      } else {
-        cb.classList.add('is-checked');
-        activeFilters[fType].push(fValue);
-      }
-      applyFilters();
-    });
-  });
-
-  var clearBtn = document.getElementById('mh-clear-filters');
-  if (clearBtn) {
-    clearBtn.addEventListener('click', function () {
-      activeFilters = { brand: [], type: [] };
-      document.querySelectorAll('#' + sid + ' [data-cb]').forEach(function (cb) { cb.classList.remove('is-checked'); });
-      var si = document.getElementById('mh-search');
-      if (si) si.value = '';
-      applyFilters();
-    });
-  }
-
-  var searchInput = document.getElementById('mh-search');
-  if (searchInput) searchInput.addEventListener('input', applyFilters);
-
-  document.querySelectorAll('#' + sid + ' .mh-tile[data-href]').forEach(function (tile) {
-    tile.style.cursor = 'pointer';
-    tile.addEventListener('click', function () { window.open(this.dataset.href, '_blank'); });
-    tile.addEventListener('keydown', function (e) { if (e.key === 'Enter') window.open(this.dataset.href, '_blank'); });
-  });
-
-  function applyFilters() {
-    var query = searchInput ? searchInput.value.toLowerCase().trim() : '';
-    var brandFilters = activeFilters.brand;
-    var typeFilters = activeFilters.type;
-    var hasFilters = brandFilters.length > 0 || typeFilters.length > 0 || query.length > 0;
-    var anyVisible = false;
-
-    document.querySelectorAll('#' + sid + ' .mh-tile').forEach(function (tile) {
-      var bm = brandFilters.length === 0 || brandFilters.indexOf(tile.dataset.brand) > -1;
-      var tm = typeFilters.length === 0 || typeFilters.indexOf(tile.dataset.type) > -1;
-      var sm = query === '' || (tile.dataset.title || '').indexOf(query) > -1 || (tile.dataset.desc || '').indexOf(query) > -1;
-      var show = bm && tm && sm;
-      tile.style.display = show ? '' : 'none';
-      if (show) anyVisible = true;
+    document.querySelectorAll('#' + sid + ' .mh-cb-row').forEach(function (row) {
+      row.addEventListener('click', function () {
+        var cb = this.querySelector('[data-cb]');
+        var fType = this.dataset.filterType;
+        var fValue = this.dataset.filterValue;
+        if (cb.classList.contains('is-checked')) {
+          cb.classList.remove('is-checked');
+          activeFilters[fType] = activeFilters[fType].filter(function (v) {
+            return v !== fValue;
+          });
+        } else {
+          cb.classList.add('is-checked');
+          activeFilters[fType].push(fValue);
+        }
+        applyFilters();
+      });
     });
 
-    document.querySelectorAll('#' + sid + ' .mh-cat-group').forEach(function (g) {
-      var vis = g.querySelectorAll('.mh-tile:not([style*="display: none"])');
-      g.style.display = vis.length > 0 ? '' : 'none';
-    });
-
-    var banner = document.getElementById('mh-active-filter');
-    var bannerTx = document.getElementById('mh-filter-text');
-    if (banner) {
-      banner.style.display = hasFilters ? '' : 'none';
-      if (bannerTx) {
-        var labels = [];
-        brandFilters.forEach(function (v) { labels.push(v.replace(/-/g, ' ')); });
-        typeFilters.forEach(function (v) { labels.push(v.replace(/-/g, ' ')); });
-        if (query) labels.push('"' + query + '"');
-        bannerTx.textContent = 'Filtered by: ' + (labels.length ? labels.join(', ') : 'All');
-      }
+    var clearBtn = document.getElementById('mh-clear-filters');
+    if (clearBtn) {
+      clearBtn.addEventListener('click', function () {
+        activeFilters = { brand: [], type: [] };
+        document.querySelectorAll('#' + sid + ' [data-cb]').forEach(function (cb) {
+          cb.classList.remove('is-checked');
+        });
+        var si = document.getElementById('mh-search');
+        if (si) si.value = '';
+        applyFilters();
+      });
     }
-    var emptyEl = document.getElementById('mh-empty');
-    if (emptyEl) emptyEl.style.display = (!anyVisible && hasFilters) ? '' : 'none';
-  }
-}());
+
+    var searchInput = document.getElementById('mh-search');
+    if (searchInput) searchInput.addEventListener('input', applyFilters);
+
+    document.querySelectorAll('#' + sid + ' .mh-tile[data-href]').forEach(function (tile) {
+      tile.style.cursor = 'pointer';
+      tile.addEventListener('click', function () {
+        window.open(this.dataset.href, '_blank');
+      });
+      tile.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') window.open(this.dataset.href, '_blank');
+      });
+    });
+
+    function applyFilters() {
+      var query = searchInput ? searchInput.value.toLowerCase().trim() : '';
+      var brandFilters = activeFilters.brand;
+      var typeFilters = activeFilters.type;
+      var hasFilters = brandFilters.length > 0 || typeFilters.length > 0 || query.length > 0;
+      var anyVisible = false;
+
+      document.querySelectorAll('#' + sid + ' .mh-tile').forEach(function (tile) {
+        var bm = brandFilters.length === 0 || brandFilters.indexOf(tile.dataset.brand) > -1;
+        var tm = typeFilters.length === 0 || typeFilters.indexOf(tile.dataset.type) > -1;
+        var sm =
+          query === '' ||
+          (tile.dataset.title || '').indexOf(query) > -1 ||
+          (tile.dataset.desc || '').indexOf(query) > -1;
+        var show = bm && tm && sm;
+        tile.style.display = show ? '' : 'none';
+        if (show) anyVisible = true;
+      });
+
+      document.querySelectorAll('#' + sid + ' .mh-cat-group').forEach(function (g) {
+        var vis = g.querySelectorAll('.mh-tile:not([style*="display: none"])');
+        g.style.display = vis.length > 0 ? '' : 'none';
+      });
+
+      var banner = document.getElementById('mh-active-filter');
+      var bannerTx = document.getElementById('mh-filter-text');
+      if (banner) {
+        banner.style.display = hasFilters ? '' : 'none';
+        if (bannerTx) {
+          var labels = [];
+          brandFilters.forEach(function (v) {
+            labels.push(v.replace(/-/g, ' '));
+          });
+          typeFilters.forEach(function (v) {
+            labels.push(v.replace(/-/g, ' '));
+          });
+          if (query) labels.push('"' + query + '"');
+          bannerTx.textContent = 'Filtered by: ' + (labels.length ? labels.join(', ') : 'All');
+        }
+      }
+      var emptyEl = document.getElementById('mh-empty');
+      if (emptyEl) emptyEl.style.display = !anyVisible && hasFilters ? '' : 'none';
+    }
+  })();
 </script>
 
-{% schema %}
-{
-  "name": "Media Hub",
-  "tag": "section",
-  "class": "section-media-hub",
-  "settings": [
-    {
-      "type": "text",
-      "id": "page_title",
-      "label": "Page title",
-      "default": "Media hub"
-    },
-    {
-      "type": "text",
-      "id": "page_subtitle",
-      "label": "Page subtitle",
-      "default": "Assets, press resources and brand materials for trade partners"
-    },
-    {
-      "type": "checkbox",
-      "id": "require_login",
-      "label": "Require customer login",
-      "default": true
-    }
-  ],
-  "blocks": [
-    {
-      "type": "resource",
-      "name": "Resource tile",
-      "settings": [
-        {
-          "type": "text",
-          "id": "title",
-          "label": "Title",
-          "default": "Resource name"
-        },
-        {
-          "type": "text",
-          "id": "subtitle",
-          "label": "Description",
-          "default": "Short description of this resource"
-        },
-        {
-          "type": "select",
-          "id": "category",
-          "label": "Category",
-          "options": [
-            { "value": "Marketing",      "label": "Marketing" },
-            { "value": "Sustainability", "label": "Sustainability" },
-            { "value": "Technical",      "label": "Technical" },
-            { "value": "Sales",          "label": "Sales" }
-          ],
-          "default": "Marketing"
-        },
-        {
-          "type": "select",
-          "id": "resource_type",
-          "label": "Resource type",
-          "options": [
-            { "value": "Product sheets", "label": "Product sheets" },
-            { "value": "Tender assets",  "label": "Tender assets" },
-            { "value": "Imagery",        "label": "Imagery" },
-            { "value": "Social media",   "label": "Social media" },
-            { "value": "PFAS",           "label": "PFAS" },
-            { "value": "Policies",       "label": "Policies" },
-            { "value": "Compliance",     "label": "Compliance" },
-            { "value": "Other",          "label": "Other" }
-          ],
-          "default": "Imagery"
-        },
-        {
-          "type": "select",
-          "id": "brand",
-          "label": "Brand",
-          "options": [
-            { "value": "All brands",        "label": "All brands" },
-            { "value": "David Luke",        "label": "David Luke" },
-            { "value": "Grass & Air",       "label": "Grass & Air" },
-            { "value": "Lelli Kelly",       "label": "Lelli Kelly" },
-            { "value": "Term",              "label": "Term" },
-            { "value": "Little Classmates", "label": "Little Classmates" },
-            { "value": "Juco",              "label": "Juco" }
-          ],
-          "default": "All brands"
-        },
-        {
-          "type": "select",
-          "id": "icon",
-          "label": "Icon",
-          "options": [
-            { "value": "book",         "label": "Book / catalogue" },
-            { "value": "image",        "label": "Image / photo" },
-            { "value": "award",        "label": "Award / trophy" },
-            { "value": "map-pin",      "label": "Map pin / location" },
-            { "value": "monitor",      "label": "Monitor / screen" },
-            { "value": "file-text",    "label": "File / document" },
-            { "value": "download",     "label": "Download / arrow" },
-            { "value": "check-circle", "label": "Check / compliance" },
-            { "value": "refresh",      "label": "Refresh / circular" },
-            { "value": "leaf",         "label": "Leaf / eco" },
-            { "value": "repeat",       "label": "Repeat / re-use" },
-            { "value": "graduation",   "label": "Graduation / education" }
-          ],
-          "default": "file-text"
-        },
-        {
-          "type": "select",
-          "id": "thumb_style",
-          "label": "Tile colour",
-          "options": [
-            { "value": "mktg",    "label": "Green (marketing)" },
-            { "value": "sustain", "label": "Blue (sustainability)" },
-            { "value": "neutral", "label": "Grey (neutral)" }
-          ],
-          "default": "mktg"
-        },
-        {
-          "type": "url",
-          "id": "link",
-          "label": "Link (optional)"
-        }
-      ]
-    }
-  ],
-  "presets": [
-    {
-      "name": "Media Hub",
-      "blocks": [
-        { "type": "resource", "settings": { "title": "Catalogues & lookbooks", "subtitle": "Season catalogues, range lookbooks and buyer guides", "category": "Marketing", "resource_type": "Product sheets", "brand": "All brands", "icon": "book", "thumb_style": "mktg" } },
-        { "type": "resource", "settings": { "title": "Image downloads", "subtitle": "Product photography, lifestyle and campaign imagery", "category": "Marketing", "resource_type": "Imagery", "brand": "All brands", "icon": "image", "thumb_style": "mktg" } },
-        { "type": "resource", "settings": { "title": "Point of sale", "subtitle": "In-store POS materials, posters and display assets", "category": "Marketing", "resource_type": "Other", "brand": "All brands", "icon": "map-pin", "thumb_style": "mktg" } },
-        { "type": "resource", "settings": { "title": "Website & social assets", "subtitle": "Digital banners, social crops and web-ready imagery", "category": "Marketing", "resource_type": "Social media", "brand": "All brands", "icon": "monitor", "thumb_style": "mktg" } },
-        { "type": "resource", "settings": { "title": "Product descriptions", "subtitle": "Approved copy, product specs and feature summaries", "category": "Marketing", "resource_type": "Product sheets", "brand": "All brands", "icon": "file-text", "thumb_style": "mktg" } },
-        { "type": "resource", "settings": { "title": "Policies", "subtitle": "Environmental, ethical trading and supply chain policies", "category": "Sustainability", "resource_type": "Policies", "brand": "All brands", "icon": "download", "thumb_style": "sustain" } },
-        { "type": "resource", "settings": { "title": "Compliance sheets", "subtitle": "Product compliance, testing and certification documents", "category": "Sustainability", "resource_type": "Compliance", "brand": "All brands", "icon": "check-circle", "thumb_style": "sustain" } },
-        { "type": "resource", "settings": { "title": "Circular assets", "subtitle": "Recycling, end-of-life and circular economy materials", "category": "Sustainability", "resource_type": "Other", "brand": "All brands", "icon": "refresh", "thumb_style": "sustain" } },
-        { "type": "resource", "settings": { "title": "Eco-uniform assets", "subtitle": "Eco range marketing materials and sustainability claims", "category": "Sustainability", "resource_type": "Other", "brand": "All brands", "icon": "leaf", "thumb_style": "sustain" } },
-        { "type": "resource", "settings": { "title": "Re:Uniform", "subtitle": "Resale and re-use programme assets and partner materials", "category": "Sustainability", "resource_type": "Other", "brand": "All brands", "icon": "repeat", "thumb_style": "sustain" } },
-        { "type": "resource", "settings": { "title": "Lesson plans", "subtitle": "Educational resources and sustainability lesson content", "category": "Sustainability", "resource_type": "Other", "brand": "All brands", "icon": "graduation", "thumb_style": "sustain" } }
-      ]
-    }
-  ]
-}
-{% endschema %}
+{% schema %} { "name": "Media Hub", "tag": "section", "class": "section-media-hub", "settings": [ { "type": "text",
+"id": "page_title", "label": "Page title", "default": "Media hub" }, { "type": "text", "id": "page_subtitle", "label":
+"Page subtitle", "default": "Assets, press resources and brand materials for trade partners" }, { "type": "checkbox",
+"id": "require_login", "label": "Require customer login", "default": true } ], "blocks": [ { "type": "resource", "name":
+"Resource tile", "settings": [ { "type": "text", "id": "title", "label": "Title", "default": "Resource name" }, {
+"type": "text", "id": "subtitle", "label": "Description", "default": "Short description of this resource" }, { "type":
+"select", "id": "category", "label": "Category", "options": [ { "value": "Marketing", "label": "Marketing" }, { "value":
+"Sustainability", "label": "Sustainability" }, { "value": "Technical", "label": "Technical" }, { "value": "Sales",
+"label": "Sales" } ], "default": "Marketing" }, { "type": "select", "id": "resource_type", "label": "Resource type",
+"options": [ { "value": "Product sheets", "label": "Product sheets" }, { "value": "Tender assets", "label": "Tender
+assets" }, { "value": "Imagery", "label": "Imagery" }, { "value": "Social media", "label": "Social media" }, { "value":
+"PFAS", "label": "PFAS" }, { "value": "Policies", "label": "Policies" }, { "value": "Compliance", "label": "Compliance"
+}, { "value": "Other", "label": "Other" } ], "default": "Imagery" }, { "type": "select", "id": "brand", "label":
+"Brand", "options": [ { "value": "All brands", "label": "All brands" }, { "value": "David Luke", "label": "David Luke"
+}, { "value": "Grass & Air", "label": "Grass & Air" }, { "value": "Lelli Kelly", "label": "Lelli Kelly" }, { "value":
+"Term", "label": "Term" }, { "value": "Little Classmates", "label": "Little Classmates" }, { "value": "Juco", "label":
+"Juco" } ], "default": "All brands" }, { "type": "select", "id": "icon", "label": "Icon", "options": [ { "value":
+"book", "label": "Book / catalogue" }, { "value": "image", "label": "Image / photo" }, { "value": "award", "label":
+"Award / trophy" }, { "value": "map-pin", "label": "Map pin / location" }, { "value": "monitor", "label": "Monitor /
+screen" }, { "value": "file-text", "label": "File / document" }, { "value": "download", "label": "Download / arrow" }, {
+"value": "check-circle", "label": "Check / compliance" }, { "value": "refresh", "label": "Refresh / circular" }, {
+"value": "leaf", "label": "Leaf / eco" }, { "value": "repeat", "label": "Repeat / re-use" }, { "value": "graduation",
+"label": "Graduation / education" } ], "default": "file-text" }, { "type": "select", "id": "thumb_style", "label": "Tile
+colour", "options": [ { "value": "mktg", "label": "Green (marketing)" }, { "value": "sustain", "label": "Blue
+(sustainability)" }, { "value": "neutral", "label": "Grey (neutral)" } ], "default": "mktg" }, { "type": "url", "id":
+"link", "label": "Link (optional)" } ] } ], "presets": [ { "name": "Media Hub", "blocks": [ { "type": "resource",
+"settings": { "title": "Catalogues & lookbooks", "subtitle": "Season catalogues, range lookbooks and buyer guides",
+"category": "Marketing", "resource_type": "Product sheets", "brand": "All brands", "icon": "book", "thumb_style": "mktg"
+} }, { "type": "resource", "settings": { "title": "Image downloads", "subtitle": "Product photography, lifestyle and
+campaign imagery", "category": "Marketing", "resource_type": "Imagery", "brand": "All brands", "icon": "image",
+"thumb_style": "mktg" } }, { "type": "resource", "settings": { "title": "Point of sale", "subtitle": "In-store POS
+materials, posters and display assets", "category": "Marketing", "resource_type": "Other", "brand": "All brands",
+"icon": "map-pin", "thumb_style": "mktg" } }, { "type": "resource", "settings": { "title": "Website & social assets",
+"subtitle": "Digital banners, social crops and web-ready imagery", "category": "Marketing", "resource_type": "Social
+media", "brand": "All brands", "icon": "monitor", "thumb_style": "mktg" } }, { "type": "resource", "settings": {
+"title": "Product descriptions", "subtitle": "Approved copy, product specs and feature summaries", "category":
+"Marketing", "resource_type": "Product sheets", "brand": "All brands", "icon": "file-text", "thumb_style": "mktg" } }, {
+"type": "resource", "settings": { "title": "Policies", "subtitle": "Environmental, ethical trading and supply chain
+policies", "category": "Sustainability", "resource_type": "Policies", "brand": "All brands", "icon": "download",
+"thumb_style": "sustain" } }, { "type": "resource", "settings": { "title": "Compliance sheets", "subtitle": "Product
+compliance, testing and certification documents", "category": "Sustainability", "resource_type": "Compliance", "brand":
+"All brands", "icon": "check-circle", "thumb_style": "sustain" } }, { "type": "resource", "settings": { "title":
+"Circular assets", "subtitle": "Recycling, end-of-life and circular economy materials", "category": "Sustainability",
+"resource_type": "Other", "brand": "All brands", "icon": "refresh", "thumb_style": "sustain" } }, { "type": "resource",
+"settings": { "title": "Eco-uniform assets", "subtitle": "Eco range marketing materials and sustainability claims",
+"category": "Sustainability", "resource_type": "Other", "brand": "All brands", "icon": "leaf", "thumb_style": "sustain"
+} }, { "type": "resource", "settings": { "title": "Re:Uniform", "subtitle": "Resale and re-use programme assets and
+partner materials", "category": "Sustainability", "resource_type": "Other", "brand": "All brands", "icon": "repeat",
+"thumb_style": "sustain" } }, { "type": "resource", "settings": { "title": "Lesson plans", "subtitle": "Educational
+resources and sustainability lesson content", "category": "Sustainability", "resource_type": "Other", "brand": "All
+brands", "icon": "graduation", "thumb_style": "sustain" } } ] } ] } {% endschema %}
