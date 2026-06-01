@@ -1,330 +1,538 @@
-{% comment %} Image Downloads Page — The Parently Group Trade Portal Template: page.image-downloads.liquid Requires:
-page.image-downloads JSON template (see image-downloads.json) Metafield structure expected on each brand metaobject: -
-custom.brand_name (single_line_text) - custom.brand_key (single_line_text) — slug e.g. "david-luke" -
-custom.brand_colour (color) — hex for badge/icon tint - custom.asset_sections (list.metaobject) → each has: -
-custom.section_title (single_line_text) - custom.assets (list.metaobject) → each has: - custom.asset_name
-(single_line_text) - custom.asset_file (file_reference) — uploaded to Files - custom.asset_size (single_line_text) e.g.
-"6.2 MB · JPG" - custom.asset_type (single_line_text) e.g. "Campaign" - custom.zip_packs (list.metaobject) → each has: -
-custom.pack_name (single_line_text) - custom.pack_detail (single_line_text) e.g. "48 files · 142 MB · Updated 12 May
-2026" - custom.pack_file (file_reference) — ZIP uploaded to Files If you prefer a simpler setup, replace metaobject
-references with hardcoded values or page metafields — see SIMPLE MODE comments below. {% endcomment %} {{
-'section-image-downloads.css' | asset_url | stylesheet_tag }} {%- comment %} Access gate — skipped in theme editor
-preview {% endcomment %} {%- unless request.design_mode -%} {%- if section.settings.require_login -%} {%- unless
-customer -%} {%- assign return_url = request.path | url_encode -%}
-<script>
-  window.location = '/account/login?checkout_url={{ return_url }}';
-</script>
-{%- endunless -%} {%- if section.settings.required_tag != blank -%} {%- unless customer.tags contains
-section.settings.required_tag -%}
-<div class="pg-downloads__access-denied">
-  <p>This page is available to approved trade accounts only.</p>
-</div>
-{%- break -%} {%- endunless -%} {%- endif -%} {%- endif -%} {%- endunless -%} {%- comment %} Build ordered brand list
-from settings ─ preserves David Luke first ─{% endcomment %} {%- assign brand_ids = 'dl,ga,lk,term,lc,juco' | split: ','
--%} {%- assign brand_labels = section.settings.brand_1_label | append: '|' | append: section.settings.brand_2_label |
-append: '|' | append: section.settings.brand_3_label | append: '|' | append: section.settings.brand_4_label | append:
-'|' | append: section.settings.brand_5_label | append: '|' | append: section.settings.brand_6_label | split: '|' -%}
+{% comment %}
+  Image Downloads Page — The Parently Group Trade Portal
+  Template: page.image-downloads.liquid
+  Requires: page.image-downloads JSON template (see image-downloads.json)
+
+  Metafield structure expected on each brand metaobject:
+    - custom.brand_name       (single_line_text)
+    - custom.brand_key        (single_line_text) — slug e.g. "david-luke"
+    - custom.brand_colour     (color) — hex for badge/icon tint
+    - custom.asset_sections   (list.metaobject) → each has:
+        - custom.section_title  (single_line_text)
+        - custom.assets         (list.metaobject) → each has:
+            - custom.asset_name   (single_line_text)
+            - custom.asset_file   (file_reference) — uploaded to Files
+            - custom.asset_size   (single_line_text) e.g. "6.2 MB · JPG"
+            - custom.asset_type   (single_line_text) e.g. "Campaign"
+    - custom.zip_packs        (list.metaobject) → each has:
+        - custom.pack_name      (single_line_text)
+        - custom.pack_detail    (single_line_text) e.g. "48 files · 142 MB · Updated 12 May 2026"
+        - custom.pack_file      (file_reference) — ZIP uploaded to Files
+
+  If you prefer a simpler setup, replace metaobject references with
+  hardcoded values or page metafields — see SIMPLE MODE comments below.
+{% endcomment %}
+
+{{ 'section-image-downloads.css' | asset_url | stylesheet_tag }}
+
+{%- comment %} Access gate — skipped in theme editor preview {% endcomment %}
+{%- unless request.design_mode -%}
+  {%- if section.settings.require_login -%}
+    {%- unless customer -%}
+      {%- assign return_url = request.path | url_encode -%}
+      <script>window.location = "/account/login?checkout_url={{ return_url }}";</script>
+    {%- endunless -%}
+    {%- if section.settings.required_tag != blank -%}
+      {%- unless customer.tags contains section.settings.required_tag -%}
+        <div class="pg-downloads__access-denied">
+          <p>This page is available to approved trade accounts only.</p>
+        </div>
+        {%- break -%}
+      {%- endunless -%}
+    {%- endif -%}
+  {%- endif -%}
+{%- endunless -%}
+
+{%- comment %} Build ordered brand list from settings ─ preserves David Luke first ─{% endcomment %}
+{%- assign brand_ids = 'dl,ga,lk,term,lc,juco' | split: ',' -%}
+{%- assign brand_labels = section.settings.brand_1_label
+  | append: '|' | append: section.settings.brand_2_label
+  | append: '|' | append: section.settings.brand_3_label
+  | append: '|' | append: section.settings.brand_4_label
+  | append: '|' | append: section.settings.brand_5_label
+  | append: '|' | append: section.settings.brand_6_label
+  | split: '|' -%}
 
 <div class="pg-downloads" id="section-{{ section.id }}">
+
   {%- comment %} ── Brand tab navigation ── {% endcomment %}
   <div class="pg-downloads__tabs-wrap">
     <div class="pg-downloads__tabs" role="tablist">
-      {%- for brand_id in brand_ids -%} {%- assign label = brand_labels[forloop.index0] -%}
-      <button
-        class="pg-downloads__tab{% if forloop.first %} is-active{% endif %}"
-        role="tab"
-        aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
-        aria-controls="brand-panel-{{ section.id }}-{{ brand_id }}"
-        data-brand="{{ brand_id }}"
-      >
-        {{ label }}
-      </button>
+      {%- for brand_id in brand_ids -%}
+        {%- assign label = brand_labels[forloop.index0] -%}
+        <button
+          class="pg-downloads__tab{% if forloop.first %} is-active{% endif %}"
+          role="tab"
+          aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+          aria-controls="brand-panel-{{ section.id }}-{{ brand_id }}"
+          data-brand="{{ brand_id }}"
+        >{{ label }}</button>
       {%- endfor -%}
     </div>
   </div>
 
-  {%- comment %} ── Brand panels ── {% endcomment %} {%- for brand_id in brand_ids -%} {%- assign is_first =
-  forloop.first -%} {%- comment %} Collect asset blocks for this brand {% endcomment %} {%- assign brand_assets =
-  section.blocks | where: 'type', 'asset' | where: 'settings.brand', brand_id -%} {%- assign brand_sections =
-  section.blocks | where: 'type', 'brand_section' | where: 'settings.brand', brand_id -%} {%- assign brand_packs =
-  section.blocks | where: 'type', 'zip_pack' | where: 'settings.brand', brand_id -%}
+  {%- comment %} ── Brand panels ── {% endcomment %}
+  {%- for brand_id in brand_ids -%}
+    {%- assign is_first = forloop.first -%}
 
-  <div
-    class="pg-downloads__panel{% if is_first %} is-active{% endif %}"
-    id="brand-panel-{{ section.id }}-{{ brand_id }}"
-    role="tabpanel"
-    data-brand-panel="{{ brand_id }}"
-  >
-    {%- comment %} Filter chips ─ built from unique asset_type values for this brand {% endcomment %} {%- assign
-    seen_types = '' -%} {%- for asset_block in brand_assets -%} {%- assign t = asset_block.settings.asset_type -%} {%-
-    unless seen_types contains t -%} {%- assign seen_types = seen_types | append: t | append: ',' -%} {%- endunless -%}
-    {%- endfor -%} {%- assign type_chips = seen_types | split: ',' -%} {%- if brand_assets.size > 0 -%}
-    <div class="pg-downloads__filters" data-filter-group="{{ brand_id }}">
-      <span class="pg-downloads__filter-label">Filter:</span>
-      <button class="pg-downloads__chip is-active" data-filter="all">All</button>
-      {%- for chip in type_chips -%} {%- if chip != blank -%}
-      <button class="pg-downloads__chip" data-filter="{{ chip }}">{{- chip | capitalize -}}</button>
-      {%- endif -%} {%- endfor -%}
-    </div>
-    {%- endif -%} {%- comment %} Asset sections + their assets {% endcomment %} {%- for section_block in brand_sections
-    -%} {%- assign sec_title = section_block.settings.section_title -%}
+    {%- comment %} Collect asset blocks for this brand {% endcomment %}
+    {%- assign brand_assets   = section.blocks | where: 'type', 'asset'        | where: 'settings.brand', brand_id -%}
+    {%- assign brand_sections = section.blocks | where: 'type', 'brand_section' | where: 'settings.brand', brand_id -%}
+    {%- assign brand_packs    = section.blocks | where: 'type', 'zip_pack'     | where: 'settings.brand', brand_id -%}
 
-    <div class="pg-downloads__section-head">
-      <span class="pg-downloads__section-title">{{ sec_title }}</span>
-      <button class="pg-downloads__btn-ghost">
-        <svg
-          width="13"
-          height="13"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          aria-hidden="true"
-        >
-          <path d="M12 15V3m0 12l-4-4m4 4l4-4" />
-          <path d="M2 17v2a2 2 0 002 2h16a2 2 0 002-2v-2" />
-        </svg>
-        Download all (ZIP)
-      </button>
-    </div>
+    <div
+      class="pg-downloads__panel{% if is_first %} is-active{% endif %}"
+      id="brand-panel-{{ section.id }}-{{ brand_id }}"
+      role="tabpanel"
+      data-brand-panel="{{ brand_id }}"
+    >
 
-    <div class="pg-downloads__grid">
-      {%- for asset_block in brand_assets -%} {%- assign type_slug = asset_block.settings.asset_type -%}
-      <div class="pg-downloads__card" data-type="{{ type_slug }}">
-        <div class="pg-downloads__thumb">
-          {%- if asset_block.settings.thumbnail != blank -%}
-          <img
-            src="{{ asset_block.settings.thumbnail | image_url: width: 400 }}"
-            alt="{{ asset_block.settings.asset_name }}"
-            loading="lazy"
-            width="400"
-            height="300"
-            class="pg-downloads__thumb-img"
-          />
-          {%- else -%}
-          <div class="pg-downloads__thumb-placeholder" aria-hidden="true">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <rect x="3" y="3" width="18" height="18" rx="2" />
-              <circle cx="8.5" cy="8.5" r="1.5" />
-              <polyline points="21 15 16 10 5 21" />
-            </svg>
-          </div>
-          {%- endif -%} {%- if asset_block.settings.asset_url != blank -%}
-          <div class="pg-downloads__overlay">
-            <a
-              href="{{ asset_block.settings.asset_url }}"
-              class="pg-downloads__ov-btn"
-              target="_blank"
-              rel="noopener"
-              aria-label="Preview {{ asset_block.settings.asset_name }}"
-            >
-              <svg
-                width="15"
-                height="15"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                aria-hidden="true"
-              >
-                <circle cx="12" cy="12" r="4" />
-                <path d="M2 12C4 6 7.5 3 12 3s8 3 10 9c-2 6-5.5 9-10 9s-8-3-10-9z" />
-              </svg>
-            </a>
-            <button
-              class="pg-downloads__oov-btn pg-downloads__oov-btn--green js-download-asset"
-              data-url="{{ asset_block.settings.asset_url }}"
-              data-filename="{{ asset_block.settings.asset_name | handleize }}"
-              aria-label="Download {{ asset_block.settings.asset_name }}"
-            >
-              <svg
-                width="15"
-                height="15"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                aria-hidden="true"
-              >
-                <path d="M12 15V3m0 12l-4-4m4 4l4-4" />
-                <path d="M2 17v2a2 2 0 002 2h16a2 2 0 002-2v-2" />
-              </svg>
-            </button>
-          </div>
-          {%- endif -%}
-        </div>
-        <div class="pg-downloads__meta">
-          <div class="pg-downloads__asset-name">{{ asset_block.settings.asset_name }}</div>
-          <div class="pg-downloads__asset-row">
-            <span class="pg-downloads__asset-size">{{ asset_block.settings.asset_size }}</span>
-            <span class="pg-downloads__badge pg-downloads__badge--{{ type_slug }}">
-              {{- type_slug | capitalize -}}
-            </span>
-          </div>
-        </div>
-      </div>
+      {%- comment %} Filter chips ─ built from unique asset_type values for this brand {% endcomment %}
+      {%- assign seen_types = '' -%}
+      {%- for asset_block in brand_assets -%}
+        {%- assign t = asset_block.settings.asset_type -%}
+        {%- unless seen_types contains t -%}
+          {%- assign seen_types = seen_types | append: t | append: ',' -%}
+        {%- endunless -%}
       {%- endfor -%}
-    </div>
-    {%- endfor -%} {%- comment %} ZIP packs {% endcomment %} {%- if brand_packs.size > 0 -%}
-    <div class="pg-downloads__section-head">
-      <span class="pg-downloads__section-title">Asset packs</span>
-    </div>
-    <div class="pg-downloads__packs">
-      {%- for pack_block in brand_packs -%}
-      <div class="pg-downloads__pack-card">
-        <div class="pg-downloads__pack-left">
-          <div class="pg-downloads__pack-icon" aria-hidden="true">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M4 4h10l6 6v10a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2z" />
-              <polyline points="14 2 14 8 20 8" />
-            </svg>
-          </div>
-          <div>
-            <div class="pg-downloads__pack-name">{{ pack_block.settings.pack_name }}</div>
-            <div class="pg-downloads__pack-sub">{{ pack_block.settings.pack_detail }}</div>
-          </div>
+      {%- assign type_chips = seen_types | split: ',' -%}
+
+      {%- if brand_assets.size > 0 -%}
+        <div class="pg-downloads__filters" data-filter-group="{{ brand_id }}">
+          <span class="pg-downloads__filter-label">Filter:</span>
+          <button class="pg-downloads__chip is-active" data-filter="all">All</button>
+          {%- for chip in type_chips -%}
+            {%- if chip != blank -%}
+              <button class="pg-downloads__chip" data-filter="{{ chip }}">
+                {{- chip | capitalize -}}
+              </button>
+            {%- endif -%}
+          {%- endfor -%}
         </div>
-        {%- if pack_block.settings.pack_url != blank -%}
-        <a
-          href="{{ pack_block.settings.pack_url }}"
-          class="pg-downloads__btn-green"
-          download
-          aria-label="Download {{ pack_block.settings.pack_name }}"
-        >
-          <svg
-            width="13"
-            height="13"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            aria-hidden="true"
-          >
-            <path d="M12 15V3m0 12l-4-4m4 4l4-4" />
-            <path d="M2 17v2a2 2 0 002 2h16a2 2 0 002-2v-2" />
-          </svg>
-          Download ZIP
-        </a>
-        {%- endif -%}
-      </div>
+      {%- endif -%}
+
+      {%- comment %} Asset sections + their assets {% endcomment %}
+      {%- for section_block in brand_sections -%}
+        {%- assign sec_title = section_block.settings.section_title -%}
+
+        <div class="pg-downloads__section-head">
+          <span class="pg-downloads__section-title">{{ sec_title }}</span>
+          <button class="pg-downloads__btn-ghost">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 15V3m0 12l-4-4m4 4l4-4"/><path d="M2 17v2a2 2 0 002 2h16a2 2 0 002-2v-2"/></svg>
+            Download all (ZIP)
+          </button>
+        </div>
+
+        <div class="pg-downloads__grid">
+          {%- for asset_block in brand_assets -%}
+            {%- assign type_slug = asset_block.settings.asset_type -%}
+            <div class="pg-downloads__card" data-type="{{ type_slug }}">
+              <div class="pg-downloads__thumb">
+                {%- if asset_block.settings.thumbnail != blank -%}
+                  <img
+                    src="{{ asset_block.settings.thumbnail | image_url: width: 400 }}"
+                    alt="{{ asset_block.settings.asset_name }}"
+                    loading="lazy"
+                    width="400"
+                    height="300"
+                    class="pg-downloads__thumb-img"
+                  >
+                {%- else -%}
+                  <div class="pg-downloads__thumb-placeholder" aria-hidden="true">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                  </div>
+                {%- endif -%}
+                {%- if asset_block.settings.asset_url != blank -%}
+                  <div class="pg-downloads__overlay">
+                    <a
+                      href="{{ asset_block.settings.asset_url }}"
+                      class="pg-downloads__ov-btn"
+                      target="_blank"
+                      rel="noopener"
+                      aria-label="Preview {{ asset_block.settings.asset_name }}"
+                    >
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M2 12C4 6 7.5 3 12 3s8 3 10 9c-2 6-5.5 9-10 9s-8-3-10-9z"/></svg>
+                    </a>
+                    <button
+                      class="pg-downloads__oov-btn pg-downloads__oov-btn--green js-download-asset"
+                      data-url="{{ asset_block.settings.asset_url }}"
+                      data-filename="{{ asset_block.settings.asset_name | handleize }}"
+                      aria-label="Download {{ asset_block.settings.asset_name }}"
+                    >
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 15V3m0 12l-4-4m4 4l4-4"/><path d="M2 17v2a2 2 0 002 2h16a2 2 0 002-2v-2"/></svg>
+                    </button>
+                  </div>
+                {%- endif -%}
+              </div>
+              <div class="pg-downloads__meta">
+                <div class="pg-downloads__asset-name">{{ asset_block.settings.asset_name }}</div>
+                <div class="pg-downloads__asset-row">
+                  <span class="pg-downloads__asset-size">{{ asset_block.settings.asset_size }}</span>
+                  <span class="pg-downloads__badge pg-downloads__badge--{{ type_slug }}">
+                    {{- type_slug | capitalize -}}
+                  </span>
+                </div>
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
       {%- endfor -%}
+
+      {%- comment %} ZIP packs {% endcomment %}
+      {%- if brand_packs.size > 0 -%}
+        <div class="pg-downloads__section-head">
+          <span class="pg-downloads__section-title">Asset packs</span>
+        </div>
+        <div class="pg-downloads__packs">
+          {%- for pack_block in brand_packs -%}
+            <div class="pg-downloads__pack-card">
+              <div class="pg-downloads__pack-left">
+                <div class="pg-downloads__pack-icon" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h10l6 6v10a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2z"/><polyline points="14 2 14 8 20 8"/></svg>
+                </div>
+                <div>
+                  <div class="pg-downloads__pack-name">{{ pack_block.settings.pack_name }}</div>
+                  <div class="pg-downloads__pack-sub">{{ pack_block.settings.pack_detail }}</div>
+                </div>
+              </div>
+              {%- if pack_block.settings.pack_url != blank -%}
+                <a
+                  href="{{ pack_block.settings.pack_url }}"
+                  class="pg-downloads__btn-green"
+                  download
+                  aria-label="Download {{ pack_block.settings.pack_name }}"
+                >
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 15V3m0 12l-4-4m4 4l4-4"/><path d="M2 17v2a2 2 0 002 2h16a2 2 0 002-2v-2"/></svg>
+                  Download ZIP
+                </a>
+              {%- endif -%}
+            </div>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+      {%- if brand_assets.size == 0 and brand_packs.size == 0 -%}
+        <p class="pg-downloads__empty">No assets added yet for this brand.</p>
+      {%- endif -%}
+
     </div>
-    {%- endif -%} {%- if brand_assets.size == 0 and brand_packs.size == 0 -%}
-    <p class="pg-downloads__empty">No assets added yet for this brand.</p>
-    {%- endif -%}
-  </div>
   {%- endfor -%}
+
 </div>
 
 <script>
-  (function () {
-    'use strict';
+(function () {
+  'use strict';
 
-    // ── Tab switching ──
-    document.querySelectorAll('.pg-downloads__tab').forEach(function (tab) {
-      tab.addEventListener('click', function () {
-        var brandId = this.dataset.brand;
+  // ── Tab switching ──
+  document.querySelectorAll('.pg-downloads__tab').forEach(function (tab) {
+    tab.addEventListener('click', function () {
+      var brandId = this.dataset.brand;
 
-        document.querySelectorAll('.pg-downloads__tab').forEach(function (t) {
-          t.classList.remove('is-active');
-          t.setAttribute('aria-selected', 'false');
-        });
-        document.querySelectorAll('.pg-downloads__panel').forEach(function (p) {
-          p.classList.remove('is-active');
-        });
+      document.querySelectorAll('.pg-downloads__tab').forEach(function (t) {
+        t.classList.remove('is-active');
+        t.setAttribute('aria-selected', 'false');
+      });
+      document.querySelectorAll('.pg-downloads__panel').forEach(function (p) {
+        p.classList.remove('is-active');
+      });
 
-        this.classList.add('is-active');
-        this.setAttribute('aria-selected', 'true');
-        var panel = document.getElementById('brand-panel-' + brandId);
-        if (panel) panel.classList.add('is-active');
+      this.classList.add('is-active');
+      this.setAttribute('aria-selected', 'true');
+      var panel = document.getElementById('brand-panel-' + brandId);
+      if (panel) panel.classList.add('is-active');
+    });
+  });
+
+  // ── Filter chips ──
+  document.querySelectorAll('.pg-downloads__chip').forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var group = this.closest('[data-filter-group]');
+      group.querySelectorAll('.pg-downloads__chip').forEach(function (c) {
+        c.classList.remove('is-active');
+      });
+      this.classList.add('is-active');
+
+      var filter = this.dataset.filter;
+      var panel = this.closest('.pg-downloads__panel');
+      panel.querySelectorAll('.pg-downloads__card').forEach(function (card) {
+        if (filter === 'all' || card.dataset.type === filter) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
       });
     });
+  });
 
-    // ── Filter chips ──
-    document.querySelectorAll('.pg-downloads__chip').forEach(function (chip) {
-      chip.addEventListener('click', function () {
-        var group = this.closest('[data-filter-group]');
-        group.querySelectorAll('.pg-downloads__chip').forEach(function (c) {
-          c.classList.remove('is-active');
+  // ── Individual asset download (blob fetch to force download across CDN) ──
+  document.querySelectorAll('.js-download-asset').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var url = this.dataset.url;
+      var filename = this.dataset.filename;
+      fetch(url)
+        .then(function (res) { return res.blob(); })
+        .then(function (blob) {
+          var link = document.createElement('a');
+          link.href = URL.createObjectURL(blob);
+          link.download = filename;
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          URL.revokeObjectURL(link.href);
+        })
+        .catch(function () {
+          // Fallback: open in new tab if blob fetch fails (e.g. CORS)
+          window.open(url, '_blank');
         });
-        this.classList.add('is-active');
-
-        var filter = this.dataset.filter;
-        var panel = this.closest('.pg-downloads__panel');
-        panel.querySelectorAll('.pg-downloads__card').forEach(function (card) {
-          if (filter === 'all' || card.dataset.type === filter) {
-            card.style.display = '';
-          } else {
-            card.style.display = 'none';
-          }
-        });
-      });
     });
+  });
 
-    // ── Individual asset download (blob fetch to force download across CDN) ──
-    document.querySelectorAll('.js-download-asset').forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        var url = this.dataset.url;
-        var filename = this.dataset.filename;
-        fetch(url)
-          .then(function (res) {
-            return res.blob();
-          })
-          .then(function (blob) {
-            var link = document.createElement('a');
-            link.href = URL.createObjectURL(blob);
-            link.download = filename;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            URL.revokeObjectURL(link.href);
-          })
-          .catch(function () {
-            // Fallback: open in new tab if blob fetch fails (e.g. CORS)
-            window.open(url, '_blank');
-          });
-      });
-    });
-  })();
+})();
 </script>
 
-{{ 'section-image-downloads.css' | asset_url | stylesheet_tag }} {% schema %} { "name": "Image Downloads", "tag":
-"section", "class": "section-image-downloads", "settings": [ { "type": "header", "content": "Page content" }, { "type":
-"text", "id": "page_title", "label": "Page title", "default": "Image Downloads" }, { "type": "textarea", "id":
-"page_intro", "label": "Intro text", "default": "Download approved campaign, product, and lifestyle assets for your
-channels. Packs updated each season." }, { "type": "header", "content": "Brand tabs" }, { "type": "text", "id":
-"brand_1_label", "label": "Brand 1 tab label", "default": "David Luke" }, { "type": "text", "id": "brand_2_label",
-"label": "Brand 2 tab label", "default": "Grass & Air" }, { "type": "text", "id": "brand_3_label", "label": "Brand 3 tab
-label", "default": "Lelli Kelly" }, { "type": "text", "id": "brand_4_label", "label": "Brand 4 tab label", "default":
-"Term" }, { "type": "text", "id": "brand_5_label", "label": "Brand 5 tab label", "default": "Little Classmates" }, {
-"type": "text", "id": "brand_6_label", "label": "Brand 6 tab label", "default": "Juco" }, { "type": "header", "content":
-"Access control" }, { "type": "checkbox", "id": "require_login", "label": "Require customer login to view downloads",
-"default": true }, { "type": "text", "id": "required_tag", "label": "Required customer tag (leave blank to allow all
-logged-in customers)", "info": "e.g. 'trade' — only customers with this tag will see the page content" }, { "type":
-"header", "content": "Colours" }, { "type": "color", "id": "accent_color", "label": "Accent / button colour", "default":
-"#4EA043" }, { "type": "color", "id": "tab_active_color", "label": "Active tab underline colour", "default": "#4EA043" }
-], "blocks": [ { "type": "brand_section", "name": "Brand asset section", "settings": [ { "type": "select", "id":
-"brand", "label": "Brand", "options": [ { "value": "dl", "label": "David Luke" }, { "value": "ga", "label": "Grass &
-Air" }, { "value": "lk", "label": "Lelli Kelly" }, { "value": "term", "label": "Term" }, { "value": "lc", "label":
-"Little Classmates" }, { "value": "juco", "label": "Juco" } ], "default": "dl" }, { "type": "text", "id":
-"section_title", "label": "Section heading", "info": "e.g. 'Summer 2026 campaign' or 'AW26 collection'", "default":
-"SS26 collection" } ] }, { "type": "asset", "name": "Asset", "settings": [ { "type": "select", "id": "brand", "label":
-"Brand this asset belongs to", "options": [ { "value": "dl", "label": "David Luke" }, { "value": "ga", "label": "Grass &
-Air" }, { "value": "lk", "label": "Lelli Kelly" }, { "value": "term", "label": "Term" }, { "value": "lc", "label":
-"Little Classmates" }, { "value": "juco", "label": "Juco" } ], "default": "dl" }, { "type": "image_picker", "id":
-"thumbnail", "label": "Thumbnail image", "info": "Shown in the grid. Ideally 4:3 ratio, 800×600px minimum." }, { "type":
-"text", "id": "asset_name", "label": "Asset name", "default": "DL-AW26-HERO-01" }, { "type": "url", "id": "asset_url",
-"label": "Download URL", "info": "Paste the Shopify Files CDN URL for this image or file" }, { "type": "text", "id":
-"asset_size", "label": "File size and type", "info": "Displayed under the thumbnail — e.g. '6.2 MB · JPG'", "default":
-"0 MB · JPG" }, { "type": "select", "id": "asset_type", "label": "Asset type", "options": [ { "value": "campaign",
-"label": "Campaign" }, { "value": "product", "label": "Product" }, { "value": "lifestyle", "label": "Lifestyle" }, {
-"value": "logos", "label": "Logos" } ], "default": "campaign" } ] }, { "type": "zip_pack", "name": "ZIP asset pack",
-"settings": [ { "type": "select", "id": "brand", "label": "Brand this pack belongs to", "options": [ { "value": "dl",
-"label": "David Luke" }, { "value": "ga", "label": "Grass & Air" }, { "value": "lk", "label": "Lelli Kelly" }, {
-"value": "term", "label": "Term" }, { "value": "lc", "label": "Little Classmates" }, { "value": "juco", "label": "Juco"
-} ], "default": "dl" }, { "type": "text", "id": "pack_name", "label": "Pack name", "default": "AW26 — full asset pack"
-}, { "type": "text", "id": "pack_detail", "label": "Pack detail line", "info": "e.g. '48 files · 142 MB · Updated 12 May
-2026'", "default": "0 files · 0 MB" }, { "type": "url", "id": "pack_url", "label": "ZIP download URL", "info": "Paste
-the Shopify Files CDN URL for the ZIP file" } ] } ], "presets": [ { "name": "Image Downloads", "blocks": [ { "type":
-"brand_section", "settings": { "brand": "dl", "section_title": "AW26 schoolwear" } }, { "type": "brand_section",
-"settings": { "brand": "ga", "section_title": "Summer 2026 campaign" } } ] } ] } {% endschema %}
+{{ 'section-image-downloads.css' | asset_url | stylesheet_tag }}
+
+{% schema %}
+{
+  "name": "Image Downloads",
+  "tag": "section",
+  "class": "section-image-downloads",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Page content"
+    },
+    {
+      "type": "text",
+      "id": "page_title",
+      "label": "Page title",
+      "default": "Image Downloads"
+    },
+    {
+      "type": "textarea",
+      "id": "page_intro",
+      "label": "Intro text",
+      "default": "Download approved campaign, product, and lifestyle assets for your channels. Packs updated each season."
+    },
+    {
+      "type": "header",
+      "content": "Brand tabs"
+    },
+    {
+      "type": "text",
+      "id": "brand_1_label",
+      "label": "Brand 1 tab label",
+      "default": "David Luke"
+    },
+    {
+      "type": "text",
+      "id": "brand_2_label",
+      "label": "Brand 2 tab label",
+      "default": "Grass & Air"
+    },
+    {
+      "type": "text",
+      "id": "brand_3_label",
+      "label": "Brand 3 tab label",
+      "default": "Lelli Kelly"
+    },
+    {
+      "type": "text",
+      "id": "brand_4_label",
+      "label": "Brand 4 tab label",
+      "default": "Term"
+    },
+    {
+      "type": "text",
+      "id": "brand_5_label",
+      "label": "Brand 5 tab label",
+      "default": "Little Classmates"
+    },
+    {
+      "type": "text",
+      "id": "brand_6_label",
+      "label": "Brand 6 tab label",
+      "default": "Juco"
+    },
+    {
+      "type": "header",
+      "content": "Access control"
+    },
+    {
+      "type": "checkbox",
+      "id": "require_login",
+      "label": "Require customer login to view downloads",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "required_tag",
+      "label": "Required customer tag (leave blank to allow all logged-in customers)",
+      "info": "e.g. 'trade' — only customers with this tag will see the page content"
+    },
+    {
+      "type": "header",
+      "content": "Colours"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent / button colour",
+      "default": "#4EA043"
+    },
+    {
+      "type": "color",
+      "id": "tab_active_color",
+      "label": "Active tab underline colour",
+      "default": "#4EA043"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "brand_section",
+      "name": "Brand asset section",
+      "settings": [
+        {
+          "type": "select",
+          "id": "brand",
+          "label": "Brand",
+          "options": [
+            { "value": "dl",   "label": "David Luke" },
+            { "value": "ga",   "label": "Grass & Air" },
+            { "value": "lk",   "label": "Lelli Kelly" },
+            { "value": "term", "label": "Term" },
+            { "value": "lc",   "label": "Little Classmates" },
+            { "value": "juco", "label": "Juco" }
+          ],
+          "default": "dl"
+        },
+        {
+          "type": "text",
+          "id": "section_title",
+          "label": "Section heading",
+          "info": "e.g. 'Summer 2026 campaign' or 'AW26 collection'",
+          "default": "SS26 collection"
+        }
+      ]
+    },
+    {
+      "type": "asset",
+      "name": "Asset",
+      "settings": [
+        {
+          "type": "select",
+          "id": "brand",
+          "label": "Brand this asset belongs to",
+          "options": [
+            { "value": "dl",   "label": "David Luke" },
+            { "value": "ga",   "label": "Grass & Air" },
+            { "value": "lk",   "label": "Lelli Kelly" },
+            { "value": "term", "label": "Term" },
+            { "value": "lc",   "label": "Little Classmates" },
+            { "value": "juco", "label": "Juco" }
+          ],
+          "default": "dl"
+        },
+        {
+          "type": "image_picker",
+          "id": "thumbnail",
+          "label": "Thumbnail image",
+          "info": "Shown in the grid. Ideally 4:3 ratio, 800×600px minimum."
+        },
+        {
+          "type": "text",
+          "id": "asset_name",
+          "label": "Asset name",
+          "default": "DL-AW26-HERO-01"
+        },
+        {
+          "type": "url",
+          "id": "asset_url",
+          "label": "Download URL",
+          "info": "Paste the Shopify Files CDN URL for this image or file"
+        },
+        {
+          "type": "text",
+          "id": "asset_size",
+          "label": "File size and type",
+          "info": "Displayed under the thumbnail — e.g. '6.2 MB · JPG'",
+          "default": "0 MB · JPG"
+        },
+        {
+          "type": "select",
+          "id": "asset_type",
+          "label": "Asset type",
+          "options": [
+            { "value": "campaign",  "label": "Campaign" },
+            { "value": "product",   "label": "Product" },
+            { "value": "lifestyle", "label": "Lifestyle" },
+            { "value": "logos",     "label": "Logos" }
+          ],
+          "default": "campaign"
+        }
+      ]
+    },
+    {
+      "type": "zip_pack",
+      "name": "ZIP asset pack",
+      "settings": [
+        {
+          "type": "select",
+          "id": "brand",
+          "label": "Brand this pack belongs to",
+          "options": [
+            { "value": "dl",   "label": "David Luke" },
+            { "value": "ga",   "label": "Grass & Air" },
+            { "value": "lk",   "label": "Lelli Kelly" },
+            { "value": "term", "label": "Term" },
+            { "value": "lc",   "label": "Little Classmates" },
+            { "value": "juco", "label": "Juco" }
+          ],
+          "default": "dl"
+        },
+        {
+          "type": "text",
+          "id": "pack_name",
+          "label": "Pack name",
+          "default": "AW26 — full asset pack"
+        },
+        {
+          "type": "text",
+          "id": "pack_detail",
+          "label": "Pack detail line",
+          "info": "e.g. '48 files · 142 MB · Updated 12 May 2026'",
+          "default": "0 files · 0 MB"
+        },
+        {
+          "type": "url",
+          "id": "pack_url",
+          "label": "ZIP download URL",
+          "info": "Paste the Shopify Files CDN URL for the ZIP file"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image Downloads",
+      "blocks": [
+        {
+          "type": "brand_section",
+          "settings": {
+            "brand": "dl",
+            "section_title": "AW26 schoolwear"
+          }
+        },
+        {
+          "type": "brand_section",
+          "settings": {
+            "brand": "ga",
+            "section_title": "Summer 2026 campaign"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

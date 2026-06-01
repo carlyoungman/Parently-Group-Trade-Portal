@@ -1,246 +1,314 @@
-{{ 'section-catalogues.css' | asset_url | stylesheet_tag }} {%- unless request.design_mode -%} {%- if
-section.settings.require_login -%} {%- unless customer -%} {%- assign return_url = request.path | url_encode -%}
-<script>
-  window.location = '/account/login?checkout_url={{ return_url }}';
-</script>
-{%- endunless -%} {%- endif -%} {%- endunless -%} {%- assign season_list = '' -%} {%- assign brand_list = '' -%} {%- for
-block in section.blocks -%} {%- if block.type == 'catalogue' -%} {%- assign s = block.settings.season -%} {%- unless
-season_list contains s -%} {%- assign season_list = season_list | append: s | append: '~' -%} {%- endunless -%} {%-
-assign b = block.settings.brand -%} {%- unless brand_list contains b -%} {%- assign brand_list = brand_list | append: b
-| append: '~' -%} {%- endunless -%} {%- endif -%} {%- endfor -%} {%- assign seasons = season_list | split: '~' -%} {%-
-assign brands = brand_list | split: '~' -%}
+{{ 'section-catalogues.css' | asset_url | stylesheet_tag }}
+
+{%- unless request.design_mode -%}
+  {%- if section.settings.require_login -%}
+    {%- unless customer -%}
+      {%- assign return_url = request.path | url_encode -%}
+      <script>window.location = "/account/login?checkout_url={{ return_url }}";</script>
+    {%- endunless -%}
+  {%- endif -%}
+{%- endunless -%}
+
+{%- assign season_list = '' -%}
+{%- assign brand_list = '' -%}
+{%- for block in section.blocks -%}
+  {%- if block.type == 'catalogue' -%}
+    {%- assign s = block.settings.season -%}
+    {%- unless season_list contains s -%}
+      {%- assign season_list = season_list | append: s | append: '~' -%}
+    {%- endunless -%}
+    {%- assign b = block.settings.brand -%}
+    {%- unless brand_list contains b -%}
+      {%- assign brand_list = brand_list | append: b | append: '~' -%}
+    {%- endunless -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- assign seasons = season_list | split: '~' -%}
+{%- assign brands  = brand_list  | split: '~' -%}
 
 <div class="cat-wrap" id="section-{{ section.id }}">
+
   <div class="cat-page-header">
     <h1 class="cat-page-title">{{ section.settings.page_title }}</h1>
     <p class="cat-page-sub">{{ section.settings.page_subtitle }}</p>
   </div>
 
   <div class="cat-body">
+
     <div class="cat-toolbar">
       <div class="cat-search-bar">
-        <svg
-          width="15"
-          height="15"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="1.5"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          aria-hidden="true"
-        >
-          <circle cx="11" cy="11" r="8" />
-          <line x1="21" y1="21" x2="16.65" y2="16.65" />
-        </svg>
-        <input type="text" id="cat-search" placeholder="Search catalogues..." autocomplete="off" />
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" id="cat-search" placeholder="Search catalogues..." autocomplete="off">
       </div>
       <div class="cat-chips">
         <button class="cat-chip is-active" data-filter="all">All brands</button>
-        {%- for b in brands -%} {%- if b != blank -%}
-        <button class="cat-chip" data-filter="{{ b | handleize }}">{{ b }}</button>
-        {%- endif -%} {%- endfor -%}
+        {%- for b in brands -%}
+          {%- if b != blank -%}
+            <button class="cat-chip" data-filter="{{ b | handleize }}">{{ b }}</button>
+          {%- endif -%}
+        {%- endfor -%}
       </div>
     </div>
 
-    <div id="cat-empty" class="cat-empty" style="display: none">No catalogues match your search.</div>
+    <div id="cat-empty" class="cat-empty" style="display:none">No catalogues match your search.</div>
 
-    {%- for season in seasons -%} {%- if season != blank -%} {%- assign season_slug = season | handleize -%} {%- assign
-    season_count = 0 -%} {%- for block in section.blocks -%} {%- if block.type == 'catalogue' and block.settings.season
-    == season -%} {%- assign season_count = season_count | plus: 1 -%} {%- endif -%} {%- endfor -%}
-    <div class="cat-section" id="cat-sec-{{ season_slug }}">
-      <div class="cat-section-head">
-        <span class="cat-section-title">{{ season }}</span>
-        <span class="cat-section-count">{{ season_count }} document{% if season_count != 1 %}s{% endif %}</span>
-      </div>
-      <div class="cat-grid">
-        {%- for block in section.blocks -%} {%- if block.type == 'catalogue' and block.settings.season == season -%} {%-
-        assign brand_slug = block.settings.brand | handleize -%}
-        <div
-          class="cat-card"
-          data-brand="{{ brand_slug }}"
-          data-title="{{ block.settings.title | downcase }} {{ block.settings.brand | downcase }} {{ block.settings.season | downcase }}"
-          {{
-          block.shopify_attributes
-          }}
-        >
-          <div class="cat-cover">
-            {%- if block.settings.cover_image != blank -%} {{- block.settings.cover_image | image_url: width: 400 |
-            image_tag: class: 'cat-cover-img', loading: 'lazy', alt: block.settings.title -}} {%- else -%}
-            <div class="cat-cover-placeholder" aria-hidden="true">
-              <svg width="40" height="52" viewBox="0 0 40 52" fill="none">
-                <rect x="3" y="3" width="34" height="46" rx="3" fill="currentColor" opacity="0.15" />
-                <rect x="7" y="8" width="26" height="16" rx="2" fill="currentColor" opacity="0.12" />
-                <rect x="7" y="28" width="20" height="3" rx="1" fill="currentColor" opacity="0.2" />
-                <rect x="7" y="34" width="16" height="3" rx="1" fill="currentColor" opacity="0.15" />
-                <rect x="7" y="40" width="18" height="3" rx="1" fill="currentColor" opacity="0.15" />
-              </svg>
-            </div>
-            {%- endif -%}
-            <div class="cat-cover-label">
-              <div class="cat-cover-brand">{{ block.settings.brand }}</div>
-              <div class="cat-cover-title">{{ block.settings.title }}</div>
-            </div>
-            {%- if block.settings.is_new -%}
-            <span class="cat-new-badge">New</span>
-            {%- endif -%}
+    {%- for season in seasons -%}
+      {%- if season != blank -%}
+        {%- assign season_slug = season | handleize -%}
+        {%- assign season_count = 0 -%}
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'catalogue' and block.settings.season == season -%}
+            {%- assign season_count = season_count | plus: 1 -%}
+          {%- endif -%}
+        {%- endfor -%}
+        <div class="cat-section" id="cat-sec-{{ season_slug }}">
+          <div class="cat-section-head">
+            <span class="cat-section-title">{{ season }}</span>
+            <span class="cat-section-count">{{ season_count }} document{% if season_count != 1 %}s{% endif %}</span>
           </div>
-          <div class="cat-card-body">
-            <div class="cat-card-meta">
-              {%- if block.settings.season_label != blank -%}
-              <span class="cat-season-label">{{ block.settings.season_label }}</span>
-              {%- else -%}
-              <span class="cat-season-label">{{ block.settings.season }}</span>
-              {%- endif -%} {%- if block.settings.file_size != blank -%}
-              <span class="cat-file-size">{{ block.settings.file_size }}</span>
+          <div class="cat-grid">
+            {%- for block in section.blocks -%}
+              {%- if block.type == 'catalogue' and block.settings.season == season -%}
+                {%- assign brand_slug = block.settings.brand | handleize -%}
+                <div class="cat-card" data-brand="{{ brand_slug }}" data-title="{{ block.settings.title | downcase }} {{ block.settings.brand | downcase }} {{ block.settings.season | downcase }}" {{ block.shopify_attributes }}>
+                  <div class="cat-cover">
+                    {%- if block.settings.cover_image != blank -%}
+                      {{- block.settings.cover_image | image_url: width: 400 | image_tag: class: 'cat-cover-img', loading: 'lazy', alt: block.settings.title -}}
+                    {%- else -%}
+                      <div class="cat-cover-placeholder" aria-hidden="true">
+                        <svg width="40" height="52" viewBox="0 0 40 52" fill="none"><rect x="3" y="3" width="34" height="46" rx="3" fill="currentColor" opacity="0.15"/><rect x="7" y="8" width="26" height="16" rx="2" fill="currentColor" opacity="0.12"/><rect x="7" y="28" width="20" height="3" rx="1" fill="currentColor" opacity="0.2"/><rect x="7" y="34" width="16" height="3" rx="1" fill="currentColor" opacity="0.15"/><rect x="7" y="40" width="18" height="3" rx="1" fill="currentColor" opacity="0.15"/></svg>
+                      </div>
+                    {%- endif -%}
+                    <div class="cat-cover-label">
+                      <div class="cat-cover-brand">{{ block.settings.brand }}</div>
+                      <div class="cat-cover-title">{{ block.settings.title }}</div>
+                    </div>
+                    {%- if block.settings.is_new -%}
+                      <span class="cat-new-badge">New</span>
+                    {%- endif -%}
+                  </div>
+                  <div class="cat-card-body">
+                    <div class="cat-card-meta">
+                      {%- if block.settings.season_label != blank -%}
+                        <span class="cat-season-label">{{ block.settings.season_label }}</span>
+                      {%- else -%}
+                        <span class="cat-season-label">{{ block.settings.season }}</span>
+                      {%- endif -%}
+                      {%- if block.settings.file_size != blank -%}
+                        <span class="cat-file-size">{{ block.settings.file_size }}</span>
+                      {%- endif -%}
+                    </div>
+                    <div class="cat-card-actions">
+                      {%- if block.settings.pdf_url != blank -%}
+                        <a href="{{ block.settings.pdf_url }}" class="cat-btn-preview" target="_blank" rel="noopener" aria-label="Preview {{ block.settings.title }}">
+                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M2 12C4 6 7.5 3 12 3s8 3 10 9c-2 6-5.5 9-10 9s-8-3-10-9z"/></svg>
+                          Preview
+                        </a>
+                        <button class="cat-btn-download js-cat-download" data-url="{{ block.settings.pdf_url }}" data-filename="{{ block.settings.title | handleize }}.pdf" aria-label="Download {{ block.settings.title }} PDF">
+                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V3m0 12l-4-4m4 4l4-4"/><path d="M2 17v2a2 2 0 002 2h16a2 2 0 002-2v-2"/></svg>
+                          PDF
+                        </button>
+                      {%- else -%}
+                        <span class="cat-btn-coming">Coming soon</span>
+                      {%- endif -%}
+                    </div>
+                  </div>
+                </div>
               {%- endif -%}
-            </div>
-            <div class="cat-card-actions">
-              {%- if block.settings.pdf_url != blank -%}
-              <a
-                href="{{ block.settings.pdf_url }}"
-                class="cat-btn-preview"
-                target="_blank"
-                rel="noopener"
-                aria-label="Preview {{ block.settings.title }}"
-              >
-                <svg
-                  width="13"
-                  height="13"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  aria-hidden="true"
-                >
-                  <circle cx="12" cy="12" r="4" />
-                  <path d="M2 12C4 6 7.5 3 12 3s8 3 10 9c-2 6-5.5 9-10 9s-8-3-10-9z" />
-                </svg>
-                Preview
-              </a>
-              <button
-                class="cat-btn-download js-cat-download"
-                data-url="{{ block.settings.pdf_url }}"
-                data-filename="{{ block.settings.title | handleize }}.pdf"
-                aria-label="Download {{ block.settings.title }} PDF"
-              >
-                <svg
-                  width="13"
-                  height="13"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  aria-hidden="true"
-                >
-                  <path d="M12 15V3m0 12l-4-4m4 4l4-4" />
-                  <path d="M2 17v2a2 2 0 002 2h16a2 2 0 002-2v-2" />
-                </svg>
-                PDF
-              </button>
-              {%- else -%}
-              <span class="cat-btn-coming">Coming soon</span>
-              {%- endif -%}
-            </div>
+            {%- endfor -%}
           </div>
         </div>
-        {%- endif -%} {%- endfor -%}
-      </div>
-    </div>
-    {%- endif -%} {%- endfor -%} {%- assign has_catalogues = false -%} {%- for block in section.blocks -%} {%- if
-    block.type == 'catalogue' -%}{%- assign has_catalogues = true -%}{%- endif -%} {%- endfor -%} {%- unless
-    has_catalogues -%}
-    <p class="cat-no-content">No catalogues added yet. Add blocks in the theme editor.</p>
+      {%- endif -%}
+    {%- endfor -%}
+
+    {%- assign has_catalogues = false -%}
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'catalogue' -%}{%- assign has_catalogues = true -%}{%- endif -%}
+    {%- endfor -%}
+    {%- unless has_catalogues -%}
+      <p class="cat-no-content">No catalogues added yet. Add blocks in the theme editor.</p>
     {%- endunless -%}
+
   </div>
 </div>
 
 <script>
-  (function () {
-    'use strict';
-    var sid = 'section-{{ section.id }}';
-    var chips = document.querySelectorAll('#' + sid + ' .cat-chip');
-    var cards = document.querySelectorAll('#' + sid + ' .cat-card');
-    var searchInput = document.getElementById('cat-search');
-    var emptyEl = document.getElementById('cat-empty');
-    var activeFilter = 'all';
+(function () {
+  'use strict';
+  var sid = 'section-{{ section.id }}';
+  var chips = document.querySelectorAll('#' + sid + ' .cat-chip');
+  var cards = document.querySelectorAll('#' + sid + ' .cat-card');
+  var searchInput = document.getElementById('cat-search');
+  var emptyEl = document.getElementById('cat-empty');
+  var activeFilter = 'all';
 
-    chips.forEach(function (chip) {
-      chip.addEventListener('click', function () {
-        chips.forEach(function (c) {
-          c.classList.remove('is-active');
-        });
-        this.classList.add('is-active');
-        activeFilter = this.dataset.filter;
-        filter();
-      });
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      chips.forEach(function (c) { c.classList.remove('is-active'); });
+      this.classList.add('is-active');
+      activeFilter = this.dataset.filter;
+      filter();
     });
+  });
 
-    if (searchInput) searchInput.addEventListener('input', filter);
+  if (searchInput) searchInput.addEventListener('input', filter);
 
-    function filter() {
-      var query = searchInput ? searchInput.value.toLowerCase().trim() : '';
-      var anyVisible = false;
-      cards.forEach(function (card) {
-        var brandMatch = activeFilter === 'all' || card.dataset.brand === activeFilter;
-        var searchMatch = query === '' || (card.dataset.title || '').indexOf(query) > -1;
-        var show = brandMatch && searchMatch;
-        card.style.display = show ? '' : 'none';
-        if (show) anyVisible = true;
-      });
-      document.querySelectorAll('#' + sid + ' .cat-section').forEach(function (sec) {
-        var visible = sec.querySelectorAll('.cat-card:not([style*="display: none"])');
-        sec.style.display = visible.length > 0 ? '' : 'none';
-      });
-      if (emptyEl) emptyEl.style.display = anyVisible ? 'none' : '';
-    }
-
-    document.querySelectorAll('#' + sid + ' .js-cat-download').forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        var url = this.dataset.url;
-        var filename = this.dataset.filename;
-        fetch(url)
-          .then(function (res) {
-            return res.blob();
-          })
-          .then(function (blob) {
-            var a = document.createElement('a');
-            a.href = URL.createObjectURL(blob);
-            a.download = filename;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(a.href);
-          })
-          .catch(function () {
-            window.open(url, '_blank');
-          });
-      });
+  function filter() {
+    var query = searchInput ? searchInput.value.toLowerCase().trim() : '';
+    var anyVisible = false;
+    cards.forEach(function (card) {
+      var brandMatch = activeFilter === 'all' || card.dataset.brand === activeFilter;
+      var searchMatch = query === '' || (card.dataset.title || '').indexOf(query) > -1;
+      var show = brandMatch && searchMatch;
+      card.style.display = show ? '' : 'none';
+      if (show) anyVisible = true;
     });
-  })();
+    document.querySelectorAll('#' + sid + ' .cat-section').forEach(function (sec) {
+      var visible = sec.querySelectorAll('.cat-card:not([style*="display: none"])');
+      sec.style.display = visible.length > 0 ? '' : 'none';
+    });
+    if (emptyEl) emptyEl.style.display = anyVisible ? 'none' : '';
+  }
+
+  document.querySelectorAll('#' + sid + ' .js-cat-download').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var url = this.dataset.url;
+      var filename = this.dataset.filename;
+      fetch(url)
+        .then(function (res) { return res.blob(); })
+        .then(function (blob) {
+          var a = document.createElement('a');
+          a.href = URL.createObjectURL(blob);
+          a.download = filename;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          URL.revokeObjectURL(a.href);
+        })
+        .catch(function () { window.open(url, '_blank'); });
+    });
+  });
+}());
 </script>
 
-{% schema %} { "name": "Catalogues & Lookbooks", "tag": "section", "class": "section-catalogues", "settings": [ {
-"type": "text", "id": "page_title", "label": "Page title", "default": "Catalogues & lookbooks" }, { "type": "text",
-"id": "page_subtitle", "label": "Subtitle", "default": "Season catalogues, range lookbooks and buyer guides" }, {
-"type": "checkbox", "id": "require_login", "label": "Require customer login", "default": true } ], "blocks": [ { "type":
-"catalogue", "name": "Catalogue / lookbook", "settings": [ { "type": "text", "id": "title", "label": "Title", "default":
-"AW26 Full Catalogue" }, { "type": "select", "id": "brand", "label": "Brand", "options": [ { "value": "David Luke",
-"label": "David Luke" }, { "value": "Grass & Air", "label": "Grass & Air" }, { "value": "Lelli Kelly", "label": "Lelli
-Kelly" }, { "value": "Term", "label": "Term" }, { "value": "Little Classmates", "label": "Little Classmates" }, {
-"value": "Juco", "label": "Juco" } ], "default": "David Luke" }, { "type": "text", "id": "season", "label": "Season",
-"info": "Used to group cards under a heading — entries with the same season code appear together. e.g. AW26, SS27,
-BTS27", "default": "AW26" }, { "type": "text", "id": "season_label", "label": "Season display label", "info": "e.g.
-Autumn/Winter 2026 - shown on the card. Leave blank to use season code.", "default": "Autumn/Winter 2026" }, { "type":
-"image_picker", "id": "cover_image", "label": "Cover image", "info": "Upload a JPG of the catalogue cover. Portrait
-ratio 3:4 recommended." }, { "type": "url", "id": "pdf_url", "label": "PDF download URL", "info": "Paste the Shopify
-Files CDN URL for the PDF file" }, { "type": "text", "id": "file_size", "label": "File size", "info": "Shown on the card
-e.g. 18.4 MB", "default": "0 MB" }, { "type": "checkbox", "id": "is_new", "label": "Show New badge", "default": false }
-] } ], "presets": [ { "name": "Catalogues & Lookbooks", "blocks": [ { "type": "catalogue", "settings": { "title": "AW26
-Full Catalogue", "brand": "David Luke", "season": "AW26", "season_label": "Autumn/Winter 2026", "is_new": true } }, {
-"type": "catalogue", "settings": { "title": "Summer 2026 Lookbook", "brand": "Grass & Air", "season": "SS26",
-"season_label": "Spring/Summer 2026", "is_new": true } } ] } ] } {% endschema %}
+{% schema %}
+{
+  "name": "Catalogues & Lookbooks",
+  "tag": "section",
+  "class": "section-catalogues",
+  "settings": [
+    {
+      "type": "text",
+      "id": "page_title",
+      "label": "Page title",
+      "default": "Catalogues & lookbooks"
+    },
+    {
+      "type": "text",
+      "id": "page_subtitle",
+      "label": "Subtitle",
+      "default": "Season catalogues, range lookbooks and buyer guides"
+    },
+    {
+      "type": "checkbox",
+      "id": "require_login",
+      "label": "Require customer login",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "catalogue",
+      "name": "Catalogue / lookbook",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "AW26 Full Catalogue"
+        },
+        {
+          "type": "select",
+          "id": "brand",
+          "label": "Brand",
+          "options": [
+            { "value": "David Luke",        "label": "David Luke" },
+            { "value": "Grass & Air",       "label": "Grass & Air" },
+            { "value": "Lelli Kelly",       "label": "Lelli Kelly" },
+            { "value": "Term",              "label": "Term" },
+            { "value": "Little Classmates", "label": "Little Classmates" },
+            { "value": "Juco",              "label": "Juco" }
+          ],
+          "default": "David Luke"
+        },
+        {
+          "type": "text",
+          "id": "season",
+          "label": "Season",
+          "info": "Used to group cards under a heading — entries with the same season code appear together. e.g. AW26, SS27, BTS27",
+          "default": "AW26"
+        },
+        {
+          "type": "text",
+          "id": "season_label",
+          "label": "Season display label",
+          "info": "e.g. Autumn/Winter 2026 - shown on the card. Leave blank to use season code.",
+          "default": "Autumn/Winter 2026"
+        },
+        {
+          "type": "image_picker",
+          "id": "cover_image",
+          "label": "Cover image",
+          "info": "Upload a JPG of the catalogue cover. Portrait ratio 3:4 recommended."
+        },
+        {
+          "type": "url",
+          "id": "pdf_url",
+          "label": "PDF download URL",
+          "info": "Paste the Shopify Files CDN URL for the PDF file"
+        },
+        {
+          "type": "text",
+          "id": "file_size",
+          "label": "File size",
+          "info": "Shown on the card e.g. 18.4 MB",
+          "default": "0 MB"
+        },
+        {
+          "type": "checkbox",
+          "id": "is_new",
+          "label": "Show New badge",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Catalogues & Lookbooks",
+      "blocks": [
+        {
+          "type": "catalogue",
+          "settings": {
+            "title": "AW26 Full Catalogue",
+            "brand": "David Luke",
+            "season": "AW26",
+            "season_label": "Autumn/Winter 2026",
+            "is_new": true
+          }
+        },
+        {
+          "type": "catalogue",
+          "settings": {
+            "title": "Summer 2026 Lookbook",
+            "brand": "Grass & Air",
+            "season": "SS26",
+            "season_label": "Spring/Summer 2026",
+            "is_new": true
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
