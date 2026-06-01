@@ -1315,10 +1315,10 @@
       "name": "Image banner",
       "settings": {
         "image": {
-          "label": "Image 1"
+          "label": "Desktop image"
         },
         "image_2": {
-          "label": "Image 2"
+          "label": "Mobile image"
         },
         "image_overlay_opacity": {
           "label": "Overlay opacity"

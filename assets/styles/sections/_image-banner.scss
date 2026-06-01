@@ -484,6 +484,24 @@
     }
   }
 
+  &__media--image-1 {
+    display: none;
+
+    @include breakpoint-sm {
+      display: block;
+
+      &.banner__media-half {
+        width: 100%;
+      }
+    }
+  }
+
+  &__media--image-2 {
+    @include breakpoint-sm {
+      display: none !important;
+    }
+  }
+
   &__media {
     height: 100%;
     position: absolute;

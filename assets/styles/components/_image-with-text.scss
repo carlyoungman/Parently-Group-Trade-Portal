@@ -27,6 +27,12 @@
   }
 
   &__grid {
+    gap: 2rem;
+
+    @include breakpoint-sm {
+      gap: revert;
+    }
+
     &--reverse {
       @include breakpoint-sm {
         flex-direction: row-reverse;
