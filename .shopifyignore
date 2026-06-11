@@ -9,3 +9,6 @@ eslint.config.js
 .prettierignore
 *.md
 assets/*.map
+# SCSS source — compiled to assets/theme.css; Shopify rejects subfolders in assets/
+assets/styles/
+assets/styles/**/*
