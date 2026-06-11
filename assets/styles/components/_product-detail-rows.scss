@@ -1,0 +1,93 @@
+// Product detail rows — metafield-driven accordion rows (size guide, shipping
+// information) and the assets folder link row on the product page.
+@use '../utilities/mixins' as *;
+@use '../utilities/variables' as *;
+
+.product-detail-row {
+  border-block-end: 0.1rem solid rgba(var(--color-foreground), 0.15);
+  border-block-start: 0.1rem solid rgba(var(--color-foreground), 0.15);
+
+  + .product-detail-row {
+    border-block-start: 0;
+  }
+
+  &__summary {
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    gap: $spacing-md;
+    justify-content: space-between;
+    list-style: none;
+    padding: $spacing-md 0;
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+
+    &:focus-visible {
+      @include focus-ring;
+    }
+
+    &:hover .product-detail-row__icon {
+      border-color: rgb(var(--color-foreground));
+    }
+  }
+
+  &--link {
+    align-items: center;
+    color: rgb(var(--color-foreground));
+    display: flex;
+    gap: $spacing-md;
+    justify-content: space-between;
+    padding: $spacing-md 0;
+    text-decoration: none;
+
+    &:focus-visible {
+      @include focus-ring;
+    }
+
+    &:hover .product-detail-row__icon {
+      border-color: rgb(var(--color-foreground));
+    }
+  }
+
+  &__icon {
+    align-items: center;
+    aspect-ratio: 1;
+    border: 0.1rem solid rgba(var(--color-foreground), 0.2);
+    border-radius: 50%;
+    display: flex;
+    flex-shrink: 0;
+    justify-content: center;
+    width: 3.6rem;
+
+    @include motion-ok {
+      transition:
+        border-color var(--duration-default) ease,
+        transform var(--duration-default) ease;
+    }
+
+    svg {
+      height: 1.2rem;
+      width: 1.2rem;
+    }
+  }
+
+  details[open] &__icon {
+    transform: rotate(90deg);
+  }
+
+  &__content {
+    padding: 0 0 $spacing-md;
+  }
+}
+
+// Collapse the info container's default vertical rhythm between consecutive
+// rows so they share a single hairline.
+.product__info-container .product-detail-row {
+  margin-bottom: 0;
+
+  + .product-detail-row {
+    margin-top: 0;
+  }
+}

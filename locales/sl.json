@@ -9,6 +9,10 @@
  */
 {
   "general": {
+    "breadcrumbs": {
+      "label": "Breadcrumbs",
+      "home": "Home"
+    },
     "password_page": {
       "login_form_heading": "Vstopite v trgovino z geslom:",
       "login_password_button": "Vstop z geslom",
@@ -117,6 +121,10 @@
   },
   "products": {
     "product": {
+      "colour_preview": {
+        "label": "Preview Image:",
+        "show_colour": "Show {{ colour }} preview image"
+      },
       "add_to_cart": "Dodaj v košarico",
       "description": "Opis",
       "on_sale": "Znižanje",

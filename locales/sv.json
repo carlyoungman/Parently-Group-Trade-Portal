@@ -9,6 +9,10 @@
  */
 {
   "general": {
+    "breadcrumbs": {
+      "label": "Breadcrumbs",
+      "home": "Home"
+    },
     "password_page": {
       "login_form_heading": "Ange lösenord för att komma i butiken:",
       "login_password_button": "Ange lösenord för att komma in",
@@ -115,6 +119,10 @@
   },
   "products": {
     "product": {
+      "colour_preview": {
+        "label": "Preview Image:",
+        "show_colour": "Show {{ colour }} preview image"
+      },
       "add_to_cart": "Lägg i varukorgen",
       "description": "Beskrivning",
       "on_sale": "Rea",

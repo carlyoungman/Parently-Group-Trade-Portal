@@ -1,0 +1,61 @@
+// Colour preview swatches — swap the product gallery image per colour
+// (snippets/product-colour-preview.liquid + assets/product-colour-preview.js)
+@use '../utilities/mixins' as *;
+@use '../utilities/variables' as *;
+
+.colour-preview {
+  display: block;
+
+  &__label {
+    @include caption-text;
+
+    color: rgba(var(--color-foreground), 0.75);
+    margin: 0 0 $spacing-xs;
+  }
+
+  &__value {
+    color: rgb(var(--color-foreground));
+    font-weight: var(--font-body-weight-semibold);
+  }
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-xs;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__swatch {
+    background: transparent;
+    border: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    display: block;
+    padding: 0.2rem;
+
+    .swatch {
+      --swatch--size: 3.2rem;
+    }
+
+    @include motion-ok {
+      .swatch {
+        transition: transform var(--duration-default) ease;
+      }
+
+      &:hover .swatch {
+        transform: scale(1.08);
+      }
+    }
+
+    &:focus-visible {
+      @include focus-ring;
+    }
+
+    &[aria-pressed='true'] {
+      box-shadow:
+        0 0 0 0.2rem rgb(var(--color-background)),
+        0 0 0 0.3rem rgb(var(--color-foreground));
+    }
+  }
+}

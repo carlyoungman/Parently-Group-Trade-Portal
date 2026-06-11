@@ -9,6 +9,10 @@
  */
 {
   "general": {
+    "breadcrumbs": {
+      "label": "Breadcrumbs",
+      "home": "Home"
+    },
     "password_page": {
       "login_form_heading": "Apsilankyti parduotuvėje naudojant slaptažodį:",
       "login_password_button": "Apsilankyti naudojant slaptažodį",
@@ -117,6 +121,10 @@
   },
   "products": {
     "product": {
+      "colour_preview": {
+        "label": "Preview Image:",
+        "show_colour": "Show {{ colour }} preview image"
+      },
       "add_to_cart": "Įdėti į krepšelį",
       "description": "Aprašymas",
       "on_sale": "Išpardavimas",

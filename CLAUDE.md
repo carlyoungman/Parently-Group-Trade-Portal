@@ -37,7 +37,7 @@ blocks/           Custom theme blocks
 
 ### Files never to edit directly
 - `config/settings_data.json` — gitignored; managed by Shopify admin
-- `templates/*.json` — gitignored; managed by Shopify admin
+- `templates/*.json` — tracked in git but written by the Shopify admin theme editor; run `shopify theme pull` before editing locally, as editor saves can overwrite local changes
 
 ---
 

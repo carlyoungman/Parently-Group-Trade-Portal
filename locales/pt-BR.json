@@ -9,6 +9,10 @@
  */
 {
   "general": {
+    "breadcrumbs": {
+      "label": "Breadcrumbs",
+      "home": "Home"
+    },
     "password_page": {
       "login_form_heading": "Entre na loja usando a senha:",
       "login_password_button": "Entrar usando a senha",
@@ -116,6 +120,10 @@
   },
   "products": {
     "product": {
+      "colour_preview": {
+        "label": "Preview Image:",
+        "show_colour": "Show {{ colour }} preview image"
+      },
       "add_to_cart": "Adicionar ao carrinho",
       "description": "Descrição",
       "on_sale": "Promoção",

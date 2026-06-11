@@ -1,0 +1,46 @@
+// Breadcrumbs — Home › Collection › Product (snippets/breadcrumbs.liquid)
+@use '../utilities/mixins' as *;
+@use '../utilities/variables' as *;
+
+.breadcrumbs {
+  @include caption-text;
+
+  text-transform: uppercase;
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-xxs;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__item {
+    align-items: center;
+    display: flex;
+    gap: $spacing-xxs;
+
+    + .breadcrumbs__item::before {
+      color: rgba(var(--color-foreground), 0.5);
+      content: '\203a';
+    }
+  }
+
+  &__item--current {
+    color: rgb(var(--color-foreground));
+  }
+
+  &__link {
+    color: rgba(var(--color-foreground), 0.75);
+    text-decoration: none;
+
+    &:hover {
+      color: rgb(var(--color-foreground));
+      text-decoration: underline;
+    }
+
+    &:focus-visible {
+      @include focus-ring;
+    }
+  }
+}

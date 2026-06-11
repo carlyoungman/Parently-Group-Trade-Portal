@@ -2,6 +2,14 @@
 @use '../utilities/mixins' as *;
 /* base */
 
+html {
+  scroll-behavior: smooth;
+
+  @include reduced-motion {
+    scroll-behavior: auto;
+  }
+}
+
 .page-width {
   max-width: var(--page-width);
   margin: 0 auto;

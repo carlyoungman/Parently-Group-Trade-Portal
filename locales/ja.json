@@ -9,6 +9,10 @@
  */
 {
   "general": {
+    "breadcrumbs": {
+      "label": "Breadcrumbs",
+      "home": "Home"
+    },
     "password_page": {
       "login_form_heading": "パスワードを入力してストアにアクセスする。",
       "login_password_button": "パスワードを入力してアクセスする",
@@ -115,6 +119,10 @@
   },
   "products": {
     "product": {
+      "colour_preview": {
+        "label": "Preview Image:",
+        "show_colour": "Show {{ colour }} preview image"
+      },
       "add_to_cart": "カートに追加する",
       "description": "商品説明",
       "on_sale": "セール",

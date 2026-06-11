@@ -9,6 +9,10 @@
  */
 {
   "general": {
+    "breadcrumbs": {
+      "label": "Breadcrumbs",
+      "home": "Home"
+    },
     "password_page": {
       "login_form_heading": "Belépés a webáruházba jelszóval:",
       "login_password_button": "Belépés jelszóval",
@@ -115,6 +119,10 @@
   },
   "products": {
     "product": {
+      "colour_preview": {
+        "label": "Preview Image:",
+        "show_colour": "Show {{ colour }} preview image"
+      },
       "add_to_cart": "Hozzáadás a kosárhoz",
       "description": "Leírás",
       "on_sale": "Akciós",

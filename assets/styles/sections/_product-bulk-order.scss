@@ -15,6 +15,12 @@ $pbo-text:         #111827;
 $pbo-radius-pill:  9999px;
 $pbo-radius-sm:    0.6rem;
 
+// Stable anchor target for the product page "View buying options" button.
+// Offsets the sticky header so the section lands fully in view.
+#product-bulk-order {
+  scroll-margin-top: calc(var(--header-height, 0px) + 2.4rem);
+}
+
 // ─── Wrapper ────────────────────────────────────────────────────────────────
 .pbo {
   color: $pbo-text;

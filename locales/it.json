@@ -9,6 +9,10 @@
  */
 {
   "general": {
+    "breadcrumbs": {
+      "label": "Breadcrumbs",
+      "home": "Home"
+    },
     "password_page": {
       "login_form_heading": "Accedi al negozio utilizzando la password:",
       "login_password_button": "Accedi utilizzando la password",
@@ -116,6 +120,10 @@
   },
   "products": {
     "product": {
+      "colour_preview": {
+        "label": "Preview Image:",
+        "show_colour": "Show {{ colour }} preview image"
+      },
       "add_to_cart": "Aggiungi al carrello",
       "description": "Descrizione",
       "on_sale": "In offerta",

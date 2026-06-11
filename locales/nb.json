@@ -9,6 +9,10 @@
  */
 {
   "general": {
+    "breadcrumbs": {
+      "label": "Breadcrumbs",
+      "home": "Home"
+    },
     "password_page": {
       "login_form_heading": "Gå inn i butikken ved hjelp av passord:",
       "login_password_button": "Gå inn ved hjelp av passord",
@@ -115,6 +119,10 @@
   },
   "products": {
     "product": {
+      "colour_preview": {
+        "label": "Preview Image:",
+        "show_colour": "Show {{ colour }} preview image"
+      },
       "add_to_cart": "Legg i handlekurv",
       "description": "Beskrivelse",
       "on_sale": "Salg",

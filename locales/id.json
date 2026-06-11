@@ -9,6 +9,10 @@
  */
 {
   "general": {
+    "breadcrumbs": {
+      "label": "Breadcrumbs",
+      "home": "Home"
+    },
     "password_page": {
       "login_form_heading": "Masuki toko dengan sandi:",
       "login_password_button": "Masuk dengan sandi",
@@ -115,6 +119,10 @@
   },
   "products": {
     "product": {
+      "colour_preview": {
+        "label": "Preview Image:",
+        "show_colour": "Show {{ colour }} preview image"
+      },
       "add_to_cart": "Tambahkan ke keranjang",
       "description": "Deskripsi",
       "on_sale": "Obral",

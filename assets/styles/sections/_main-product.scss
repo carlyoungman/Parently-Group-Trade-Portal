@@ -100,6 +100,22 @@ product-info {
       max-width: 45%;
       width: calc(45% - var(--grid-desktop-horizontal-spacing) / 2);
     }
+
+    &--half:not(.product--no-media) {
+      .product__info-wrapper,
+      .product__media-wrapper {
+        max-width: 50%;
+        width: calc(50% - var(--grid-desktop-horizontal-spacing) / 2);
+      }
+
+      .product__info-wrapper {
+        padding: 0 0 0 4rem;
+      }
+
+      &.product--right .product__info-wrapper {
+        padding: 0 4rem 0 0;
+      }
+    }
   }
 
   /* Product info */
@@ -173,6 +189,18 @@ product-info {
 
   &__description-title {
     font-weight: var(--font-body-weight-semibold);
+  }
+
+  &__sku {
+    color: rgb(var(--color-accent));
+  }
+
+  &__buying-options {
+    --buttons-radius: 10rem;
+    --buttons-radius-outset: 10rem;
+
+    gap: 0.8rem;
+    width: fit-content;
   }
 
   &--no-media {
@@ -1060,6 +1088,10 @@ a.product__text {
     grid-template-columns: repeat(5, 1fr);
   }
 
+  .product--half .thumbnail-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
   .product--large .thumbnail-list {
     grid-template-columns: repeat(6, 1fr);
   }
@@ -1068,6 +1100,47 @@ a.product__text {
 @include breakpoint-mid {
   .product--small .thumbnail-list.slider--tablet-up .thumbnail-list__item.slider__slide {
     width: calc(25% - 0.8rem);
+  }
+}
+
+.gallery-dots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 1.2rem;
+
+  &__dot {
+    background-color: transparent;
+    border: 0.1rem solid rgba(var(--color-foreground), 0.5);
+    border-radius: 50%;
+    cursor: pointer;
+    height: 1rem;
+    padding: 0;
+    width: 1rem;
+
+    @include motion-ok {
+      transition: transform var(--duration-default) ease-in-out;
+    }
+
+    &:hover {
+      border-color: rgb(var(--color-foreground));
+
+      @include motion-ok {
+        transform: scale(1.1);
+      }
+    }
+
+    &:focus-visible {
+      @include focus-ring;
+    }
+
+    &[aria-current='true'] {
+      background-color: rgb(var(--color-foreground));
+
+      @include forced-colors {
+        background-color: CanvasText;
+      }
+    }
   }
 }
 

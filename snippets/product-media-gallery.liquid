@@ -37,6 +37,8 @@
     assign media_width = 0.65
   elsif section.settings.media_size == 'medium'
     assign media_width = 0.55
+  elsif section.settings.media_size == 'half'
+    assign media_width = 0.5
   elsif section.settings.media_size == 'small'
     assign media_width = 0.45
   endif
@@ -154,6 +156,46 @@
       </button>
     </div>
   </slider-component>
+  {%- if media_count > 1 -%}
+    <product-gallery-dots
+      class="gallery-dots small-hide quick-add-hidden"
+      role="group"
+      aria-label="{{ 'products.product.media.gallery_viewer' | t }}"
+    >
+      {%- liquid
+        assign dot_position = 0
+        if featured_media != null
+          assign dot_position = 1
+        endif
+      -%}
+      {%- if featured_media != null -%}
+        <button
+          type="button"
+          class="gallery-dots__dot"
+          data-target="{{ section.id }}-{{ featured_media.id }}"
+          aria-label="{{ 'products.product.media.load_image' | t: index: 1 }}"
+          aria-current="true"
+        ></button>
+      {%- endif -%}
+      {%- for media in product.media -%}
+        {%- if section.settings.hide_variants and variant_images contains media.src -%}
+          {%- continue -%}
+        {%- endif -%}
+        {%- unless media.id == featured_media.id -%}
+          {%- assign dot_position = dot_position | plus: 1 -%}
+          <button
+            type="button"
+            class="gallery-dots__dot"
+            data-target="{{ section.id }}-{{ media.id }}"
+            aria-label="{{ 'products.product.media.load_image' | t: index: dot_position }}"
+            {% if featured_media == null and forloop.first %}
+              aria-current="true"
+            {% endif %}
+          ></button>
+        {%- endunless -%}
+      {%- endfor -%}
+    </product-gallery-dots>
+  {%- endif -%}
   {%- if first_3d_model -%}
     <button
       class="button button--full-width product__xr-button"

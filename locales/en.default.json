@@ -38,6 +38,10 @@
       }
     },
     "continue_shopping": "Continue shopping",
+    "breadcrumbs": {
+      "label": "Breadcrumbs",
+      "home": "Home"
+    },
     "pagination": {
       "label": "Pagination",
       "page": "Page {{ number }}",
@@ -118,6 +122,10 @@
       "add_to_cart": "Add to cart",
       "choose_options": "Choose options",
       "choose_product_options": "Choose options for {{ product_name }}",
+      "colour_preview": {
+        "label": "Preview Image:",
+        "show_colour": "Show {{ colour }} preview image"
+      },
       "description": "Description",
       "inventory_in_stock": "In stock",
       "inventory_in_stock_show_count": "{{ quantity }} in stock",

@@ -9,6 +9,10 @@
  */
 {
   "general": {
+    "breadcrumbs": {
+      "label": "Breadcrumbs",
+      "home": "Home"
+    },
     "password_page": {
       "login_form_heading": "Вход в магазин с помощью пароля:",
       "login_password_button": "Войти с помощью пароля",
@@ -117,6 +121,10 @@
   },
   "products": {
     "product": {
+      "colour_preview": {
+        "label": "Preview Image:",
+        "show_colour": "Show {{ colour }} preview image"
+      },
       "add_to_cart": "Добавить в корзину",
       "description": "Описание",
       "on_sale": "Распродажа",

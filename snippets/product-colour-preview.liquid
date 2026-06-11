@@ -1,0 +1,80 @@
+{% comment %}
+  Renders colour preview swatches that swap the media gallery image to the
+  selected colour's variant image. Presentation only — clicking a swatch never
+  changes variant, URL, or cart state (purchasing happens in the bulk order table).
+
+  Swatch fill priority: variant metafield custom.swatch_color → native option
+  value swatch colour → JS name map fallback (assets/product-colour-preview.js).
+
+  Renders nothing when the product has no Colour/Color option.
+
+  Accepts:
+  - product: {Object} Product Liquid object
+  - section_id: {String} The section id (matches MediaGallery-{{ section_id }})
+  - shopify_attributes: {String} (optional) Block attributes when rendered from a section block
+
+  Usage:
+  {% render 'product-colour-preview', product: product, section_id: section.id %}
+{% endcomment %}
+
+{%- liquid
+  assign colour_option = blank
+  assign colour_index = 0
+  for option in product.options_with_values
+    assign opt_name = option.name | downcase
+    if opt_name contains 'colour' or opt_name contains 'color'
+      assign colour_option = option
+      assign colour_index = option.position | minus: 1
+      break
+    endif
+  endfor
+-%}
+
+{%- if colour_option != blank -%}
+  {%- assign selected_colour = product.selected_or_first_available_variant.options[colour_index] -%}
+  <product-colour-preview class="colour-preview" data-section="{{ section_id }}" {{ shopify_attributes }}>
+    <p class="colour-preview__label">
+      {{ 'products.product.colour_preview.label' | t }}
+      <span class="colour-preview__value" data-colour-preview-value>{{ selected_colour }}</span>
+    </p>
+    <ul class="colour-preview__list list-unstyled" role="list">
+      {%- for value in colour_option.values -%}
+        {%- liquid
+          assign preview_media_id = ''
+          assign swatch_value = ''
+          for variant in product.variants
+            if variant.options[colour_index] != value.name
+              continue
+            endif
+            if swatch_value == ''
+              assign swatch_value = variant.metafields.custom.swatch_color.value | default: ''
+            endif
+            if variant.featured_media
+              assign preview_media_id = variant.featured_media.id
+              break
+            endif
+          endfor
+          if preview_media_id == ''
+            assign preview_media_id = product.featured_media.id | default: ''
+          endif
+          if swatch_value == '' and value.swatch.color
+            assign swatch_value = 'rgb(' | append: value.swatch.color.rgb | append: ')'
+          endif
+        -%}
+        <li class="colour-preview__item">
+          <button
+            type="button"
+            class="colour-preview__swatch"
+            data-media-id="{{ section_id }}-{{ preview_media_id }}"
+            data-colour-name="{{ value.name | escape }}"
+            aria-pressed="{% if value.name == selected_colour %}true{% else %}false{% endif %}"
+          >
+            <span class="swatch"{% if swatch_value != '' %} style="--swatch--background: {{ swatch_value }}"{% endif %}></span>
+            <span class="visually-hidden">{{ 'products.product.colour_preview.show_colour' | t: colour: value.name }}</span>
+          </button>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </product-colour-preview>
+  <script src="{{ 'product-colour-preview.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}

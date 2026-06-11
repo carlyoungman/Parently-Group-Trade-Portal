@@ -1,0 +1,31 @@
+{% comment %}
+  Renders product breadcrumbs: Home › Collection › Product title.
+
+  Uses the collection context when the product is viewed via a collection URL
+  (/collections/x/products/y), otherwise falls back to the product's first collection.
+
+  Accepts:
+  - product: {Object} Product Liquid object
+  - shopify_attributes: {String} (optional) Block attributes when rendered from a section block
+
+  Usage:
+  {% render 'breadcrumbs', product: product %}
+{% endcomment %}
+
+{%- liquid
+  assign crumb_collection = collection | default: product.collections.first
+-%}
+
+<nav class="breadcrumbs" aria-label="{{ 'general.breadcrumbs.label' | t }}" {{ shopify_attributes }}>
+  <ol class="breadcrumbs__list list-unstyled" role="list">
+    <li class="breadcrumbs__item">
+      <a class="breadcrumbs__link" href="{{ routes.root_url }}">{{ 'general.breadcrumbs.home' | t }}</a>
+    </li>
+    {%- if crumb_collection != blank -%}
+      <li class="breadcrumbs__item">
+        <a class="breadcrumbs__link" href="{{ crumb_collection.url }}">{{ crumb_collection.title | escape }}</a>
+      </li>
+    {%- endif -%}
+    <li class="breadcrumbs__item breadcrumbs__item--current" aria-current="page">{{ product.title | escape }}</li>
+  </ol>
+</nav>
