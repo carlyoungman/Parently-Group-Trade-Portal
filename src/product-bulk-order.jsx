@@ -186,7 +186,9 @@ function ProductBulkOrder({ product, variantSwatches = {}, showInStock = true, s
     [product, lengthOptionIndex]
   );
 
-  const hasColours = colours.length > 1;
+  // Show the colour selector whenever the product has a colour option — even a
+  // single colour — so the "Choose Colour" section is always present.
+  const showColourSelector = colours.length > 0;
   const hasLengths = lengths.length > 1;
   const displayColumns = hasLengths ? lengths : [''];
 
@@ -486,7 +488,7 @@ function ProductBulkOrder({ product, variantSwatches = {}, showInStock = true, s
   return (
     <div className="pbo">
       {/* Colour selector */}
-      {hasColours && (
+      {showColourSelector && (
         <div className="pbo__colour-selector">
           <h2 className="pbo__colour-heading">Choose {colourLabel}</h2>
           <div className="pbo__colour-options" role="radiogroup" aria-label={`Choose ${colourLabel}`}>
@@ -573,29 +575,31 @@ function ProductBulkOrder({ product, variantSwatches = {}, showInStock = true, s
                   return (
                     <td key={len || 'qty'} className={`pbo__cell pbo__cell--${stockStatus === 'out' ? 'outofstock' : stockStatus === 'low' ? 'lowstock' : 'instock'}`}>
                       <div className="pbo__cell-inner">
-                        {!isOOS && (
-                          <div className="pbo__stepper-row">
-                            <QuantityStepper
-                              value={qty}
-                              onChange={(val) => setQty(variant.id, val)}
-                              disabled={isOOS}
-                              step={getStep(variant)}
-                              max={maxQty}
-                            />
-                            <button
-                              type="button"
-                              className={`pbo__delete-btn${qty === 0 || isOOS ? ' pbo__delete-btn--hidden' : ''}`}
-                              onClick={() => setQty(variant.id, 0)}
-                              aria-label={`Remove ${size} ${len}`}
-                              tabIndex={-1}
-                              aria-hidden={qty > 0 && !isOOS ? undefined : 'true'}
-                            >
-                              <TrashIcon />
-                            </button>
-                          </div>
-                        )}
-                        {variant && (
+                        <div className={`pbo__stepper-row${isOOS ? ' pbo__stepper-row--hidden' : ''}`} aria-hidden={isOOS ? 'true' : undefined}>
+                          <QuantityStepper
+                            value={qty}
+                            onChange={(val) => setQty(variant.id, val)}
+                            disabled={isOOS}
+                            step={getStep(variant)}
+                            max={maxQty}
+                          />
+                          <button
+                            type="button"
+                            className={`pbo__delete-btn${qty === 0 || isOOS ? ' pbo__delete-btn--hidden' : ''}`}
+                            onClick={() => setQty(variant.id, 0)}
+                            aria-label={`Remove ${size} ${len}`}
+                            tabIndex={-1}
+                            aria-hidden={qty > 0 && !isOOS ? undefined : 'true'}
+                          >
+                            <TrashIcon />
+                          </button>
+                        </div>
+                        {variant ? (
                           <div className="pbo__price">{formatMoney(variant.price)} Each</div>
+                        ) : (
+                          <div className="pbo__price pbo__price--na" aria-hidden="true">
+                            &nbsp;
+                          </div>
                         )}
                         {variant ? (
                           <StockBadge variant={variant} />

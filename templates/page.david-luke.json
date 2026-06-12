@@ -54,14 +54,15 @@
         "heading_r9rTqa": {
           "type": "heading",
           "settings": {
-            "heading": "Our flagship brand, David Luke School Uniform can be found in over 700 independent retailers",
+            "heading": "School uniform that gives your customers a reason to choose you.",
             "heading_size": "h2"
           }
         },
         "text_H3yTdj": {
           "type": "text",
           "settings": {
-            "text": "<p>We make school uniform that empowers fair and good choices from our suppliers, employees and the students who wear it.</p>"
+            "text": "<p>David Luke is the UK's leading school uniform brand — stocked by over 700 independent retailers and trusted by the parents who shop with them. Built on 40 years of relationship-first trading and a genuine commitment to sustainable design, it's the schoolwear range that gives retailers a compelling story to tell, and products that keep selling.</p>",
+            "text_style": "body"
           }
         }
       },
@@ -74,6 +75,8 @@
         "desktop_content_position": "center",
         "content_alignment": "center",
         "full_width": true,
+        "background_color": "#ffffff",
+        "text_color": "#000000",
         "padding_top": 0,
         "padding_bottom": 0
       }
@@ -85,7 +88,7 @@
           "type": "button",
           "settings": {
             "button_label": "Quick Order",
-            "button_link": "shopify://pages/quick-order",
+            "button_link": "shopify://pages/quick-order-1",
             "button_style_secondary": true
           }
         },
@@ -93,7 +96,7 @@
           "type": "button",
           "settings": {
             "button_label": "Products",
-            "button_link": "shopify://collections",
+            "button_link": "shopify://collections/school-uniform",
             "button_style_secondary": true
           }
         },
@@ -147,7 +150,7 @@
           "type": "panel",
           "settings": {
             "headline": "OUTLET",
-            "link": "",
+            "link": "shopify://pages/clearance",
             "link_target": false,
             "image": "shopify://shop_images/c5866beb81116e105a2ebf7c10bdcc2ff87d6005.jpg",
             "display_alternative": true,
@@ -160,7 +163,7 @@
           "type": "panel",
           "settings": {
             "headline": "SUSTAINABILITY",
-            "link": "",
+            "link": "shopify://pages/eco-resources",
             "link_target": false,
             "image": "shopify://shop_images/0a8ce74b8bbeac3f34eae77b25e001f659c460b7.jpg",
             "display_alternative": true,
@@ -240,7 +243,7 @@
         "text_V8GhdV": {
           "type": "text",
           "settings": {
-            "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>",
+            "text": "<p>The David Luke range covers everything from essentials to eco-collections — blouses, trousers, skirts, blazers  and sportswear. Designed for durability, sized for every body, and built with circularity in mind. Browse the full range to find everything your customers need, season after season.</p>",
             "text_style": "body"
           }
         },
@@ -248,7 +251,7 @@
           "type": "button",
           "settings": {
             "button_label": "Download Here",
-            "button_link": "",
+            "button_link": "shopify://blogs/marketing",
             "button_style_secondary": true
           }
         }
@@ -260,7 +263,7 @@
       ],
       "name": "t:sections.image-with-text.presets.name",
       "settings": {
-        "image": "shopify://shop_images/Image_d68d347f-8e1e-4c77-9e3d-18bdacb27577.png",
+        "image": "shopify://shop_images/David-Luke-Product-Catalogue-Block-Image-FINAL.png",
         "height": "large",
         "desktop_image_width": "medium",
         "layout": "image_first",
@@ -378,7 +381,7 @@
         "text_R6VBUT": {
           "type": "text",
           "settings": {
-            "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.<br/><br/></p>",
+            "text": "<p>David Luke started in Manchester in 1982. Built on a simple belief: school uniform should be made well, sourced responsibly, and sold through retailers who know their customers. Today it's the UK's leading sustainable schoolwear brand — a previous Queen's Award winner, worn by hundreds of thousands of children, and found in over 700 stores.</p>",
             "text_style": "body"
           }
         },
@@ -421,7 +424,7 @@
         "heading": "",
         "heading_size": "h2",
         "enable_video_looping": true,
-        "video": "shopify://files/videos/Final - Homepage Video.mp4",
+        "video": "shopify://files/videos/david_luke_+_juco_campaign_video_v2_nocornerlogo (1080p).mp4",
         "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
         "description": "",
         "full_width": false,

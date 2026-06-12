@@ -41,7 +41,6 @@ $pbo-radius-sm:    0.6rem;
 
   &__colour-heading {
     margin-bottom: 2rem;
-    letter-spacing: 0;
   }
 
   &__colour-options {
@@ -94,6 +93,11 @@ $pbo-radius-sm:    0.6rem;
       width: 2.6rem;
       height: 2.6rem;
     }
+  }
+
+  &__colour-name {
+    font-size: 1.4rem;
+    font-weight: var(--font-body-weight-semibold);
   }
 
   // ─── Sentinel (IntersectionObserver anchor) ────────────────────────────────
@@ -162,6 +166,8 @@ $pbo-radius-sm:    0.6rem;
   &__th {
     padding: 1.6rem 1.2rem;
     text-align: center;
+    font-size: var(--font-small);
+    font-weight: var(--font-body-weight-semibold);
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: $pbo-text-muted;
@@ -209,6 +215,8 @@ $pbo-radius-sm:    0.6rem;
   &__size-cell {
     padding: 1.6rem 1.2rem;
     text-align: center;
+    font-size: 1.6rem;
+    font-weight: var(--font-body-weight-bold);
     vertical-align: middle;
     white-space: nowrap;
     width: 200px;
@@ -233,6 +241,11 @@ $pbo-radius-sm:    0.6rem;
     align-items: center;
     justify-content: center;
     gap: 0.6rem;
+
+    &--hidden {
+      pointer-events: none;
+      visibility: hidden;
+    }
   }
 
   // ─── Delete button ─────────────────────────────────────────────────────────
@@ -264,6 +277,7 @@ $pbo-radius-sm:    0.6rem;
   // ─── Price per item ────────────────────────────────────────────────────────
   &__price {
     color: $pbo-text-muted;
+    font-size: var(--font-small);
     white-space: nowrap;
 
     &--na {
@@ -275,6 +289,8 @@ $pbo-radius-sm:    0.6rem;
   &__row-total {
     padding: 1.6rem 1.2rem;
     text-align: center;
+    font-size: 1.6rem;
+    font-weight: var(--font-body-weight-bold);
     vertical-align: middle;
     white-space: nowrap;
     width: 200px;
@@ -288,6 +304,8 @@ $pbo-radius-sm:    0.6rem;
     color: $pbo-text-muted;
     display: block;
     font-size: 1.1rem;
+    font-weight: var(--font-body-weight);
+    letter-spacing: 0.04em;
     margin-top: 0.4rem;
     text-align: center;
     white-space: nowrap;
@@ -463,11 +481,19 @@ $pbo-radius-sm:    0.6rem;
   &__col-total-value,
   &__subtotal-value {
     color: $pbo-text;
+    font-size: 1.8rem;
+    font-weight: var(--font-body-weight-bold);
+  }
+
+  &__subtotal-value {
+    font-size: 2rem;
   }
 
   &__col-total-label,
   &__subtotal-label {
     text-transform: uppercase;
+    font-size: 1.1rem;
+    font-weight: var(--font-body-weight-semibold);
     letter-spacing: 0.08em;
     color: $pbo-text-muted;
     white-space: nowrap;
@@ -478,6 +504,7 @@ $pbo-radius-sm:    0.6rem;
 .pbo-stepper {
   display: inline-flex;
   align-items: center;
+  background-color: #fff;
   border: 1.5px solid $pbo-border;
   border-radius: $pbo-radius-pill;
   overflow: hidden;
@@ -498,6 +525,7 @@ $pbo-radius-sm:    0.6rem;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 1.8rem;
     padding: 0;
     flex-shrink: 0;
 
@@ -520,6 +548,8 @@ $pbo-radius-sm:    0.6rem;
     text-align: center;
     color: $pbo-text;
     background: transparent;
+    font-size: 1.4rem;
+    font-weight: var(--font-body-weight-semibold);
     padding: 0;
     appearance: none;
     -moz-appearance: textfield;

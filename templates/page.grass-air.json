@@ -55,14 +55,14 @@
         "heading_xtB693": {
           "type": "heading",
           "settings": {
-            "heading": "Grass & Air, the ones with the  wellies that change colour",
+            "heading": "The ones with the  wellies that change colour.",
             "heading_size": "h2"
           }
         },
         "text_AkdkkE": {
           "type": "text",
           "settings": {
-            "text": "<p>Our colour-revealing wellies are a staple of any day-trip while our outerwear, swimwear and accessories are fast establishing themselves as essential kit. Closing the loop on consumption is one of our brand goals, can you resist reading more?</p>",
+            "text": "<p>Grass & Air wants to go with families on every adventure. A multi-award-winning children’s brand covering wellies, rainwear, clothing and accessories — we’ve reinvented the traditional image of an outdoor brand with unexpected creative, edgy styling and a passion for modernity. Our colour-changing wellies turn rainy days into events for kids, and into reliable bestsellers for the independent retailers who stock them.</p>",
             "text_style": "body"
           }
         }
@@ -78,6 +78,55 @@
         "full_width": true,
         "background_color": "#ffffff",
         "text_color": "#000000",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "button_grid_ghFFbk": {
+      "type": "button-grid",
+      "blocks": {
+        "button_yhnw7A": {
+          "type": "button",
+          "settings": {
+            "button_label": "Quick Order",
+            "button_link": "shopify://pages/quick-order-1",
+            "button_style_secondary": true
+          }
+        },
+        "button_xMywhR": {
+          "type": "button",
+          "settings": {
+            "button_label": "Products",
+            "button_link": "shopify://collections/rainwear",
+            "button_style_secondary": true
+          }
+        },
+        "button_gV9EQK": {
+          "type": "button",
+          "settings": {
+            "button_label": "Media Hub",
+            "button_link": "shopify://pages/media-hub",
+            "button_style_secondary": true
+          }
+        },
+        "button_CVbabz": {
+          "type": "button",
+          "settings": {
+            "button_label": "Contact",
+            "button_link": "shopify://pages/contact",
+            "button_style_secondary": true
+          }
+        }
+      },
+      "block_order": [
+        "button_yhnw7A",
+        "button_xMywhR",
+        "button_gV9EQK",
+        "button_CVbabz"
+      ],
+      "name": "t:sections.button-grid.presets.name",
+      "settings": {
+        "alignment": "center",
         "padding_top": 0,
         "padding_bottom": 0
       }
@@ -151,7 +200,7 @@
             "headline": "Joyful Deals",
             "link": "",
             "link_target": false,
-            "image": "shopify://shop_images/ChatGPT_Image_Apr_28_2026_04_07_01_PM_1.png",
+            "image": "shopify://shop_images/Grass-Air-Joyful-Deals-Block_cba380fb-9030-4c86-826f-739f78e4a8d6.png",
             "display_alternative": false,
             "background_color": "#335a94",
             "text_background_color": "#229eae",
@@ -164,7 +213,7 @@
             "headline": "Starter Kit",
             "link": "",
             "link_target": false,
-            "image": "shopify://shop_images/ChatGPT_Image_Apr_28_2026_04_08_19_PM_1.png",
+            "image": "shopify://shop_images/Starter-Kit-Deals-Block.png",
             "display_alternative": false,
             "background_color": "#0aa6b5",
             "text_background_color": "#ebbf4c",
@@ -241,7 +290,7 @@
         "text_QwYwyD": {
           "type": "text",
           "settings": {
-            "text": "<p><strong>Lorem Ipsum</strong>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.<br/><br/></p>",
+            "text": "<p>Since launching in 2017, Grass & Air has built a loyal following among parents who want something more from their kids’ outdoor kit. We take mainstream products — wellies, rain jackets, accessories — and give them an unexpected twist. Our colour-changing technology gets kids excited to spend time outdoors, driving repeat purchase and genuine word of mouth. The brand speaks the language of modern families: stylish, thoughtfully sustainable and always up for an adventure. Available across five categories, Grass & Air adds a distinctive, award-winning offer to any retailer’s range.<br/><br/></p>",
             "text_style": "body"
           }
         }
@@ -265,12 +314,12 @@
       "type": "image-grid-with-content",
       "name": "Image grid with content",
       "settings": {
-        "image_1": "shopify://shop_images/Rectangle_5378.png",
-        "image_2": "shopify://shop_images/Rectangle_5390.png",
+        "image_1": "shopify://shop_images/Colour-changng-Image-Top.png",
+        "image_2": "shopify://shop_images/Colour-changng-Image-Left_484e1231-d6e9-488d-b85d-159ef469d9bc.png",
         "image_3": "shopify://shop_images/Rectangle_5391.png",
-        "heading": "Colour-changing technology",
+        "heading": "The magic is in the rain.",
         "heading_size": "h2",
-        "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>",
+        "content": "<p>When it rains, Grass & Air wellies change colour. Our signature rain cloud design bursts into life on contact with water — and resets to white when dry. It sounds simple. The reaction from kids the first time they see it? Anything but. Our water-activated technology extends to our umbrella and rainwear collections, meaning retailers can offer the magic across more than one category. It’s the feature your customers come back for, and the story they tell their friends.</p>",
         "button_label_1": "Find out more",
         "button_link_1": "shopify://pages/contact",
         "button_style_secondary_1": true,
@@ -313,7 +362,7 @@
         "image_GtdNMa": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/Rectangle_5395.png",
+            "image": "shopify://shop_images/Adventure-Crew-Bottom-Right.png",
             "link": "",
             "link_target": false
           }
@@ -329,7 +378,7 @@
       "settings": {
         "heading": "Our Adventure Crew",
         "heading_size": "h2",
-        "content": "<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam<br/><br/></p>",
+        "content": "<p>Our Adventure Crew is a community of real families and retailers who road test new launches, share authentic content and genuinely love the brand — a built-in network of advocates that keeps Grass & Air front of mind all year round, not just at peak season. <br/><br/></p>",
         "button_label_1": "",
         "button_link_1": "",
         "button_style_secondary_1": false,
@@ -348,6 +397,7 @@
     "main",
     "hero_banner_eaFfDE",
     "rich_text_dLLBUB",
+    "button_grid_ghFFbk",
     "coloured_background_slider_b7L7wA",
     "link_panels_tAkifK",
     "tabbed_featured_collections_c8BL9N",

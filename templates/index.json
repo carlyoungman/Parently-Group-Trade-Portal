@@ -249,7 +249,7 @@
           "type": "buttons",
           "settings": {
             "button_label_1": "Find out more",
-            "button_link_1": "shopify://pages/retailer-support",
+            "button_link_1": "shopify://pages/media-hub",
             "button_style_secondary_1": true,
             "button_label_2": "",
             "button_link_2": "",
@@ -260,7 +260,7 @@
           "type": "link_item",
           "settings": {
             "label": "Image Downloads",
-            "link": "#"
+            "link": "shopify://pages/image-downloads"
           }
         },
         "link_item_8WhpiE": {
@@ -274,28 +274,28 @@
           "type": "link_item",
           "settings": {
             "label": "Point of Sale",
-            "link": ""
+            "link": "shopify://pages/point-of-sale"
           }
         },
         "link_item_RdRfnb": {
           "type": "link_item",
           "settings": {
             "label": "Eco Resources",
-            "link": ""
+            "link": "shopify://pages/eco-resources"
           }
         },
         "link_item_VrTxPc": {
           "type": "link_item",
           "settings": {
             "label": "Marketing",
-            "link": ""
+            "link": "shopify://pages/marketing-support"
           }
         },
         "link_item_AUdJNm": {
           "type": "link_item",
           "settings": {
             "label": "Videos",
-            "link": ""
+            "link": "shopify://pages/videos"
           }
         }
       },

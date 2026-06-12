@@ -10,5 +10,8 @@ eslint.config.js
 *.md
 assets/*.map
 # SCSS source — compiled to assets/theme.css; Shopify rejects subfolders in assets/
-assets/styles/
+assets/styles/*
 assets/styles/**/*
+# Atomic-write temp files (editor/tooling saves) — not valid theme paths
+*.tmp.*
+**/*.tmp.*

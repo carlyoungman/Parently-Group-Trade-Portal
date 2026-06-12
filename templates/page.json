@@ -15,9 +15,34 @@
         "padding_top": 4,
         "padding_bottom": 0
       }
+    },
+    "17804084467fc0a6ac": {
+      "type": "apps",
+      "blocks": {
+        "ordrly_parently_customer_dashboard_4kJArm": {
+          "type": "shopify://apps/ordrly-parently/blocks/customer-dashboard/019e889c-8027-7f5b-86de-cbe219c093a6",
+          "settings": {
+            "dashboard_url": "https://www.ordrly.cloud/shopify/customer-dashboard",
+            "display_mode": "iframe",
+            "iframe_title": "Order dashboard",
+            "link_label": "Open order dashboard",
+            "desktop_height": 720,
+            "mobile_height": 800,
+            "show_logged_out_message": false,
+            "logged_out_message": "Sign in to view your order dashboard."
+          }
+        }
+      },
+      "block_order": [
+        "ordrly_parently_customer_dashboard_4kJArm"
+      ],
+      "settings": {
+        "include_margins": true
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "17804084467fc0a6ac"
   ]
 }

@@ -23,6 +23,7 @@
         "logo_block": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/Juco_logo_white.png",
             "image_width": "medium"
           }
         }
@@ -32,23 +33,418 @@
       ],
       "settings": {
         "video_position": "center center",
-        "image_position": "bottom center",
+        "image": "shopify://shop_images/Juco_background.jpg",
+        "image_position": "center center",
         "image_2_position": "center center",
-        "image_overlay_opacity": 0,
+        "image_overlay_opacity": 20,
         "image_height": "medium",
         "image_behavior": "ambient",
         "white_text": true,
         "desktop_content_position": "middle-center",
         "desktop_content_alignment": "center",
         "show_text_box": true,
-        "stack_images_on_mobile": true,
+        "stack_images_on_mobile": false,
         "mobile_content_alignment": "center",
         "show_text_below": true
+      }
+    },
+    "rich_text_DjHynz": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_r9rTqa": {
+          "type": "heading",
+          "settings": {
+            "heading": "School uniform that gives your customers a reason to choose you.",
+            "heading_size": "h2"
+          }
+        },
+        "text_H3yTdj": {
+          "type": "text",
+          "settings": {
+            "text": "<p>David Luke is the UK's leading school uniform brand — stocked by over 700 independent retailers and trusted by the parents who shop with them. Built on 40 years of relationship-first trading and a genuine commitment to sustainable design, it's the schoolwear range that gives retailers a compelling story to tell, and products that keep selling.</p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "heading_r9rTqa",
+        "text_H3yTdj"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "full_width": true,
+        "background_color": "#ffffff",
+        "text_color": "#000000",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "button_grid_LE8piH": {
+      "type": "button-grid",
+      "blocks": {
+        "button_Nh4dnR": {
+          "type": "button",
+          "settings": {
+            "button_label": "Quick Order",
+            "button_link": "shopify://pages/quick-order",
+            "button_style_secondary": true
+          }
+        },
+        "button_EGM6fK": {
+          "type": "button",
+          "settings": {
+            "button_label": "Products",
+            "button_link": "shopify://collections",
+            "button_style_secondary": true
+          }
+        },
+        "button_pT4XeV": {
+          "type": "button",
+          "settings": {
+            "button_label": "Media Hub",
+            "button_link": "shopify://pages/media-hub",
+            "button_style_secondary": true
+          }
+        },
+        "button_PN9pj4": {
+          "type": "button",
+          "settings": {
+            "button_label": "Contact",
+            "button_link": "shopify://pages/contact",
+            "button_style_secondary": true
+          }
+        }
+      },
+      "block_order": [
+        "button_Nh4dnR",
+        "button_EGM6fK",
+        "button_pT4XeV",
+        "button_PN9pj4"
+      ],
+      "name": "t:sections.button-grid.presets.name",
+      "settings": {
+        "alignment": "center",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "link_panels_Ji68ab": {
+      "type": "link-panels",
+      "blocks": {
+        "panel_gXhBpy": {
+          "type": "panel",
+          "settings": {
+            "headline": "SERVICES",
+            "link": "",
+            "link_target": false,
+            "image": "shopify://shop_images/69e420d1ea17da526427928e1dc2bef32e3c2675.jpg",
+            "display_alternative": true,
+            "background_color": "#cbdeef",
+            "text_background_color": "#355bbc",
+            "heading_color": "#4767b3"
+          }
+        },
+        "panel_RrbyWf": {
+          "type": "panel",
+          "settings": {
+            "headline": "OUTLET",
+            "link": "",
+            "link_target": false,
+            "image": "shopify://shop_images/c5866beb81116e105a2ebf7c10bdcc2ff87d6005.jpg",
+            "display_alternative": true,
+            "background_color": "#f6f2ce",
+            "text_background_color": "#ca703f",
+            "heading_color": "#ca703f"
+          }
+        },
+        "panel_BGW3CB": {
+          "type": "panel",
+          "settings": {
+            "headline": "SUSTAINABILITY",
+            "link": "",
+            "link_target": false,
+            "image": "shopify://shop_images/0a8ce74b8bbeac3f34eae77b25e001f659c460b7.jpg",
+            "display_alternative": true,
+            "background_color": "#d7e6c2",
+            "text_background_color": "#23382d",
+            "heading_color": "#23382d"
+          }
+        }
+      },
+      "block_order": [
+        "panel_gXhBpy",
+        "panel_RrbyWf",
+        "panel_BGW3CB"
+      ],
+      "name": "Link panels",
+      "settings": {
+        "heading": "",
+        "heading_size": "h2",
+        "content": "",
+        "button_label_1": "",
+        "button_link_1": "",
+        "button_style_secondary_1": false,
+        "button_label_2": "",
+        "button_link_2": "",
+        "button_style_secondary_2": true,
+        "columns_desktop": 3,
+        "columns_mobile": "1",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "tabbed_featured_collections_wJWt9k": {
+      "type": "tabbed-featured-collections",
+      "blocks": {
+        "tab_zBh3gP": {
+          "type": "tab",
+          "settings": {
+            "tab_title": "New Arrivals",
+            "collection": "new-arrivals"
+          }
+        },
+        "tab_LxpDG7": {
+          "type": "tab",
+          "settings": {
+            "tab_title": "Best Sellers",
+            "collection": "best-sellers"
+          }
+        }
+      },
+      "block_order": [
+        "tab_zBh3gP",
+        "tab_LxpDG7"
+      ],
+      "name": "Tabbed Featured Collections",
+      "settings": {
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "image_ratio": "portrait",
+        "show_secondary_image": true,
+        "show_vendor": true,
+        "show_rating": false,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "image_with_text_hpWHaL": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_K6rDC6": {
+          "type": "heading",
+          "settings": {
+            "heading": "View our catalogue",
+            "heading_size": "h0"
+          }
+        },
+        "text_V8GhdV": {
+          "type": "text",
+          "settings": {
+            "text": "<p>The David Luke range covers everything from essentials to eco-collections — blouses, trousers, skirts, blazers  and sportswear. Designed for durability, sized for every body, and built with circularity in mind. Browse the full range to find everything your customers need, season after season.</p>",
+            "text_style": "body"
+          }
+        },
+        "button_KC49x7": {
+          "type": "button",
+          "settings": {
+            "button_label": "Download Here",
+            "button_link": "",
+            "button_style_secondary": true
+          }
+        }
+      },
+      "block_order": [
+        "heading_K6rDC6",
+        "text_V8GhdV",
+        "button_KC49x7"
+      ],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/David-Luke-Product-Catalogue-Block-Image-FINAL.png",
+        "height": "large",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "image_background_color": "#4767b3",
+        "text_background_color": "#cbdeef",
+        "content_text_color": "#4767b3",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "image_text_links_aLFyUk": {
+      "type": "image-text-links",
+      "blocks": {
+        "subheading_YaqtFh": {
+          "type": "subheading",
+          "settings": {
+            "text": "Retailer resources"
+          }
+        },
+        "heading_VXRBEK": {
+          "type": "heading",
+          "settings": {
+            "heading": "Everything you need at the Media Hub",
+            "heading_size": "h2"
+          }
+        },
+        "buttons_q8Epgi": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "Find out more",
+            "button_link_1": "shopify://pages/eco-resources",
+            "button_style_secondary_1": true,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": true
+          }
+        },
+        "link_item_4cArDb": {
+          "type": "link_item",
+          "settings": {
+            "label": "Image Downloads",
+            "link": "shopify://pages/image-downloads"
+          }
+        },
+        "link_item_ik8LJE": {
+          "type": "link_item",
+          "settings": {
+            "label": "Price Lists",
+            "link": "shopify://pages/price-lists-1"
+          }
+        },
+        "link_item_zNi8i4": {
+          "type": "link_item",
+          "settings": {
+            "label": "Point of Sale",
+            "link": ""
+          }
+        },
+        "link_item_XTyyMW": {
+          "type": "link_item",
+          "settings": {
+            "label": "Eco Resources",
+            "link": "shopify://pages/eco-resources"
+          }
+        },
+        "link_item_VkpzBR": {
+          "type": "link_item",
+          "settings": {
+            "label": "Marketing",
+            "link": "shopify://pages/marketing-support"
+          }
+        },
+        "link_item_ibtkcg": {
+          "type": "link_item",
+          "settings": {
+            "label": "Videos",
+            "link": "shopify://pages/videos"
+          }
+        }
+      },
+      "block_order": [
+        "subheading_YaqtFh",
+        "heading_VXRBEK",
+        "buttons_q8Epgi",
+        "link_item_4cArDb",
+        "link_item_ik8LJE",
+        "link_item_zNi8i4",
+        "link_item_XTyyMW",
+        "link_item_VkpzBR",
+        "link_item_ibtkcg"
+      ],
+      "name": "Image & text links",
+      "settings": {
+        "image": "shopify://shop_images/Rectangle_2699.jpg",
+        "image_overlay_opacity": 40,
+        "image_behavior": "none",
+        "section_height": "large"
+      }
+    },
+    "image_with_text_gXghyD": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_taTgMY": {
+          "type": "heading",
+          "settings": {
+            "heading": "Our story",
+            "heading_size": "h0"
+          }
+        },
+        "text_R6VBUT": {
+          "type": "text",
+          "settings": {
+            "text": "<p>David Luke started in Manchester in 1982. Built on a simple belief: school uniform should be made well, sourced responsibly, and sold through retailers who know their customers. Today it's the UK's leading sustainable schoolwear brand — a previous Queen's Award winner, worn by hundreds of thousands of children, and found in over 700 stores.</p>",
+            "text_style": "body"
+          }
+        },
+        "button_RfW7DE": {
+          "type": "button",
+          "settings": {
+            "button_label": "Find out more",
+            "button_link": "",
+            "button_style_secondary": true
+          }
+        }
+      },
+      "block_order": [
+        "heading_taTgMY",
+        "text_R6VBUT",
+        "button_RfW7DE"
+      ],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/b7034ac4b884dcf6c9478fd2db2e0a0066cf6a27.jpg",
+        "height": "large",
+        "desktop_image_width": "medium",
+        "layout": "text_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "image_background_color": "#ca703f",
+        "text_background_color": "#ca703f",
+        "content_text_color": "#ffffff",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "video_R6F6e6": {
+      "type": "video",
+      "name": "t:sections.video.presets.name",
+      "settings": {
+        "heading": "",
+        "heading_size": "h2",
+        "enable_video_looping": true,
+        "video": "shopify://files/videos/david_luke_+_juco_campaign_video_v2_nocornerlogo (1080p).mp4",
+        "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+        "description": "",
+        "full_width": false,
+        "background_color": "",
+        "heading_color": "",
+        "padding_top": 0,
+        "padding_bottom": 100
       }
     }
   },
   "order": [
     "main",
-    "hero_banner"
+    "hero_banner",
+    "rich_text_DjHynz",
+    "button_grid_LE8piH",
+    "link_panels_Ji68ab",
+    "tabbed_featured_collections_wJWt9k",
+    "image_with_text_hpWHaL",
+    "image_text_links_aLFyUk",
+    "image_with_text_gXghyD",
+    "video_R6F6e6"
   ]
 }

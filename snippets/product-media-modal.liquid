@@ -1,5 +1,9 @@
 {% comment %}
-  Renders a product media modal. Also see 'product-media-gallery'
+  Renders a product media modal — a single-image lightbox. One media item is
+  shown at a time (the `.active` child of `__content`), with prev/next arrows,
+  an "n / total" counter and a thumbnail strip. The navigation behaviour lives
+  in 'product-modal.js' (extends Dawn's ModalDialog). Also see
+  'product-media-gallery'.
 
   Accepts:
   - product: {Object} Product liquid object
@@ -8,6 +12,8 @@
   Usage:
   {% render 'product-media-modal' %}
 {% endcomment %}
+
+{%- assign modal_media_count = product.media.size -%}
 
 <product-modal id="ProductModal-{{ section.id }}" class="product-media-modal media-modal">
   <div
@@ -25,6 +31,29 @@
     >
       {{ 'icon-close.svg' | inline_asset_content }}
     </button>
+
+    {%- if modal_media_count > 1 -%}
+      <button
+        type="button"
+        class="product-media-modal__nav product-media-modal__nav--prev"
+        name="previous"
+        aria-label="{{ 'general.slider.previous_slide' | t }}"
+      >
+        <span class="svg-wrapper">
+          {{- 'icon-caret.svg' | inline_asset_content -}}
+        </span>
+      </button>
+      <button
+        type="button"
+        class="product-media-modal__nav product-media-modal__nav--next"
+        name="next"
+        aria-label="{{ 'general.slider.next_slide' | t }}"
+      >
+        <span class="svg-wrapper">
+          {{- 'icon-caret.svg' | inline_asset_content -}}
+        </span>
+      </button>
+    {%- endif -%}
 
     <div
       class="product-media-modal__content color-scheme-1"
@@ -53,5 +82,76 @@
         -%}
       {%- endfor -%}
     </div>
+
+    {%- if modal_media_count > 1 -%}
+      <div class="product-media-modal__counter caption" aria-hidden="true">
+        <span class="product-media-modal__counter-current">1</span>
+        <span> / </span>
+        <span class="product-media-modal__counter-total">{{ modal_media_count }}</span>
+      </div>
+
+      <ul class="product-media-modal__thumbs list-unstyled" role="list">
+        {%- assign thumb_position = 0 -%}
+        {%- if product.selected_or_first_available_variant.featured_media != null -%}
+          {%- assign media = product.selected_or_first_available_variant.featured_media -%}
+          {%- assign thumb_position = thumb_position | plus: 1 -%}
+          <li class="product-media-modal__thumb">
+            <button
+              type="button"
+              class="product-media-modal__thumb-btn"
+              data-media-id="{{ media.id }}"
+              aria-label="{{ 'products.product.media.load_image' | t: index: thumb_position }}"
+            >
+              {%- if media.media_type != 'image' -%}
+                <span class="thumbnail__badge" aria-hidden="true">
+                  <span class="svg-wrapper">
+                    {%- if media.media_type == 'model' -%}
+                      {{- 'icon-3d-model.svg' | inline_asset_content -}}
+                    {%- else -%}
+                      {{- 'icon-play.svg' | inline_asset_content -}}
+                    {%- endif -%}
+                  </span>
+                </span>
+              {%- endif -%}
+              {{
+                media.preview_image
+                | image_url: width: 200
+                | image_tag: loading: 'lazy', widths: '54, 74, 104, 148, 200', alt: media.alt
+              }}
+            </button>
+          </li>
+        {%- endif -%}
+        {%- for media in product.media -%}
+          {%- unless media.id == product.selected_or_first_available_variant.featured_media.id -%}
+            {%- assign thumb_position = thumb_position | plus: 1 -%}
+            <li class="product-media-modal__thumb">
+              <button
+                type="button"
+                class="product-media-modal__thumb-btn"
+                data-media-id="{{ media.id }}"
+                aria-label="{{ 'products.product.media.load_image' | t: index: thumb_position }}"
+              >
+                {%- if media.media_type != 'image' -%}
+                  <span class="thumbnail__badge" aria-hidden="true">
+                    <span class="svg-wrapper">
+                      {%- if media.media_type == 'model' -%}
+                        {{- 'icon-3d-model.svg' | inline_asset_content -}}
+                      {%- else -%}
+                        {{- 'icon-play.svg' | inline_asset_content -}}
+                      {%- endif -%}
+                    </span>
+                  </span>
+                {%- endif -%}
+                {{
+                  media.preview_image
+                  | image_url: width: 200
+                  | image_tag: loading: 'lazy', widths: '54, 74, 104, 148, 200', alt: media.alt
+                }}
+              </button>
+            </li>
+          {%- endunless -%}
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
   </div>
 </product-modal>

@@ -17,21 +17,24 @@
         "padding_bottom": 28
       }
     },
-    "hero_banner": {
+    "hero_banner_eaFfDE": {
       "type": "hero-banner",
       "blocks": {
-        "logo_block": {
+        "image_gQEEM7": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/Lelli_Kelly_logo_white.png",
             "image_width": "medium"
           }
         }
       },
       "block_order": [
-        "logo_block"
+        "image_gQEEM7"
       ],
+      "name": "t:sections.hero-banner.presets.name",
       "settings": {
         "video_position": "center center",
+        "image": "shopify://shop_images/Lelli_Kelly_background.png",
         "image_position": "bottom center",
         "image_2_position": "center center",
         "image_overlay_opacity": 0,
@@ -41,14 +44,365 @@
         "desktop_content_position": "middle-center",
         "desktop_content_alignment": "center",
         "show_text_box": true,
-        "stack_images_on_mobile": true,
+        "stack_images_on_mobile": false,
         "mobile_content_alignment": "center",
         "show_text_below": true
+      }
+    },
+    "rich_text_dLLBUB": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_xtB693": {
+          "type": "heading",
+          "settings": {
+            "heading": "The ones with the  wellies that change colour.",
+            "heading_size": "h2"
+          }
+        },
+        "text_AkdkkE": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Grass & Air wants to go with families on every adventure. A multi-award-winning children’s brand covering wellies, rainwear, clothing and accessories — we’ve reinvented the traditional image of an outdoor brand with unexpected creative, edgy styling and a passion for modernity. Our colour-changing wellies turn rainy days into events for kids, and into reliable bestsellers for the independent retailers who stock them.</p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "heading_xtB693",
+        "text_AkdkkE"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "full_width": true,
+        "background_color": "#ffffff",
+        "text_color": "#000000",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "button_grid_ghFFbk": {
+      "type": "button-grid",
+      "blocks": {
+        "button_yhnw7A": {
+          "type": "button",
+          "settings": {
+            "button_label": "Quick Order",
+            "button_link": "shopify://pages/quick-order-1",
+            "button_style_secondary": true
+          }
+        },
+        "button_xMywhR": {
+          "type": "button",
+          "settings": {
+            "button_label": "Products",
+            "button_link": "shopify://collections/rainwear",
+            "button_style_secondary": true
+          }
+        },
+        "button_gV9EQK": {
+          "type": "button",
+          "settings": {
+            "button_label": "Media Hub",
+            "button_link": "shopify://pages/media-hub",
+            "button_style_secondary": true
+          }
+        },
+        "button_CVbabz": {
+          "type": "button",
+          "settings": {
+            "button_label": "Contact",
+            "button_link": "shopify://pages/contact",
+            "button_style_secondary": true
+          }
+        }
+      },
+      "block_order": [
+        "button_yhnw7A",
+        "button_xMywhR",
+        "button_gV9EQK",
+        "button_CVbabz"
+      ],
+      "name": "t:sections.button-grid.presets.name",
+      "settings": {
+        "alignment": "center",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "coloured_background_slider_b7L7wA": {
+      "type": "coloured-background-slider",
+      "blocks": {
+        "slide_QGngdA": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_5396.png"
+          }
+        },
+        "slide_7Pa66X": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_5396.png"
+          }
+        },
+        "slide_WaGW7U": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_5396.png"
+          }
+        },
+        "slide_UFAVfe": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_5396.png"
+          }
+        },
+        "slide_iVeWT4": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_5396.png"
+          }
+        }
+      },
+      "block_order": [
+        "slide_QGngdA",
+        "slide_7Pa66X",
+        "slide_WaGW7U",
+        "slide_UFAVfe",
+        "slide_iVeWT4"
+      ],
+      "name": "Colour background slider",
+      "settings": {
+        "heading": "",
+        "heading_size": "h2",
+        "content": "",
+        "button_label_1": "",
+        "button_link_1": "",
+        "button_style_secondary_1": false,
+        "button_label_2": "",
+        "button_link_2": "",
+        "button_style_secondary_2": true,
+        "background_color": "#b0848f",
+        "image_ratio": "auto",
+        "autoplay": true,
+        "autoplay_speed": 4,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "link_panels_tAkifK": {
+      "type": "link-panels",
+      "blocks": {
+        "panel_WefdTt": {
+          "type": "panel",
+          "settings": {
+            "headline": "Joyful Deals",
+            "link": "",
+            "link_target": false,
+            "image": "shopify://shop_images/Grass-Air-Joyful-Deals-Block_cba380fb-9030-4c86-826f-739f78e4a8d6.png",
+            "display_alternative": false,
+            "background_color": "#335a94",
+            "text_background_color": "#229eae",
+            "heading_color": "#ffffff"
+          }
+        },
+        "panel_ydAmNR": {
+          "type": "panel",
+          "settings": {
+            "headline": "Starter Kit",
+            "link": "",
+            "link_target": false,
+            "image": "shopify://shop_images/Starter-Kit-Deals-Block.png",
+            "display_alternative": false,
+            "background_color": "#0aa6b5",
+            "text_background_color": "#ebbf4c",
+            "heading_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "panel_WefdTt",
+        "panel_ydAmNR"
+      ],
+      "name": "Link panels",
+      "settings": {
+        "heading": "",
+        "heading_size": "h2",
+        "content": "",
+        "button_label_1": "",
+        "button_link_1": "",
+        "button_style_secondary_1": false,
+        "button_label_2": "",
+        "button_link_2": "",
+        "button_style_secondary_2": true,
+        "columns_desktop": 2,
+        "columns_mobile": "1",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "tabbed_featured_collections_c8BL9N": {
+      "type": "tabbed-featured-collections",
+      "blocks": {
+        "tab_aP96jE": {
+          "type": "tab",
+          "settings": {
+            "tab_title": "New Arrivals",
+            "collection": "new-arrivals"
+          }
+        },
+        "tab_kkDA7E": {
+          "type": "tab",
+          "settings": {
+            "tab_title": "Best Sellers",
+            "collection": "best-sellers"
+          }
+        }
+      },
+      "block_order": [
+        "tab_aP96jE",
+        "tab_kkDA7E"
+      ],
+      "name": "Tabbed Featured Collections",
+      "settings": {
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "image_ratio": "square",
+        "show_secondary_image": true,
+        "show_vendor": true,
+        "show_rating": false,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "rich_text_DPARXL": {
+      "type": "rich-text",
+      "blocks": {
+        "image_bcBiPV": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/image.svg",
+            "image_width": "small"
+          }
+        },
+        "text_QwYwyD": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Since launching in 2017, Grass & Air has built a loyal following among parents who want something more from their kids’ outdoor kit. We take mainstream products — wellies, rain jackets, accessories — and give them an unexpected twist. Our colour-changing technology gets kids excited to spend time outdoors, driving repeat purchase and genuine word of mouth. The brand speaks the language of modern families: stylish, thoughtfully sustainable and always up for an adventure. Available across five categories, Grass & Air adds a distinctive, award-winning offer to any retailer’s range.<br/><br/></p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "image_bcBiPV",
+        "text_QwYwyD"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "full_width": true,
+        "background_color": "#335a94",
+        "text_color": "#ffffff",
+        "padding_top": 100,
+        "padding_bottom": 100
+      }
+    },
+    "image_grid_with_content_wT8eaB": {
+      "type": "image-grid-with-content",
+      "name": "Image grid with content",
+      "settings": {
+        "image_1": "shopify://shop_images/Colour-changng-Image-Top.png",
+        "image_2": "shopify://shop_images/Colour-changng-Image-Left_484e1231-d6e9-488d-b85d-159ef469d9bc.png",
+        "image_3": "shopify://shop_images/Rectangle_5391.png",
+        "heading": "The magic is in the rain.",
+        "heading_size": "h2",
+        "content": "<p>When it rains, Grass & Air wellies change colour. Our signature rain cloud design bursts into life on contact with water — and resets to white when dry. It sounds simple. The reaction from kids the first time they see it? Anything but. Our water-activated technology extends to our umbrella and rainwear collections, meaning retailers can offer the magic across more than one category. It’s the feature your customers come back for, and the story they tell their friends.</p>",
+        "button_label_1": "Find out more",
+        "button_link_1": "shopify://pages/contact",
+        "button_style_secondary_1": true,
+        "button_label_2": "",
+        "button_link_2": "",
+        "button_style_secondary_2": true,
+        "content_bg_color": "#0aa6b5",
+        "text_color": "#ffffff",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "gallery_grid_NLQipr": {
+      "type": "gallery-grid",
+      "blocks": {
+        "image_e49irM": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_5392.png",
+            "link": "",
+            "link_target": false
+          }
+        },
+        "image_PqaGHF": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_5393.png",
+            "link": "",
+            "link_target": false
+          }
+        },
+        "image_bMgXfx": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_5394.png",
+            "link": "",
+            "link_target": false
+          }
+        },
+        "image_GtdNMa": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Adventure-Crew-Bottom-Right.png",
+            "link": "",
+            "link_target": false
+          }
+        }
+      },
+      "block_order": [
+        "image_e49irM",
+        "image_PqaGHF",
+        "image_bMgXfx",
+        "image_GtdNMa"
+      ],
+      "name": "Gallery grid",
+      "settings": {
+        "heading": "Our Adventure Crew",
+        "heading_size": "h2",
+        "content": "<p>Our Adventure Crew is a community of real families and retailers who road test new launches, share authentic content and genuinely love the brand — a built-in network of advocates that keeps Grass & Air front of mind all year round, not just at peak season. <br/><br/></p>",
+        "button_label_1": "",
+        "button_link_1": "",
+        "button_style_secondary_1": false,
+        "button_label_2": "",
+        "button_link_2": "",
+        "button_style_secondary_2": true,
+        "layout": "featured",
+        "image_ratio": "16-9",
+        "columns_mobile": "1",
+        "padding_top": 0,
+        "padding_bottom": 100
       }
     }
   },
   "order": [
     "main",
-    "hero_banner"
+    "hero_banner_eaFfDE",
+    "rich_text_dLLBUB",
+    "button_grid_ghFFbk",
+    "coloured_background_slider_b7L7wA",
+    "link_panels_tAkifK",
+    "tabbed_featured_collections_c8BL9N",
+    "rich_text_DPARXL",
+    "image_grid_with_content_wT8eaB",
+    "gallery_grid_NLQipr"
   ]
 }
