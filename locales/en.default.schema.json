@@ -1040,7 +1040,12 @@
           }
         },
         "description": {
-          "name": "Description"
+          "name": "Description",
+          "settings": {
+            "text_color": {
+              "label": "Text color"
+            }
+          }
         },
         "share": {
           "name": "Share",

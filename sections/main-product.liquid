@@ -170,7 +170,11 @@
                 </p>
               {%- when 'description' -%}
                 {%- if product.description != blank -%}
-                  <div class="product__description rte quick-add-hidden" {{ block.shopify_attributes }}>
+                  <div
+                    class="product__description rte quick-add-hidden"
+                    {% if block.settings.text_color != blank %}style="color: {{ block.settings.text_color }};"{% endif %}
+                    {{ block.shopify_attributes }}
+                  >
                     {{ product.description }}
                   </div>
                 {%- endif -%}
@@ -909,8 +913,8 @@
               "label": "Size guide (custom.size_guide)"
             },
             {
-              "value": "shipping_information",
-              "label": "Shipping information (custom.shipping_information)"
+              "value": "row_shipping",
+              "label": "Shipping information (custom.row_shipping)"
             }
           ]
         }
@@ -1052,7 +1056,15 @@
     {
       "type": "description",
       "name": "t:sections.main-product.blocks.description.name",
-      "limit": 1
+      "limit": 1,
+      "settings": [
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "t:sections.main-product.blocks.description.settings.text_color.label",
+          "default": "#000000"
+        }
+      ]
     },
     {
       "type": "share",
@@ -2240,6 +2252,12 @@
       "id": "enable_sticky_info",
       "default": true,
       "label": "t:sections.main-product.settings.enable_sticky_info.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_sticky_gallery",
+      "default": false,
+      "label": "Enable sticky image gallery"
     },
     {
       "type": "header",

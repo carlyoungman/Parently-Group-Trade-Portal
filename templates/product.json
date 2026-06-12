@@ -52,7 +52,7 @@
           "type": "accordion_row",
           "settings": {
             "heading": "View shipping information",
-            "content_source": "shipping_information"
+            "content_source": "row_shipping"
           }
         },
         "assets_link": {

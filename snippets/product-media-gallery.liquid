@@ -47,7 +47,7 @@
 <media-gallery
   id="MediaGallery-{{ section.id }}"
   role="region"
-  {% if section.settings.enable_sticky_info %}
+  {% if section.settings.enable_sticky_gallery %}
     class="product__column-sticky"
   {% endif %}
   aria-label="{{ 'products.product.media.gallery_viewer' | t }}"

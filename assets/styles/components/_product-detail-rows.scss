@@ -4,8 +4,8 @@
 @use '../utilities/variables' as *;
 
 .product-detail-row {
-  border-block-end: 0.1rem solid rgba(var(--color-foreground), 0.15);
-  border-block-start: 0.1rem solid rgba(var(--color-foreground), 0.15);
+  border-block-end: 0.1rem solid rgb(var(--color-foreground));
+  border-block-start: 0.1rem solid rgb(var(--color-foreground));
 
   + .product-detail-row {
     border-block-start: 0;
@@ -13,6 +13,7 @@
 
   &__summary {
     align-items: center;
+    color: rgb(var(--color-foreground));
     cursor: pointer;
     display: flex;
     gap: $spacing-md;
@@ -29,7 +30,9 @@
     }
 
     &:hover .product-detail-row__icon {
-      border-color: rgb(var(--color-foreground));
+      background-color: rgb(var(--color-secondary-button-hover));
+      border-color: rgba(var(--color-secondary-button-border-hover));
+      color: rgb(var(--color-secondary-button-text-hover));
     }
   }
 
@@ -47,15 +50,19 @@
     }
 
     &:hover .product-detail-row__icon {
-      border-color: rgb(var(--color-foreground));
+      background-color: rgb(var(--color-secondary-button-hover));
+      border-color: rgba(var(--color-secondary-button-border-hover));
+      color: rgb(var(--color-secondary-button-text-hover));
     }
   }
 
   &__icon {
     align-items: center;
     aspect-ratio: 1;
-    border: 0.1rem solid rgba(var(--color-foreground), 0.2);
+    background-color: transparent;
+    border: var(--buttons-border-width) solid rgba(var(--color-secondary-button-border), var(--buttons-border-opacity));
     border-radius: 50%;
+    color: rgb(var(--color-secondary-button-border-hover));
     display: flex;
     flex-shrink: 0;
     justify-content: center;
@@ -63,7 +70,9 @@
 
     @include motion-ok {
       transition:
+        background-color var(--duration-default) ease,
         border-color var(--duration-default) ease,
+        color var(--duration-default) ease,
         transform var(--duration-default) ease;
     }
 
