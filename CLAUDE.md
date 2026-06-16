@@ -19,7 +19,7 @@ A Shopify B2B Trade Portal built on **Dawn v15.4.1** with custom React, SCSS, an
 
 ```
 layout/           Main Liquid layouts (theme.liquid, password.liquid)
-sections/         80+ Shopify section Liquid files
+sections/         70+ Shopify section Liquid files
 snippets/         Reusable Liquid partials
 templates/        Page/customer route JSON templates + custom page templates
 assets/           Compiled CSS & JS, plus vanilla JS source files
@@ -51,7 +51,7 @@ npm run build:css:dev # Sass compile (expanded, for debugging)
 npm run build:js      # Vite build: src/product-bulk-order.jsx → assets/product-bulk-order.js
 npm run watch:css     # Sass watch only
 npm run lint          # stylelint + eslint
-npm run format        # Prettier (run before every commit)
+npm run format        # Prettier — UNSAFE to run blanket; see WARNING under Formatting
 ```
 
 ---
@@ -70,7 +70,11 @@ npm run format        # Prettier (run before every commit)
 | Arrow parens | always |
 | Line endings | LF |
 
-Run `npm run format` before committing.
+> ⚠️ **Do not run `npm run format` blindly.** `.prettierrc.json` maps `*.liquid` to the `html`
+> parser, which **corrupts `{% schema %}` blocks** in section/snippet files. `.prettierignore`
+> also excludes `assets/`, so the script's SCSS/JS globs are no-ops — meaning the command
+> mostly just touches (and breaks) liquid. To format safely, target a specific non-liquid
+> file: `npx prettier --write path/to/file.scss`.
 
 ### JavaScript / JSX
 
