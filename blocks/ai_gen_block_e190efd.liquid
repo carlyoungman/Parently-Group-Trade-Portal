@@ -1,0 +1,550 @@
+{% doc %}
+  @prompt
+    Create a simple form for a new retailer to fill out with Name, Company name, address, contact number, brand of interest (David Luke, Grass & Air, Lelli Kelly, Term, Juco or Little Classmates), type of business (online, bricks and mortar, distributor), website, how many locations and a box to add any other information to add that can be sent on to our inbox 
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-retailer-form-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+    padding: 40px;
+    background-color: {{ block.settings.background_color }};
+    border-radius: {{ block.settings.border_radius }}px;
+  }
+
+  .ai-retailer-form__heading-{{ ai_gen_id }} {
+    margin: 0 0 24px;
+    color: {{ block.settings.heading_color }};
+    font-size: {{ block.settings.heading_size }}px;
+  }
+
+  .ai-retailer-form__description-{{ ai_gen_id }} {
+    margin: 0 0 32px;
+    color: {{ block.settings.text_color }};
+    font-size: {{ block.settings.text_size }}px;
+  }
+
+  .ai-retailer-form__field-{{ ai_gen_id }} {
+    margin-bottom: 20px;
+  }
+
+  .ai-retailer-form__label-{{ ai_gen_id }} {
+    display: block;
+    margin-bottom: 8px;
+    color: {{ block.settings.text_color }};
+    font-size: {{ block.settings.label_size }}px;
+    font-weight: 500;
+  }
+
+  .ai-retailer-form__input-{{ ai_gen_id }},
+  .ai-retailer-form__select-{{ ai_gen_id }},
+  .ai-retailer-form__textarea-{{ ai_gen_id }} {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid {{ block.settings.input_border_color }};
+    border-radius: {{ block.settings.input_border_radius }}px;
+    font-size: {{ block.settings.input_text_size }}px;
+    color: {{ block.settings.text_color }};
+    background-color: {{ block.settings.input_background_color }};
+  }
+
+  .ai-retailer-form__input-{{ ai_gen_id }}:focus,
+  .ai-retailer-form__select-{{ ai_gen_id }}:focus,
+  .ai-retailer-form__textarea-{{ ai_gen_id }}:focus {
+    outline: 2px solid {{ block.settings.input_focus_color }};
+    outline-offset: 2px;
+  }
+
+  .ai-retailer-form__textarea-{{ ai_gen_id }} {
+    min-height: 120px;
+    resize: vertical;
+  }
+
+  .ai-retailer-form__button-{{ ai_gen_id }} {
+    padding: 14px 32px;
+    background-color: {{ block.settings.button_color }};
+    color: {{ block.settings.button_text_color }};
+    border: none;
+    border-radius: {{ block.settings.button_border_radius }}px;
+    font-size: {{ block.settings.button_text_size }}px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .ai-retailer-form__button-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_hover_color }};
+  }
+
+  .ai-retailer-form__success-{{ ai_gen_id }} {
+    padding: 16px;
+    margin-bottom: 20px;
+    background-color: {{ block.settings.success_bg_color }};
+    color: {{ block.settings.success_text_color }};
+    border-radius: {{ block.settings.input_border_radius }}px;
+  }
+
+  .ai-retailer-form__error-{{ ai_gen_id }} {
+    padding: 16px;
+    margin-bottom: 20px;
+    background-color: {{ block.settings.error_bg_color }};
+    color: {{ block.settings.error_text_color }};
+    border-radius: {{ block.settings.input_border_radius }}px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-retailer-form-{{ ai_gen_id }} {
+      padding: 24px;
+    }
+  }
+{% endstyle %}
+
+<retailer-form-{{ ai_gen_id }}
+  class="ai-retailer-form-{{ ai_gen_id }}"
+  {{ block.shopify_attributes }}
+>
+  {%- form 'contact' -%}
+    <input type="hidden" name="contact[form_type]" value="retailer_inquiry">
+
+    {%- if block.settings.heading != blank -%}
+      <h2 class="ai-retailer-form__heading-{{ ai_gen_id }}">{{ block.settings.heading }}</h2>
+    {%- endif -%}
+
+    {%- if block.settings.description != blank -%}
+      <div class="ai-retailer-form__description-{{ ai_gen_id }}">{{ block.settings.description }}</div>
+    {%- endif -%}
+
+    {%- if form.posted_successfully? -%}
+      <div
+        id="ai-retailer-form-success-{{ ai_gen_id }}"
+        class="ai-retailer-form__success-{{ ai_gen_id }}"
+      >
+        {{ block.settings.success_message }}
+      </div>
+    {%- endif -%}
+
+    {%- if form.errors -%}
+      <div
+        id="ai-retailer-form-error-{{ ai_gen_id }}"
+        class="ai-retailer-form__error-{{ ai_gen_id }}"
+      >
+        {{ form.errors.messages | first }}
+      </div>
+    {%- endif -%}
+
+    <div class="ai-retailer-form__field-{{ ai_gen_id }}">
+      <label for="ai-retailer-name-{{ ai_gen_id }}" class="ai-retailer-form__label-{{ ai_gen_id }}">
+        Name <span aria-label="required">*</span>
+      </label>
+      <input
+        type="text"
+        id="ai-retailer-name-{{ ai_gen_id }}"
+        name="contact[name]"
+        class="ai-retailer-form__input-{{ ai_gen_id }}"
+        required
+        aria-required="true"
+      >
+    </div>
+
+    <div class="ai-retailer-form__field-{{ ai_gen_id }}">
+      <label for="ai-retailer-company-{{ ai_gen_id }}" class="ai-retailer-form__label-{{ ai_gen_id }}">
+        Company name <span aria-label="required">*</span>
+      </label>
+      <input
+        type="text"
+        id="ai-retailer-company-{{ ai_gen_id }}"
+        name="contact[company]"
+        class="ai-retailer-form__input-{{ ai_gen_id }}"
+        required
+        aria-required="true"
+      >
+    </div>
+
+    <div class="ai-retailer-form__field-{{ ai_gen_id }}">
+      <label for="ai-retailer-address-{{ ai_gen_id }}" class="ai-retailer-form__label-{{ ai_gen_id }}">
+        Address <span aria-label="required">*</span>
+      </label>
+      <textarea
+        id="ai-retailer-address-{{ ai_gen_id }}"
+        name="contact[address]"
+        class="ai-retailer-form__textarea-{{ ai_gen_id }}"
+        rows="3"
+        required
+        aria-required="true"
+      ></textarea>
+    </div>
+
+    <div class="ai-retailer-form__field-{{ ai_gen_id }}">
+      <label for="ai-retailer-phone-{{ ai_gen_id }}" class="ai-retailer-form__label-{{ ai_gen_id }}">
+        Contact number <span aria-label="required">*</span>
+      </label>
+      <input
+        type="tel"
+        id="ai-retailer-phone-{{ ai_gen_id }}"
+        name="contact[phone]"
+        class="ai-retailer-form__input-{{ ai_gen_id }}"
+        required
+        aria-required="true"
+      >
+    </div>
+
+    <div class="ai-retailer-form__field-{{ ai_gen_id }}">
+      <label for="ai-retailer-email-{{ ai_gen_id }}" class="ai-retailer-form__label-{{ ai_gen_id }}">
+        Email <span aria-label="required">*</span>
+      </label>
+      <input
+        type="email"
+        id="ai-retailer-email-{{ ai_gen_id }}"
+        name="contact[email]"
+        class="ai-retailer-form__input-{{ ai_gen_id }}"
+        autocomplete="email"
+        autocorrect="off"
+        autocapitalize="off"
+        required
+        aria-required="true"
+      >
+    </div>
+
+    <div class="ai-retailer-form__field-{{ ai_gen_id }}">
+      <label for="ai-retailer-brand-{{ ai_gen_id }}" class="ai-retailer-form__label-{{ ai_gen_id }}">
+        Brand of interest <span aria-label="required">*</span>
+      </label>
+      <select
+        id="ai-retailer-brand-{{ ai_gen_id }}"
+        name="contact[brand_of_interest]"
+        class="ai-retailer-form__select-{{ ai_gen_id }}"
+        required
+        aria-required="true"
+      >
+        <option value="">Please select</option>
+        <option value="David Luke">David Luke</option>
+        <option value="Grass & Air">Grass & Air</option>
+        <option value="Lelli Kelly">Lelli Kelly</option>
+        <option value="Term">Term</option>
+        <option value="Juco">Juco</option>
+        <option value="Little Classmates">Little Classmates</option>
+      </select>
+    </div>
+
+    <div class="ai-retailer-form__field-{{ ai_gen_id }}">
+      <label for="ai-retailer-business-type-{{ ai_gen_id }}" class="ai-retailer-form__label-{{ ai_gen_id }}">
+        Type of business <span aria-label="required">*</span>
+      </label>
+      <select
+        id="ai-retailer-business-type-{{ ai_gen_id }}"
+        name="contact[business_type]"
+        class="ai-retailer-form__select-{{ ai_gen_id }}"
+        required
+        aria-required="true"
+      >
+        <option value="">Please select</option>
+        <option value="Online">Online</option>
+        <option value="Bricks and mortar">Bricks and mortar</option>
+        <option value="Distributor">Distributor</option>
+      </select>
+    </div>
+
+    <div class="ai-retailer-form__field-{{ ai_gen_id }}">
+      <label for="ai-retailer-website-{{ ai_gen_id }}" class="ai-retailer-form__label-{{ ai_gen_id }}">
+        Website
+      </label>
+      <input
+        type="url"
+        id="ai-retailer-website-{{ ai_gen_id }}"
+        name="contact[website]"
+        class="ai-retailer-form__input-{{ ai_gen_id }}"
+        placeholder="https://"
+      >
+    </div>
+
+    <div class="ai-retailer-form__field-{{ ai_gen_id }}">
+      <label for="ai-retailer-locations-{{ ai_gen_id }}" class="ai-retailer-form__label-{{ ai_gen_id }}">
+        How many locations
+      </label>
+      <input
+        type="number"
+        id="ai-retailer-locations-{{ ai_gen_id }}"
+        name="contact[number_of_locations]"
+        class="ai-retailer-form__input-{{ ai_gen_id }}"
+        min="0"
+      >
+    </div>
+
+    <div class="ai-retailer-form__field-{{ ai_gen_id }}">
+      <label for="ai-retailer-additional-{{ ai_gen_id }}" class="ai-retailer-form__label-{{ ai_gen_id }}">
+        Additional information
+      </label>
+      <textarea
+        id="ai-retailer-additional-{{ ai_gen_id }}"
+        name="contact[body]"
+        class="ai-retailer-form__textarea-{{ ai_gen_id }}"
+        rows="5"
+      ></textarea>
+    </div>
+
+    <button type="submit" class="ai-retailer-form__button-{{ ai_gen_id }}">
+      {{ block.settings.button_text }}
+    </button>
+  {%- endform -%}
+</retailer-form-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class RetailerForm{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        const form = this.querySelector('form');
+        if (form) {
+          form.addEventListener('submit', this.handleSubmit.bind(this));
+        }
+      }
+
+      handleSubmit(event) {
+        const form = event.target;
+        const requiredFields = form.querySelectorAll('[required]');
+        let isValid = true;
+
+        requiredFields.forEach(field => {
+          if (!field.value.trim()) {
+            isValid = false;
+            field.setAttribute('aria-invalid', 'true');
+          } else {
+            field.removeAttribute('aria-invalid');
+          }
+        });
+
+        if (!isValid) {
+          event.preventDefault();
+        }
+      }
+    }
+
+    customElements.define('retailer-form-{{ ai_gen_id }}', RetailerForm{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Retailer inquiry form",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "New retailer inquiry"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Please fill out the form below and we'll get back to you shortly.</p>"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Submit inquiry"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "success_message",
+      "label": "Success message",
+      "default": "Thank you for your inquiry. We'll be in touch soon."
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#585858"
+    },
+    {
+      "type": "color",
+      "id": "input_background_color",
+      "label": "Input background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "input_border_color",
+      "label": "Input border",
+      "default": "#cccccc"
+    },
+    {
+      "type": "color",
+      "id": "input_focus_color",
+      "label": "Input focus",
+      "default": "#73ae70"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Button background",
+      "default": "#73ae70"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_color",
+      "label": "Button hover",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "success_bg_color",
+      "label": "Success background",
+      "default": "#d4edda"
+    },
+    {
+      "type": "color",
+      "id": "success_text_color",
+      "label": "Success text",
+      "default": "#155724"
+    },
+    {
+      "type": "color",
+      "id": "error_bg_color",
+      "label": "Error background",
+      "default": "#f8d7da"
+    },
+    {
+      "type": "color",
+      "id": "error_text_color",
+      "label": "Error text",
+      "default": "#721c24"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading size",
+      "min": 16,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "label": "Text size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "label_size",
+      "label": "Label size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "input_text_size",
+      "label": "Input text size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "button_text_size",
+      "label": "Button text size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Form border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "input_border_radius",
+      "label": "Input border radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "label": "Button border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    }
+  ],
+  "presets": [
+    {
+      "name": "Retailer inquiry form"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,49 @@
+// Product description "View more" / "View less" toggle
+@use '../utilities/mixins' as *;
+
+.product-description-toggle {
+  display: block;
+
+  // Collapsed: cap the height and fade the cut-off so there's more text implied.
+  // The cap comes from the merchant setting via --description-clamp-height.
+  &.is-clamped:not(.is-expanded) &__content {
+    -webkit-mask-image: linear-gradient(to bottom, rgb(0 0 0) 60%, transparent 100%);
+    mask-image: linear-gradient(to bottom, rgb(0 0 0) 60%, transparent 100%);
+    max-height: var(--description-clamp-height, 12rem);
+    overflow: hidden;
+  }
+
+  &__btn {
+    color: rgb(var(--color-foreground));
+    display: inline-block;
+    margin-top: 1.2rem;
+
+    &:hover,
+    &:focus {
+      color: rgb(var(--color-foreground));
+    }
+
+    &[hidden] {
+      display: none;
+    }
+
+    &:focus-visible {
+      @include focus-ring;
+    }
+  }
+
+  // Label swaps with the button's expanded state.
+  &__label-less {
+    display: none;
+  }
+
+  &__btn[aria-expanded="true"] {
+    .product-description-toggle__label-more {
+      display: none;
+    }
+
+    .product-description-toggle__label-less {
+      display: inline;
+    }
+  }
+}

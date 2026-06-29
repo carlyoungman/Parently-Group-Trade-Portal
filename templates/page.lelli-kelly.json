@@ -34,7 +34,7 @@
       "name": "t:sections.hero-banner.presets.name",
       "settings": {
         "video_position": "center center",
-        "image": "shopify://shop_images/Lelli_Kelly_background.png",
+        "image": "shopify://shop_images/Banner-Image-Lelli_Kelly.jpg",
         "image_position": "bottom center",
         "image_2_position": "center center",
         "image_overlay_opacity": 0,
@@ -55,14 +55,14 @@
         "heading_xtB693": {
           "type": "heading",
           "settings": {
-            "heading": "The ones with the  wellies that change colour.",
+            "heading": "The brand your customers already know — now in clothing.",
             "heading_size": "h2"
           }
         },
         "text_AkdkkE": {
           "type": "text",
           "settings": {
-            "text": "<p>Grass & Air wants to go with families on every adventure. A multi-award-winning children’s brand covering wellies, rainwear, clothing and accessories — we’ve reinvented the traditional image of an outdoor brand with unexpected creative, edgy styling and a passion for modernity. Our colour-changing wellies turn rainy days into events for kids, and into reliable bestsellers for the independent retailers who stock them.</p>",
+            "text": "<p>Lelli Kelly Clothing brings the iconic sparkle, playful style and Italian fashion heritage of one of girls' most-loved footwear brands into apparel — giving retailers the opportunity to build a complete head-to-toe Lelli Kelly offer around a name their customers already love and trust.</p>",
             "text_style": "body"
           }
         }
@@ -137,31 +137,31 @@
         "slide_QGngdA": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/Rectangle_5396.png"
+            "image": "shopify://shop_images/Carousel-Image-5.png"
           }
         },
         "slide_7Pa66X": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/Rectangle_5396.png"
+            "image": "shopify://shop_images/Dottie_Playsuit.png"
           }
         },
         "slide_WaGW7U": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/Rectangle_5396.png"
+            "image": "shopify://shop_images/Carousel-Image-2.png"
           }
         },
         "slide_UFAVfe": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/Rectangle_5396.png"
+            "image": "shopify://shop_images/Carousel-Image-3_d0e31d92-ee28-4359-9a45-f540589339ac.png"
           }
         },
         "slide_iVeWT4": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/Rectangle_5396.png"
+            "image": "shopify://shop_images/Carousel-Image-4.png"
           }
         }
       },
@@ -183,7 +183,7 @@
         "button_label_2": "",
         "button_link_2": "",
         "button_style_secondary_2": true,
-        "background_color": "#b0848f",
+        "background_color": "#E02086",
         "image_ratio": "auto",
         "autoplay": true,
         "autoplay_speed": 4,
@@ -197,26 +197,26 @@
         "panel_WefdTt": {
           "type": "panel",
           "settings": {
-            "headline": "Joyful Deals",
+            "headline": "Fashion",
             "link": "",
             "link_target": false,
-            "image": "shopify://shop_images/Grass-Air-Joyful-Deals-Block_cba380fb-9030-4c86-826f-739f78e4a8d6.png",
+            "image": "shopify://shop_images/Brand-Page-Images-Square.png",
             "display_alternative": false,
-            "background_color": "#335a94",
-            "text_background_color": "#229eae",
+            "background_color": "#FFFFFF",
+            "text_background_color": "#E02086",
             "heading_color": "#ffffff"
           }
         },
         "panel_ydAmNR": {
           "type": "panel",
           "settings": {
-            "headline": "Starter Kit",
+            "headline": "Schoolwear",
             "link": "",
             "link_target": false,
-            "image": "shopify://shop_images/Starter-Kit-Deals-Block.png",
+            "image": "shopify://shop_images/Brand_Page_Images-Square-Three_2d13a63b-3cea-4291-806c-54a8843406ef.jpg",
             "display_alternative": false,
-            "background_color": "#0aa6b5",
-            "text_background_color": "#ebbf4c",
+            "background_color": "#FFFFFF",
+            "text_background_color": "#EC9AC2",
             "heading_color": "#ffffff"
           }
         }
@@ -249,14 +249,14 @@
           "type": "tab",
           "settings": {
             "tab_title": "New Arrivals",
-            "collection": "new-arrivals"
+            "collection": "lk-ss27"
           }
         },
         "tab_kkDA7E": {
           "type": "tab",
           "settings": {
             "tab_title": "Best Sellers",
-            "collection": "best-sellers"
+            "collection": "lk-best-sellers"
           }
         }
       },
@@ -264,6 +264,7 @@
         "tab_aP96jE",
         "tab_kkDA7E"
       ],
+      "disabled": true,
       "name": "Tabbed Featured Collections",
       "settings": {
         "products_to_show": 4,
@@ -283,14 +284,14 @@
         "image_bcBiPV": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/image.svg",
+            "image": "shopify://shop_images/Brand-Page-Images-Icons-New.png",
             "image_width": "small"
           }
         },
         "text_QwYwyD": {
           "type": "text",
           "settings": {
-            "text": "<p>Since launching in 2017, Grass & Air has built a loyal following among parents who want something more from their kids’ outdoor kit. We take mainstream products — wellies, rain jackets, accessories — and give them an unexpected twist. Our colour-changing technology gets kids excited to spend time outdoors, driving repeat purchase and genuine word of mouth. The brand speaks the language of modern families: stylish, thoughtfully sustainable and always up for an adventure. Available across five categories, Grass & Air adds a distinctive, award-winning offer to any retailer’s range.<br/><br/></p>",
+            "text": "<p>Joyful, colourful and trend-led, the Lelli Kelly Clothing fashion collection offers confidence-boosting styles for girls aged 3–10, from everyday essentials to occasion-ready favourites. Designed with playful prints, vibrant embellishments and comfortable fits, each piece is built for easy outfit building and all-day wear. Shaped directly by retailer feedback, the range is intentionally versatile — signature colour themes run throughout the collection, giving retailers and their customers multiple ways to mix, match and build looks that feel unmistakably, irresistibly Lelli Kelly.<br/></p>",
             "text_style": "body"
           }
         }
@@ -304,7 +305,7 @@
         "desktop_content_position": "center",
         "content_alignment": "center",
         "full_width": true,
-        "background_color": "#335a94",
+        "background_color": "#EC9AC2",
         "text_color": "#ffffff",
         "padding_top": 100,
         "padding_bottom": 100
@@ -314,19 +315,19 @@
       "type": "image-grid-with-content",
       "name": "Image grid with content",
       "settings": {
-        "image_1": "shopify://shop_images/Colour-changng-Image-Top.png",
-        "image_2": "shopify://shop_images/Colour-changng-Image-Left_484e1231-d6e9-488d-b85d-159ef469d9bc.png",
-        "image_3": "shopify://shop_images/Rectangle_5391.png",
-        "heading": "The magic is in the rain.",
+        "image_1": "shopify://shop_images/Lelli_Kelly_-_Schoolwear_-_Brittany_Backpack.png",
+        "image_2": "shopify://shop_images/Brand_Page_Images-Grid.jpg",
+        "image_3": "shopify://shop_images/Brand_Page_Images-Grid-Two_1caa7f44-3f82-4513-9022-a5e9af8295a4.jpg",
+        "heading": "Lelli Kelly Schoolwear",
         "heading_size": "h2",
-        "content": "<p>When it rains, Grass & Air wellies change colour. Our signature rain cloud design bursts into life on contact with water — and resets to white when dry. It sounds simple. The reaction from kids the first time they see it? Anything but. Our water-activated technology extends to our umbrella and rainwear collections, meaning retailers can offer the magic across more than one category. It’s the feature your customers come back for, and the story they tell their friends.</p>",
-        "button_label_1": "Find out more",
+        "content": "<p>Lelli Kelly Schoolwear is one of the brand's most significant growth areas — and one of the most compelling opportunities for independent childrenswear retailers. Ruffles, bows and signature sparkle details transform everyday essentials into something girls actually want to wear, while coordinating accessories — rucksacks, pencil cases, lunch bags and coats — extend the range further. Every garment carries the Lelli Kelly branding and design detail, giving retailers a natural way to build a complete Back to School story around a name parents already trust.</p>",
+        "button_label_1": "Shop Schoolwear",
         "button_link_1": "shopify://pages/contact",
         "button_style_secondary_1": true,
         "button_label_2": "",
         "button_link_2": "",
         "button_style_secondary_2": true,
-        "content_bg_color": "#0aa6b5",
+        "content_bg_color": "#E02086",
         "text_color": "#ffffff",
         "padding_top": 0,
         "padding_bottom": 0
@@ -338,7 +339,7 @@
         "image_e49irM": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/Rectangle_5392.png",
+            "image": "shopify://shop_images/Expanding-the-magic-Bottom-Right..jpg",
             "link": "",
             "link_target": false
           }
@@ -346,7 +347,7 @@
         "image_PqaGHF": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/Rectangle_5393.png",
+            "image": "shopify://shop_images/Expanding-the-magic-Top-Right..jpg",
             "link": "",
             "link_target": false
           }
@@ -354,7 +355,7 @@
         "image_bMgXfx": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/Rectangle_5394.png",
+            "image": "shopify://shop_images/Adventure-Crew-Bottom-Left.jpg",
             "link": "",
             "link_target": false
           }
@@ -362,7 +363,7 @@
         "image_GtdNMa": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/Adventure-Crew-Bottom-Right.png",
+            "image": "shopify://shop_images/Adventure-Crew-Bottom-Right.jpg",
             "link": "",
             "link_target": false
           }
@@ -376,9 +377,9 @@
       ],
       "name": "Gallery grid",
       "settings": {
-        "heading": "Our Adventure Crew",
+        "heading": "Expanding the magic",
         "heading_size": "h2",
-        "content": "<p>Our Adventure Crew is a community of real families and retailers who road test new launches, share authentic content and genuinely love the brand — a built-in network of advocates that keeps Grass & Air front of mind all year round, not just at peak season. <br/><br/></p>",
+        "content": "<p>The Parently Group is the UK licensee for Lelli Kelly Clothing — bringing the same sparkle, self-expression and unmistakable personality that has made Lelli Kelly footwear a must-have in girls' wardrobes into a growing apparel collection spanning fashion, schoolwear and accessories. For retailers, every sale of the shoes is now the start of a much bigger conversation.</p>",
         "button_label_1": "",
         "button_link_1": "",
         "button_style_secondary_1": false,

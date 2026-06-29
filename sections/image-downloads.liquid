@@ -1,308 +1,906 @@
-{% comment %}
-  Image Downloads Page — The Parently Group Trade Portal
-  Template: page.image-downloads.liquid
-  Requires: page.image-downloads JSON template (see image-downloads.json)
+{% liquid
+  assign access_denied = false
+  assign has_required_tag = false
 
-  Metafield structure expected on each brand metaobject:
-    - custom.brand_name       (single_line_text)
-    - custom.brand_key        (single_line_text) — slug e.g. "david-luke"
-    - custom.brand_colour     (color) — hex for badge/icon tint
-    - custom.asset_sections   (list.metaobject) → each has:
-        - custom.section_title  (single_line_text)
-        - custom.assets         (list.metaobject) → each has:
-            - custom.asset_name   (single_line_text)
-            - custom.asset_file   (file_reference) — uploaded to Files
-            - custom.asset_size   (single_line_text) e.g. "6.2 MB · JPG"
-            - custom.asset_type   (single_line_text) e.g. "Campaign"
-    - custom.zip_packs        (list.metaobject) → each has:
-        - custom.pack_name      (single_line_text)
-        - custom.pack_detail    (single_line_text) e.g. "48 files · 142 MB · Updated 12 May 2026"
-        - custom.pack_file      (file_reference) — ZIP uploaded to Files
+  if section.settings.require_login
+  unless request.design_mode
+    if customer == blank
+      assign access_denied = true
+    elsif section.settings.required_tag != blank
+      for tag in customer.tags
+        if tag == section.settings.required_tag
+          assign has_required_tag = true
+        endif
+      endfor
 
-  If you prefer a simpler setup, replace metaobject references with
-  hardcoded values or page metafields — see SIMPLE MODE comments below.
-{% endcomment %}
+      unless has_required_tag
+        assign access_denied = true
+      endunless
+    endif
+  endunless
+endif
 
-{{ 'section-image-downloads.css' | asset_url | stylesheet_tag }}
+  assign brand_ids = 'dl,ga,lk,term,lc,juco' | split: ','
+%}
 
-{%- comment %} Access gate — skipped in theme editor preview {% endcomment %}
-{%- unless request.design_mode -%}
-  {%- if section.settings.require_login -%}
-    {%- unless customer -%}
-      {%- assign return_url = request.path | url_encode -%}
-      <script>window.location = "/account/login?checkout_url={{ return_url }}";</script>
-    {%- endunless -%}
-    {%- if section.settings.required_tag != blank -%}
-      {%- unless customer.tags contains section.settings.required_tag -%}
-        <div class="pg-downloads__access-denied">
-          <p>This page is available to approved trade accounts only.</p>
-        </div>
-        {%- break -%}
-      {%- endunless -%}
-    {%- endif -%}
-  {%- endif -%}
-{%- endunless -%}
+<style>
+  #pg-image-downloads-{{ section.id }} {
+    --pg-accent: {{ section.settings.accent_color }};
+    --pg-tab-active: {{ section.settings.tab_active_color }};
+    color: rgb(var(--color-foreground));
+  }
 
-{%- comment %} Build ordered brand list from settings ─ preserves David Luke first ─{% endcomment %}
-{%- assign brand_ids = 'dl,ga,lk,term,lc,juco' | split: ',' -%}
-{%- assign brand_labels = section.settings.brand_1_label
-  | append: '|' | append: section.settings.brand_2_label
-  | append: '|' | append: section.settings.brand_3_label
-  | append: '|' | append: section.settings.brand_4_label
-  | append: '|' | append: section.settings.brand_5_label
-  | append: '|' | append: section.settings.brand_6_label
-  | split: '|' -%}
+  #pg-image-downloads-{{ section.id }} .pg-id-shell {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 36px 20px 56px;
+  }
 
-<div class="pg-downloads" id="section-{{ section.id }}">
+  #pg-image-downloads-{{ section.id }} .pg-id-header {
+    display: grid;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
 
-  {%- comment %} ── Brand tab navigation ── {% endcomment %}
-  <div class="pg-downloads__tabs-wrap">
-    <div class="pg-downloads__tabs" role="tablist">
-      {%- for brand_id in brand_ids -%}
-        {%- assign label = brand_labels[forloop.index0] -%}
-        <button
-          class="pg-downloads__tab{% if forloop.first %} is-active{% endif %}"
-          role="tab"
-          aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
-          aria-controls="brand-panel-{{ section.id }}-{{ brand_id }}"
-          data-brand="{{ brand_id }}"
-        >{{ label }}</button>
-      {%- endfor -%}
-    </div>
-  </div>
+  #pg-image-downloads-{{ section.id }} .pg-id-title {
+    margin: 0;
+    font-size: clamp(30px, 4vw, 48px);
+    line-height: 1.05;
+  }
 
-  {%- comment %} ── Brand panels ── {% endcomment %}
-  {%- for brand_id in brand_ids -%}
-    {%- assign is_first = forloop.first -%}
+  #pg-image-downloads-{{ section.id }} .pg-id-intro {
+    max-width: 760px;
+    margin: 0;
+    color: rgba(var(--color-foreground), 0.72);
+    font-size: 16px;
+    line-height: 1.55;
+  }
 
-    {%- comment %} Collect asset blocks for this brand {% endcomment %}
-    {%- assign brand_assets   = section.blocks | where: 'type', 'asset'        | where: 'settings.brand', brand_id -%}
-    {%- assign brand_sections = section.blocks | where: 'type', 'brand_section' | where: 'settings.brand', brand_id -%}
-    {%- assign brand_packs    = section.blocks | where: 'type', 'zip_pack'     | where: 'settings.brand', brand_id -%}
+  #pg-image-downloads-{{ section.id }} .pg-id-search {
+    display: grid;
+    gap: 8px;
+    margin: 24px 0;
+  }
 
-    <div
-      class="pg-downloads__panel{% if is_first %} is-active{% endif %}"
-      id="brand-panel-{{ section.id }}-{{ brand_id }}"
-      role="tabpanel"
-      data-brand-panel="{{ brand_id }}"
-    >
+  #pg-image-downloads-{{ section.id }} .pg-id-search-input {
+    width: 100%;
+    min-height: 48px;
+    border: 1px solid rgba(var(--color-foreground), 0.18);
+    border-radius: 8px;
+    padding: 12px 14px;
+    font: inherit;
+    background: rgb(var(--color-background));
+    color: rgb(var(--color-foreground));
+  }
 
-      {%- comment %} Filter chips ─ built from unique asset_type values for this brand {% endcomment %}
-      {%- assign seen_types = '' -%}
-      {%- for asset_block in brand_assets -%}
-        {%- assign t = asset_block.settings.asset_type -%}
-        {%- unless seen_types contains t -%}
-          {%- assign seen_types = seen_types | append: t | append: ',' -%}
-        {%- endunless -%}
-      {%- endfor -%}
-      {%- assign type_chips = seen_types | split: ',' -%}
+  #pg-image-downloads-{{ section.id }} .pg-id-search-input:focus {
+    outline: 2px solid color-mix(in srgb, var(--pg-accent) 40%, transparent);
+    border-color: var(--pg-accent);
+  }
 
-      {%- if brand_assets.size > 0 -%}
-        <div class="pg-downloads__filters" data-filter-group="{{ brand_id }}">
-          <span class="pg-downloads__filter-label">Filter:</span>
-          <button class="pg-downloads__chip is-active" data-filter="all">All</button>
-          {%- for chip in type_chips -%}
-            {%- if chip != blank -%}
-              <button class="pg-downloads__chip" data-filter="{{ chip }}">
-                {{- chip | capitalize -}}
-              </button>
-            {%- endif -%}
-          {%- endfor -%}
-        </div>
-      {%- endif -%}
+  #pg-image-downloads-{{ section.id }} .pg-id-status {
+    min-height: 22px;
+    color: rgba(var(--color-foreground), 0.66);
+    font-size: 14px;
+  }
 
-      {%- comment %} Asset sections + their assets {% endcomment %}
-      {%- for section_block in brand_sections -%}
-        {%- assign sec_title = section_block.settings.section_title -%}
+  #pg-image-downloads-{{ section.id }} .pg-id-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0 0 24px;
+  }
 
-        <div class="pg-downloads__section-head">
-          <span class="pg-downloads__section-title">{{ sec_title }}</span>
-          <button class="pg-downloads__btn-ghost">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 15V3m0 12l-4-4m4 4l4-4"/><path d="M2 17v2a2 2 0 002 2h16a2 2 0 002-2v-2"/></svg>
-            Download all (ZIP)
-          </button>
-        </div>
+  #pg-image-downloads-{{ section.id }} .pg-id-tab {
+    min-height: 40px;
+    border: 1px solid rgba(var(--color-foreground), 0.16);
+    border-radius: 999px;
+    padding: 8px 14px;
+    background: transparent;
+    color: rgb(var(--color-foreground));
+    font: inherit;
+    cursor: pointer;
+  }
 
-        <div class="pg-downloads__grid">
-          {%- for asset_block in brand_assets -%}
-            {%- assign type_slug = asset_block.settings.asset_type -%}
-            <div class="pg-downloads__card" data-type="{{ type_slug }}">
-              <div class="pg-downloads__thumb">
-                {%- if asset_block.settings.thumbnail != blank -%}
-                  <img
-                    src="{{ asset_block.settings.thumbnail | image_url: width: 400 }}"
-                    alt="{{ asset_block.settings.asset_name }}"
-                    loading="lazy"
-                    width="400"
-                    height="300"
-                    class="pg-downloads__thumb-img"
-                  >
-                {%- else -%}
-                  <div class="pg-downloads__thumb-placeholder" aria-hidden="true">
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-                  </div>
-                {%- endif -%}
-                {%- if asset_block.settings.asset_url != blank -%}
-                  <div class="pg-downloads__overlay">
-                    <a
-                      href="{{ asset_block.settings.asset_url }}"
-                      class="pg-downloads__ov-btn"
-                      target="_blank"
-                      rel="noopener"
-                      aria-label="Preview {{ asset_block.settings.asset_name }}"
-                    >
-                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M2 12C4 6 7.5 3 12 3s8 3 10 9c-2 6-5.5 9-10 9s-8-3-10-9z"/></svg>
-                    </a>
+  #pg-image-downloads-{{ section.id }} .pg-id-tab[aria-selected='true'] {
+    border-color: var(--pg-tab-active);
+    background: var(--pg-tab-active);
+    color: #fff;
+  }
+
+  #pg-image-downloads-{{ section.id }} .pg-id-panel,
+  #pg-image-downloads-{{ section.id }} .pg-id-results {
+    display: none;
+  }
+
+  #pg-image-downloads-{{ section.id }} .pg-id-panel.is-active,
+  #pg-image-downloads-{{ section.id }} .pg-id-results.is-active {
+    display: block;
+  }
+
+  #pg-image-downloads-{{ section.id }} .pg-id-category-grid,
+  #pg-image-downloads-{{ section.id }} .pg-id-product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 16px;
+  }
+
+  #pg-image-downloads-{{ section.id }} .pg-id-category-card,
+  #pg-image-downloads-{{ section.id }} .pg-id-product-card {
+    border: 1px solid rgba(var(--color-foreground), 0.12);
+    border-radius: 8px;
+    background: rgb(var(--color-background));
+    overflow: hidden;
+  }
+
+  #pg-image-downloads-{{ section.id }} .pg-id-category-card {
+    display: grid;
+    padding: 0;
+    text-align: left;
+    color: inherit;
+    cursor: pointer;
+  }
+
+  #pg-image-downloads-{{ section.id }} .pg-id-category-card:hover,
+  #pg-image-downloads-{{ section.id }} .pg-id-product-card:hover {
+    border-color: color-mix(in srgb, var(--pg-accent) 45%, rgba(var(--color-foreground), 0.12));
+  }
+
+  #pg-image-downloads-{{ section.id }} .pg-id-category-media {
+    aspect-ratio: 4 / 3;
+    background: rgba(var(--color-foreground), 0.045);
+    display: grid;
+    place-items: center;
+  }
+
+  #pg-image-downloads-{{ section.id }} .pg-id-category-image,
+  #pg-image-downloads-{{ section.id }} .pg-id-product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  #pg-image-downloads-{{ section.id }} .pg-id-placeholder {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+    padding: 18px;
+    color: rgba(var(--color-foreground), 0.5);
+    font-size: 14px;
+    text-align: center;
+  }
+
+  #pg-image-downloads-{{ section.id }} .pg-id-category-body,
+  #pg-image-downloads-{{ section.id }} .pg-id-product-body {
+    display: grid;
+    gap: 8px;
+    padding: 14px;
+  }
+
+  #pg-image-downloads-{{ section.id }} .pg-id-category-title,
+  #pg-image-downloads-{{ section.id }} .pg-id-product-title {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.3;
+    font-weight: 700;
+  }
+
+  #pg-image-downloads-{{ section.id }} .pg-id-meta {
+    margin: 0;
+    color: rgba(var(--color-foreground), 0.66);
+    font-size: 13px;
+    line-height: 1.4;
+  }
+
+  #pg-image-downloads-{{ section.id }} .pg-id-category-view {
+    display: none;
+    margin-top: 22px;
+  }
+
+  #pg-image-downloads-{{ section.id }} .pg-id-category-view.is-active {
+    display: block;
+  }
+
+  #pg-image-downloads-{{ section.id }} .pg-id-view-head {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+
+  #pg-image-downloads-{{ section.id }} .pg-id-view-title {
+    margin: 0;
+    font-size: 24px;
+    line-height: 1.2;
+  }
+
+  #pg-image-downloads-{{ section.id }} .pg-id-button-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  #pg-image-downloads-{{ section.id }} .pg-id-button {
+    min-height: 38px;
+    border: 1px solid rgba(var(--color-foreground), 0.16);
+    border-radius: 8px;
+    padding: 8px 12px;
+    background: rgb(var(--color-background));
+    color: rgb(var(--color-foreground));
+    font: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  #pg-image-downloads-{{ section.id }} .pg-id-button-primary {
+    border-color: var(--pg-accent);
+    background: var(--pg-accent);
+    color: #fff;
+  }
+
+  #pg-image-downloads-{{ section.id }} .pg-id-image-list {
+    display: grid;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  #pg-image-downloads-{{ section.id }} .pg-id-image-item {
+    display: grid;
+    grid-template-columns: 74px 1fr;
+    gap: 10px;
+    align-items: center;
+    border-top: 1px solid rgba(var(--color-foreground), 0.08);
+    padding-top: 10px;
+  }
+
+  #pg-image-downloads-{{ section.id }} .pg-id-image-thumb {
+    aspect-ratio: 1;
+    border-radius: 6px;
+    overflow: hidden;
+    background: rgba(var(--color-foreground), 0.045);
+  }
+
+  #pg-image-downloads-{{ section.id }} .pg-id-image-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  #pg-image-downloads-{{ section.id }} .pg-id-empty {
+    border: 1px dashed rgba(var(--color-foreground), 0.22);
+    border-radius: 8px;
+    padding: 24px;
+    color: rgba(var(--color-foreground), 0.68);
+  }
+
+  #pg-image-downloads-{{ section.id }} .pg-id-toast {
+    position: fixed;
+    right: 18px;
+    bottom: 18px;
+    z-index: 50;
+    max-width: min(360px, calc(100vw - 36px));
+    border-radius: 8px;
+    background: rgb(var(--color-foreground));
+    color: rgb(var(--color-background));
+    padding: 12px 14px;
+    box-shadow: 0 12px 34px rgba(0, 0, 0, 0.18);
+    transform: translateY(18px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 180ms ease, transform 180ms ease;
+  }
+
+  #pg-image-downloads-{{ section.id }} .pg-id-toast.is-active {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  @media screen and (max-width: 749px) {
+    #pg-image-downloads-{{ section.id }} .pg-id-shell {
+      padding: 28px 16px 42px;
+    }
+
+    #pg-image-downloads-{{ section.id }} .pg-id-tabs {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+
+    #pg-image-downloads-{{ section.id }} .pg-id-tab {
+      flex: 0 0 auto;
+    }
+
+    #pg-image-downloads-{{ section.id }} .pg-id-view-head {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+  }
+</style>
+
+<section id="pg-image-downloads-{{ section.id }}" class="pg-id">
+  <div class="pg-id-shell">
+    {% if access_denied %}
+      <div class="pg-id-empty">
+        {% if customer == blank %}
+          Please log in to access image downloads.
+        {% else %}
+          Your account does not currently have access to image downloads.
+        {% endif %}
+      </div>
+    {% else %}
+      <div class="pg-id-header">
+        <h1 class="pg-id-title">{{ section.settings.page_title }}</h1>
+        {% if section.settings.page_intro != blank %}
+          <p class="pg-id-intro">{{ section.settings.page_intro }}</p>
+        {% endif %}
+      </div>
+
+      <div class="pg-id-search">
+        <label class="visually-hidden" for="pg-image-search-{{ section.id }}">Search product images</label>
+        <input id="pg-image-search-{{ section.id }}" class="pg-id-search-input" type="search" placeholder="Search by model number, SKU, or product name" autocomplete="off">
+        <div class="pg-id-status" data-status></div>
+      </div>
+
+      <div class="pg-id-tabs" role="tablist" aria-label="Image download brands">
+        <button type="button" class="pg-id-tab" role="tab" aria-selected="true" data-brand-tab="dl">{{ section.settings.brand_1_label }}</button>
+        <button type="button" class="pg-id-tab" role="tab" aria-selected="false" data-brand-tab="ga">{{ section.settings.brand_2_label }}</button>
+        <button type="button" class="pg-id-tab" role="tab" aria-selected="false" data-brand-tab="lk">{{ section.settings.brand_3_label }}</button>
+        <button type="button" class="pg-id-tab" role="tab" aria-selected="false" data-brand-tab="term">{{ section.settings.brand_4_label }}</button>
+        <button type="button" class="pg-id-tab" role="tab" aria-selected="false" data-brand-tab="lc">{{ section.settings.brand_5_label }}</button>
+        <button type="button" class="pg-id-tab" role="tab" aria-selected="false" data-brand-tab="juco">{{ section.settings.brand_6_label }}</button>
+      </div>
+
+      <div class="pg-id-results" data-search-results></div>
+
+      <div class="pg-id-brand-panels" data-brand-panels>
+        {% for brand_id in brand_ids %}
+          {% liquid
+            assign brand_label = ''
+            if brand_id == 'dl'
+              assign brand_label = section.settings.brand_1_label
+            elsif brand_id == 'ga'
+              assign brand_label = section.settings.brand_2_label
+            elsif brand_id == 'lk'
+              assign brand_label = section.settings.brand_3_label
+            elsif brand_id == 'term'
+              assign brand_label = section.settings.brand_4_label
+            elsif brand_id == 'lc'
+              assign brand_label = section.settings.brand_5_label
+            elsif brand_id == 'juco'
+              assign brand_label = section.settings.brand_6_label
+            endif
+            assign category_count = 0
+          %}
+
+          <div class="pg-id-panel{% if forloop.first %} is-active{% endif %}" data-brand-panel="{{ brand_id }}">
+            <div class="pg-id-category-grid" data-category-grid="{{ brand_id }}">
+              {% for block in section.blocks %}
+                {% if block.type == 'category' and block.settings.brand == brand_id %}
+                  {% assign category_collection = block.settings.collection %}
+                  {% if category_collection != blank %}
+                    {% liquid
+                      assign category_count = category_count | plus: 1
+                      assign category_title = block.settings.category_title
+                      if category_title == blank
+                        assign category_title = category_collection.title
+                      endif
+                    %}
+
                     <button
-                      class="pg-downloads__oov-btn pg-downloads__oov-btn--green js-download-asset"
-                      data-url="{{ asset_block.settings.asset_url }}"
-                      data-filename="{{ asset_block.settings.asset_name | handleize }}"
-                      aria-label="Download {{ asset_block.settings.asset_name }}"
+                      type="button"
+                      class="pg-id-category-card"
+                      data-category-open="{{ category_collection.handle }}"
+                      data-category-title="{{ category_title | escape }}"
+                      data-category-brand="{{ brand_id }}"
+                      {{ block.shopify_attributes }}
                     >
-                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 15V3m0 12l-4-4m4 4l4-4"/><path d="M2 17v2a2 2 0 002 2h16a2 2 0 002-2v-2"/></svg>
+                      <span class="pg-id-category-media">
+                        {% if block.settings.category_image != blank %}
+                          {{ block.settings.category_image | image_url: width: 700 | image_tag: loading: 'lazy', class: 'pg-id-category-image', alt: category_title }}
+                        {% elsif category_collection.image != blank %}
+                          {{ category_collection.image | image_url: width: 700 | image_tag: loading: 'lazy', class: 'pg-id-category-image', alt: category_title }}
+                        {% else %}
+                          <span class="pg-id-placeholder">Add category image</span>
+                        {% endif %}
+                      </span>
+                      <span class="pg-id-category-body">
+                        <span class="pg-id-category-title">{{ category_title }}</span>
+                        {% if block.settings.category_note != blank %}
+                          <span class="pg-id-meta">{{ block.settings.category_note }}</span>
+                        {% endif %}
+                        <span class="pg-id-meta">Open product images</span>
+                      </span>
                     </button>
-                  </div>
+                  {% endif %}
+                {% endif %}
+              {% endfor %}
+            </div>
+
+            {% if category_count == 0 %}
+              <div class="pg-id-empty">No image categories have been added for {{ brand_label }} yet.</div>
+            {% endif %}
+
+            <div class="pg-id-category-view" data-category-view="{{ brand_id }}"></div>
+          </div>
+        {% endfor %}
+      </div>
+
+      <div class="pg-id-toast" data-toast></div>
+
+      <script type="application/json" id="pg-image-downloads-data-{{ section.id }}">
+        {
+          "brands": {
+            "dl": {{ section.settings.brand_1_label | json }},
+            "ga": {{ section.settings.brand_2_label | json }},
+            "lk": {{ section.settings.brand_3_label | json }},
+            "term": {{ section.settings.brand_4_label | json }},
+            "lc": {{ section.settings.brand_5_label | json }},
+            "juco": {{ section.settings.brand_6_label | json }}
+          },
+          "categories": [
+            {%- assign rendered_categories = 0 -%}
+            {%- for block in section.blocks -%}
+              {%- if block.type == 'category' and block.settings.collection != blank -%}
+                {%- assign category_collection = block.settings.collection -%}
+                {%- assign category_title = block.settings.category_title -%}
+                {%- if category_title == blank -%}
+                  {%- assign category_title = category_collection.title -%}
                 {%- endif -%}
-              </div>
-              <div class="pg-downloads__meta">
-                <div class="pg-downloads__asset-name">{{ asset_block.settings.asset_name }}</div>
-                <div class="pg-downloads__asset-row">
-                  <span class="pg-downloads__asset-size">{{ asset_block.settings.asset_size }}</span>
-                  <span class="pg-downloads__badge pg-downloads__badge--{{ type_slug }}">
-                    {{- type_slug | capitalize -}}
-                  </span>
-                </div>
-              </div>
-            </div>
-          {%- endfor -%}
-        </div>
-      {%- endfor -%}
-
-      {%- comment %} ZIP packs {% endcomment %}
-      {%- if brand_packs.size > 0 -%}
-        <div class="pg-downloads__section-head">
-          <span class="pg-downloads__section-title">Asset packs</span>
-        </div>
-        <div class="pg-downloads__packs">
-          {%- for pack_block in brand_packs -%}
-            <div class="pg-downloads__pack-card">
-              <div class="pg-downloads__pack-left">
-                <div class="pg-downloads__pack-icon" aria-hidden="true">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h10l6 6v10a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2z"/><polyline points="14 2 14 8 20 8"/></svg>
-                </div>
-                <div>
-                  <div class="pg-downloads__pack-name">{{ pack_block.settings.pack_name }}</div>
-                  <div class="pg-downloads__pack-sub">{{ pack_block.settings.pack_detail }}</div>
-                </div>
-              </div>
-              {%- if pack_block.settings.pack_url != blank -%}
-                <a
-                  href="{{ pack_block.settings.pack_url }}"
-                  class="pg-downloads__btn-green"
-                  download
-                  aria-label="Download {{ pack_block.settings.pack_name }}"
-                >
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 15V3m0 12l-4-4m4 4l4-4"/><path d="M2 17v2a2 2 0 002 2h16a2 2 0 002-2v-2"/></svg>
-                  Download ZIP
-                </a>
+                {%- if rendered_categories > 0 -%},{%- endif -%}
+                {
+                  "brand": {{ block.settings.brand | json }},
+                  "title": {{ category_title | json }},
+                  "handle": {{ category_collection.handle | json }},
+                  "url": {{ category_collection.url | json }}
+                }
+                {%- assign rendered_categories = rendered_categories | plus: 1 -%}
               {%- endif -%}
-            </div>
-          {%- endfor -%}
-        </div>
-      {%- endif -%}
-
-      {%- if brand_assets.size == 0 and brand_packs.size == 0 -%}
-        <p class="pg-downloads__empty">No assets added yet for this brand.</p>
-      {%- endif -%}
-
-    </div>
-  {%- endfor -%}
-
-</div>
-
-<script>
-(function () {
-  'use strict';
-
-  // ── Tab switching ──
-  document.querySelectorAll('.pg-downloads__tab').forEach(function (tab) {
-    tab.addEventListener('click', function () {
-      var brandId = this.dataset.brand;
-
-      document.querySelectorAll('.pg-downloads__tab').forEach(function (t) {
-        t.classList.remove('is-active');
-        t.setAttribute('aria-selected', 'false');
-      });
-      document.querySelectorAll('.pg-downloads__panel').forEach(function (p) {
-        p.classList.remove('is-active');
-      });
-
-      this.classList.add('is-active');
-      this.setAttribute('aria-selected', 'true');
-      var panel = document.getElementById('brand-panel-' + brandId);
-      if (panel) panel.classList.add('is-active');
-    });
-  });
-
-  // ── Filter chips ──
-  document.querySelectorAll('.pg-downloads__chip').forEach(function (chip) {
-    chip.addEventListener('click', function () {
-      var group = this.closest('[data-filter-group]');
-      group.querySelectorAll('.pg-downloads__chip').forEach(function (c) {
-        c.classList.remove('is-active');
-      });
-      this.classList.add('is-active');
-
-      var filter = this.dataset.filter;
-      var panel = this.closest('.pg-downloads__panel');
-      panel.querySelectorAll('.pg-downloads__card').forEach(function (card) {
-        if (filter === 'all' || card.dataset.type === filter) {
-          card.style.display = '';
-        } else {
-          card.style.display = 'none';
+            {%- endfor -%}
+          ]
         }
-      });
-    });
-  });
+      </script>
 
-  // ── Individual asset download (blob fetch to force download across CDN) ──
-  document.querySelectorAll('.js-download-asset').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var url = this.dataset.url;
-      var filename = this.dataset.filename;
-      fetch(url)
-        .then(function (res) { return res.blob(); })
-        .then(function (blob) {
-          var link = document.createElement('a');
-          link.href = URL.createObjectURL(blob);
-          link.download = filename;
-          document.body.appendChild(link);
-          link.click();
-          document.body.removeChild(link);
-          URL.revokeObjectURL(link.href);
-        })
-        .catch(function () {
-          // Fallback: open in new tab if blob fetch fails (e.g. CORS)
-          window.open(url, '_blank');
-        });
-    });
-  });
+      <script>
+        (function () {
+          var root = document.getElementById('pg-image-downloads-{{ section.id }}');
+          if (!root) return;
 
-})();
-</script>
+          var dataEl = document.getElementById('pg-image-downloads-data-{{ section.id }}');
+          var config = { brands: {}, categories: [] };
+          try {
+            config = JSON.parse(dataEl.textContent);
+          } catch (error) {
+            config = { brands: {}, categories: [] };
+          }
 
-{{ 'section-image-downloads.css' | asset_url | stylesheet_tag }}
+          var state = {
+            activeBrand: 'dl',
+            collectionCache: {},
+            productsByHandle: {},
+            loadingAll: false,
+            allLoaded: false,
+            toastTimer: null,
+            searchTimer: null
+          };
+
+          function qs(selector) {
+            return root.querySelector(selector);
+          }
+
+          function qsa(selector) {
+            return Array.prototype.slice.call(root.querySelectorAll(selector));
+          }
+
+          function esc(value) {
+            return String(value == null ? '' : value)
+              .replace(/&/g, '&amp;')
+              .replace(/</g, '&lt;')
+              .replace(/>/g, '&gt;')
+              .replace(/"/g, '&quot;')
+              .replace(/'/g, '&#039;');
+          }
+
+          function escAttr(value) {
+            return esc(value).replace(/`/g, '&#096;');
+          }
+
+          function setStatus(message) {
+            var el = qs('[data-status]');
+            if (el) el.textContent = message || '';
+          }
+
+          function toast(message) {
+            var el = qs('[data-toast]');
+            if (!el) return;
+            el.textContent = message;
+            el.classList.add('is-active');
+            clearTimeout(state.toastTimer);
+            state.toastTimer = setTimeout(function () {
+              el.classList.remove('is-active');
+            }, 3200);
+          }
+
+          function normaliseText(value) {
+            return String(value || '').toLowerCase().trim();
+          }
+
+          function cleanFilename(value) {
+            return String(value || 'image')
+              .replace(/[\\/:*?"<>|]+/g, '-')
+              .replace(/\s+/g, '-')
+              .replace(/-+/g, '-')
+              .replace(/^-|-$/g, '')
+              .toLowerCase();
+          }
+
+          function extensionFromUrl(url) {
+            try {
+              var pathname = new URL(url, window.location.origin).pathname;
+              var match = pathname.match(/\.([a-z0-9]{3,5})$/i);
+              return match ? match[1].toLowerCase() : 'jpg';
+            } catch (error) {
+              return 'jpg';
+            }
+          }
+
+          function firstSku(product) {
+            var variants = product && product.variants ? product.variants : [];
+            for (var i = 0; i < variants.length; i += 1) {
+              if (variants[i].sku) return variants[i].sku;
+            }
+            return product && product.handle ? product.handle : 'product';
+          }
+
+          function normaliseImages(product) {
+            var images = product && product.images ? product.images : [];
+            return images.map(function (image, index) {
+              var src = typeof image === 'string' ? image : image.src;
+              var alt = typeof image === 'string' ? '' : image.alt;
+              return {
+                src: src,
+                alt: alt || '',
+                index: index
+              };
+            }).filter(function (image) {
+              return Boolean(image.src);
+            });
+          }
+
+          function imageFilename(product, image) {
+            var code = firstSku(product);
+            var ext = extensionFromUrl(image.src);
+            var number = String(image.index + 1).padStart(2, '0');
+            return cleanFilename(code + '-' + product.handle + '-image-' + number) + '.' + ext;
+          }
+
+          function imageLabel(image) {
+            var label = image.alt || 'Image ' + (image.index + 1);
+            var lowered = normaliseText(label + ' ' + image.src);
+            if (lowered.indexOf('front') !== -1) return 'Front image';
+            if (lowered.indexOf('back') !== -1) return 'Back image';
+            return label;
+          }
+
+          function fetchCollection(handle) {
+            if (state.collectionCache[handle]) return state.collectionCache[handle];
+
+            state.collectionCache[handle] = (async function () {
+              var products = [];
+              for (var page = 1; page <= 8; page += 1) {
+                var response = await fetch('/collections/' + encodeURIComponent(handle) + '/products.json?limit=250&page=' + page, {
+                  headers: { Accept: 'application/json' }
+                });
+                if (!response.ok) throw new Error('Could not load ' + handle);
+                var data = await response.json();
+                var batch = data.products || [];
+                products = products.concat(batch);
+                if (batch.length < 250) break;
+              }
+
+              products.forEach(function (product) {
+                state.productsByHandle[product.handle] = product;
+              });
+
+              return products;
+            })();
+
+            return state.collectionCache[handle];
+          }
+
+          function categoryByHandle(handle) {
+            return config.categories.find(function (category) {
+              return category.handle === handle;
+            });
+          }
+
+          function switchBrand(brand) {
+            state.activeBrand = brand;
+            qsa('[data-brand-tab]').forEach(function (tab) {
+              tab.setAttribute('aria-selected', tab.getAttribute('data-brand-tab') === brand ? 'true' : 'false');
+            });
+            qsa('[data-brand-panel]').forEach(function (panel) {
+              panel.classList.toggle('is-active', panel.getAttribute('data-brand-panel') === brand);
+            });
+            qsa('[data-category-view]').forEach(function (view) {
+              view.classList.remove('is-active');
+              view.innerHTML = '';
+            });
+            qsa('[data-category-grid]').forEach(function (grid) {
+              grid.style.display = '';
+            });
+            qs('[data-search-results]').classList.remove('is-active');
+            qs('[data-search-results]').innerHTML = '';
+            qs('#pg-image-search-{{ section.id }}').value = '';
+            setStatus('');
+          }
+
+          function productSearchText(product) {
+            var bits = [product.title, product.handle, product.vendor, product.product_type];
+            if (product.tags) bits.push(product.tags);
+            (product.variants || []).forEach(function (variant) {
+              bits.push(variant.sku, variant.barcode, variant.title);
+            });
+            return normaliseText(bits.join(' '));
+          }
+
+          function productCard(product) {
+            var images = normaliseImages(product);
+            var firstImage = images[0];
+            var sku = firstSku(product);
+            var imageItems = images.map(function (image) {
+              var filename = imageFilename(product, image);
+              return [
+                '<div class="pg-id-image-item">',
+                  '<div class="pg-id-image-thumb"><img src="' + escAttr(image.src) + '" alt="' + escAttr(imageLabel(image)) + '" loading="lazy"></div>',
+                  '<div>',
+                    '<p class="pg-id-meta">' + esc(imageLabel(image)) + '</p>',
+                    '<div class="pg-id-button-row">',
+                      '<a class="pg-id-button" href="' + escAttr(image.src) + '" target="_blank" rel="noopener">Preview</a>',
+                      '<button class="pg-id-button pg-id-button-primary" type="button" data-image-download="' + escAttr(product.handle) + '" data-image-index="' + image.index + '">Download</button>',
+                    '</div>',
+                  '</div>',
+                '</div>'
+              ].join('');
+            }).join('');
+
+            return [
+              '<article class="pg-id-product-card">',
+                '<div class="pg-id-category-media">',
+                  firstImage ? '<img class="pg-id-product-image" src="' + escAttr(firstImage.src) + '" alt="' + escAttr(product.title) + '" loading="lazy">' : '<div class="pg-id-placeholder">No product images</div>',
+                '</div>',
+                '<div class="pg-id-product-body">',
+                  '<p class="pg-id-meta">' + esc(sku) + '</p>',
+                  '<h3 class="pg-id-product-title">' + esc(product.title) + '</h3>',
+                  '<div class="pg-id-button-row">',
+                    '<a class="pg-id-button" href="/products/' + escAttr(product.handle) + '" target="_blank" rel="noopener">Product page</a>',
+                    images.length ? '<button class="pg-id-button pg-id-button-primary" type="button" data-product-download="' + escAttr(product.handle) + '">Download product</button>' : '',
+                  '</div>',
+                  images.length ? '<div class="pg-id-image-list">' + imageItems + '</div>' : '<p class="pg-id-meta">Add images to this product listing and they will appear here automatically.</p>',
+                '</div>',
+              '</article>'
+            ].join('');
+          }
+
+          async function openCategory(handle) {
+            var category = categoryByHandle(handle);
+            var brand = category ? category.brand : state.activeBrand;
+            var panel = qs('[data-brand-panel="' + brand + '"]');
+            var view = qs('[data-category-view="' + brand + '"]');
+            var grid = qs('[data-category-grid="' + brand + '"]');
+            if (!view || !grid || !panel) return;
+
+            setStatus('Loading ' + (category ? category.title : 'category') + '...');
+            view.classList.add('is-active');
+            grid.style.display = 'none';
+            view.innerHTML = '<div class="pg-id-empty">Loading product images...</div>';
+
+            try {
+              var products = await fetchCollection(handle);
+              var title = category ? category.title : 'Product images';
+              var body = products.length
+                ? '<div class="pg-id-product-grid">' + products.map(productCard).join('') + '</div>'
+                : '<div class="pg-id-empty">No products found in this collection yet.</div>';
+
+              view.innerHTML = [
+                '<div class="pg-id-view-head">',
+                  '<div>',
+                    '<h2 class="pg-id-view-title">' + esc(title) + '</h2>',
+                    '<p class="pg-id-meta">' + products.length + ' products</p>',
+                  '</div>',
+                  '<button type="button" class="pg-id-button" data-back-to-categories="' + escAttr(brand) + '">Back to categories</button>',
+                '</div>',
+                body
+              ].join('');
+              setStatus('');
+            } catch (error) {
+              view.innerHTML = '<div class="pg-id-empty">This category could not be loaded. Please check the collection is published on the online store.</div>';
+              setStatus('');
+            }
+          }
+
+          async function ensureAllCollectionsLoaded() {
+            if (state.allLoaded || state.loadingAll) return;
+            state.loadingAll = true;
+            var handles = config.categories.map(function (category) {
+              return category.handle;
+            }).filter(Boolean);
+
+            for (var i = 0; i < handles.length; i += 1) {
+              setStatus('Preparing search ' + (i + 1) + ' of ' + handles.length + '...');
+              try {
+                await fetchCollection(handles[i]);
+              } catch (error) {
+                state.collectionCache[handles[i]] = Promise.resolve([]);
+              }
+            }
+
+            state.loadingAll = false;
+            state.allLoaded = true;
+          }
+
+          async function runSearch(query) {
+            var results = qs('[data-search-results]');
+            var panels = qs('[data-brand-panels]');
+            var cleanQuery = normaliseText(query);
+
+            if (cleanQuery.length < 2) {
+              results.classList.remove('is-active');
+              results.innerHTML = '';
+              panels.style.display = '';
+              setStatus('');
+              return;
+            }
+
+            panels.style.display = 'none';
+            results.classList.add('is-active');
+            results.innerHTML = '<div class="pg-id-empty">Searching products...</div>';
+
+            await ensureAllCollectionsLoaded();
+
+            var products = Object.keys(state.productsByHandle).map(function (handle) {
+              return state.productsByHandle[handle];
+            });
+
+            var matches = products.filter(function (product) {
+              return productSearchText(product).indexOf(cleanQuery) !== -1;
+            });
+
+            results.innerHTML = [
+              '<div class="pg-id-view-head">',
+                '<div>',
+                  '<h2 class="pg-id-view-title">Search results</h2>',
+                  '<p class="pg-id-meta">' + matches.length + ' products found</p>',
+                '</div>',
+              '</div>',
+              matches.length ? '<div class="pg-id-product-grid">' + matches.map(productCard).join('') + '</div>' : '<div class="pg-id-empty">No products matched your search.</div>'
+            ].join('');
+            setStatus('');
+          }
+
+          async function downloadFile(url, filename) {
+            try {
+              var response = await fetch(url, { mode: 'cors', credentials: 'omit' });
+              if (!response.ok) throw new Error('Download failed');
+              var blob = await response.blob();
+              var blobUrl = URL.createObjectURL(blob);
+              var link = document.createElement('a');
+              link.href = blobUrl;
+              link.download = filename;
+              document.body.appendChild(link);
+              link.click();
+              link.remove();
+              setTimeout(function () {
+                URL.revokeObjectURL(blobUrl);
+              }, 1200);
+            } catch (error) {
+              var fallback = document.createElement('a');
+              fallback.href = url;
+              fallback.target = '_blank';
+              fallback.rel = 'noopener';
+              fallback.download = filename;
+              document.body.appendChild(fallback);
+              fallback.click();
+              fallback.remove();
+              toast('Your browser opened the image. Use save image if direct download is blocked.');
+            }
+          }
+
+          function wait(ms) {
+            return new Promise(function (resolve) {
+              setTimeout(resolve, ms);
+            });
+          }
+
+          async function downloadProduct(handle) {
+            var product = state.productsByHandle[handle];
+            if (!product) return;
+            var images = normaliseImages(product);
+            if (!images.length) {
+              toast('No images found for this product.');
+              return;
+            }
+
+            toast('Starting ' + images.length + ' image downloads.');
+            for (var i = 0; i < images.length; i += 1) {
+              await downloadFile(images[i].src, imageFilename(product, images[i]));
+              await wait(450);
+            }
+          }
+
+          root.addEventListener('click', function (event) {
+            var brandTab = event.target.closest('[data-brand-tab]');
+            if (brandTab) {
+              switchBrand(brandTab.getAttribute('data-brand-tab'));
+              return;
+            }
+
+            var categoryButton = event.target.closest('[data-category-open]');
+            if (categoryButton) {
+              openCategory(categoryButton.getAttribute('data-category-open'));
+              return;
+            }
+
+            var backButton = event.target.closest('[data-back-to-categories]');
+            if (backButton) {
+              var brand = backButton.getAttribute('data-back-to-categories');
+              var view = qs('[data-category-view="' + brand + '"]');
+              var grid = qs('[data-category-grid="' + brand + '"]');
+              if (view) {
+                view.classList.remove('is-active');
+                view.innerHTML = '';
+              }
+              if (grid) grid.style.display = '';
+              return;
+            }
+
+            var imageButton = event.target.closest('[data-image-download]');
+            if (imageButton) {
+              var productHandle = imageButton.getAttribute('data-image-download');
+              var imageIndex = Number(imageButton.getAttribute('data-image-index'));
+              var product = state.productsByHandle[productHandle];
+              var image = product ? normaliseImages(product).find(function (item) {
+                return item.index === imageIndex;
+              }) : null;
+              if (product && image) downloadFile(image.src, imageFilename(product, image));
+              return;
+            }
+
+            var productButton = event.target.closest('[data-product-download]');
+            if (productButton) {
+              downloadProduct(productButton.getAttribute('data-product-download'));
+            }
+          });
+
+          var searchInput = qs('#pg-image-search-{{ section.id }}');
+          if (searchInput) {
+            searchInput.addEventListener('input', function () {
+              clearTimeout(state.searchTimer);
+              var value = searchInput.value;
+              state.searchTimer = setTimeout(function () {
+                runSearch(value);
+              }, 250);
+            });
+          }
+        })();
+      </script>
+    {% endif %}
+  </div>
+</section>
 
 {% schema %}
 {
-  "name": "Image Downloads",
+  "name": "Image downloads",
   "tag": "section",
   "class": "section-image-downloads",
   "settings": [
-    {
-      "type": "header",
-      "content": "Page content"
-    },
     {
       "type": "text",
       "id": "page_title",
@@ -312,226 +910,136 @@
     {
       "type": "textarea",
       "id": "page_intro",
-      "label": "Intro text",
-      "default": "Download approved campaign, product, and lifestyle assets for your channels. Packs updated each season."
-    },
-    {
-      "type": "header",
-      "content": "Brand tabs"
+      "label": "Page intro",
+      "default": "Download approved product images by brand and category."
     },
     {
       "type": "text",
       "id": "brand_1_label",
-      "label": "Brand 1 tab label",
+      "label": "Brand 1 label",
       "default": "David Luke"
     },
     {
       "type": "text",
       "id": "brand_2_label",
-      "label": "Brand 2 tab label",
+      "label": "Brand 2 label",
       "default": "Grass & Air"
     },
     {
       "type": "text",
       "id": "brand_3_label",
-      "label": "Brand 3 tab label",
+      "label": "Brand 3 label",
       "default": "Lelli Kelly"
     },
     {
       "type": "text",
       "id": "brand_4_label",
-      "label": "Brand 4 tab label",
+      "label": "Brand 4 label",
       "default": "Term"
     },
     {
       "type": "text",
       "id": "brand_5_label",
-      "label": "Brand 5 tab label",
+      "label": "Brand 5 label",
       "default": "Little Classmates"
     },
     {
       "type": "text",
       "id": "brand_6_label",
-      "label": "Brand 6 tab label",
+      "label": "Brand 6 label",
       "default": "Juco"
-    },
-    {
-      "type": "header",
-      "content": "Access control"
     },
     {
       "type": "checkbox",
       "id": "require_login",
-      "label": "Require customer login to view downloads",
+      "label": "Require customer login",
       "default": true
     },
     {
       "type": "text",
       "id": "required_tag",
-      "label": "Required customer tag (leave blank to allow all logged-in customers)",
-      "info": "e.g. 'trade' — only customers with this tag will see the page content"
-    },
-    {
-      "type": "header",
-      "content": "Colours"
+      "label": "Required customer tag",
+      "info": "Leave blank to allow any logged in customer."
     },
     {
       "type": "color",
       "id": "accent_color",
-      "label": "Accent / button colour",
-      "default": "#4EA043"
+      "label": "Accent colour",
+      "default": "#4ea043"
     },
     {
       "type": "color",
       "id": "tab_active_color",
-      "label": "Active tab underline colour",
-      "default": "#4EA043"
+      "label": "Active tab colour",
+      "default": "#4ea043"
     }
   ],
   "blocks": [
     {
-      "type": "brand_section",
-      "name": "Brand asset section",
+      "type": "category",
+      "name": "Brand category",
+      "limit": 50,
       "settings": [
         {
           "type": "select",
           "id": "brand",
           "label": "Brand",
           "options": [
-            { "value": "dl",   "label": "David Luke" },
-            { "value": "ga",   "label": "Grass & Air" },
-            { "value": "lk",   "label": "Lelli Kelly" },
-            { "value": "term", "label": "Term" },
-            { "value": "lc",   "label": "Little Classmates" },
-            { "value": "juco", "label": "Juco" }
+            {
+              "value": "dl",
+              "label": "David Luke"
+            },
+            {
+              "value": "ga",
+              "label": "Grass & Air"
+            },
+            {
+              "value": "lk",
+              "label": "Lelli Kelly"
+            },
+            {
+              "value": "term",
+              "label": "Term"
+            },
+            {
+              "value": "lc",
+              "label": "Little Classmates"
+            },
+            {
+              "value": "juco",
+              "label": "Juco"
+            }
           ],
           "default": "dl"
         },
         {
-          "type": "text",
-          "id": "section_title",
-          "label": "Section heading",
-          "info": "e.g. 'Summer 2026 campaign' or 'AW26 collection'",
-          "default": "SS26 collection"
-        }
-      ]
-    },
-    {
-      "type": "asset",
-      "name": "Asset",
-      "settings": [
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
         {
-          "type": "select",
-          "id": "brand",
-          "label": "Brand this asset belongs to",
-          "options": [
-            { "value": "dl",   "label": "David Luke" },
-            { "value": "ga",   "label": "Grass & Air" },
-            { "value": "lk",   "label": "Lelli Kelly" },
-            { "value": "term", "label": "Term" },
-            { "value": "lc",   "label": "Little Classmates" },
-            { "value": "juco", "label": "Juco" }
-          ],
-          "default": "dl"
+          "type": "text",
+          "id": "category_title",
+          "label": "Category title",
+          "info": "Leave blank to use the collection name."
         },
         {
           "type": "image_picker",
-          "id": "thumbnail",
-          "label": "Thumbnail image",
-          "info": "Shown in the grid. Ideally 4:3 ratio, 800×600px minimum."
+          "id": "category_image",
+          "label": "Category image",
+          "info": "Optional. If blank, the collection image is used."
         },
         {
           "type": "text",
-          "id": "asset_name",
-          "label": "Asset name",
-          "default": "DL-AW26-HERO-01"
-        },
-        {
-          "type": "url",
-          "id": "asset_url",
-          "label": "Download URL",
-          "info": "Paste the Shopify Files CDN URL for this image or file"
-        },
-        {
-          "type": "text",
-          "id": "asset_size",
-          "label": "File size and type",
-          "info": "Displayed under the thumbnail — e.g. '6.2 MB · JPG'",
-          "default": "0 MB · JPG"
-        },
-        {
-          "type": "select",
-          "id": "asset_type",
-          "label": "Asset type",
-          "options": [
-            { "value": "campaign",  "label": "Campaign" },
-            { "value": "product",   "label": "Product" },
-            { "value": "lifestyle", "label": "Lifestyle" },
-            { "value": "logos",     "label": "Logos" }
-          ],
-          "default": "campaign"
-        }
-      ]
-    },
-    {
-      "type": "zip_pack",
-      "name": "ZIP asset pack",
-      "settings": [
-        {
-          "type": "select",
-          "id": "brand",
-          "label": "Brand this pack belongs to",
-          "options": [
-            { "value": "dl",   "label": "David Luke" },
-            { "value": "ga",   "label": "Grass & Air" },
-            { "value": "lk",   "label": "Lelli Kelly" },
-            { "value": "term", "label": "Term" },
-            { "value": "lc",   "label": "Little Classmates" },
-            { "value": "juco", "label": "Juco" }
-          ],
-          "default": "dl"
-        },
-        {
-          "type": "text",
-          "id": "pack_name",
-          "label": "Pack name",
-          "default": "AW26 — full asset pack"
-        },
-        {
-          "type": "text",
-          "id": "pack_detail",
-          "label": "Pack detail line",
-          "info": "e.g. '48 files · 142 MB · Updated 12 May 2026'",
-          "default": "0 files · 0 MB"
-        },
-        {
-          "type": "url",
-          "id": "pack_url",
-          "label": "ZIP download URL",
-          "info": "Paste the Shopify Files CDN URL for the ZIP file"
+          "id": "category_note",
+          "label": "Small note"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Image Downloads",
-      "blocks": [
-        {
-          "type": "brand_section",
-          "settings": {
-            "brand": "dl",
-            "section_title": "AW26 schoolwear"
-          }
-        },
-        {
-          "type": "brand_section",
-          "settings": {
-            "brand": "ga",
-            "section_title": "Summer 2026 campaign"
-          }
-        }
-      ]
+      "name": "Image downloads"
     }
   ]
 }

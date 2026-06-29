@@ -428,6 +428,18 @@
         }
       }
     },
+    "customer_accounts": {
+      "name": "Customer accounts",
+      "settings": {
+        "header__landing": {
+          "content": "Logged-in landing page"
+        },
+        "logged_in_page": {
+          "label": "Landing page after login",
+          "info": "When set, logged-in customers are redirected here (e.g. your custom dashboard) instead of the default order-history page. Leave blank to keep Shopify's default account page."
+        }
+      }
+    },
     "layout": {
       "name": "Layout",
       "settings": {
@@ -1044,6 +1056,10 @@
           "settings": {
             "text_color": {
               "label": "Text color"
+            },
+            "collapsed_height": {
+              "label": "Collapsed height",
+              "info": "Long descriptions are capped at this height with a \"View more\" button."
             }
           }
         },

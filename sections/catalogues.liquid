@@ -100,14 +100,13 @@
                     </div>
                     <div class="cat-card-actions">
                       {%- if block.settings.pdf_url != blank -%}
-                        <a href="{{ block.settings.pdf_url }}" class="cat-btn-preview" target="_blank" rel="noopener" aria-label="Preview {{ block.settings.title }}">
-                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M2 12C4 6 7.5 3 12 3s8 3 10 9c-2 6-5.5 9-10 9s-8-3-10-9z"/></svg>
-                          Preview
-                        </a>
-                        <button class="cat-btn-download js-cat-download" data-url="{{ block.settings.pdf_url }}" data-filename="{{ block.settings.title | handleize }}.pdf" aria-label="Download {{ block.settings.title }} PDF">
-                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V3m0 12l-4-4m4 4l4-4"/><path d="M2 17v2a2 2 0 002 2h16a2 2 0 002-2v-2"/></svg>
-                          PDF
-                        </button>
+<a href="{{ block.settings.pdf_url }}" class="cat-btn-preview" target="_blank" rel="noopener" aria-label="Preview {{ block.settings.title }} PDF">
+  Preview
+</a>
+
+<button type="button" class="cat-btn-download js-cat-download" data-url="{{ block.settings.pdf_url }}" data-filename="{{ block.settings.brand | handleize }}-{{ block.settings.season | handleize }}.pdf" aria-label="Download {{ block.settings.title }} PDF">
+  Download
+</button>
                       {%- else -%}
                         <span class="cat-btn-coming">Coming soon</span>
                       {%- endif -%}
@@ -173,7 +172,8 @@
   document.querySelectorAll('#' + sid + ' .js-cat-download').forEach(function (btn) {
     btn.addEventListener('click', function () {
       var url = this.dataset.url;
-      var filename = this.dataset.filename;
+      var filename = this.dataset.filename || 'catalogue.pdf';
+
       fetch(url)
         .then(function (res) { return res.blob(); })
         .then(function (blob) {
@@ -185,9 +185,12 @@
           document.body.removeChild(a);
           URL.revokeObjectURL(a.href);
         })
-        .catch(function () { window.open(url, '_blank'); });
+        .catch(function () {
+          window.open(url, '_blank');
+        });
     });
   });
+
 }());
 </script>
 
@@ -260,12 +263,18 @@
           "id": "cover_image",
           "label": "Cover image",
           "info": "Upload a JPG of the catalogue cover. Portrait ratio 3:4 recommended."
+                },
+        {
+          "type": "url",
+          "id": "preview_url",
+          "label": "Preview URL",
+          "info": "Paste the Adobe/InDesign preview URL"
         },
         {
           "type": "url",
           "id": "pdf_url",
           "label": "PDF download URL",
-          "info": "Paste the Shopify Files CDN URL for the PDF file"
+          "info": "Paste the Shopify PDF file URL"
         },
         {
           "type": "text",

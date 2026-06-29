@@ -249,14 +249,14 @@
           "type": "tab",
           "settings": {
             "tab_title": "New Arrivals",
-            "collection": "new-arrivals"
+            "collection": "grass-air-new-arrivals"
           }
         },
         "tab_kkDA7E": {
           "type": "tab",
           "settings": {
             "tab_title": "Best Sellers",
-            "collection": "best-sellers"
+            "collection": "grass-air-bestsellers"
           }
         }
       },

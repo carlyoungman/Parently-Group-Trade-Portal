@@ -108,7 +108,7 @@
         "logo_PAycdL": {
           "type": "logo",
           "settings": {
-            "image": "shopify://shop_images/parentlygroup-littleclassmates-logo_a1e401e2-f35f-4d93-bfe9-dc5a60e28748.svg",
+            "image": "shopify://shop_images/Little_Classmates_-_Full_Colour.png",
             "image_alt": "Little Classmates",
             "link": "shopify://pages/brand-little-classmates"
           }
@@ -197,7 +197,7 @@
         "image_link_zEQTCM": {
           "type": "image_link",
           "settings": {
-            "background_image": "shopify://shop_images/Lelli_Kelly_background.png",
+            "background_image": "shopify://shop_images/Banner-Image-Lelli_Kelly.jpg",
             "logo_image": "shopify://shop_images/Lelli_Kelly_logo_white.png",
             "link": "shopify://pages/brand-lelli-kelly"
           }
@@ -205,8 +205,8 @@
         "image_link_twjnEk": {
           "type": "image_link",
           "settings": {
-            "background_image": "shopify://shop_images/Little_Christmas_background.png",
-            "logo_image": "shopify://shop_images/Little_Christmas_logo_white.png",
+            "background_image": "shopify://shop_images/Group_Shot_Navy_Grey.png",
+            "logo_image": "shopify://shop_images/Little_Classmates_-_White.png",
             "link": "shopify://pages/brand-little-classmates"
           }
         }

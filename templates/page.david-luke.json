@@ -200,6 +200,7 @@
       "blocks": {
         "tab_zBh3gP": {
           "type": "tab",
+          "disabled": true,
           "settings": {
             "tab_title": "New Arrivals",
             "collection": "new-arrivals"
@@ -209,7 +210,7 @@
           "type": "tab",
           "settings": {
             "tab_title": "Best Sellers",
-            "collection": "best-sellers"
+            "collection": "dl-best-sellers-1"
           }
         }
       },

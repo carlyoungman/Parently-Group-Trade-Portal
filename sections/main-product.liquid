@@ -26,6 +26,7 @@
 
   <script src="{{ 'product-info.js' | asset_url }}" defer="defer"></script>
   <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'product-description-toggle.js' | asset_url }}" defer="defer"></script>
   {%- if product.quantity_price_breaks_configured? -%}
     <script src="{{ 'show-more.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'price-per-item.js' | asset_url }}" defer="defer"></script>
@@ -170,13 +171,27 @@
                 </p>
               {%- when 'description' -%}
                 {%- if product.description != blank -%}
-                  <div
-                    class="product__description rte quick-add-hidden"
-                    {% if block.settings.text_color != blank %}style="color: {{ block.settings.text_color }};"{% endif %}
+                  <product-description-toggle
+                    class="product-description-toggle"
+                    style="--description-clamp-height: {{ block.settings.collapsed_height | default: 12 }}rem;"
                     {{ block.shopify_attributes }}
                   >
-                    {{ product.description }}
-                  </div>
+                    <div
+                      class="product__description rte quick-add-hidden product-description-toggle__content"
+                      {% if block.settings.text_color != blank %}style="color: {{ block.settings.text_color }};"{% endif %}
+                    >
+                      {{ product.description }}
+                    </div>
+                    <button
+                      class="product-description-toggle__btn link underlined-link"
+                      type="button"
+                      aria-expanded="false"
+                      hidden
+                    >
+                      <span class="product-description-toggle__label-more">{{ 'products.product.view_more' | t }}</span>
+                      <span class="product-description-toggle__label-less">{{ 'products.product.view_less' | t }}</span>
+                    </button>
+                  </product-description-toggle>
                 {%- endif -%}
               {%- when 'sku' -%}
                 <p
@@ -1063,6 +1078,17 @@
           "id": "text_color",
           "label": "t:sections.main-product.blocks.description.settings.text_color.label",
           "default": "#000000"
+        },
+        {
+          "type": "range",
+          "id": "collapsed_height",
+          "min": 6,
+          "max": 40,
+          "step": 2,
+          "unit": "rem",
+          "label": "t:sections.main-product.blocks.description.settings.collapsed_height.label",
+          "info": "t:sections.main-product.blocks.description.settings.collapsed_height.info",
+          "default": 12
         }
       ]
     },

@@ -126,8 +126,13 @@ product-info {
 
     .product-form,
     .product__description,
+    .product-description-toggle,
     .icon-with-text {
       margin: 2.5rem 0;
+    }
+
+    .product-description-toggle .product__description {
+      margin: 0;
     }
 
     @include breakpoint-sm {

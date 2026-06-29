@@ -1,0 +1,573 @@
+{% doc %}
+  @prompt
+    create brand buttons to switch between brands for items , set rules to narrow skus down to the correct brand by linking brand buttons to the vendor , linke the vendor name to the vendor in information in the catalogue , I want the brand buttons to filter the products in the clearane section by brand/vendor to easily switch between brands while searching through. Connect the button to a dynamic source that allows me the differentiate by vendor 
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-brand-filter-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+    padding: {{ block.settings.padding }}px 0;
+  }
+
+  .ai-brand-filter__container-{{ ai_gen_id }} {
+    display: flex;
+    flex-wrap: wrap;
+    gap: {{ block.settings.button_gap }}px;
+    justify-content: {{ block.settings.alignment }};
+    align-items: center;
+  }
+
+  .ai-brand-filter__button-{{ ai_gen_id }} {
+    padding: {{ block.settings.button_padding_vertical }}px {{ block.settings.button_padding_horizontal }}px;
+    background-color: {{ block.settings.button_background }};
+    color: {{ block.settings.button_text_color }};
+    border: {{ block.settings.button_border_thickness }}px solid {{ block.settings.button_border_color }};
+    border-radius: {{ block.settings.button_border_radius }}px;
+    font-size: {{ block.settings.button_font_size }}px;
+    font-weight: {{ block.settings.button_font_weight }};
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: {{ block.settings.button_min_width }}px;
+  }
+
+  .ai-brand-filter__button-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_hover_background }};
+    color: {{ block.settings.button_hover_text_color }};
+    border-color: {{ block.settings.button_hover_border_color }};
+    transform: translateY(-2px);
+  }
+
+  .ai-brand-filter__button-{{ ai_gen_id }}.active {
+    background-color: {{ block.settings.button_active_background }};
+    color: {{ block.settings.button_active_text_color }};
+    border-color: {{ block.settings.button_active_border_color }};
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-brand-filter__container-{{ ai_gen_id }} {
+      justify-content: {{ block.settings.mobile_alignment }};
+    }
+
+    .ai-brand-filter__button-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.button_font_size }}px * 0.9);
+      padding: calc({{ block.settings.button_padding_vertical }}px * 0.8) calc({{ block.settings.button_padding_horizontal }}px * 0.8);
+    }
+  }
+{% endstyle %}
+
+<brand-filter-{{ ai_gen_id }}
+  class="ai-brand-filter-{{ ai_gen_id }}"
+  {{ block.shopify_attributes }}
+>
+  <div class="ai-brand-filter__container-{{ ai_gen_id }}">
+    {% if block.settings.show_all_button %}
+      <button
+        class="ai-brand-filter__button-{{ ai_gen_id }}"
+        data-vendor="all"
+      >
+        {{ block.settings.all_button_text }}
+      </button>
+    {% endif %}
+
+    {% for i in (1..8) %}
+      {% liquid
+        assign brand_name_key = 'brand_' | append: i | append: '_name'
+        assign brand_vendor_key = 'brand_' | append: i | append: '_vendor'
+        assign brand_name = block.settings[brand_name_key]
+        assign brand_vendor = block.settings[brand_vendor_key]
+      %}
+
+      {% if brand_name != blank and brand_vendor != blank %}
+        <button
+          class="ai-brand-filter__button-{{ ai_gen_id }}"
+          data-vendor="{{ brand_vendor }}"
+        >
+          {{ brand_name }}
+        </button>
+      {% endif %}
+    {% endfor %}
+  </div>
+</brand-filter-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class BrandFilter{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.activeVendor = 'all';
+      }
+
+      connectedCallback() {
+        this.buttons = this.querySelectorAll('.ai-brand-filter__button-{{ ai_gen_id }}');
+        this.setupClickHandlers();
+        this.setActiveButton('all');
+      }
+
+      setupClickHandlers() {
+        this.buttons.forEach((button) => {
+          button.addEventListener('click', () => {
+            const vendor = button.getAttribute('data-vendor');
+            this.activeVendor = vendor;
+            this.setActiveButton(vendor);
+            this.filterProducts(vendor);
+          });
+        });
+      }
+
+      setActiveButton(vendor) {
+        this.buttons.forEach((button) => {
+          if (button.getAttribute('data-vendor') === vendor) {
+            button.classList.add('active');
+          } else {
+            button.classList.remove('active');
+          }
+        });
+      }
+
+      filterProducts(vendor) {
+        const productCards = document.querySelectorAll('.card-wrapper, .product-card-wrapper, [data-product-card], .grid__item');
+        
+        productCards.forEach((card) => {
+          const productVendor = this.getProductVendor(card);
+          
+          if (vendor === 'all' || !productVendor) {
+            card.style.display = '';
+          } else if (productVendor.toLowerCase() === vendor.toLowerCase()) {
+            card.style.display = '';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+
+        this.updateNoResultsMessage(vendor);
+      }
+
+      getProductVendor(card) {
+        const vendorElement = card.querySelector('.card__information .caption-with-letter-spacing, .product-vendor, [data-product-vendor], .card-information__text--caption');
+        
+        if (vendorElement) {
+          return vendorElement.textContent.trim();
+        }
+
+        const productLink = card.querySelector('a[href*="/products/"]');
+        if (productLink) {
+          const productHandle = productLink.getAttribute('href').split('/products/')[1];
+          if (productHandle) {
+            return this.fetchVendorFromHandle(productHandle, card);
+          }
+        }
+
+        return null;
+      }
+
+      fetchVendorFromHandle(handle, card) {
+        const metaVendor = card.querySelector('[data-vendor]');
+        if (metaVendor) {
+          return metaVendor.getAttribute('data-vendor');
+        }
+        return null;
+      }
+
+      updateNoResultsMessage(vendor) {
+        const existingMessage = document.querySelector('.ai-brand-filter-no-results-{{ ai_gen_id }}');
+        if (existingMessage) {
+          existingMessage.remove();
+        }
+
+        const productGrid = document.querySelector('.collection .grid, .product-grid, [data-product-grid]');
+        if (!productGrid) return;
+
+        const visibleProducts = Array.from(productGrid.children).filter(
+          (child) => child.style.display !== 'none'
+        );
+
+        if (visibleProducts.length === 0 && vendor !== 'all') {
+          const message = document.createElement('div');
+          message.className = 'ai-brand-filter-no-results-{{ ai_gen_id }}';
+          message.style.cssText = 'grid-column: 1 / -1; text-align: center; padding: 40px 20px; font-size: 18px; color: #666;';
+          message.textContent = 'No products found for this brand.';
+          productGrid.appendChild(message);
+        }
+      }
+    }
+
+    customElements.define('brand-filter-{{ ai_gen_id }}', BrandFilter{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Brand filter",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "select",
+      "id": "alignment",
+      "label": "Desktop alignment",
+      "options": [
+        {
+          "value": "flex-start",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "flex-end",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "select",
+      "id": "mobile_alignment",
+      "label": "Mobile alignment",
+      "options": [
+        {
+          "value": "flex-start",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "flex-end",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "padding",
+      "label": "Vertical padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "button_gap",
+      "label": "Gap between buttons",
+      "min": 5,
+      "max": 40,
+      "step": 5,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "header",
+      "content": "All products button"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_all_button",
+      "label": "Show all products button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "all_button_text",
+      "label": "All button text",
+      "default": "All Brands"
+    },
+    {
+      "type": "header",
+      "content": "Brand 1"
+    },
+    {
+      "type": "text",
+      "id": "brand_1_name",
+      "label": "Brand name"
+    },
+    {
+      "type": "text",
+      "id": "brand_1_vendor",
+      "label": "Vendor name"
+    },
+    {
+      "type": "header",
+      "content": "Brand 2"
+    },
+    {
+      "type": "text",
+      "id": "brand_2_name",
+      "label": "Brand name"
+    },
+    {
+      "type": "text",
+      "id": "brand_2_vendor",
+      "label": "Vendor name"
+    },
+    {
+      "type": "header",
+      "content": "Brand 3"
+    },
+    {
+      "type": "text",
+      "id": "brand_3_name",
+      "label": "Brand name"
+    },
+    {
+      "type": "text",
+      "id": "brand_3_vendor",
+      "label": "Vendor name"
+    },
+    {
+      "type": "header",
+      "content": "Brand 4"
+    },
+    {
+      "type": "text",
+      "id": "brand_4_name",
+      "label": "Brand name"
+    },
+    {
+      "type": "text",
+      "id": "brand_4_vendor",
+      "label": "Vendor name"
+    },
+    {
+      "type": "header",
+      "content": "Brand 5"
+    },
+    {
+      "type": "text",
+      "id": "brand_5_name",
+      "label": "Brand name"
+    },
+    {
+      "type": "text",
+      "id": "brand_5_vendor",
+      "label": "Vendor name"
+    },
+    {
+      "type": "header",
+      "content": "Brand 6"
+    },
+    {
+      "type": "text",
+      "id": "brand_6_name",
+      "label": "Brand name"
+    },
+    {
+      "type": "text",
+      "id": "brand_6_vendor",
+      "label": "Vendor name"
+    },
+    {
+      "type": "header",
+      "content": "Brand 7"
+    },
+    {
+      "type": "text",
+      "id": "brand_7_name",
+      "label": "Brand name"
+    },
+    {
+      "type": "text",
+      "id": "brand_7_vendor",
+      "label": "Vendor name"
+    },
+    {
+      "type": "header",
+      "content": "Brand 8"
+    },
+    {
+      "type": "text",
+      "id": "brand_8_name",
+      "label": "Brand name"
+    },
+    {
+      "type": "text",
+      "id": "brand_8_vendor",
+      "label": "Vendor name"
+    },
+    {
+      "type": "header",
+      "content": "Button style"
+    },
+    {
+      "type": "range",
+      "id": "button_font_size",
+      "label": "Font size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "select",
+      "id": "button_font_weight",
+      "label": "Font weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "Regular"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi-bold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "500"
+    },
+    {
+      "type": "range",
+      "id": "button_padding_vertical",
+      "label": "Vertical padding",
+      "min": 5,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "button_padding_horizontal",
+      "label": "Horizontal padding",
+      "min": 10,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 25
+    },
+    {
+      "type": "range",
+      "id": "button_min_width",
+      "label": "Minimum width",
+      "min": 80,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "default": 120
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "button_border_thickness",
+      "label": "Border thickness",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "unit": "px",
+      "default": 2
+    },
+    {
+      "type": "header",
+      "content": "Default state"
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Text",
+      "default": "#73ae70"
+    },
+    {
+      "type": "color",
+      "id": "button_border_color",
+      "label": "Border",
+      "default": "#73ae70"
+    },
+    {
+      "type": "header",
+      "content": "Hover state"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_background",
+      "label": "Background",
+      "default": "#73ae70"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_text_color",
+      "label": "Text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_border_color",
+      "label": "Border",
+      "default": "#73ae70"
+    },
+    {
+      "type": "header",
+      "content": "Active state"
+    },
+    {
+      "type": "color",
+      "id": "button_active_background",
+      "label": "Background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_active_text_color",
+      "label": "Text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_active_border_color",
+      "label": "Border",
+      "default": "#000000"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Brand filter"
+    }
+  ]
+}
+{% endschema %}

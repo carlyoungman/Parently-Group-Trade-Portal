@@ -1,0 +1,57 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "context": {
+    "market": "gb"
+  },
+  "parent": "page.little-classmates.json",
+  "sections": {
+    "rich_text_DjHynz": {
+      "disabled": true,
+      "settings": {},
+      "blocks": {}
+    },
+    "button_grid_LE8piH": {
+      "disabled": true,
+      "settings": {},
+      "blocks": {}
+    },
+    "link_panels_Ji68ab": {
+      "disabled": true,
+      "settings": {},
+      "blocks": {}
+    },
+    "tabbed_featured_collections_wJWt9k": {
+      "disabled": true,
+      "settings": {},
+      "blocks": {}
+    },
+    "image_with_text_hpWHaL": {
+      "disabled": true,
+      "settings": {},
+      "blocks": {}
+    },
+    "image_text_links_aLFyUk": {
+      "disabled": true,
+      "settings": {},
+      "blocks": {}
+    },
+    "image_with_text_gXghyD": {
+      "disabled": true,
+      "settings": {},
+      "blocks": {}
+    },
+    "video_R6F6e6": {
+      "disabled": true,
+      "settings": {},
+      "blocks": {}
+    }
+  }
+}

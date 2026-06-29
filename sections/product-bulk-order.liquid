@@ -34,7 +34,7 @@
 [{%- for variant in product.variants -%}{%- unless forloop.first -%},{%- endunless -%}{"id":{{ variant.id }},"color":{{ variant.metafields.custom.swatch_color.value | json }}}{%- endfor -%}]
     {%- endcapture -%}
     {%- capture variant_inventory_json -%}
-[{%- for variant in product.variants -%}{%- unless forloop.first -%},{%- endunless -%}{"id":{{ variant.id }},"inventory_quantity":{{ variant.inventory_quantity }},"inventory_management":{{ variant.inventory_management | json }},"inventory_policy":{{ variant.inventory_policy | json }},"quantity_rule_increment":{{ variant.quantity_rule.increment | default: 1 }}}{%- endfor -%}]
+[{%- for variant in product.variants -%}{%- unless forloop.first -%},{%- endunless -%}{"id":{{ variant.id }},"inventory_quantity":{{ variant.inventory_quantity }},"inventory_management":{{ variant.inventory_management | json }},"inventory_policy":{{ variant.inventory_policy | json }},"quantity_rule_increment":{{ variant.quantity_rule.increment | default: 1 }},"next_incoming_date":{{ variant.next_incoming_date | date: '%d/%m/%Y' | json }}}{%- endfor -%}]
     {%- endcapture -%}
     <div
       id="product-bulk-order-{{ section.id }}"

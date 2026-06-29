@@ -136,12 +136,12 @@
         "panel_gXhBpy": {
           "type": "panel",
           "settings": {
-            "headline": "SERVICES",
+            "headline": "",
             "link": "",
             "link_target": false,
-            "image": "shopify://shop_images/69e420d1ea17da526427928e1dc2bef32e3c2675.jpg",
-            "display_alternative": true,
-            "background_color": "#cbdeef",
+            "image": "shopify://shop_images/Tile-Images-One-NEW-2_212ee2b6-08e9-467a-9648-6845bc603183.png",
+            "display_alternative": false,
+            "background_color": "#405F75",
             "text_background_color": "#355bbc",
             "heading_color": "#4767b3"
           }
@@ -149,12 +149,12 @@
         "panel_RrbyWf": {
           "type": "panel",
           "settings": {
-            "headline": "OUTLET",
+            "headline": "",
             "link": "",
             "link_target": false,
-            "image": "shopify://shop_images/c5866beb81116e105a2ebf7c10bdcc2ff87d6005.jpg",
-            "display_alternative": true,
-            "background_color": "#f6f2ce",
+            "image": "shopify://shop_images/Tile-Images-Two.png",
+            "display_alternative": false,
+            "background_color": "#99D1E8",
             "text_background_color": "#ca703f",
             "heading_color": "#ca703f"
           }

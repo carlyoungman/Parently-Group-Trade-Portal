@@ -1,0 +1,616 @@
+{% doc %}
+  @prompt
+    create a brand filter against vendor to filter through the brands , add all brands
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-brand-filter-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+  }
+
+  .ai-brand-filter__container-{{ ai_gen_id }} {
+    background-color: {{ block.settings.background_color }};
+    border: {{ block.settings.border_thickness }}px solid {{ block.settings.border_color }};
+    border-radius: {{ block.settings.border_radius }}px;
+    padding: {{ block.settings.padding }}px;
+  }
+
+  .ai-brand-filter__heading-{{ ai_gen_id }} {
+    margin: 0 0 {{ block.settings.spacing }}px;
+    font-size: {{ block.settings.heading_size }}px;
+    color: {{ block.settings.heading_color }};
+    font-weight: 600;
+  }
+
+  .ai-brand-filter__select-all-{{ ai_gen_id }} {
+    margin-bottom: {{ block.settings.spacing }}px;
+    display: flex;
+    align-items: center;
+    padding-bottom: {{ block.settings.spacing }}px;
+    border-bottom: 1px solid {{ block.settings.border_color }};
+  }
+
+  .ai-brand-filter__list-{{ ai_gen_id }} {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: {{ block.settings.item_spacing }}px;
+  }
+
+  .ai-brand-filter__item-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+  }
+
+  .ai-brand-filter__checkbox-{{ ai_gen_id }} {
+    width: {{ block.settings.checkbox_size }}px;
+    height: {{ block.settings.checkbox_size }}px;
+    margin: 0;
+    cursor: pointer;
+    accent-color: {{ block.settings.checkbox_color }};
+  }
+
+  .ai-brand-filter__label-{{ ai_gen_id }} {
+    margin-left: {{ block.settings.label_spacing }}px;
+    font-size: {{ block.settings.label_size }}px;
+    color: {{ block.settings.label_color }};
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-grow: 1;
+  }
+
+  .ai-brand-filter__label--select-all-{{ ai_gen_id }} {
+    font-weight: 600;
+  }
+
+  .ai-brand-filter__count-{{ ai_gen_id }} {
+    font-size: {{ block.settings.count_size }}px;
+    color: {{ block.settings.count_color }};
+    margin-left: auto;
+  }
+
+  .ai-brand-filter__actions-{{ ai_gen_id }} {
+    margin-top: {{ block.settings.spacing }}px;
+    display: flex;
+    gap: 12px;
+  }
+
+  .ai-brand-filter__button-{{ ai_gen_id }} {
+    padding: 10px 20px;
+    background-color: {{ block.settings.button_background }};
+    color: {{ block.settings.button_text_color }};
+    border: {{ block.settings.button_border_thickness }}px solid {{ block.settings.button_border_color }};
+    border-radius: {{ block.settings.button_border_radius }}px;
+    cursor: pointer;
+    font-size: {{ block.settings.button_font_size }}px;
+    transition: all 0.3s ease;
+  }
+
+  .ai-brand-filter__button-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_hover_background }};
+    color: {{ block.settings.button_hover_text_color }};
+    border-color: {{ block.settings.button_hover_border_color }};
+  }
+
+  .ai-brand-filter__clear-{{ ai_gen_id }} {
+    background-color: transparent;
+    color: {{ block.settings.clear_button_color }};
+    border: {{ block.settings.button_border_thickness }}px solid {{ block.settings.clear_button_color }};
+  }
+
+  .ai-brand-filter__clear-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.clear_button_color }};
+    color: {{ block.settings.background_color }};
+    border-color: {{ block.settings.clear_button_color }};
+  }
+
+  .ai-brand-filter__empty-{{ ai_gen_id }} {
+    padding: 20px;
+    text-align: center;
+    color: {{ block.settings.label_color }};
+    font-size: {{ block.settings.label_size }}px;
+    font-style: italic;
+  }
+{% endstyle %}
+
+<brand-filter-{{ ai_gen_id }}
+  class="ai-brand-filter-{{ ai_gen_id }}"
+  {{ block.shopify_attributes }}
+  data-filter-type="vendor"
+>
+  <div class="ai-brand-filter__container-{{ ai_gen_id }}">
+    {% if block.settings.heading != blank %}
+      <h3 class="ai-brand-filter__heading-{{ ai_gen_id }}">{{ block.settings.heading }}</h3>
+    {% endif %}
+
+    {% if collection %}
+      {% assign all_vendors = '' %}
+      {% for product in collection.products %}
+        {% unless all_vendors contains product.vendor %}
+          {% if all_vendors != '' %}
+            {% assign all_vendors = all_vendors | append: '||' %}
+          {% endif %}
+          {% assign all_vendors = all_vendors | append: product.vendor %}
+        {% endunless %}
+      {% endfor %}
+
+      {% assign vendors_array = all_vendors | split: '||' | sort %}
+
+      {% if vendors_array.size > 0 %}
+        <div class="ai-brand-filter__select-all-{{ ai_gen_id }}">
+          <input
+            type="checkbox"
+            id="brand-select-all-{{ ai_gen_id }}"
+            class="ai-brand-filter__checkbox-{{ ai_gen_id }} ai-brand-filter__select-all-checkbox-{{ ai_gen_id }}"
+          >
+          <label
+            for="brand-select-all-{{ ai_gen_id }}"
+            class="ai-brand-filter__label-{{ ai_gen_id }} ai-brand-filter__label--select-all-{{ ai_gen_id }}"
+          >
+            <span>All brands</span>
+          </label>
+        </div>
+
+        <ul class="ai-brand-filter__list-{{ ai_gen_id }}">
+          {% for vendor in vendors_array %}
+            {% assign vendor_count = 0 %}
+            {% for product in collection.products %}
+              {% if product.vendor == vendor %}
+                {% assign vendor_count = vendor_count | plus: 1 %}
+              {% endif %}
+            {% endfor %}
+
+            <li class="ai-brand-filter__item-{{ ai_gen_id }}">
+              <input
+                type="checkbox"
+                id="brand-{{ vendor | handleize }}-{{ ai_gen_id }}"
+                class="ai-brand-filter__checkbox-{{ ai_gen_id }} ai-brand-filter__brand-checkbox-{{ ai_gen_id }}"
+                data-vendor="{{ vendor | escape }}"
+              >
+              <label
+                for="brand-{{ vendor | handleize }}-{{ ai_gen_id }}"
+                class="ai-brand-filter__label-{{ ai_gen_id }}"
+              >
+                <span>{{ vendor }}</span>
+                {% if block.settings.show_count %}
+                  <span class="ai-brand-filter__count-{{ ai_gen_id }}">({{ vendor_count }})</span>
+                {% endif %}
+              </label>
+            </li>
+          {% endfor %}
+        </ul>
+
+        <div class="ai-brand-filter__actions-{{ ai_gen_id }}">
+          <button
+            type="button"
+            class="ai-brand-filter__button-{{ ai_gen_id }} ai-brand-filter__apply-{{ ai_gen_id }}"
+          >
+            {{ block.settings.apply_button_text }}
+          </button>
+          <button
+            type="button"
+            class="ai-brand-filter__button-{{ ai_gen_id }} ai-brand-filter__clear-{{ ai_gen_id }}"
+          >
+            {{ block.settings.clear_button_text }}
+          </button>
+        </div>
+      {% else %}
+        <div class="ai-brand-filter__empty-{{ ai_gen_id }}">
+          No brands available
+        </div>
+      {% endif %}
+    {% else %}
+      <div class="ai-brand-filter__empty-{{ ai_gen_id }}">
+        This filter is only available on collection pages
+      </div>
+    {% endif %}
+  </div>
+</brand-filter-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class BrandFilter{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.brandCheckboxes = [];
+        this.selectAllCheckbox = null;
+        this.applyButton = null;
+        this.clearButton = null;
+      }
+
+      connectedCallback() {
+        this.brandCheckboxes = this.querySelectorAll('.ai-brand-filter__brand-checkbox-{{ ai_gen_id }}');
+        this.selectAllCheckbox = this.querySelector('.ai-brand-filter__select-all-checkbox-{{ ai_gen_id }}');
+        this.applyButton = this.querySelector('.ai-brand-filter__apply-{{ ai_gen_id }}');
+        this.clearButton = this.querySelector('.ai-brand-filter__clear-{{ ai_gen_id }}');
+
+        this.loadFiltersFromURL();
+        this.setupEventListeners();
+        this.updateSelectAllState();
+      }
+
+      setupEventListeners() {
+        if (this.selectAllCheckbox) {
+          this.selectAllCheckbox.addEventListener('change', () => this.handleSelectAll());
+        }
+
+        this.brandCheckboxes.forEach((checkbox) => {
+          checkbox.addEventListener('change', () => this.updateSelectAllState());
+        });
+
+        if (this.applyButton) {
+          this.applyButton.addEventListener('click', () => this.applyFilters());
+        }
+
+        if (this.clearButton) {
+          this.clearButton.addEventListener('click', () => this.clearFilters());
+        }
+      }
+
+      handleSelectAll() {
+        const isChecked = this.selectAllCheckbox.checked;
+        this.brandCheckboxes.forEach((checkbox) => {
+          checkbox.checked = isChecked;
+        });
+      }
+
+      updateSelectAllState() {
+        if (!this.selectAllCheckbox) return;
+
+        const allChecked = Array.from(this.brandCheckboxes).every((checkbox) => checkbox.checked);
+        const someChecked = Array.from(this.brandCheckboxes).some((checkbox) => checkbox.checked);
+
+        this.selectAllCheckbox.checked = allChecked;
+        this.selectAllCheckbox.indeterminate = someChecked && !allChecked;
+      }
+
+      loadFiltersFromURL() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const vendorParam = urlParams.get('filter.v.option.vendor');
+
+        if (vendorParam) {
+          const selectedVendors = vendorParam.split('||');
+          this.brandCheckboxes.forEach((checkbox) => {
+            const vendor = checkbox.dataset.vendor;
+            if (selectedVendors.includes(vendor)) {
+              checkbox.checked = true;
+            }
+          });
+        }
+      }
+
+      applyFilters() {
+        const selectedVendors = [];
+
+        this.brandCheckboxes.forEach((checkbox) => {
+          if (checkbox.checked) {
+            selectedVendors.push(checkbox.dataset.vendor);
+          }
+        });
+
+        const url = new URL(window.location.href);
+        const params = new URLSearchParams(url.search);
+
+        if (selectedVendors.length > 0) {
+          params.set('filter.v.option.vendor', selectedVendors.join('||'));
+        } else {
+          params.delete('filter.v.option.vendor');
+        }
+
+        url.search = params.toString();
+        window.location.href = url.toString();
+      }
+
+      clearFilters() {
+        this.brandCheckboxes.forEach((checkbox) => {
+          checkbox.checked = false;
+        });
+
+        if (this.selectAllCheckbox) {
+          this.selectAllCheckbox.checked = false;
+          this.selectAllCheckbox.indeterminate = false;
+        }
+
+        const url = new URL(window.location.href);
+        const params = new URLSearchParams(url.search);
+        params.delete('filter.v.option.vendor');
+
+        url.search = params.toString();
+        window.location.href = url.toString();
+      }
+    }
+
+    customElements.define('brand-filter-{{ ai_gen_id }}', BrandFilter{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Brand filter",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Filter by brand"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_count",
+      "label": "Show product count",
+      "default": true
+    },
+    {
+      "type": "inline_richtext",
+      "id": "apply_button_text",
+      "label": "Apply button text",
+      "default": "Apply filters"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "clear_button_text",
+      "label": "Clear button text",
+      "default": "Clear"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding",
+      "label": "Padding",
+      "min": 0,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "spacing",
+      "label": "Section spacing",
+      "min": 8,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "item_spacing",
+      "label": "Item spacing",
+      "min": 4,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "label_spacing",
+      "label": "Label spacing",
+      "min": 4,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "header",
+      "content": "Container style"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "border_thickness",
+      "label": "Border thickness",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "default": 1
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border color",
+      "default": "#e0e0e0"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Heading style"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Size",
+      "min": 12,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Checkbox style"
+    },
+    {
+      "type": "range",
+      "id": "checkbox_size",
+      "label": "Size",
+      "min": 12,
+      "max": 28,
+      "step": 2,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "color",
+      "id": "checkbox_color",
+      "label": "Color",
+      "default": "#73ae70"
+    },
+    {
+      "type": "header",
+      "content": "Label style"
+    },
+    {
+      "type": "range",
+      "id": "label_size",
+      "label": "Size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "label_color",
+      "label": "Color",
+      "default": "#585858"
+    },
+    {
+      "type": "range",
+      "id": "count_size",
+      "label": "Count size",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "count_color",
+      "label": "Count color",
+      "default": "#999999"
+    },
+    {
+      "type": "header",
+      "content": "Button style"
+    },
+    {
+      "type": "range",
+      "id": "button_font_size",
+      "label": "Font size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "Background",
+      "default": "#73ae70"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_background",
+      "label": "Hover background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_text_color",
+      "label": "Hover text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "button_border_thickness",
+      "label": "Border thickness",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "default": 2
+    },
+    {
+      "type": "color",
+      "id": "button_border_color",
+      "label": "Border color",
+      "default": "#73ae70"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_border_color",
+      "label": "Hover border color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "color",
+      "id": "clear_button_color",
+      "label": "Clear button color",
+      "default": "#585858"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Brand filter"
+    }
+  ]
+}
+{% endschema %}

@@ -12,49 +12,18 @@
     "image_downloads": {
       "type": "image-downloads",
       "blocks": {
-        "asset_jMeCWb": {
-          "type": "asset",
+        "category_K9qfzG": {
+          "type": "category",
           "settings": {
             "brand": "dl",
-            "asset_name": "DL-AW26-HERO-01",
-            "asset_url": "",
-            "asset_size": "0 MB · JPG",
-            "asset_type": "campaign"
-          }
-        },
-        "brand_section_VNEDEg": {
-          "type": "brand_section",
-          "settings": {
-            "brand": "dl",
-            "section_title": "Trousers"
-          }
-        },
-        "asset_7TWNnJ": {
-          "type": "asset",
-          "settings": {
-            "brand": "dl",
-            "thumbnail": "shopify://shop_images/DL990-ECO_Black_74b24fe3-dc8c-41f0-b7f6-be0efa9ac964.jpg",
-            "asset_name": "DL990",
-            "asset_url": "https://cdn.shopify.com/s/files/1/1022/1859/6616/files/DL990_shopify_images.zip?v=1779195800",
-            "asset_size": "0 MB · JPG",
-            "asset_type": "product"
-          }
-        },
-        "zip_pack_UbVmqe": {
-          "type": "zip_pack",
-          "settings": {
-            "brand": "dl",
-            "pack_name": "AW26 — full asset pack",
-            "pack_detail": "0 files · 0 MB",
-            "pack_url": ""
+            "collection": "blazers",
+            "category_title": "",
+            "category_note": ""
           }
         }
       },
       "block_order": [
-        "asset_jMeCWb",
-        "brand_section_VNEDEg",
-        "asset_7TWNnJ",
-        "zip_pack_UbVmqe"
+        "category_K9qfzG"
       ],
       "settings": {
         "page_title": "Image Downloads",

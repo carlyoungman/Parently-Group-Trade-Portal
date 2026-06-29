@@ -1119,5 +1119,20 @@
         "info": "t:settings_schema.cart.settings.cart_drawer.collection.info"
       }
     ]
+  },
+  {
+    "name": "t:settings_schema.customer_accounts.name",
+    "settings": [
+      {
+        "type": "header",
+        "content": "t:settings_schema.customer_accounts.settings.header__landing.content"
+      },
+      {
+        "type": "page",
+        "id": "customer_logged_in_page",
+        "label": "t:settings_schema.customer_accounts.settings.logged_in_page.label",
+        "info": "t:settings_schema.customer_accounts.settings.logged_in_page.info"
+      }
+    ]
   }
 ]

@@ -21,9 +21,16 @@
     <li class="breadcrumbs__item">
       <a class="breadcrumbs__link" href="{{ routes.root_url }}">{{ 'general.breadcrumbs.home' | t }}</a>
     </li>
+
     {%- if crumb_collection != blank -%}
       <li class="breadcrumbs__item">
         <a class="breadcrumbs__link" href="{{ crumb_collection.url }}">{{ crumb_collection.title | escape }}</a>
+      </li>
+    {%- endif -%}
+
+    {%- if product != blank -%}
+      <li class="breadcrumbs__item" aria-current="page">
+        {{ product.title | escape }}
       </li>
     {%- endif -%}
   </ol>

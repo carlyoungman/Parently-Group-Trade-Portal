@@ -75,15 +75,22 @@ function isCellVisible(variant, showInStock, showSoldOut, showNotAvailable) {
   return showInStock;
 }
 
+// Natural ascending sort for size/length labels — orders pure numbers correctly
+// ("20" < "38" < "40") and degrades gracefully for alphanumeric labels.
+function compareSizes(a, b) {
+  return String(a).localeCompare(String(b), undefined, { numeric: true });
+}
+
 function StockBadge({ variant }) {
   const status = getStockStatus(variant);
   const qty = variant?.inventory_quantity;
-  const label =
-    status === 'out'
-      ? 'Out of stock'
-      : qty > 0
-      ? `${qty} in stock`
-      : 'In stock';
+  const incomingDate = variant?.next_incoming_date;
+  let label;
+  if (status === 'out') {
+    label = incomingDate ? `Due ${incomingDate}` : 'Out of stock';
+  } else {
+    label = qty > 0 ? `${qty} in stock` : 'In stock';
+  }
   return <span className={`pbo-stock pbo-stock--${status}`}>{label}</span>;
 }
 
@@ -174,14 +181,18 @@ function ProductBulkOrder({ product, variantSwatches = {}, showInStock = true, s
   const sizes = useMemo(
     () =>
       sizeOptionIndex >= 0
-        ? [...new Set(product.variants.map((v) => getOptionValue(v, sizeOptionIndex)))].filter(Boolean)
+        ? [...new Set(product.variants.map((v) => getOptionValue(v, sizeOptionIndex)))]
+            .filter(Boolean)
+            .sort(compareSizes)
         : [],
     [product, sizeOptionIndex]
   );
   const lengths = useMemo(
     () =>
       lengthOptionIndex >= 0
-        ? [...new Set(product.variants.map((v) => getOptionValue(v, lengthOptionIndex)))].filter(Boolean)
+        ? [...new Set(product.variants.map((v) => getOptionValue(v, lengthOptionIndex)))]
+            .filter(Boolean)
+            .sort(compareSizes)
         : [],
     [product, lengthOptionIndex]
   );
@@ -422,6 +433,14 @@ function ProductBulkOrder({ product, variantSwatches = {}, showInStock = true, s
     return false;
   };
 
+  // True when every visible column for this size is missing or unavailable —
+  // used to hide the cost/VAT in the row total for fully-unavailable rows.
+  const isRowUnavailable = (size) =>
+    visibleColumns.every((len) => {
+      const v = getVariant(selectedColour, size, len);
+      return !v || !v.available;
+    });
+
   // Column item count (across all visible sizes for a given length)
   const colItemCount = (len) =>
     visibleSizes.reduce((sum, size) => {
@@ -611,8 +630,12 @@ function ProductBulkOrder({ product, variantSwatches = {}, showInStock = true, s
                   );
                 })}
                 <td className="pbo__row-total">
-                  {rowTotal(size) > 0 ? formatMoney(rowTotal(size)) : <span className="pbo__row-total--empty">£0.00</span>}
-                  <span className="pbo__vat-label">{getRowTaxable(size) ? '20% VAT' : '0% VAT'}</span>
+                  {!isRowUnavailable(size) && (
+                    <>
+                      {rowTotal(size) > 0 ? formatMoney(rowTotal(size)) : <span className="pbo__row-total--empty">£0.00</span>}
+                      <span className="pbo__vat-label">{getRowTaxable(size) ? '20% VAT' : '0% VAT'}</span>
+                    </>
+                  )}
                 </td>
               </tr>
             ))}
@@ -681,8 +704,8 @@ document.querySelectorAll('[data-product-bulk-order]').forEach((el) => {
     if (!Array.isArray(productData.variants) || productData.variants.length === 0) return;
     const inventoryData = JSON.parse(el.dataset.variantInventory ?? '[]');
     const inventoryMap = {};
-    inventoryData.forEach(({ id, inventory_quantity, inventory_management, inventory_policy, quantity_rule_increment }) => {
-      inventoryMap[id] = { inventory_quantity, inventory_management, inventory_policy, quantity_rule_increment };
+    inventoryData.forEach(({ id, inventory_quantity, inventory_management, inventory_policy, quantity_rule_increment, next_incoming_date }) => {
+      inventoryMap[id] = { inventory_quantity, inventory_management, inventory_policy, quantity_rule_increment, next_incoming_date };
     });
     productData.variants = productData.variants.map((v) => ({ ...v, ...inventoryMap[v.id] }));
     const swatchData = JSON.parse(el.dataset.variantSwatches ?? '[]');

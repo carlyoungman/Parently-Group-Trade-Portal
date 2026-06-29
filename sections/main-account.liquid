@@ -1,3 +1,10 @@
+{%- liquid
+  assign landing_page = settings.customer_logged_in_page
+-%}
+{%- if landing_page != blank and request.design_mode == false and request.path != landing_page.url -%}
+  <script>window.location.replace({{ landing_page.url | json }});</script>
+{%- endif -%}
+
 {%- style -%}
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;

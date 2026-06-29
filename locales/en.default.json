@@ -135,6 +135,8 @@
       "inventory_out_of_stock_continue_selling": "In stock",
       "sku": "SKU",
       "on_sale": "Sale",
+      "view_more": "View more",
+      "view_less": "View less",
       "product_variants": "Product variants",
       "media": {
         "gallery_viewer": "Gallery Viewer",
@@ -291,7 +293,6 @@
       "announcement": "Announcement",
       "announcement_bar": "Announcement bar"
     },
-
     "header": {
       "announcement": "Announcement",
       "menu": "Menu",
@@ -543,6 +544,16 @@
       "max_characters": "{{ max_chars }} characters max",
       "send_on": "YYYY-MM-DD",
       "send_on_label": "Send on (optional)"
+    }
+  },
+  "shopify": {
+    "checkout": {
+      "delivery_options": {
+        "free_total_label": "Free"
+      },
+      "payment_gateway": {
+        "generic_payment_terms": "Payment on account"
+      }
     }
   }
 }

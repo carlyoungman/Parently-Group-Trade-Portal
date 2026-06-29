@@ -41,8 +41,8 @@
         "mobile_logo_position": "center",
         "menu": "main-menu",
         "menu_type_desktop": "mega",
-        "sticky_header_type": "absolute",
-        "sticky_header_type_index": "default",
+        "sticky_header_type": "always",
+        "sticky_header_type_index": "absolute",
         "sticky_header_type_product": "always",
         "sticky_header_type_collection": "always",
         "sticky_header_type_page": "always",
@@ -65,11 +65,17 @@
         "phone_number": "0161 234 5678",
         "support_email": "trade@parentlygroup.com"
       }
+    },
+    "17827341856861fb90": {
+      "type": "_blocks",
+      "disabled": true,
+      "settings": {}
     }
   },
   "order": [
     "announcement-bar",
     "header",
-    "quick_order_sku_NGQj9M"
+    "quick_order_sku_NGQj9M",
+    "17827341856861fb90"
   ]
 }
