@@ -33,8 +33,8 @@
       ],
       "settings": {
         "video_position": "center center",
-        "image": "shopify://shop_images/Screenshot_2026-03-02_100552.jpg",
-        "image_position": "center center",
+        "image": "shopify://shop_images/Banner-Image-Term_0138f54b-5f80-49aa-b264-f8fdf894d79a.jpg",
+        "image_position": "bottom center",
         "image_2_position": "center center",
         "image_overlay_opacity": 20,
         "image_height": "medium",
@@ -46,39 +46,6 @@
         "stack_images_on_mobile": false,
         "mobile_content_alignment": "center",
         "show_text_below": true
-      }
-    },
-    "rich_text_DjHynz": {
-      "type": "rich-text",
-      "blocks": {
-        "heading_r9rTqa": {
-          "type": "heading",
-          "settings": {
-            "heading": "School uniform that gives your customers a reason to choose you.",
-            "heading_size": "h2"
-          }
-        },
-        "text_H3yTdj": {
-          "type": "text",
-          "settings": {
-            "text": "<p>David Luke is the UK's leading school uniform brand — stocked by over 700 independent retailers and trusted by the parents who shop with them. Built on 40 years of relationship-first trading and a genuine commitment to sustainable design, it's the schoolwear range that gives retailers a compelling story to tell, and products that keep selling.</p>",
-            "text_style": "body"
-          }
-        }
-      },
-      "block_order": [
-        "heading_r9rTqa",
-        "text_H3yTdj"
-      ],
-      "name": "t:sections.rich-text.presets.name",
-      "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
-        "full_width": true,
-        "background_color": "#ffffff",
-        "text_color": "#000000",
-        "padding_top": 0,
-        "padding_bottom": 0
       }
     },
     "button_grid_LE8piH": {
@@ -130,6 +97,39 @@
         "padding_bottom": 0
       }
     },
+    "rich_text_DjHynz": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_r9rTqa": {
+          "type": "heading",
+          "settings": {
+            "heading": "The school shoe brand that stays.",
+            "heading_size": "h2"
+          }
+        },
+        "text_H3yTdj": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Term Footwear is always in stock, genuinely flexible, with a range that sells without needing to be sold. No fussy fittings, no hassle, no seasonal disappearing act — Term is the school shoe brand you add to your range with confidence, and the one that stays in it.</p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "heading_r9rTqa",
+        "text_H3yTdj"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "full_width": true,
+        "background_color": "#ffffff",
+        "text_color": "#000000",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
     "link_panels_Ji68ab": {
       "type": "link-panels",
       "blocks": {
@@ -139,11 +139,11 @@
             "headline": "",
             "link": "",
             "link_target": false,
-            "image": "shopify://shop_images/Tile-Images-One-NEW-2_212ee2b6-08e9-467a-9648-6845bc603183.png",
+            "image": "shopify://shop_images/Tile-Images-One-NEW-4.png",
             "display_alternative": false,
-            "background_color": "#405F75",
-            "text_background_color": "#355bbc",
-            "heading_color": "#4767b3"
+            "background_color": "#405f75",
+            "text_background_color": "#ffffff",
+            "heading_color": "#ffffff"
           }
         },
         "panel_RrbyWf": {
@@ -152,9 +152,9 @@
             "headline": "",
             "link": "",
             "link_target": false,
-            "image": "shopify://shop_images/Tile-Images-Two.png",
+            "image": "shopify://shop_images/Tile-Images-Two-NEW.png",
             "display_alternative": false,
-            "background_color": "#99D1E8",
+            "background_color": "#99d1e8",
             "text_background_color": "#ca703f",
             "heading_color": "#ca703f"
           }
@@ -162,14 +162,14 @@
         "panel_BGW3CB": {
           "type": "panel",
           "settings": {
-            "headline": "SUSTAINABILITY",
+            "headline": "",
             "link": "",
             "link_target": false,
-            "image": "shopify://shop_images/0a8ce74b8bbeac3f34eae77b25e001f659c460b7.jpg",
-            "display_alternative": true,
-            "background_color": "#d7e6c2",
-            "text_background_color": "#23382d",
-            "heading_color": "#23382d"
+            "image": "shopify://shop_images/Tile-Images-Three.png",
+            "display_alternative": false,
+            "background_color": "#405f75",
+            "text_background_color": "#ffffff",
+            "heading_color": "#ffffff"
           }
         }
       },
@@ -198,24 +198,25 @@
     "tabbed_featured_collections_wJWt9k": {
       "type": "tabbed-featured-collections",
       "blocks": {
-        "tab_zBh3gP": {
-          "type": "tab",
-          "settings": {
-            "tab_title": "New Arrivals",
-            "collection": "new-arrivals"
-          }
-        },
         "tab_LxpDG7": {
           "type": "tab",
           "settings": {
             "tab_title": "Best Sellers",
-            "collection": "best-sellers"
+            "collection": "term-bestsellers"
+          }
+        },
+        "tab_zBh3gP": {
+          "type": "tab",
+          "disabled": true,
+          "settings": {
+            "tab_title": "New Arrivals",
+            "collection": "new-arrivals"
           }
         }
       },
       "block_order": [
-        "tab_zBh3gP",
-        "tab_LxpDG7"
+        "tab_LxpDG7",
+        "tab_zBh3gP"
       ],
       "name": "Tabbed Featured Collections",
       "settings": {
@@ -236,14 +237,14 @@
         "heading_K6rDC6": {
           "type": "heading",
           "settings": {
-            "heading": "View our catalogue",
+            "heading": "Built right, styled right.",
             "heading_size": "h0"
           }
         },
         "text_V8GhdV": {
           "type": "text",
           "settings": {
-            "text": "<p>The David Luke range covers everything from essentials to eco-collections — blouses, trousers, skirts, blazers  and sportswear. Designed for durability, sized for every body, and built with circularity in mind. Browse the full range to find everything your customers need, season after season.</p>",
+            "text": "<p>Term Footwear was built by school shoe specialists who were tired of the same old seasonal routine — pack in August, disappear in October. They started with a straightforward idea: school shoes should be easy to stock, genuinely built to last, and always worth coming back for. Now part of The Parently Group.</p>",
             "text_style": "body"
           }
         },
@@ -263,7 +264,7 @@
       ],
       "name": "t:sections.image-with-text.presets.name",
       "settings": {
-        "image": "shopify://shop_images/David-Luke-Product-Catalogue-Block-Image-FINAL.png",
+        "image": "shopify://shop_images/Catalogue-Image-Tile-Term.jpg",
         "height": "large",
         "desktop_image_width": "medium",
         "layout": "image_first",
@@ -272,9 +273,9 @@
         "desktop_content_position": "middle",
         "desktop_content_alignment": "left",
         "mobile_content_alignment": "left",
-        "image_background_color": "#4767b3",
-        "text_background_color": "#cbdeef",
-        "content_text_color": "#4767b3",
+        "image_background_color": "#9fcce4",
+        "text_background_color": "#405f75",
+        "content_text_color": "#ffffff",
         "padding_top": 0,
         "padding_bottom": 0
       }
@@ -362,7 +363,7 @@
       ],
       "name": "Image & text links",
       "settings": {
-        "image": "shopify://shop_images/Rectangle_2699.jpg",
+        "image": "shopify://shop_images/Media-Hub-Image.png",
         "image_overlay_opacity": 40,
         "image_behavior": "none",
         "section_height": "large"
@@ -381,7 +382,7 @@
         "text_R6VBUT": {
           "type": "text",
           "settings": {
-            "text": "<p>David Luke started in Manchester in 1982. Built on a simple belief: school uniform should be made well, sourced responsibly, and sold through retailers who know their customers. Today it's the UK's leading sustainable schoolwear brand — a previous Queen's Award winner, worn by hundreds of thousands of children, and found in over 700 stores.</p>",
+            "text": "<p>Term Footwear was built by school shoe specialists who were tired of the same old seasonal routine — pack in August, disappear in October. They started with a straightforward idea: school shoes should be easy to stock, genuinely built to last, and always worth coming back for. </p><p>Now part of The Parently Group.</p>",
             "text_style": "body"
           }
         },
@@ -401,7 +402,7 @@
       ],
       "name": "t:sections.image-with-text.presets.name",
       "settings": {
-        "image": "shopify://shop_images/b7034ac4b884dcf6c9478fd2db2e0a0066cf6a27.jpg",
+        "image": "shopify://shop_images/Catalogue-Image-Tile---Term.jpg",
         "height": "large",
         "desktop_image_width": "medium",
         "layout": "text_first",
@@ -410,15 +411,16 @@
         "desktop_content_position": "middle",
         "desktop_content_alignment": "left",
         "mobile_content_alignment": "left",
-        "image_background_color": "#ca703f",
-        "text_background_color": "#ca703f",
-        "content_text_color": "#ffffff",
+        "image_background_color": "#0f1519",
+        "text_background_color": "#99d1e8",
+        "content_text_color": "#405f75",
         "padding_top": 0,
         "padding_bottom": 0
       }
     },
     "video_R6F6e6": {
       "type": "video",
+      "disabled": true,
       "name": "t:sections.video.presets.name",
       "settings": {
         "heading": "",
@@ -433,18 +435,28 @@
         "padding_top": 0,
         "padding_bottom": 100
       }
+    },
+    "custom_liquid_zqAF9b": {
+      "type": "custom-liquid",
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "",
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
     }
   },
   "order": [
     "main",
     "hero_banner",
-    "rich_text_DjHynz",
     "button_grid_LE8piH",
+    "rich_text_DjHynz",
     "link_panels_Ji68ab",
     "tabbed_featured_collections_wJWt9k",
     "image_with_text_hpWHaL",
     "image_text_links_aLFyUk",
     "image_with_text_gXghyD",
-    "video_R6F6e6"
+    "video_R6F6e6",
+    "custom_liquid_zqAF9b"
   ]
 }

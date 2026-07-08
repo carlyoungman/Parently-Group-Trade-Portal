@@ -20,20 +20,29 @@
     "hero_banner": {
       "type": "hero-banner",
       "blocks": {
+        "heading_FwiP7N": {
+          "type": "heading",
+          "settings": {
+            "heading": "Our Story",
+            "heading_size": "h1"
+          }
+        },
         "logo_block": {
           "type": "image",
+          "disabled": true,
           "settings": {
-            "image": "shopify://shop_images/Juco_logo_white.png",
+            "image": "shopify://shop_images/Union.svg",
             "image_width": "medium"
           }
         }
       },
       "block_order": [
+        "heading_FwiP7N",
         "logo_block"
       ],
       "settings": {
         "video_position": "center center",
-        "image": "shopify://shop_images/Banner-Image-JUCO.jpg",
+        "image": "shopify://shop_images/david-luke-hero.jpg",
         "image_position": "center center",
         "image_2_position": "center center",
         "image_overlay_opacity": 20,
@@ -55,7 +64,7 @@
           "type": "button",
           "settings": {
             "button_label": "Quick Order",
-            "button_link": "shopify://pages/quick-order",
+            "button_link": "shopify://pages/quick-order-1",
             "button_style_secondary": true
           }
         },
@@ -63,7 +72,7 @@
           "type": "button",
           "settings": {
             "button_label": "Products",
-            "button_link": "shopify://collections",
+            "button_link": "shopify://collections/school-uniform",
             "button_style_secondary": true
           }
         },
@@ -90,6 +99,7 @@
         "button_pT4XeV",
         "button_PN9pj4"
       ],
+      "disabled": true,
       "name": "t:sections.button-grid.presets.name",
       "settings": {
         "alignment": "center",
@@ -103,14 +113,14 @@
         "heading_r9rTqa": {
           "type": "heading",
           "settings": {
-            "heading": "Sports for all. Everybody. Every school.",
+            "heading": "The Parently Group was formed in 2020 but our story began over 44 years ago...",
             "heading_size": "h2"
           }
         },
         "text_H3yTdj": {
           "type": "text",
           "settings": {
-            "text": "<p>Juco is a design-led school sportswear brand from The Parently Group, built on David Luke’s four decades of schoolwear expertise. Created to encourage every child to participate in sport — regardless of ability, size or shape — the range covers six product categories across school, grassroots and community sport. Inclusive by design. Sustainable by commitment. Straightforward to stock and sell.</p>",
+            "text": "<p>The Parently Group's story begins long before the name existed. Our roots lie in David Luke, a family-run schoolwear business founded in Manchester in 1982 by David Burgess and Adrian Luke. Built on practical innovation, strong retailer partnerships, and a belief in doing the right thing, David Luke earned a reputation for quality, consistency, and responsible business practice.<br/><br/></p>",
             "text_style": "body"
           }
         }
@@ -139,37 +149,37 @@
             "headline": "SERVICES",
             "link": "",
             "link_target": false,
-            "image": "shopify://shop_images/Tile-Image-Juco-Services.png",
-            "display_alternative": false,
-            "background_color": "#499093",
-            "text_background_color": "#499093",
-            "heading_color": "#ffffff"
+            "image": "shopify://shop_images/69e420d1ea17da526427928e1dc2bef32e3c2675.jpg",
+            "display_alternative": true,
+            "background_color": "#cbdeef",
+            "text_background_color": "#355bbc",
+            "heading_color": "#4767b3"
           }
         },
         "panel_RrbyWf": {
           "type": "panel",
           "settings": {
             "headline": "OUTLET",
-            "link": "",
+            "link": "shopify://pages/clearance",
             "link_target": false,
-            "image": "shopify://shop_images/Tile-Image-Juco-Outlet.png",
-            "display_alternative": false,
-            "background_color": "#26263f",
-            "text_background_color": "#26263f",
-            "heading_color": "#ffffff"
+            "image": "shopify://shop_images/c5866beb81116e105a2ebf7c10bdcc2ff87d6005.jpg",
+            "display_alternative": true,
+            "background_color": "#f6f2ce",
+            "text_background_color": "#ca703f",
+            "heading_color": "#ca703f"
           }
         },
         "panel_BGW3CB": {
           "type": "panel",
           "settings": {
             "headline": "SUSTAINABILITY",
-            "link": "",
+            "link": "shopify://pages/eco-resources",
             "link_target": false,
-            "image": "shopify://shop_images/Tile-Image-Juco-Sustainabilty.png",
-            "display_alternative": false,
-            "background_color": "#70f49b",
-            "text_background_color": "#70f49b",
-            "heading_color": "#ffffff"
+            "image": "shopify://shop_images/0a8ce74b8bbeac3f34eae77b25e001f659c460b7.jpg",
+            "display_alternative": true,
+            "background_color": "#d7e6c2",
+            "text_background_color": "#23382d",
+            "heading_color": "#23382d"
           }
         }
       },
@@ -200,6 +210,7 @@
       "blocks": {
         "tab_zBh3gP": {
           "type": "tab",
+          "disabled": true,
           "settings": {
             "tab_title": "New Arrivals",
             "collection": "new-arrivals"
@@ -209,7 +220,7 @@
           "type": "tab",
           "settings": {
             "tab_title": "Best Sellers",
-            "collection": "best-sellers"
+            "collection": "dl-best-sellers-1"
           }
         }
       },
@@ -217,6 +228,7 @@
         "tab_zBh3gP",
         "tab_LxpDG7"
       ],
+      "disabled": true,
       "name": "Tabbed Featured Collections",
       "settings": {
         "products_to_show": 4,
@@ -243,7 +255,7 @@
         "text_V8GhdV": {
           "type": "text",
           "settings": {
-            "text": "<p>Browse the full Juco range — T-shirts and polo shirts, shorts and skorts, base layers, tracksuits and jackets, swimwear and accessories. Products are built across three technology platforms: ENVIROTECH (recycled fabric from post-consumer plastic waste), DURATECH (water repellent) and DRYTECH (waterproof and breathable at 2000mm). Multiple colourways per product, sized from age 3/4 to adult. Every item can be personalised to carry your customers’ school or club identity.</p>",
+            "text": "<p>The David Luke range covers everything from essentials to eco-collections — blouses, trousers, skirts, blazers  and sportswear. Designed for durability, sized for every body, and built with circularity in mind. Browse the full range to find everything your customers need, season after season.</p>",
             "text_style": "body"
           }
         },
@@ -251,7 +263,7 @@
           "type": "button",
           "settings": {
             "button_label": "Download Here",
-            "button_link": "",
+            "button_link": "shopify://blogs/marketing",
             "button_style_secondary": true
           }
         }
@@ -263,7 +275,7 @@
       ],
       "name": "t:sections.image-with-text.presets.name",
       "settings": {
-        "image": "shopify://shop_images/Brand-Page-Images-JUCO-Catalogue.png",
+        "image": "shopify://shop_images/David-Luke-Product-Catalogue-Block-Image-FINAL.png",
         "height": "large",
         "desktop_image_width": "medium",
         "layout": "image_first",
@@ -272,9 +284,9 @@
         "desktop_content_position": "middle",
         "desktop_content_alignment": "left",
         "mobile_content_alignment": "left",
-        "image_background_color": "#499093",
-        "text_background_color": "#499093",
-        "content_text_color": "#ffffff",
+        "image_background_color": "#4767b3",
+        "text_background_color": "#cbdeef",
+        "content_text_color": "#4767b3",
         "padding_top": 0,
         "padding_bottom": 0
       }
@@ -362,7 +374,7 @@
       ],
       "name": "Image & text links",
       "settings": {
-        "image": "shopify://shop_images/HighRes_Juco_Retouched_8J0A0877.jpg",
+        "image": "shopify://shop_images/Rectangle_2699.jpg",
         "image_overlay_opacity": 40,
         "image_behavior": "none",
         "section_height": "large"
@@ -374,14 +386,14 @@
         "heading_taTgMY": {
           "type": "heading",
           "settings": {
-            "heading": "Garment Decoration",
+            "heading": "Our story",
             "heading_size": "h0"
           }
         },
         "text_R6VBUT": {
           "type": "text",
           "settings": {
-            "text": "<p>Juco garments are built to carry your customers’ identity. Our UK in-house printing and embroidery service handles everything from school crests to fully bespoke kit — with small minimums and quick turnaround. Need something bigger? Our at-source embroidery option saves time and money at volume. Free CAD mock-ups available on every single order.</p>",
+            "text": "<p>David Luke started in Manchester in 1982. Built on a simple belief: school uniform should be made well, sourced responsibly, and sold through retailers who know their customers. Today it's the UK's leading sustainable schoolwear brand — a previous Queen's Award winner, worn by hundreds of thousands of children, and found in over 700 stores.</p>",
             "text_style": "body"
           }
         },
@@ -401,7 +413,7 @@
       ],
       "name": "t:sections.image-with-text.presets.name",
       "settings": {
-        "image": "shopify://shop_images/Brand-Page-Images-JUCO-Decoration.png",
+        "image": "shopify://shop_images/b7034ac4b884dcf6c9478fd2db2e0a0066cf6a27.jpg",
         "height": "large",
         "desktop_image_width": "medium",
         "layout": "text_first",
@@ -410,8 +422,8 @@
         "desktop_content_position": "middle",
         "desktop_content_alignment": "left",
         "mobile_content_alignment": "left",
-        "image_background_color": "#26263f",
-        "text_background_color": "#26263f",
+        "image_background_color": "#ca703f",
+        "text_background_color": "#ca703f",
         "content_text_color": "#ffffff",
         "padding_top": 0,
         "padding_bottom": 0
@@ -424,7 +436,7 @@
         "heading": "",
         "heading_size": "h2",
         "enable_video_looping": true,
-        "video": "shopify://files/videos/CreativeSpark_Juco_V4.mp4",
+        "video": "shopify://files/videos/david_luke_+_juco_campaign_video_v2_nocornerlogo (1080p).mp4",
         "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
         "description": "",
         "full_width": false,

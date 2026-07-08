@@ -12,6 +12,195 @@
     "image_downloads": {
       "type": "image-downloads",
       "blocks": {
+        "category_L6LUMe": {
+          "type": "category",
+          "settings": {
+            "brand": "juco",
+            "collection": "",
+            "category_title": "",
+            "category_note": ""
+          }
+        },
+        "category_VFahqX": {
+          "type": "category",
+          "settings": {
+            "brand": "juco",
+            "collection": "juco-tshirts-polos",
+            "category_title": "",
+            "category_note": ""
+          }
+        },
+        "category_TciW9Y": {
+          "type": "category",
+          "settings": {
+            "brand": "juco",
+            "collection": "juco-tracksuits-jackets",
+            "category_title": "",
+            "category_note": ""
+          }
+        },
+        "category_7WDfPc": {
+          "type": "category",
+          "settings": {
+            "brand": "juco",
+            "collection": "juco-swimwear",
+            "category_title": "",
+            "category_note": ""
+          }
+        },
+        "category_z7pkNe": {
+          "type": "category",
+          "settings": {
+            "brand": "juco",
+            "collection": "juco-skorts-shorts",
+            "category_title": "",
+            "category_note": ""
+          }
+        },
+        "category_jkrCHJ": {
+          "type": "category",
+          "settings": {
+            "brand": "juco",
+            "collection": "juco-base-layers-leggings",
+            "category_title": "",
+            "category_note": ""
+          }
+        },
+        "category_atYyhg": {
+          "type": "category",
+          "settings": {
+            "brand": "juco",
+            "collection": "juco-accessories",
+            "category_title": "",
+            "category_note": ""
+          }
+        },
+        "category_9RETRC": {
+          "type": "category",
+          "settings": {
+            "brand": "term",
+            "collection": "term-wellies",
+            "category_title": "",
+            "category_note": ""
+          }
+        },
+        "category_8rakgn": {
+          "type": "category",
+          "settings": {
+            "brand": "term",
+            "collection": "term-outlet",
+            "category_title": "",
+            "category_note": ""
+          }
+        },
+        "category_7EVMGR": {
+          "type": "category",
+          "settings": {
+            "brand": "term",
+            "collection": "term-footwear",
+            "category_title": "",
+            "category_note": ""
+          }
+        },
+        "category_jGpzgh": {
+          "type": "category",
+          "settings": {
+            "brand": "lk",
+            "collection": "lelli-kelly",
+            "category_title": "",
+            "category_note": ""
+          }
+        },
+        "category_fcD9Up": {
+          "type": "category",
+          "settings": {
+            "brand": "ga",
+            "collection": "grass-air",
+            "category_title": "",
+            "category_note": ""
+          }
+        },
+        "category_KU9L4i": {
+          "type": "category",
+          "settings": {
+            "brand": "ga",
+            "collection": "swimwear",
+            "category_title": "",
+            "category_note": ""
+          }
+        },
+        "category_mrzAUA": {
+          "type": "category",
+          "settings": {
+            "brand": "ga",
+            "collection": "rainwear",
+            "category_title": "",
+            "category_note": ""
+          }
+        },
+        "category_A7QXCD": {
+          "type": "category",
+          "settings": {
+            "brand": "dl",
+            "collection": "sweatshirts",
+            "category_title": "",
+            "category_note": ""
+          }
+        },
+        "category_QCYtEz": {
+          "type": "category",
+          "settings": {
+            "brand": "dl",
+            "collection": "shirts-blouses",
+            "category_title": "",
+            "category_note": ""
+          }
+        },
+        "category_XctHxt": {
+          "type": "category",
+          "settings": {
+            "brand": "dl",
+            "collection": "polo-shirts",
+            "category_title": "",
+            "category_note": ""
+          }
+        },
+        "category_qGMkww": {
+          "type": "category",
+          "settings": {
+            "brand": "dl",
+            "collection": "girls-trousers-shorts",
+            "category_title": "",
+            "category_note": ""
+          }
+        },
+        "category_FJVDwQ": {
+          "type": "category",
+          "settings": {
+            "brand": "dl",
+            "collection": "girls-school-dresses",
+            "category_title": "",
+            "category_note": ""
+          }
+        },
+        "category_wUnL8E": {
+          "type": "category",
+          "settings": {
+            "brand": "dl",
+            "collection": "craftwear",
+            "category_title": "",
+            "category_note": ""
+          }
+        },
+        "category_LdKWqU": {
+          "type": "category",
+          "settings": {
+            "brand": "dl",
+            "collection": "boys-trousers-shorts",
+            "category_title": "",
+            "category_note": ""
+          }
+        },
         "category_K9qfzG": {
           "type": "category",
           "settings": {
@@ -23,6 +212,27 @@
         }
       },
       "block_order": [
+        "category_L6LUMe",
+        "category_VFahqX",
+        "category_TciW9Y",
+        "category_7WDfPc",
+        "category_z7pkNe",
+        "category_jkrCHJ",
+        "category_atYyhg",
+        "category_9RETRC",
+        "category_8rakgn",
+        "category_7EVMGR",
+        "category_jGpzgh",
+        "category_fcD9Up",
+        "category_KU9L4i",
+        "category_mrzAUA",
+        "category_A7QXCD",
+        "category_QCYtEz",
+        "category_XctHxt",
+        "category_qGMkww",
+        "category_FJVDwQ",
+        "category_wUnL8E",
+        "category_LdKWqU",
         "category_K9qfzG"
       ],
       "settings": {
@@ -34,7 +244,7 @@
         "brand_4_label": "Term",
         "brand_5_label": "Little Classmates",
         "brand_6_label": "Juco",
-        "require_login": true,
+        "require_login": false,
         "required_tag": "",
         "accent_color": "#4ea043",
         "tab_active_color": "#4ea043"

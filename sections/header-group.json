@@ -56,26 +56,68 @@
         "padding_bottom": 16
       }
     },
-    "quick_order_sku_NGQj9M": {
-      "type": "quick-order-sku",
+    "bdm_policy_library_VthGyk": {
+      "type": "bdm-policy-library",
+      "blocks": {
+        "policy_LN8Bzy": {
+          "type": "policy",
+          "settings": {
+            "category": "The Parently Group",
+            "policy_title": "Environmental Policy",
+            "file_url": "https://parentlygroup.b-cdn.net/Policies/TPG-%20%20Environmental%20Policy.pdf",
+            "docx_url": "https://parentlygroup.b-cdn.net/Policies/TPG-%20%20Environmental%20Policy.docx",
+            "description": ""
+          }
+        },
+        "policy_tERkqB": {
+          "type": "policy",
+          "settings": {
+            "category": "The Parently Group",
+            "policy_title": "Responsible Sourcing Agreement",
+            "file_url": "",
+            "docx_url": "https://parentlygroup.b-cdn.net/Policies/TPG%20-%20Responsible%20Sourcing%20Agreement.docx",
+            "description": ""
+          }
+        },
+        "policy_TYFhnD": {
+          "type": "policy",
+          "settings": {
+            "category": "The Parently Group",
+            "policy_title": "Ethical Policy",
+            "file_url": "https://parentlygroup.b-cdn.net/Policies/TPG%20-%20Ethical%20Policy.pdf",
+            "docx_url": "https://parentlygroup.b-cdn.net/Policies/TPG%20-%20Ethical%20Policy.docx",
+            "description": ""
+          }
+        },
+        "policy_HhPkdp": {
+          "type": "policy",
+          "settings": {
+            "category": "The Parently Group",
+            "policy_title": "Modern Slavery Policy",
+            "file_url": "https://parentlygroup.b-cdn.net/Policies/Modern%20Slavery%20Policy.pdf",
+            "docx_url": "",
+            "description": ""
+          }
+        }
+      },
+      "block_order": [
+        "policy_LN8Bzy",
+        "policy_tERkqB",
+        "policy_TYFhnD",
+        "policy_HhPkdp"
+      ],
       "disabled": true,
-      "name": "Quick Order SKU",
+      "name": "Policy",
       "settings": {
-        "collection": "",
-        "phone_number": "0161 234 5678",
-        "support_email": "trade@parentlygroup.com"
+        "heading": "Policies",
+        "introduction": "<p>View and download the latest policy documents.</p>",
+        "color_scheme": ""
       }
-    },
-    "17827341856861fb90": {
-      "type": "_blocks",
-      "disabled": true,
-      "settings": {}
     }
   },
   "order": [
     "announcement-bar",
     "header",
-    "quick_order_sku_NGQj9M",
-    "17827341856861fb90"
+    "bdm_policy_library_VthGyk"
   ]
 }

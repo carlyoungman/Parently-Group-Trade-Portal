@@ -1,0 +1,538 @@
+{% liquid
+  assign brands = 'David Luke|Term|JUCO|Grass & Air|Little Classmates|Lelli Kelly' | split: '|'
+  assign default_brand = brands | first
+  assign default_count = 0
+
+  for block in section.blocks limit: 50
+    if block.settings.brand == default_brand
+      assign default_count = default_count | plus: 1
+    endif
+  endfor
+%}
+
+<section class="bdm-resource-library color-{{ section.settings.color_scheme }}" data-bdm-resource-library>
+  <div class="bdm-resource-library__inner">
+    {% if section.settings.heading != blank or section.settings.introduction != blank %}
+      <div class="bdm-resource-library__header">
+        {% if section.settings.heading != blank %}
+          <h2 class="bdm-resource-library__heading">{{ section.settings.heading | escape }}</h2>
+        {% endif %}
+
+        {% if section.settings.introduction != blank %}
+          <div class="bdm-resource-library__intro">
+            {{ section.settings.introduction }}
+          </div>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <div class="bdm-resource-library__tabs" role="tablist" aria-label="Resource brands">
+      {% for brand in brands %}
+        <button
+          class="bdm-resource-library__tab{% if forloop.first %} is-active{% endif %}"
+          type="button"
+          role="tab"
+          aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+          aria-controls="bdm-resource-library-{{ section.id }}-grid"
+          data-brand="{{ brand | escape }}"
+        >
+          {{ brand | escape }}
+        </button>
+      {% endfor %}
+    </div>
+
+    <p class="bdm-resource-library__empty"{% if default_count > 0 %} hidden{% endif %} data-empty-message>
+      No files available yet.
+    </p>
+
+    <div class="bdm-resource-library__grid" id="bdm-resource-library-{{ section.id }}-grid" data-resource-grid>
+      {% for block in section.blocks limit: 50 %}
+        {% liquid
+          assign resource_title = block.settings.resource_title | default: 'Untitled resource'
+          assign cover_alt = resource_title | append: ' cover'
+        %}
+
+        <article
+          class="bdm-resource-library__card"
+          data-resource-card
+          data-brand="{{ block.settings.brand | escape }}"
+          {% if block.settings.brand != default_brand %}hidden{% endif %}
+          {{ block.shopify_attributes }}
+        >
+          <div class="bdm-resource-library__cover">
+            {% if block.settings.cover_image != blank %}
+              {{ block.settings.cover_image | image_url: width: 420 | image_tag: loading: 'lazy', class: 'bdm-resource-library__image', alt: cover_alt }}
+            {% else %}
+              <div class="bdm-resource-library__placeholder" aria-hidden="true">
+                <span>PDF</span>
+              </div>
+            {% endif %}
+          </div>
+
+          <p class="bdm-resource-library__brand">{{ block.settings.brand | escape }}</p>
+
+          <div class="bdm-resource-library__content">
+            <h3 class="bdm-resource-library__title">{{ resource_title | escape }}</h3>
+
+            {% if block.settings.description != blank %}
+              <div class="bdm-resource-library__description">
+                {{ block.settings.description | escape | newline_to_br }}
+              </div>
+            {% endif %}
+
+            <div class="bdm-resource-library__actions">
+              {% if block.settings.preview_url != blank %}
+                <a class="bdm-resource-library__button bdm-resource-library__button--primary" href="{{ block.settings.preview_url }}" target="_blank" rel="noopener">
+                  View / Download
+                </a>
+              {% else %}
+                <span class="bdm-resource-library__button bdm-resource-library__button--disabled" aria-disabled="true">
+                  View / Download
+                </span>
+              {% endif %}
+            </div>
+          </div>
+        </article>
+      {% endfor %}
+
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .bdm-resource-library {
+    --bdm-background: rgb(var(--color-background, 255, 255, 255));
+    --bdm-text: rgb(var(--color-foreground, 31, 41, 51));
+    --bdm-muted: rgba(var(--color-foreground, 31, 41, 51), 0.68);
+    --bdm-border: rgba(var(--color-foreground, 31, 41, 51), 0.14);
+    --bdm-border-strong: rgba(var(--color-foreground, 31, 41, 51), 0.26);
+    --bdm-surface: rgb(var(--color-background, 255, 255, 255));
+    --bdm-surface-soft: rgba(var(--color-foreground, 31, 41, 51), 0.04);
+    --bdm-button: rgb(var(--color-button, var(--color-foreground, 31, 41, 51)));
+    --bdm-button-rgb: var(--color-button, var(--color-foreground, 31, 41, 51));
+    --bdm-button-text: rgb(var(--color-button-text, var(--color-background, 255, 255, 255)));
+    --bdm-focus: rgba(var(--color-button, var(--color-foreground, 31, 41, 51)), 0.26);
+    background: var(--bdm-background);
+    color: var(--bdm-text);
+    font-family: var(--font-body-family, inherit);
+    padding: 28px 22px 40px;
+  }
+
+  .bdm-resource-library__inner {
+    max-width: 1180px;
+    margin: 0 auto;
+  }
+
+  .bdm-resource-library__header {
+    max-width: 760px;
+    margin-bottom: 14px;
+  }
+
+  .bdm-resource-library__heading {
+    margin: 0;
+    color: var(--bdm-text);
+    font-family: var(--font-heading-family, inherit);
+    font-size: clamp(1.74rem, 2.4vw, 2.4rem);
+    line-height: 1.2;
+    letter-spacing: 0;
+  }
+
+  .bdm-resource-library__intro {
+    margin-top: 12px;
+    color: var(--bdm-muted);
+    font-size: 1.3rem;
+    line-height: 1.6;
+  }
+
+  .bdm-resource-library__intro p {
+    margin: 0;
+  }
+
+  .bdm-resource-library__tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0 0 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--bdm-border-strong);
+  }
+
+  .bdm-resource-library__tab {
+    border: 1px solid var(--bdm-border);
+    border-radius: var(--buttons-radius, 6px);
+    background: var(--bdm-surface);
+    color: var(--bdm-text);
+    cursor: pointer;
+    font: inherit;
+    font-size: 1.2rem;
+    font-weight: 700;
+    line-height: 1.2;
+    padding: 8px 12px;
+    transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease, box-shadow 160ms ease;
+  }
+
+  .bdm-resource-library__tab:hover {
+    border-color: var(--bdm-border-strong);
+    box-shadow: 0 0 0 1px var(--bdm-border);
+  }
+
+  .bdm-resource-library__tab:focus-visible,
+  .bdm-resource-library__button:focus-visible {
+    outline: 3px solid var(--bdm-focus);
+    outline-offset: 3px;
+  }
+
+  .bdm-resource-library__tab.is-active {
+    background: var(--bdm-button);
+    border-color: var(--bdm-button);
+    color: var(--bdm-button-text);
+    box-shadow: 0 8px 20px rgba(var(--bdm-button-rgb), 0.16);
+  }
+
+  .bdm-resource-library__empty {
+    border: 1px dashed var(--bdm-border-strong);
+    border-radius: var(--media-radius, 8px);
+    color: var(--bdm-muted);
+    margin: 0;
+    padding: 22px;
+    text-align: center;
+  }
+
+  .bdm-resource-library__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 170px);
+    justify-content: start;
+    align-items: start;
+    gap: 16px;
+  }
+
+  .bdm-resource-library [hidden],
+  .bdm-resource-library__card.is-hidden {
+    display: none !important;
+  }
+
+  .bdm-resource-library__card {
+    display: flex;
+    min-width: 0;
+    overflow: hidden;
+    flex-direction: column;
+    border: 1px solid var(--bdm-border);
+    border-radius: var(--media-radius, 8px);
+    background: var(--bdm-surface);
+    box-shadow: none;
+    transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+  }
+
+  .bdm-resource-library__card:hover {
+    border-color: var(--bdm-border-strong);
+    box-shadow: 0 6px 16px rgba(var(--color-foreground, 31, 41, 51), 0.08);
+    transform: translateY(-1px);
+  }
+
+  .bdm-resource-library__cover {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    background: var(--bdm-surface-soft);
+    overflow: hidden;
+  }
+
+  .bdm-resource-library__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .bdm-resource-library__placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background: var(--bdm-surface-soft);
+  }
+
+  .bdm-resource-library__placeholder span {
+    border: 2px solid var(--bdm-button);
+    border-radius: var(--buttons-radius, 6px);
+    color: var(--bdm-button);
+    font-size: 1.2rem;
+    font-weight: 800;
+    letter-spacing: 0;
+    padding: 12px 16px;
+  }
+
+  .bdm-resource-library__content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 8px;
+    padding: 10px 11px 12px;
+  }
+
+  .bdm-resource-library__brand {
+    background: var(--bdm-button);
+    color: var(--bdm-button-text);
+    font-size: 1.06rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    line-height: 1.1;
+    margin: 0;
+    min-height: 40px;
+    padding: 12px 13px;
+    text-transform: uppercase;
+  }
+
+  .bdm-resource-library__title {
+    color: var(--bdm-text);
+    font-family: var(--font-heading-family, inherit);
+    font-size: 1.26rem;
+    line-height: 1.3;
+    margin: 0;
+  }
+
+  .bdm-resource-library__description {
+    color: var(--bdm-muted);
+    font-size: 1.15rem;
+    line-height: 1.45;
+  }
+
+  .bdm-resource-library__actions {
+    margin-top: auto;
+    padding-top: 4px;
+  }
+
+  .bdm-resource-library__button {
+    align-items: center;
+    border: 1px solid var(--bdm-button);
+    border-radius: var(--buttons-radius, 6px);
+    display: inline-flex;
+    font-size: 1.18rem;
+    font-weight: 800;
+    justify-content: center;
+    line-height: 1.2;
+    min-height: 44px;
+    padding: 10px 12px;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease;
+    width: 100%;
+  }
+
+  .bdm-resource-library__button--primary {
+    background: var(--bdm-button);
+    color: var(--bdm-button-text);
+  }
+
+  .bdm-resource-library__button--primary:hover {
+    background: var(--bdm-button);
+    border-color: var(--bdm-button);
+    color: var(--bdm-button-text);
+    filter: brightness(0.94);
+  }
+
+  .bdm-resource-library__button--secondary {
+    background: var(--bdm-surface);
+    color: var(--bdm-button);
+  }
+
+  .bdm-resource-library__button--secondary:hover {
+    background: rgba(var(--bdm-button-rgb), 0.08);
+    color: var(--bdm-button);
+  }
+
+  .bdm-resource-library__button--disabled {
+    border-color: var(--bdm-border);
+    color: var(--bdm-muted);
+    cursor: not-allowed;
+  }
+
+  @media screen and (max-width: 640px) {
+    .bdm-resource-library {
+      padding: 24px 14px 32px;
+    }
+
+    .bdm-resource-library__tabs {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .bdm-resource-library__tab {
+      border-radius: 8px;
+      padding: 10px;
+    }
+
+    .bdm-resource-library__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .bdm-resource-library__content {
+      padding: 9px 9px 11px;
+    }
+  }
+{% endstylesheet %}
+
+{% javascript %}
+  class BdmResourceLibrary {
+    constructor(section) {
+      if (section.dataset.bdmResourceLibraryInitialized === 'true') {
+        return;
+      }
+
+      this.section = section;
+      this.tabs = Array.from(section.querySelectorAll('[data-brand][role="tab"]'));
+      this.cards = Array.from(section.querySelectorAll('[data-resource-card]'));
+      this.emptyMessage = section.querySelector('[data-empty-message]');
+      this.activeClass = 'is-active';
+      section.dataset.bdmResourceLibraryInitialized = 'true';
+
+      this.tabs.forEach((tab) => {
+        tab.addEventListener('click', () => this.selectBrand(tab.dataset.brand));
+      });
+
+      const defaultTab = this.tabs.find((tab) => tab.classList.contains(this.activeClass)) || this.tabs[0];
+
+      if (defaultTab) {
+        this.selectBrand(defaultTab.dataset.brand);
+      }
+    }
+
+    selectBrand(brand) {
+      let visibleCount = 0;
+
+      this.tabs.forEach((tab) => {
+        const isActive = tab.dataset.brand === brand;
+        tab.classList.toggle(this.activeClass, isActive);
+        tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      });
+
+      this.cards.forEach((card) => {
+        const isVisible = card.dataset.brand === brand;
+        card.hidden = !isVisible;
+        card.classList.toggle('is-hidden', !isVisible);
+
+        if (isVisible) {
+          visibleCount += 1;
+        }
+      });
+
+      if (this.emptyMessage) {
+        this.emptyMessage.hidden = visibleCount > 0;
+      }
+    }
+  }
+
+  const initBdmResourceLibraries = (root = document) => {
+    if (root.matches && root.matches('[data-bdm-resource-library]')) {
+      new BdmResourceLibrary(root);
+    }
+
+    root.querySelectorAll('[data-bdm-resource-library]').forEach((section) => {
+      new BdmResourceLibrary(section);
+    });
+  };
+
+  initBdmResourceLibraries();
+
+  document.addEventListener('shopify:section:load', (event) => {
+    initBdmResourceLibraries(event.target);
+  });
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "BDM resource library",
+  "tag": "section",
+  "class": "section-bdm-resource-library",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Point of Sale Resources"
+    },
+    {
+      "type": "richtext",
+      "id": "introduction",
+      "label": "Introduction",
+      "default": "<p>Browse brand catalogues and download the files you need.</p>"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "background-1"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "resource",
+      "name": "Resource card",
+      "settings": [
+        {
+          "type": "select",
+          "id": "brand",
+          "label": "Brand",
+          "options": [
+            {
+              "value": "David Luke",
+              "label": "David Luke"
+            },
+            {
+              "value": "Term",
+              "label": "Term"
+            },
+            {
+              "value": "JUCO",
+              "label": "JUCO"
+            },
+            {
+              "value": "Grass & Air",
+              "label": "Grass & Air"
+            },
+            {
+              "value": "Little Classmates",
+              "label": "Little Classmates"
+            },
+            {
+              "value": "Lelli Kelly",
+              "label": "Lelli Kelly"
+            }
+          ],
+          "default": "David Luke"
+        },
+        {
+          "type": "image_picker",
+          "id": "cover_image",
+          "label": "Cover image"
+        },
+        {
+          "type": "text",
+          "id": "resource_title",
+          "label": "Resource title",
+          "default": "Catalogue"
+        },
+        {
+          "type": "url",
+          "id": "preview_url",
+          "label": "File URL",
+          "info": "Paste the public Bunny CDN file URL. The View / Download button opens this file in a new tab, where customers can view it and use the browser download option."
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Optional description"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 50,
+  "presets": [
+    {
+      "name": "BDM resource library"
+    }
+  ]
+}
+{% endschema %}

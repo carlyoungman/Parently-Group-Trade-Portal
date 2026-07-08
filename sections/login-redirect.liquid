@@ -1,0 +1,77 @@
+{%- comment -%}
+  Hidden router page. Reached via return_to after a storefront-initiated sign-in
+  (see snippets/customer-login-url.liquid). Immediately forwards the customer to
+  the configured customer-account page (settings.customer_logged_in_url), which
+  may live on Shopify's account domain and so can't be a return_to target directly.
+{%- endcomment -%}
+
+{%- liquid
+  assign target = settings.customer_logged_in_url
+-%}
+
+{%- if target != blank -%}
+  <script>window.location.replace({{ target | json }});</script>
+{%- endif -%}
+
+{%- style -%}
+  #Section-{{ section.id }} {
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    padding-top: {{ section.settings.padding_top }}px;
+    text-align: center;
+  }
+{%- endstyle -%}
+
+<div id="Section-{{ section.id }}" class="login-redirect page-width">
+  {%- if section.settings.message != blank -%}
+    <div class="login-redirect__message rte">{{ section.settings.message }}</div>
+  {%- endif -%}
+  {%- if target != blank -%}
+    <noscript>
+      <a href="{{ target }}" class="button">{{ section.settings.link_label | escape }}</a>
+    </noscript>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Login redirect",
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "message",
+      "label": "Message",
+      "default": "Signing you in…"
+    },
+    {
+      "type": "text",
+      "id": "link_label",
+      "label": "Fallback link label",
+      "default": "Continue to your account"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 48
+    }
+  ]
+}
+{% endschema %}

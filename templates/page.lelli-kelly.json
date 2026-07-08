@@ -95,6 +95,7 @@
         },
         "button_xMywhR": {
           "type": "button",
+          "disabled": true,
           "settings": {
             "button_label": "Products",
             "button_link": "shopify://collections/rainwear",
@@ -183,7 +184,7 @@
         "button_label_2": "",
         "button_link_2": "",
         "button_style_secondary_2": true,
-        "background_color": "#E02086",
+        "background_color": "#e02086",
         "image_ratio": "auto",
         "autoplay": true,
         "autoplay_speed": 4,
@@ -202,8 +203,8 @@
             "link_target": false,
             "image": "shopify://shop_images/Brand-Page-Images-Square.png",
             "display_alternative": false,
-            "background_color": "#FFFFFF",
-            "text_background_color": "#E02086",
+            "background_color": "#ffffff",
+            "text_background_color": "#e02086",
             "heading_color": "#ffffff"
           }
         },
@@ -215,8 +216,8 @@
             "link_target": false,
             "image": "shopify://shop_images/Brand_Page_Images-Square-Three_2d13a63b-3cea-4291-806c-54a8843406ef.jpg",
             "display_alternative": false,
-            "background_color": "#FFFFFF",
-            "text_background_color": "#EC9AC2",
+            "background_color": "#ffffff",
+            "text_background_color": "#ec9ac2",
             "heading_color": "#ffffff"
           }
         }
@@ -305,7 +306,7 @@
         "desktop_content_position": "center",
         "content_alignment": "center",
         "full_width": true,
-        "background_color": "#EC9AC2",
+        "background_color": "#ec9ac2",
         "text_color": "#ffffff",
         "padding_top": 100,
         "padding_bottom": 100
@@ -327,7 +328,7 @@
         "button_label_2": "",
         "button_link_2": "",
         "button_style_secondary_2": true,
-        "content_bg_color": "#E02086",
+        "content_bg_color": "#e02086",
         "text_color": "#ffffff",
         "padding_top": 0,
         "padding_bottom": 0

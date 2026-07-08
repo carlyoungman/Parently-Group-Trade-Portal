@@ -165,7 +165,7 @@
         "image_link_mtif4K": {
           "type": "image_link",
           "settings": {
-            "background_image": "shopify://shop_images/David_Luke_background.png",
+            "background_image": "shopify://shop_images/1208_DavidLuke_101567.png",
             "logo_image": "shopify://shop_images/David_Luke_logo_white.png",
             "link": "shopify://pages/david-luke"
           }
@@ -267,7 +267,7 @@
           "type": "link_item",
           "settings": {
             "label": "Price Lists",
-            "link": ""
+            "link": "shopify://pages/price-lists"
           }
         },
         "link_item_W8FbFc": {
@@ -357,7 +357,7 @@
       "type": "image-banner",
       "name": "t:sections.image-banner.presets.name",
       "settings": {
-        "image": "shopify://shop_images/Rectangle_2699.jpg",
+        "image": "shopify://shop_images/1208_DavidLuke_072211.png",
         "image_overlay_opacity": 0,
         "image_height": "medium",
         "image_behavior": "none",

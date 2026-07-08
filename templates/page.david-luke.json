@@ -48,39 +48,6 @@
         "show_text_below": true
       }
     },
-    "rich_text_DjHynz": {
-      "type": "rich-text",
-      "blocks": {
-        "heading_r9rTqa": {
-          "type": "heading",
-          "settings": {
-            "heading": "School uniform that gives your customers a reason to choose you.",
-            "heading_size": "h2"
-          }
-        },
-        "text_H3yTdj": {
-          "type": "text",
-          "settings": {
-            "text": "<p>David Luke is the UK's leading school uniform brand — stocked by over 700 independent retailers and trusted by the parents who shop with them. Built on 40 years of relationship-first trading and a genuine commitment to sustainable design, it's the schoolwear range that gives retailers a compelling story to tell, and products that keep selling.</p>",
-            "text_style": "body"
-          }
-        }
-      },
-      "block_order": [
-        "heading_r9rTqa",
-        "text_H3yTdj"
-      ],
-      "name": "t:sections.rich-text.presets.name",
-      "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
-        "full_width": true,
-        "background_color": "#ffffff",
-        "text_color": "#000000",
-        "padding_top": 0,
-        "padding_bottom": 0
-      }
-    },
     "button_grid_LE8piH": {
       "type": "button-grid",
       "blocks": {
@@ -126,6 +93,39 @@
       "name": "t:sections.button-grid.presets.name",
       "settings": {
         "alignment": "center",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "rich_text_DjHynz": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_r9rTqa": {
+          "type": "heading",
+          "settings": {
+            "heading": "School uniform that gives your customers a reason to choose you.",
+            "heading_size": "h2"
+          }
+        },
+        "text_H3yTdj": {
+          "type": "text",
+          "settings": {
+            "text": "<p>David Luke is the UK's leading school uniform brand — stocked by over 700 independent retailers and trusted by the parents who shop with them. Built on 40 years of relationship-first trading and a genuine commitment to sustainable design, it's the schoolwear range that gives retailers a compelling story to tell, and products that keep selling.</p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "heading_r9rTqa",
+        "text_H3yTdj"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "full_width": true,
+        "background_color": "#ffffff",
+        "text_color": "#000000",
         "padding_top": 0,
         "padding_bottom": 0
       }
@@ -439,8 +439,8 @@
   "order": [
     "main",
     "hero_banner",
-    "rich_text_DjHynz",
     "button_grid_LE8piH",
+    "rich_text_DjHynz",
     "link_panels_Ji68ab",
     "tabbed_featured_collections_wJWt9k",
     "image_with_text_hpWHaL",

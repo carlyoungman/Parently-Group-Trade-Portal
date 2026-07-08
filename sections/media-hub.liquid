@@ -1,50 +1,658 @@
 <style>
-:root{--mh-putty:#f5f5f0;--mh-black:#0e0e0e;--mh-eco:#73ae70;--mh-eco-dark:#4d8a4a;--mh-muted:#6b6b65;--mh-border:#d8d8d2;--mh-white:#ffffff;--mh-font:'Nunito Sans',sans-serif}
-.mh-page-header{background:var(--mh-black);padding:24px 28px 0;border-bottom:3px solid var(--mh-eco)}
-.mh-page-title{font-size:26px;font-weight:300;color:#fff;letter-spacing:.02em;margin-bottom:4px;font-family:var(--mh-font)}
-.mh-page-sub{font-size:12px;color:rgba(255,255,255,.5);padding-bottom:18px;font-family:var(--mh-font)}
-.mh-wrap{background:var(--mh-putty);min-height:calc(100vh - 104px);font-family:var(--mh-font);font-size:14px;color:var(--mh-black)}
-.mh-layout{display:grid;grid-template-columns:210px 1fr;min-height:calc(100vh - 104px)}
-@media(max-width:768px){.mh-layout{grid-template-columns:1fr}.mh-sidebar{border-right:none!important;border-bottom:1px solid var(--mh-border)}}
-.mh-sidebar{background:var(--mh-white);border-right:1px solid var(--mh-border);padding:24px 18px}
-.mh-sb-section{margin-bottom:24px}
-.mh-sb-label{font-size:10px;font-weight:700;letter-spacing:.1em;color:var(--mh-muted);text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--mh-border)}
-.mh-cb-row{display:flex;align-items:center;gap:9px;padding:6px 0;cursor:pointer;user-select:none}
-.mh-cb-row:hover .mh-cb-label{color:var(--mh-eco-dark)}
-.mh-cb{width:15px;height:15px;border:1.5px solid var(--mh-border);border-radius:3px;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:background .15s,border-color .15s}
-.mh-cb.is-checked{background:var(--mh-eco);border-color:var(--mh-eco)}
-.mh-cb.is-checked::after{content:'';width:8px;height:5px;border-left:2px solid #fff;border-bottom:2px solid #fff;transform:rotate(-45deg) translateY(-1px);display:block}
-.mh-cb-label{font-size:12px;color:var(--mh-black)}
-.mh-main{padding:24px 28px}
-.mh-active-filter{display:flex;align-items:center;gap:10px;background:#f3eefe;border:1px solid #c9a8f5;border-radius:8px;padding:10px 14px;margin-bottom:16px}
-.mh-filter-icon{color:#7831d7;flex-shrink:0;line-height:1}
-.mh-active-filter-text{font-size:12px;color:#7831d7;font-weight:600;flex:1}
-.mh-active-filter-clear{font-size:11px;color:#7831d7;opacity:.7;cursor:pointer;background:none;border:none;text-decoration:underline;font-family:var(--mh-font);white-space:nowrap}
-.mh-active-filter-clear:hover{opacity:1}
-.mh-search-bar{display:flex;align-items:center;gap:10px;background:var(--mh-white);border:1.5px solid var(--mh-border);border-radius:8px;padding:11px 16px;margin-bottom:28px;transition:border-color .15s;color:var(--mh-muted)}
-.mh-search-bar:focus-within{border-color:var(--mh-eco)}
-.mh-search-bar input{flex:1;border:none;outline:none;font-size:14px;font-family:var(--mh-font);color:var(--mh-black);background:transparent}
-.mh-search-bar input::placeholder{color:#bbb}
-.mh-cat-group{margin-bottom:32px}
-.mh-cat-header{margin-bottom:16px;padding-bottom:10px;border-bottom:2px solid var(--mh-eco)}
-.mh-cat-title{font-size:16px;font-weight:700;letter-spacing:.04em;color:var(--mh-black)}
-.mh-tile-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-@media(max-width:900px){.mh-tile-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:540px){.mh-tile-grid{grid-template-columns:1fr}}
-.mh-tile{background:var(--mh-white);border:1px solid var(--mh-border);border-radius:10px;overflow:hidden;cursor:pointer;transition:border-color .2s,transform .1s}
-.mh-tile:hover{border-color:var(--mh-eco);transform:translateY(-1px)}
-.mh-tile-thumb{height:64px;display:flex;align-items:center;justify-content:center}
-.mh-tile-thumb svg{width:26px;height:26px;stroke-width:1.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
-.mh-tile-body{padding:12px 14px 16px}
-.mh-tile-title{font-size:12px;font-weight:700;margin-bottom:4px;color:var(--mh-black)}
-.mh-tile-sub{font-size:11px;color:var(--mh-muted);line-height:1.5}
-.mh-thumb-mktg{background:#e8f3e7}
-.mh-thumb-mktg svg{stroke:var(--mh-eco)}
-.mh-thumb-sustain{background:#e8f0fb}
-.mh-thumb-sustain svg{stroke:#185FA5}
-.mh-thumb-neutral{background:#f0f0ee}
-.mh-thumb-neutral svg{stroke:#888}
-.mh-empty,.mh-no-content{font-size:13px;color:var(--mh-muted);padding:24px 0}
+:root {
+  --mh-putty: #f5f5f0;
+  --mh-black: #0e0e0e;
+  --mh-eco: #73ae70;
+  --mh-eco-dark: #4d8a4a;
+  --mh-blue: #24607a;
+  --mh-blue-dark: #18506a;
+  --mh-muted: #6b6b65;
+  --mh-border: #d8d8d2;
+  --mh-border-soft: rgba(14, 14, 14, 0.08);
+  --mh-white: #ffffff;
+  --mh-green-soft: #e8f3e7;
+  --mh-blue-soft: #e8f0fb;
+  --mh-shadow: 0 18px 42px rgba(14, 14, 14, 0.08);
+  --mh-shadow-soft: 0 8px 24px rgba(14, 14, 14, 0.06);
+  --mh-font: var(--font-body-family, 'Nunito Sans', sans-serif);
+  --mh-radius: var(--media-radius, 10px);
+}
+
+.mh-wrap {
+  background: var(--mh-white);
+  color: var(--mh-black);
+  font-family: var(--mh-font);
+  font-size: 14px;
+  line-height: 1.5;
+  min-height: calc(100vh - 104px);
+}
+
+.mh-page-header {
+  background:
+    radial-gradient(circle at 82% 8%, rgba(115, 174, 112, 0.18), rgba(115, 174, 112, 0) 32%),
+    linear-gradient(135deg, rgba(115, 174, 112, 0.11), rgba(115, 174, 112, 0) 38%),
+    var(--mh-black);
+  border-bottom: 3px solid var(--mh-eco);
+  overflow: hidden;
+  padding: 30px 28px 26px;
+  position: relative;
+}
+
+.mh-page-header::before,
+.mh-page-header::after {
+  border: 1px solid rgba(115, 174, 112, 0.42);
+  border-radius: 999px;
+  content: '';
+  pointer-events: none;
+  position: absolute;
+}
+
+.mh-page-header::before {
+  height: 170px;
+  right: -42px;
+  top: -96px;
+  transform: rotate(-14deg);
+  width: 280px;
+}
+
+.mh-page-header::after {
+  border-color: rgba(255, 255, 255, 0.12);
+  bottom: -84px;
+  height: 170px;
+  right: 16%;
+  width: 170px;
+}
+
+.mh-page-header-inner {
+  margin: 0 auto;
+  max-width: var(--page-width, 1400px);
+  position: relative;
+  z-index: 1;
+}
+
+.mh-page-kicker {
+  color: var(--mh-eco);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.mh-page-title {
+  color: #ffffff;
+  font-family: var(--font-heading-family, var(--mh-font));
+  font-size: clamp(30px, 3vw, 42px);
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 1.05;
+  margin: 0;
+}
+
+.mh-title-mark {
+  display: inline;
+}
+
+.mh-page-sub {
+  color: rgba(255, 255, 255, 0.64);
+  font-size: 13px;
+  line-height: 1.5;
+  margin: 10px 0 0;
+  max-width: 720px;
+  padding-bottom: 0;
+}
+
+.mh-page-notes {
+  display: none;
+}
+
+.mh-layout {
+  background: var(--mh-white);
+  display: grid;
+  grid-template-columns: 258px minmax(0, 1fr);
+  margin: 0;
+  min-height: calc(100vh - 104px);
+}
+
+.mh-sidebar {
+  background: var(--mh-white);
+  border-right: 1px solid var(--mh-border);
+  padding: 28px 18px;
+}
+
+.mh-filter-panel {
+  background: var(--mh-white);
+  border: 1px solid var(--mh-border);
+  border-radius: var(--mh-radius);
+  box-shadow: 0 1px 0 rgba(14, 14, 14, 0.03);
+  padding: 18px;
+  position: static;
+}
+
+.mh-filter-heading {
+  color: var(--mh-black);
+  font-family: var(--font-heading-family, var(--mh-font));
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.25;
+  margin: 0 0 20px;
+  padding-bottom: 16px;
+  position: relative;
+}
+
+.mh-filter-heading::after {
+  background: var(--mh-eco);
+  border-radius: 999px;
+  bottom: 0;
+  content: '';
+  height: 3px;
+  left: 0;
+  position: absolute;
+  width: 44px;
+}
+
+.mh-sb-section {
+  margin-bottom: 24px;
+}
+
+.mh-sb-section:last-child {
+  margin-bottom: 0;
+}
+
+.mh-sb-label {
+  border-bottom: 1px solid var(--mh-border);
+  color: var(--mh-muted);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.mh-cb-row {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  border-radius: 8px;
+  color: var(--mh-black);
+  cursor: pointer;
+  display: flex;
+  font-family: var(--mh-font);
+  gap: 10px;
+  margin: 0 0 2px;
+  min-height: 0;
+  padding: 7px 8px;
+  text-align: left;
+  transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
+  width: 100%;
+}
+
+.mh-cb-row:hover {
+  background: rgba(115, 174, 112, 0.08);
+  color: var(--mh-eco-dark);
+}
+
+.mh-cb-row:focus-visible,
+.mh-tile:focus-visible,
+.mh-active-filter-clear:focus-visible,
+.mh-search-bar:focus-within {
+  outline: 2px solid rgba(115, 174, 112, 0.32);
+  outline-offset: 2px;
+}
+
+.mh-cb {
+  align-items: center;
+  border: 1.5px solid var(--mh-border);
+  border-radius: 4px;
+  display: flex;
+  flex: 0 0 auto;
+  height: 15px;
+  justify-content: center;
+  transition: background-color 180ms ease, border-color 180ms ease;
+  width: 15px;
+}
+
+.mh-cb.is-checked {
+  background: var(--mh-eco);
+  border-color: var(--mh-eco);
+}
+
+.mh-cb.is-checked::after {
+  border-bottom: 2px solid #ffffff;
+  border-left: 2px solid #ffffff;
+  content: '';
+  display: block;
+  height: 5px;
+  transform: rotate(-45deg) translateY(-1px);
+  width: 8px;
+}
+
+.mh-cb-label {
+  color: var(--mh-black);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+.mh-main {
+  background: var(--mh-white);
+  padding: 28px 28px 52px;
+}
+
+.mh-main-inner {
+  max-width: var(--page-width, 1400px);
+  min-width: 0;
+}
+
+.mh-toolbar {
+  align-items: start;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  grid-template-columns: minmax(0, 1fr);
+  margin-bottom: 28px;
+}
+
+.mh-search-bar {
+  align-items: center;
+  background: var(--mh-white);
+  border: 1.5px solid var(--mh-border);
+  border-radius: var(--mh-radius);
+  box-shadow: 0 1px 0 rgba(14, 14, 14, 0.03);
+  color: var(--mh-muted);
+  display: flex;
+  flex: 1 1 340px;
+  gap: 10px;
+  min-height: 50px;
+  padding: 0 16px;
+  transition: border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.mh-search-bar:focus-within {
+  border-color: var(--mh-eco);
+  box-shadow: 0 0 0 4px rgba(115, 174, 112, 0.13);
+}
+
+.mh-search-bar input {
+  background: transparent;
+  border: 0;
+  color: var(--mh-black);
+  flex: 1;
+  font-family: inherit;
+  font-size: 13px;
+  min-width: 0;
+  outline: 0;
+}
+
+.mh-search-bar input::placeholder {
+  color: #77756d;
+}
+
+.mh-active-filter {
+  align-items: center;
+  background: #eef8ed;
+  border: 1px solid rgba(115, 174, 112, 0.35);
+  border-radius: var(--mh-radius);
+  color: var(--mh-eco-dark);
+  display: flex;
+  gap: 10px;
+  padding: 12px 14px;
+  width: 100%;
+}
+
+.mh-filter-icon {
+  color: var(--mh-eco-dark);
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.mh-active-filter-text {
+  flex: 1;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.mh-active-filter-clear {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  color: var(--mh-eco-dark);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+  padding: 0;
+  text-decoration: underline;
+  transition: background-color 180ms ease, color 180ms ease;
+  white-space: nowrap;
+}
+
+.mh-active-filter-clear:hover {
+  color: var(--mh-black);
+}
+
+.mh-cat-group {
+  margin-bottom: 36px;
+}
+
+.mh-cat-header {
+  align-items: center;
+  border-bottom: 1px solid var(--mh-border);
+  display: flex;
+  gap: 14px;
+  justify-content: flex-start;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+}
+
+.mh-cat-title {
+  color: var(--mh-black);
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  line-height: 1.2;
+}
+
+.mh-cat-header::after {
+  background: linear-gradient(90deg, var(--mh-eco), rgba(115, 174, 112, 0));
+  border-radius: 999px;
+  content: '';
+  flex: 1;
+  height: 2px;
+  min-width: 44px;
+}
+
+.mh-tile-grid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.mh-tile {
+  background: var(--mh-white);
+  border: 1px solid var(--mh-border);
+  border-radius: var(--mh-radius);
+  color: var(--mh-black);
+  cursor: default;
+  display: flex;
+  flex-direction: column;
+  min-height: 170px;
+  overflow: hidden;
+  position: relative;
+  transition: border-color 160ms ease, box-shadow 160ms ease, transform 140ms ease;
+}
+
+.mh-tile::before {
+  background: var(--mh-eco);
+  bottom: 0;
+  content: '';
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  transition: opacity 160ms ease;
+  width: 3px;
+  z-index: 2;
+}
+
+.mh-tile[data-href] {
+  cursor: pointer;
+}
+
+.mh-tile:hover {
+  box-shadow: var(--mh-shadow);
+  transform: translateY(-2px);
+}
+
+.mh-tile:hover::before {
+  opacity: 1;
+}
+
+.mh-tile-mktg:hover {
+  border-color: rgba(115, 174, 112, 0.9);
+  box-shadow: 0 18px 42px rgba(115, 174, 112, 0.18);
+}
+
+.mh-tile-sustain::before {
+  background: var(--mh-blue);
+}
+
+.mh-tile-sustain:hover {
+  border-color: rgba(36, 96, 122, 0.78);
+  box-shadow: 0 18px 42px rgba(36, 96, 122, 0.16);
+}
+
+.mh-tile-neutral::before {
+  background: var(--mh-muted);
+}
+
+.mh-tile-neutral:hover {
+  border-color: rgba(107, 107, 101, 0.52);
+}
+
+.mh-tile-thumb {
+  align-items: center;
+  background: var(--mh-green-soft);
+  border-bottom: 0;
+  display: flex;
+  height: 112px;
+  isolation: isolate;
+  justify-content: center;
+  overflow: hidden;
+  padding: 0;
+  position: relative;
+  transition: background-color 180ms ease, color 180ms ease;
+}
+
+.mh-tile-thumb::before {
+  border: 1.5px solid currentColor;
+  border-radius: 999px;
+  content: '';
+  height: 84px;
+  left: 50%;
+  opacity: 0.17;
+  position: absolute;
+  top: 50%;
+  transition: opacity 180ms ease, transform 180ms ease;
+  transform: translate(-50%, -50%) rotate(-8deg);
+  width: 190px;
+}
+
+.mh-tile-thumb::after {
+  border: 1.5px solid currentColor;
+  border-radius: 999px;
+  content: '';
+  display: block;
+  height: 68px;
+  opacity: 0.12;
+  position: absolute;
+  right: -34px;
+  top: 18px;
+  transition: opacity 180ms ease, transform 180ms ease;
+  transform: rotate(-18deg);
+  width: 142px;
+}
+
+.mh-tile-thumb svg {
+  background: rgba(255, 255, 255, 0.86);
+  border: 1px solid rgba(255, 255, 255, 0.92);
+  border-radius: 18px;
+  box-shadow: 0 12px 24px rgba(14, 14, 14, 0.08);
+  box-sizing: content-box;
+  fill: none;
+  height: 34px;
+  margin-left: 0;
+  padding: 13px;
+  position: relative;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
+  transition: background-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+  width: 34px;
+  z-index: 2;
+}
+
+.mh-thumb-mktg {
+  background:
+    radial-gradient(circle at 25% 28%, rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0) 28%),
+    linear-gradient(135deg, var(--mh-green-soft), #f6fbf5);
+  color: var(--mh-eco);
+}
+
+.mh-thumb-sustain {
+  background:
+    radial-gradient(circle at 25% 28%, rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0) 28%),
+    linear-gradient(135deg, var(--mh-blue-soft), #f7f9fd);
+  color: var(--mh-blue);
+}
+
+.mh-thumb-neutral {
+  background:
+    radial-gradient(circle at 25% 28%, rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0) 28%),
+    linear-gradient(135deg, #eeeeea, #fafaf7);
+  color: var(--mh-muted);
+}
+
+.mh-tile:hover .mh-tile-thumb svg {
+  background: #ffffff;
+  box-shadow: 0 14px 26px rgba(14, 14, 14, 0.12);
+  transform: translateY(-2px) scale(1.04);
+}
+
+.mh-tile:hover .mh-tile-thumb::before {
+  opacity: 0.24;
+  transform: translate(-50%, -50%) rotate(-4deg) scale(1.04);
+}
+
+.mh-tile:hover .mh-tile-thumb::after {
+  opacity: 0.18;
+  transform: rotate(-14deg) scale(1.04);
+}
+
+.mh-tile-mktg:hover .mh-tile-thumb {
+  background:
+    radial-gradient(circle at 25% 28%, rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0) 30%),
+    linear-gradient(135deg, #dff1dd, #f4fbf2);
+  color: var(--mh-eco-dark);
+}
+
+.mh-tile-sustain:hover .mh-tile-thumb {
+  background:
+    radial-gradient(circle at 25% 28%, rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0) 30%),
+    linear-gradient(135deg, #dfeaf8, #f5f9ff);
+  color: var(--mh-blue-dark);
+}
+
+.mh-tile-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  padding: 15px 16px 16px;
+}
+
+.mh-tile-title {
+  color: var(--mh-black);
+  font-size: 13.5px;
+  font-weight: 700;
+  line-height: 1.35;
+  margin-bottom: 5px;
+}
+
+.mh-tile-sub {
+  color: var(--mh-muted);
+  font-size: 11.5px;
+  line-height: 1.55;
+}
+
+.mh-tile[data-href] .mh-tile-body::after {
+  color: var(--mh-eco-dark);
+  content: 'View resource';
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+  margin-top: auto;
+  padding-top: 14px;
+}
+
+.mh-tile-sustain[data-href] .mh-tile-body::after {
+  color: var(--mh-blue-dark);
+}
+
+.mh-tile-neutral[data-href] .mh-tile-body::after {
+  color: var(--mh-muted);
+}
+
+.mh-empty,
+.mh-no-content {
+  color: var(--mh-muted);
+  font-size: 13px;
+  padding: 24px 0;
+}
+
+.mh-empty p {
+  margin: 0;
+}
+
+@media (max-width: 960px) {
+  .mh-layout {
+    grid-template-columns: 1fr;
+    padding: 0;
+  }
+
+  .mh-sidebar {
+    border-bottom: 1px solid var(--mh-border);
+    border-right: 0;
+    display: grid;
+    gap: 18px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .mh-main {
+    padding: 24px 18px 40px;
+  }
+
+  .mh-tile-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .mh-page-header {
+    padding: 24px 18px 24px;
+  }
+
+  .mh-page-title {
+    font-size: 30px;
+  }
+
+  .mh-page-sub {
+    font-size: 12px;
+  }
+
+  .mh-tile-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mh-active-filter {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .mh-active-filter-clear {
+    margin-left: 23px;
+  }
+
+  .mh-sidebar {
+    grid-template-columns: 1fr;
+  }
+}
 </style>
 
 {%- unless request.design_mode -%}
@@ -57,117 +665,217 @@
 {%- endunless -%}
 
 {%- assign all_resources = section.blocks | where: 'type', 'resource' -%}
+{%- assign use_default_resources = false -%}
+{%- if all_resources.size == 0 -%}
+  {%- assign use_default_resources = true -%}
+{%- endif -%}
+{%- capture mh_default_resources -%}
+Catalogues & lookbooks||Season catalogues, range lookbooks and buyer guides||Marketing||Product sheets||All brands||book||mktg||/pages/catalogue-2026~~
+Image downloads||Product photography, lifestyle and campaign imagery||Marketing||Imagery||All brands||image||mktg||/pages/image-downloads~~
+Point of sale||In-store POS materials, posters and display assets||Marketing||Other||All brands||map-pin||mktg||/pages/point-of-sale~~
+Website & social assets||Digital banners, social crops and web-ready imagery||Marketing||Social media||All brands||monitor||mktg||/pages/social-assets~~
+Product descriptions||Approved copy, product specs and feature summaries||Marketing||Product sheets||All brands||file-text||mktg||/pages/product-descriptions~~
+Videos||Product and brand video assets||Marketing||Imagery||All brands||file-text||mktg||~~
+Policies||Environmental, ethical trading and supply chain policies||Sustainability||Policies||All brands||download||sustain||/pages/our-policies~~
+Compliance sheets||Product compliance, testing and certification documents||Sustainability||Compliance||All brands||check-circle||sustain||/pages/compliance-sheets~~
+Circular assets||Recycling, end-of-life and circular economy materials||Sustainability||Other||All brands||refresh||sustain||/pages/circular-assets-1~~
+Eco-uniform assets||Eco range marketing materials and sustainability claims||Sustainability||Other||All brands||leaf||sustain||/pages/eco-uniform~~
+Re:Uniform||Resale and re-use programme assets and partner materials||Sustainability||Other||All brands||repeat||sustain||/pages/re-uniform~~
+Lesson plans||Educational resources and sustainability lesson content||Sustainability||Other||All brands||graduation||sustain||/pages/lesson-plans
+{%- endcapture -%}
+{%- assign default_resources = mh_default_resources | strip | split: '~~' -%}
 
 <div class="mh-wrap" id="section-{{ section.id }}">
-
   <div class="mh-page-header">
-    <h1 class="mh-page-title">{{ section.settings.page_title }}</h1>
-    <p class="mh-page-sub">{{ section.settings.page_subtitle }}</p>
+    <div class="mh-page-header-inner">
+      <h1 class="mh-page-title"><span class="mh-title-mark">{{ section.settings.page_title | escape }}</span></h1>
+      <p class="mh-page-sub">{{ section.settings.page_subtitle | escape }}</p>
+    </div>
   </div>
 
   <div class="mh-layout">
+    <aside class="mh-sidebar" aria-label="Media hub filters">
+      <div class="mh-filter-panel">
+        <h2 class="mh-filter-heading">Find assets</h2>
+        <div class="mh-sb-section">
+          <div class="mh-sb-label">Resources</div>
+          {%- assign shown_types = '' -%}
+          {%- if use_default_resources -%}
+            {%- for row in default_resources -%}
+              {%- assign fields = row | split: '||' -%}
+              {%- assign t = fields[3] -%}
+              {%- unless shown_types contains t -%}
+                {%- assign shown_types = shown_types | append: t | append: '~' -%}
+                <button class="mh-cb-row" type="button" data-filter-type="type" data-filter-value="{{ t | handleize }}" aria-pressed="false">
+                  <span class="mh-cb" data-cb></span>
+                  <span class="mh-cb-label">{{ t }}</span>
+                </button>
+              {%- endunless -%}
+            {%- endfor -%}
+          {%- else -%}
+            {%- for block in all_resources -%}
+              {%- assign t = block.settings.resource_type -%}
+              {%- unless shown_types contains t -%}
+                {%- assign shown_types = shown_types | append: t | append: '~' -%}
+                <button class="mh-cb-row" type="button" data-filter-type="type" data-filter-value="{{ t | handleize }}" aria-pressed="false">
+                  <span class="mh-cb" data-cb></span>
+                  <span class="mh-cb-label">{{ t }}</span>
+                </button>
+              {%- endunless -%}
+            {%- endfor -%}
+          {%- endif -%}
+        </div>
 
-    <aside class="mh-sidebar">
-      <div class="mh-sb-section">
-        <div class="mh-sb-label">Resources</div>
-        {%- assign shown_types = '' -%}
-        {%- for block in all_resources -%}
-          {%- assign t = block.settings.resource_type -%}
-          {%- unless shown_types contains t -%}
-            {%- assign shown_types = shown_types | append: t | append: '~' -%}
-            <label class="mh-cb-row" data-filter-type="type" data-filter-value="{{ t | handleize }}">
-              <div class="mh-cb" data-cb></div>
-              <span class="mh-cb-label">{{ t }}</span>
-            </label>
-          {%- endunless -%}
-        {%- endfor -%}
-      </div>
-      <div class="mh-sb-section">
-        <div class="mh-sb-label">Brand</div>
-        {%- assign shown_brands = '' -%}
-        {%- for block in all_resources -%}
-          {%- assign b = block.settings.brand -%}
-          {%- unless shown_brands contains b -%}
-            {%- assign shown_brands = shown_brands | append: b | append: '~' -%}
-            <label class="mh-cb-row" data-filter-type="brand" data-filter-value="{{ b | handleize }}">
-              <div class="mh-cb" data-cb></div>
-              <span class="mh-cb-label">{{ b }}</span>
-            </label>
-          {%- endunless -%}
-        {%- endfor -%}
+        <div class="mh-sb-section">
+          <div class="mh-sb-label">Brand</div>
+          {%- assign shown_brands = '' -%}
+          {%- if use_default_resources -%}
+            {%- for row in default_resources -%}
+              {%- assign fields = row | split: '||' -%}
+              {%- assign b = fields[4] -%}
+              {%- unless shown_brands contains b -%}
+                {%- assign shown_brands = shown_brands | append: b | append: '~' -%}
+                <button class="mh-cb-row" type="button" data-filter-type="brand" data-filter-value="{{ b | handleize }}" aria-pressed="false">
+                  <span class="mh-cb" data-cb></span>
+                  <span class="mh-cb-label">{{ b }}</span>
+                </button>
+              {%- endunless -%}
+            {%- endfor -%}
+          {%- else -%}
+            {%- for block in all_resources -%}
+              {%- assign b = block.settings.brand -%}
+              {%- unless shown_brands contains b -%}
+                {%- assign shown_brands = shown_brands | append: b | append: '~' -%}
+                <button class="mh-cb-row" type="button" data-filter-type="brand" data-filter-value="{{ b | handleize }}" aria-pressed="false">
+                  <span class="mh-cb" data-cb></span>
+                  <span class="mh-cb-label">{{ b }}</span>
+                </button>
+              {%- endunless -%}
+            {%- endfor -%}
+          {%- endif -%}
+        </div>
       </div>
     </aside>
 
     <main class="mh-main">
-
-      <div class="mh-active-filter" id="mh-active-filter" style="display:none">
-        <span class="mh-filter-icon">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
-        </span>
-        <span class="mh-active-filter-text" id="mh-filter-text">Filtered by: All</span>
-        <button class="mh-active-filter-clear" id="mh-clear-filters">Clear filters</button>
-      </div>
-
-      <div class="mh-search-bar">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        <input type="text" id="mh-search" placeholder="Search resources..." autocomplete="off">
-      </div>
-
-      <div class="mh-empty" id="mh-empty" style="display:none"><p>No resources match your filters.</p></div>
-
-      {%- assign shown_cats = '' -%}
-      {%- for block in all_resources -%}
-        {%- assign c = block.settings.category -%}
-        {%- unless shown_cats contains c -%}
-          {%- assign shown_cats = shown_cats | append: c | append: '~' -%}
-        {%- endunless -%}
-      {%- endfor -%}
-      {%- assign cats_array = shown_cats | split: '~' -%}
-
-      {%- for cat in cats_array -%}
-        {%- if cat != blank -%}
-          {%- assign cat_slug = cat | handleize -%}
-          <div class="mh-cat-group" id="mh-cat-{{ cat_slug }}">
-            <div class="mh-cat-header"><span class="mh-cat-title">{{ cat }}</span></div>
-            <div class="mh-tile-grid">
-              {%- for block in all_resources -%}
-                {%- if block.settings.category == cat -%}
-                  {%- assign brand_slug = block.settings.brand | handleize -%}
-                  {%- assign type_slug = block.settings.resource_type | handleize -%}
-                  <div class="mh-tile" data-brand="{{ brand_slug }}" data-type="{{ type_slug }}" data-title="{{ block.settings.title | downcase }}" data-desc="{{ block.settings.subtitle | downcase }}" {{ block.shopify_attributes }}{% if block.settings.link != blank %} role="link" tabindex="0" data-href="{{ block.settings.link }}"{% endif %}>
-                    <div class="mh-tile-thumb mh-thumb-{{ block.settings.thumb_style }}">
-                      {%- case block.settings.icon -%}
-                        {%- when 'book' -%}<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
-                        {%- when 'image' -%}<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-                        {%- when 'award' -%}<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 3H3v7a6 6 0 006 6h6a6 6 0 006-6V3z"/><line x1="12" y1="16" x2="12" y2="21"/><line x1="8" y1="21" x2="16" y2="21"/></svg>
-                        {%- when 'map-pin' -%}<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                        {%- when 'monitor' -%}<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-                        {%- when 'file-text' -%}<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-                        {%- when 'download' -%}<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><polyline points="9 15 12 18 15 15"/><line x1="12" y1="12" x2="12" y2="18"/></svg>
-                        {%- when 'check-circle' -%}<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
-                        {%- when 'refresh' -%}<svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="1 4 1 10 7 10"/><polyline points="23 20 23 14 17 14"/><path d="M20.49 9A9 9 0 005.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 013.51 15"/></svg>
-                        {%- when 'leaf' -%}<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 8C8 10 5.9 16.17 3.82 19.11M4.82 14C7 12 9 11 9 9c0-2-1-3-2-4m8 3c-1 1-2 2-2 4s1 3 2 4M15.77 15a3 3 0 01-5.54 0"/></svg>
-                        {%- when 'repeat' -%}<svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 014-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 01-4 4H3"/></svg>
-                        {%- when 'graduation' -%}<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 10v6M2 10l10-7 10 7-10 7z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-                        {%- else -%}<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-                      {%- endcase -%}
-                    </div>
-                    <div class="mh-tile-body">
-                      <div class="mh-tile-title">{{ block.settings.title }}</div>
-                      <div class="mh-tile-sub">{{ block.settings.subtitle }}</div>
-                    </div>
-                  </div>
-                {%- endif -%}
-              {%- endfor -%}
-            </div>
+      <div class="mh-main-inner">
+        <div class="mh-toolbar">
+          <div class="mh-active-filter" data-active-filter style="display:none">
+            <span class="mh-filter-icon">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+            </span>
+            <span class="mh-active-filter-text" data-filter-text>Filtered by: All</span>
+            <button class="mh-active-filter-clear" type="button" data-clear-filters>Clear filters</button>
           </div>
+
+          <div class="mh-search-bar">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" data-search placeholder="Search resources..." aria-label="Search media hub resources" autocomplete="off">
+          </div>
+        </div>
+
+        <div class="mh-empty" data-empty style="display:none"><p>No resources match your filters.</p></div>
+
+        {%- assign shown_cats = '' -%}
+        {%- if use_default_resources -%}
+          {%- for row in default_resources -%}
+            {%- assign fields = row | split: '||' -%}
+            {%- assign c = fields[2] -%}
+            {%- unless shown_cats contains c -%}
+              {%- assign shown_cats = shown_cats | append: c | append: '~' -%}
+            {%- endunless -%}
+          {%- endfor -%}
+        {%- else -%}
+          {%- for block in all_resources -%}
+            {%- assign c = block.settings.category -%}
+            {%- unless shown_cats contains c -%}
+              {%- assign shown_cats = shown_cats | append: c | append: '~' -%}
+            {%- endunless -%}
+          {%- endfor -%}
         {%- endif -%}
-      {%- endfor -%}
+        {%- assign cats_array = shown_cats | split: '~' -%}
 
-      {%- if all_resources.size == 0 -%}
-        <p class="mh-no-content">No resources added yet. Add blocks in the theme editor.</p>
-      {%- endif -%}
+        {%- for cat in cats_array -%}
+          {%- if cat != blank -%}
+            {%- assign cat_slug = cat | handleize -%}
+            <div class="mh-cat-group" id="mh-cat-{{ cat_slug }}">
+              <div class="mh-cat-header"><span class="mh-cat-title">{{ cat }}</span></div>
+              <div class="mh-tile-grid">
+                {%- if use_default_resources -%}
+                  {%- for row in default_resources -%}
+                    {%- assign fields = row | split: '||' -%}
+                    {%- assign tile_title = fields[0] -%}
+                    {%- assign tile_subtitle = fields[1] -%}
+                    {%- assign tile_category = fields[2] -%}
+                    {%- assign tile_type = fields[3] -%}
+                    {%- assign tile_brand = fields[4] -%}
+                    {%- assign tile_icon = fields[5] -%}
+                    {%- assign tile_thumb = fields[6] -%}
+                    {%- assign tile_link = fields[7] | strip -%}
+                    {%- if tile_category == cat -%}
+                      <div class="mh-tile mh-tile-{{ tile_thumb }}" data-brand="{{ tile_brand | handleize }}" data-type="{{ tile_type | handleize }}" data-title="{{ tile_title | downcase | escape }}" data-desc="{{ tile_subtitle | downcase | escape }}"{% if tile_link != blank %} role="link" tabindex="0" data-href="{{ tile_link }}"{% endif %}>
+                        <div class="mh-tile-thumb mh-thumb-{{ tile_thumb }}">
+                          {%- case tile_icon -%}
+                            {%- when 'book' -%}<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+                            {%- when 'image' -%}<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                            {%- when 'map-pin' -%}<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                            {%- when 'monitor' -%}<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                            {%- when 'download' -%}<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><polyline points="9 15 12 18 15 15"/><line x1="12" y1="12" x2="12" y2="18"/></svg>
+                            {%- when 'check-circle' -%}<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+                            {%- when 'refresh' -%}<svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="1 4 1 10 7 10"/><polyline points="23 20 23 14 17 14"/><path d="M20.49 9A9 9 0 005.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 013.51 15"/></svg>
+                            {%- when 'leaf' -%}<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 8C8 10 5.9 16.17 3.82 19.11M4.82 14C7 12 9 11 9 9c0-2-1-3-2-4m8 3c-1 1-2 2-2 4s1 3 2 4M15.77 15a3 3 0 01-5.54 0"/></svg>
+                            {%- when 'repeat' -%}<svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 014-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 01-4 4H3"/></svg>
+                            {%- when 'graduation' -%}<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 10v6M2 10l10-7 10 7-10 7z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                            {%- else -%}<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                          {%- endcase -%}
+                        </div>
+                        <div class="mh-tile-body">
+                          <div class="mh-tile-title">{{ tile_title | escape }}</div>
+                          <div class="mh-tile-sub">{{ tile_subtitle | escape }}</div>
+                        </div>
+                      </div>
+                    {%- endif -%}
+                  {%- endfor -%}
+                {%- else -%}
+                  {%- for block in all_resources -%}
+                    {%- if block.settings.category == cat -%}
+                      {%- assign brand_slug = block.settings.brand | handleize -%}
+                      {%- assign type_slug = block.settings.resource_type | handleize -%}
+                      <div class="mh-tile mh-tile-{{ block.settings.thumb_style }}" data-brand="{{ brand_slug }}" data-type="{{ type_slug }}" data-title="{{ block.settings.title | downcase | escape }}" data-desc="{{ block.settings.subtitle | downcase | escape }}" {{ block.shopify_attributes }}{% if block.settings.link != blank %} role="link" tabindex="0" data-href="{{ block.settings.link }}"{% endif %}>
+                        <div class="mh-tile-thumb mh-thumb-{{ block.settings.thumb_style }}">
+                          {%- case block.settings.icon -%}
+                            {%- when 'book' -%}<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+                            {%- when 'image' -%}<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                            {%- when 'award' -%}<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 3H3v7a6 6 0 006 6h6a6 6 0 006-6V3z"/><line x1="12" y1="16" x2="12" y2="21"/><line x1="8" y1="21" x2="16" y2="21"/></svg>
+                            {%- when 'map-pin' -%}<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                            {%- when 'monitor' -%}<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                            {%- when 'file-text' -%}<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                            {%- when 'download' -%}<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><polyline points="9 15 12 18 15 15"/><line x1="12" y1="12" x2="12" y2="18"/></svg>
+                            {%- when 'check-circle' -%}<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+                            {%- when 'refresh' -%}<svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="1 4 1 10 7 10"/><polyline points="23 20 23 14 17 14"/><path d="M20.49 9A9 9 0 005.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 013.51 15"/></svg>
+                            {%- when 'leaf' -%}<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 8C8 10 5.9 16.17 3.82 19.11M4.82 14C7 12 9 11 9 9c0-2-1-3-2-4m8 3c-1 1-2 2-2 4s1 3 2 4M15.77 15a3 3 0 01-5.54 0"/></svg>
+                            {%- when 'repeat' -%}<svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 014-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 01-4 4H3"/></svg>
+                            {%- when 'graduation' -%}<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 10v6M2 10l10-7 10 7-10 7z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                            {%- else -%}<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                          {%- endcase -%}
+                        </div>
+                        <div class="mh-tile-body">
+                          <div class="mh-tile-title">{{ block.settings.title | escape }}</div>
+                          <div class="mh-tile-sub">{{ block.settings.subtitle | escape }}</div>
+                        </div>
+                      </div>
+                    {%- endif -%}
+                  {%- endfor -%}
+                {%- endif -%}
+              </div>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
 
+        {%- if all_resources.size == 0 and use_default_resources == false -%}
+          <p class="mh-no-content">No resources added yet. Add blocks in the theme editor.</p>
+        {%- endif -%}
+      </div>
     </main>
   </div>
 </div>
@@ -175,43 +883,46 @@
 <script>
 (function () {
   'use strict';
-  var activeFilters = { brand: [], type: [] };
-  var sid = 'section-{{ section.id }}';
+  var root = document.getElementById('section-{{ section.id }}');
+  if (!root) return;
 
-  document.querySelectorAll('#' + sid + ' .mh-cb-row').forEach(function (row) {
+  var activeFilters = { brand: [], type: [] };
+  var searchInput = root.querySelector('[data-search]');
+  var clearBtn = root.querySelector('[data-clear-filters]');
+
+  root.querySelectorAll('.mh-cb-row').forEach(function (row) {
     row.addEventListener('click', function () {
       var cb = this.querySelector('[data-cb]');
       var fType = this.dataset.filterType;
       var fValue = this.dataset.filterValue;
       if (cb.classList.contains('is-checked')) {
         cb.classList.remove('is-checked');
+        this.setAttribute('aria-pressed', 'false');
         activeFilters[fType] = activeFilters[fType].filter(function (v) { return v !== fValue; });
       } else {
         cb.classList.add('is-checked');
+        this.setAttribute('aria-pressed', 'true');
         activeFilters[fType].push(fValue);
       }
       applyFilters();
     });
   });
 
-  var clearBtn = document.getElementById('mh-clear-filters');
   if (clearBtn) {
     clearBtn.addEventListener('click', function () {
       activeFilters = { brand: [], type: [] };
-      document.querySelectorAll('#' + sid + ' [data-cb]').forEach(function (cb) { cb.classList.remove('is-checked'); });
-      var si = document.getElementById('mh-search');
-      if (si) si.value = '';
+      root.querySelectorAll('[data-cb]').forEach(function (cb) { cb.classList.remove('is-checked'); });
+      root.querySelectorAll('.mh-cb-row').forEach(function (row) { row.setAttribute('aria-pressed', 'false'); });
+      if (searchInput) searchInput.value = '';
       applyFilters();
     });
   }
 
-  var searchInput = document.getElementById('mh-search');
   if (searchInput) searchInput.addEventListener('input', applyFilters);
 
-  document.querySelectorAll('#' + sid + ' .mh-tile[data-href]').forEach(function (tile) {
-    tile.style.cursor = 'pointer';
-    tile.addEventListener('click', function () { window.open(this.dataset.href, '_blank'); });
-    tile.addEventListener('keydown', function (e) { if (e.key === 'Enter') window.open(this.dataset.href, '_blank'); });
+  root.querySelectorAll('.mh-tile[data-href]').forEach(function (tile) {
+    tile.addEventListener('click', function () { window.location.href = this.dataset.href; });
+    tile.addEventListener('keydown', function (e) { if (e.key === 'Enter') window.location.href = this.dataset.href; });
   });
 
   function applyFilters() {
@@ -221,7 +932,7 @@
     var hasFilters = brandFilters.length > 0 || typeFilters.length > 0 || query.length > 0;
     var anyVisible = false;
 
-    document.querySelectorAll('#' + sid + ' .mh-tile').forEach(function (tile) {
+    root.querySelectorAll('.mh-tile').forEach(function (tile) {
       var bm = brandFilters.length === 0 || brandFilters.indexOf(tile.dataset.brand) > -1;
       var tm = typeFilters.length === 0 || typeFilters.indexOf(tile.dataset.type) > -1;
       var sm = query === '' || (tile.dataset.title || '').indexOf(query) > -1 || (tile.dataset.desc || '').indexOf(query) > -1;
@@ -230,13 +941,13 @@
       if (show) anyVisible = true;
     });
 
-    document.querySelectorAll('#' + sid + ' .mh-cat-group').forEach(function (g) {
+    root.querySelectorAll('.mh-cat-group').forEach(function (g) {
       var vis = g.querySelectorAll('.mh-tile:not([style*="display: none"])');
       g.style.display = vis.length > 0 ? '' : 'none';
     });
 
-    var banner = document.getElementById('mh-active-filter');
-    var bannerTx = document.getElementById('mh-filter-text');
+    var banner = root.querySelector('[data-active-filter]');
+    var bannerTx = root.querySelector('[data-filter-text]');
     if (banner) {
       banner.style.display = hasFilters ? '' : 'none';
       if (bannerTx) {
@@ -247,7 +958,8 @@
         bannerTx.textContent = 'Filtered by: ' + (labels.length ? labels.join(', ') : 'All');
       }
     }
-    var emptyEl = document.getElementById('mh-empty');
+
+    var emptyEl = root.querySelector('[data-empty]');
     if (emptyEl) emptyEl.style.display = (!anyVisible && hasFilters) ? '' : 'none';
   }
 }());
@@ -269,7 +981,7 @@
       "type": "text",
       "id": "page_subtitle",
       "label": "Page subtitle",
-      "default": "Assets, press resources and brand materials for trade partners"
+      "default": "Image downloads, catalogues and marketing assets, everything you need at the Media Hub."
     },
     {
       "type": "checkbox",
@@ -300,10 +1012,10 @@
           "id": "category",
           "label": "Category",
           "options": [
-            { "value": "Marketing",      "label": "Marketing" },
+            { "value": "Marketing", "label": "Marketing" },
             { "value": "Sustainability", "label": "Sustainability" },
-            { "value": "Technical",      "label": "Technical" },
-            { "value": "Sales",          "label": "Sales" }
+            { "value": "Technical", "label": "Technical" },
+            { "value": "Sales", "label": "Sales" }
           ],
           "default": "Marketing"
         },
@@ -313,13 +1025,13 @@
           "label": "Resource type",
           "options": [
             { "value": "Product sheets", "label": "Product sheets" },
-            { "value": "Tender assets",  "label": "Tender assets" },
-            { "value": "Imagery",        "label": "Imagery" },
-            { "value": "Social media",   "label": "Social media" },
-            { "value": "PFAS",           "label": "PFAS" },
-            { "value": "Policies",       "label": "Policies" },
-            { "value": "Compliance",     "label": "Compliance" },
-            { "value": "Other",          "label": "Other" }
+            { "value": "Tender assets", "label": "Tender assets" },
+            { "value": "Imagery", "label": "Imagery" },
+            { "value": "Social media", "label": "Social media" },
+            { "value": "PFAS", "label": "PFAS" },
+            { "value": "Policies", "label": "Policies" },
+            { "value": "Compliance", "label": "Compliance" },
+            { "value": "Other", "label": "Other" }
           ],
           "default": "Imagery"
         },
@@ -328,13 +1040,13 @@
           "id": "brand",
           "label": "Brand",
           "options": [
-            { "value": "All brands",        "label": "All brands" },
-            { "value": "David Luke",        "label": "David Luke" },
-            { "value": "Grass & Air",       "label": "Grass & Air" },
-            { "value": "Lelli Kelly",       "label": "Lelli Kelly" },
-            { "value": "Term",              "label": "Term" },
+            { "value": "All brands", "label": "All brands" },
+            { "value": "David Luke", "label": "David Luke" },
+            { "value": "Grass & Air", "label": "Grass & Air" },
+            { "value": "Lelli Kelly", "label": "Lelli Kelly" },
+            { "value": "Term", "label": "Term" },
             { "value": "Little Classmates", "label": "Little Classmates" },
-            { "value": "Juco",              "label": "Juco" }
+            { "value": "Juco", "label": "Juco" }
           ],
           "default": "All brands"
         },
@@ -343,18 +1055,18 @@
           "id": "icon",
           "label": "Icon",
           "options": [
-            { "value": "book",         "label": "Book / catalogue" },
-            { "value": "image",        "label": "Image / photo" },
-            { "value": "award",        "label": "Award / trophy" },
-            { "value": "map-pin",      "label": "Map pin / location" },
-            { "value": "monitor",      "label": "Monitor / screen" },
-            { "value": "file-text",    "label": "File / document" },
-            { "value": "download",     "label": "Download / arrow" },
+            { "value": "book", "label": "Book / catalogue" },
+            { "value": "image", "label": "Image / photo" },
+            { "value": "award", "label": "Award / trophy" },
+            { "value": "map-pin", "label": "Map pin / location" },
+            { "value": "monitor", "label": "Monitor / screen" },
+            { "value": "file-text", "label": "File / document" },
+            { "value": "download", "label": "Download / arrow" },
             { "value": "check-circle", "label": "Check / compliance" },
-            { "value": "refresh",      "label": "Refresh / circular" },
-            { "value": "leaf",         "label": "Leaf / eco" },
-            { "value": "repeat",       "label": "Repeat / re-use" },
-            { "value": "graduation",   "label": "Graduation / education" }
+            { "value": "refresh", "label": "Refresh / circular" },
+            { "value": "leaf", "label": "Leaf / eco" },
+            { "value": "repeat", "label": "Repeat / re-use" },
+            { "value": "graduation", "label": "Graduation / education" }
           ],
           "default": "file-text"
         },
@@ -363,7 +1075,7 @@
           "id": "thumb_style",
           "label": "Tile colour",
           "options": [
-            { "value": "mktg",    "label": "Green (marketing)" },
+            { "value": "mktg", "label": "Green (marketing)" },
             { "value": "sustain", "label": "Blue (sustainability)" },
             { "value": "neutral", "label": "Grey (neutral)" }
           ],

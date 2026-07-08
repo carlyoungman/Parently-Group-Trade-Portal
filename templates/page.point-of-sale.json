@@ -11,8 +11,333 @@
   "sections": {
     "main": {
       "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "1783419965638110c3": {
+      "type": "_blocks",
       "settings": {}
+    },
+    "point_of_sale_library_fd76FK": {
+      "type": "point-of-sale-library",
+      "blocks": {
+        "resource_tApywM": {
+          "type": "resource",
+          "settings": {
+            "brand": "Term",
+            "resource_title": "Welcome to Term",
+            "preview_url": "https://parentlygroup.b-cdn.net/Point%20of%20sale/Term/Welcome%20to%20Term.pdf",
+            "description": ""
+          }
+        },
+        "resource_QFefqH": {
+          "type": "resource",
+          "settings": {
+            "brand": "Term",
+            "resource_title": "Term Footwear - A3 Posters",
+            "preview_url": "https://parentlygroup.b-cdn.net/Point%20of%20sale/Term/Term%20Footwear%20-%20A3%20Posters.pdf",
+            "description": ""
+          }
+        },
+        "resource_cRiBj9": {
+          "type": "resource",
+          "settings": {
+            "brand": "Term",
+            "resource_title": "New Styles",
+            "preview_url": "https://parentlygroup.b-cdn.net/Point%20of%20sale/Term/New%20Styles.pdf",
+            "description": ""
+          }
+        },
+        "resource_qm8Fjk": {
+          "type": "resource",
+          "settings": {
+            "brand": "Little Classmates",
+            "resource_title": "Little Classmates A3 Poster",
+            "preview_url": "https://parentlygroup.b-cdn.net/Point%20of%20sale/Little%20Classmates/Little%20Classmates%20A3%20Poster.pdf",
+            "description": ""
+          }
+        },
+        "resource_bFpYeh": {
+          "type": "resource",
+          "settings": {
+            "brand": "Lelli Kelly",
+            "resource_title": "Posters_02",
+            "preview_url": "https://parentlygroup.b-cdn.net/Point%20of%20sale/Lelli%20Kelly/Schoolwear%2026/Posters-02.jpg",
+            "description": ""
+          }
+        },
+        "resource_JtiNrq": {
+          "type": "resource",
+          "settings": {
+            "brand": "Lelli Kelly",
+            "resource_title": "Posters_01",
+            "preview_url": "https://parentlygroup.b-cdn.net/Point%20of%20sale/Lelli%20Kelly/Schoolwear%2026/Posters-01.jpg",
+            "description": ""
+          }
+        },
+        "resource_EJy8aP": {
+          "type": "resource",
+          "settings": {
+            "brand": "JUCO",
+            "resource_title": "Sublimated Swimwear",
+            "preview_url": "https://parentlygroup.b-cdn.net/Point%20of%20sale/JUCO/Sublimated%20Swimwear.pdf",
+            "description": ""
+          }
+        },
+        "resource_hRQckh": {
+          "type": "resource",
+          "settings": {
+            "brand": "JUCO",
+            "resource_title": "DL7019 Sports Bra-01",
+            "preview_url": "https://parentlygroup.b-cdn.net/Point%20of%20sale/JUCO/DL7019%20Sports%20Bra-01.jpg",
+            "description": ""
+          }
+        },
+        "resource_BFLL3Y": {
+          "type": "resource",
+          "settings": {
+            "brand": "JUCO",
+            "resource_title": "DL7015 Tri-Layer Jacket-01",
+            "preview_url": "https://parentlygroup.b-cdn.net/Point%20of%20sale/JUCO/DL7015%20Tri-Layer%20Jacket-01.jpg",
+            "description": ""
+          }
+        },
+        "resource_jpCKNf": {
+          "type": "resource",
+          "settings": {
+            "brand": "Grass & Air",
+            "resource_title": "Wild Florals",
+            "preview_url": "https://parentlygroup.b-cdn.net/Point%20of%20sale/Grass%20%26%20Air/Wild%20Florals.pdf",
+            "description": ""
+          }
+        },
+        "resource_LLy7aK": {
+          "type": "resource",
+          "settings": {
+            "brand": "Grass & Air",
+            "resource_title": "The Shorties",
+            "preview_url": "https://parentlygroup.b-cdn.net/Point%20of%20sale/Grass%20%26%20Air/The%20Shorties.pdf",
+            "description": ""
+          }
+        },
+        "resource_f9AGBB": {
+          "type": "resource",
+          "settings": {
+            "brand": "Grass & Air",
+            "resource_title": "Puddlesuit - STONE",
+            "preview_url": "https://parentlygroup.b-cdn.net/Point%20of%20sale/Grass%20%26%20Air/Puddlesuit%20-%20STONE.pdf",
+            "description": ""
+          }
+        },
+        "resource_HB6G8F": {
+          "type": "resource",
+          "settings": {
+            "brand": "Grass & Air",
+            "resource_title": "The Chunkies - One Pager - Trade",
+            "preview_url": "https://parentlygroup.b-cdn.net/Point%20of%20sale/Grass%20%26%20Air/The%20Chunkies%20-%20One%20Pager%20-%20Trade.pdf",
+            "description": ""
+          }
+        },
+        "resource_AMjy3c": {
+          "type": "resource",
+          "settings": {
+            "brand": "Grass & Air",
+            "resource_title": "Colour-changing Poster - A4 Print Ready",
+            "preview_url": "https://parentlygroup.b-cdn.net/Point%20of%20sale/Grass%20%26%20Air/Colour-changing%20Poster%20-%20A4%20Print%20Ready.pdf",
+            "description": ""
+          }
+        },
+        "resource_tcdTRP": {
+          "type": "resource",
+          "settings": {
+            "brand": "Grass & Air",
+            "resource_title": "Colour-changing Poster - A3 Print Ready",
+            "preview_url": "https://parentlygroup.b-cdn.net/Point%20of%20sale/Grass%20%26%20Air/Colour-changing%20Poster%20-%20A3%20Print%20Ready.pdf",
+            "description": ""
+          }
+        },
+        "resource_My8tgL": {
+          "type": "resource",
+          "settings": {
+            "brand": "Grass & Air",
+            "resource_title": "Junior & Infant Wellies",
+            "preview_url": "https://parentlygroup.b-cdn.net/Point%20of%20sale/Grass%20%26%20Air/Junior%20%26%20Infant%20Wellies.jpg",
+            "description": ""
+          }
+        },
+        "resource_Fw3fWT": {
+          "type": "resource",
+          "settings": {
+            "brand": "Grass & Air",
+            "resource_title": "Colour Changing Jackets",
+            "preview_url": "https://parentlygroup.b-cdn.net/Point%20of%20sale/Grass%20%26%20Air/Colour%20Changing%20Jackets.pdf",
+            "description": ""
+          }
+        },
+        "resource_4tfxcA": {
+          "type": "resource",
+          "settings": {
+            "brand": "Grass & Air",
+            "resource_title": "Adult Wellies",
+            "preview_url": "https://parentlygroup.b-cdn.net/Point%20of%20sale/Grass%20%26%20Air/Adult%20Wellies.pdf",
+            "description": ""
+          }
+        },
+        "resource_4FpgfH": {
+          "type": "resource",
+          "settings": {
+            "brand": "David Luke",
+            "resource_title": "Unisex Blazer & Jacket",
+            "preview_url": "https://parentlygroup.b-cdn.net/Point%20of%20sale/David%20Luke/Unisex%20Blazer%20%26%20Jacket.pdf",
+            "description": ""
+          }
+        },
+        "resource_TCn4xj": {
+          "type": "resource",
+          "settings": {
+            "brand": "David Luke",
+            "resource_title": "Sports Club Blazers & Jackets",
+            "preview_url": "https://parentlygroup.b-cdn.net/Point%20of%20sale/David%20Luke/Sports%20Club%20Blazers%20%26%20Jackets.pdf",
+            "description": ""
+          }
+        },
+        "resource_44ETiy": {
+          "type": "resource",
+          "settings": {
+            "brand": "David Luke",
+            "resource_title": "Leavers",
+            "preview_url": "https://parentlygroup.b-cdn.net/Point%20of%20sale/David%20Luke/Leavers.pdf",
+            "description": ""
+          }
+        },
+        "resource_EHqhJp": {
+          "type": "resource",
+          "settings": {
+            "brand": "David Luke",
+            "resource_title": "Garment Printing",
+            "preview_url": "https://parentlygroup.b-cdn.net/Point%20of%20sale/David%20Luke/Garment%20Printing.pdf",
+            "description": ""
+          }
+        },
+        "resource_6KDTFH": {
+          "type": "resource",
+          "settings": {
+            "brand": "David Luke",
+            "resource_title": "DL972 Senior Girls Knife Pleat Skirt",
+            "preview_url": "https://parentlygroup.b-cdn.net/Point%20of%20sale/David%20Luke/DL972%20Senior%20Girls%20Knife%20Pleat%20Skirt.pdf",
+            "description": ""
+          }
+        },
+        "resource_UzJG3r": {
+          "type": "resource",
+          "settings": {
+            "brand": "David Luke",
+            "resource_title": "DL Sweatshirts Poster",
+            "preview_url": "https://parentlygroup.b-cdn.net/Point%20of%20sale/David%20Luke/DL%20Sweatshirts%20Poster.pdf",
+            "description": ""
+          }
+        },
+        "resource_rWUfVG": {
+          "type": "resource",
+          "settings": {
+            "brand": "David Luke",
+            "resource_title": "DL Shirts & Blouses Poster",
+            "preview_url": "https://parentlygroup.b-cdn.net/Point%20of%20sale/David%20Luke/DL%20Shirts%20%26%20Blouses%20Poster.pdf",
+            "description": ""
+          }
+        },
+        "resource_AxVYPH": {
+          "type": "resource",
+          "settings": {
+            "brand": "David Luke",
+            "resource_title": "DL Polo Shirts Poster",
+            "preview_url": "https://parentlygroup.b-cdn.net/Point%20of%20sale/David%20Luke/DL%20Polo%20Shirts%20Poster.pdf",
+            "description": ""
+          }
+        },
+        "resource_aDyULC": {
+          "type": "resource",
+          "settings": {
+            "brand": "David Luke",
+            "resource_title": "DL Girls Skirts Poster",
+            "preview_url": "https://parentlygroup.b-cdn.net/Point%20of%20sale/David%20Luke/DL%20Girls%20Skirts%20Poster.pdf",
+            "description": ""
+          }
+        },
+        "resource_qmtnyB": {
+          "type": "resource",
+          "settings": {
+            "brand": "David Luke",
+            "resource_title": "DL Craftwear Poster",
+            "preview_url": "https://parentlygroup.b-cdn.net/Point%20of%20sale/David%20Luke/DL%20Craftwear%20Poster.pdf",
+            "description": ""
+          }
+        },
+        "resource_yLrFyN": {
+          "type": "resource",
+          "settings": {
+            "brand": "David Luke",
+            "resource_title": "DL Boys Trousers Poster",
+            "preview_url": "https://parentlygroup.b-cdn.net/Point%20of%20sale/David%20Luke/DL%20Boys%20Trousers%20Poster.pdf",
+            "description": ""
+          }
+        },
+        "resource_hXTGEE": {
+          "type": "resource",
+          "settings": {
+            "brand": "David Luke",
+            "resource_title": "DL Blazers Jackets & Suits Poster",
+            "preview_url": "https://parentlygroup.b-cdn.net/Point%20of%20sale/David%20Luke/DL%20Blazers%20Jackets%20%26%20Suits%20Poster.pdf",
+            "description": ""
+          }
+        }
+      },
+      "block_order": [
+        "resource_tApywM",
+        "resource_QFefqH",
+        "resource_cRiBj9",
+        "resource_qm8Fjk",
+        "resource_bFpYeh",
+        "resource_JtiNrq",
+        "resource_EJy8aP",
+        "resource_hRQckh",
+        "resource_BFLL3Y",
+        "resource_jpCKNf",
+        "resource_LLy7aK",
+        "resource_f9AGBB",
+        "resource_HB6G8F",
+        "resource_AMjy3c",
+        "resource_tcdTRP",
+        "resource_My8tgL",
+        "resource_Fw3fWT",
+        "resource_4tfxcA",
+        "resource_4FpgfH",
+        "resource_TCn4xj",
+        "resource_44ETiy",
+        "resource_EHqhJp",
+        "resource_6KDTFH",
+        "resource_UzJG3r",
+        "resource_rWUfVG",
+        "resource_AxVYPH",
+        "resource_aDyULC",
+        "resource_qmtnyB",
+        "resource_yLrFyN",
+        "resource_hXTGEE"
+      ],
+      "name": "BDM resource library",
+      "settings": {
+        "heading": "Point of Sale Resources",
+        "introduction": "<p>Browse brand catalogues and download the files you need.</p>",
+        "color_scheme": ""
+      }
     }
   },
-  "order": ["main"]
+  "order": [
+    "main",
+    "1783419965638110c3",
+    "point_of_sale_library_fd76FK"
+  ]
 }

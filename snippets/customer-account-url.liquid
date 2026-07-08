@@ -1,0 +1,18 @@
+{%- comment -%}
+  Outputs the account-page URL for a signed-in customer.
+
+  When a logged-in landing page is configured (settings.customer_logged_in_url),
+  links straight to it — the customer is already authenticated, so no return_to
+  router hop is needed (unlike snippets/customer-login-url.liquid). Falls back to
+  the default account route when no landing page is set.
+
+  Renders no value other than the URL (safe to use inside href="" and as a filter
+  argument).
+{%- endcomment -%}
+{%- liquid
+  if settings.customer_logged_in_url != blank
+    echo settings.customer_logged_in_url
+  else
+    echo routes.account_url
+  endif
+-%}

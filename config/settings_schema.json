@@ -1128,10 +1128,10 @@
         "content": "t:settings_schema.customer_accounts.settings.header__landing.content"
       },
       {
-        "type": "page",
-        "id": "customer_logged_in_page",
-        "label": "t:settings_schema.customer_accounts.settings.logged_in_page.label",
-        "info": "t:settings_schema.customer_accounts.settings.logged_in_page.info"
+        "type": "text",
+        "id": "customer_logged_in_url",
+        "label": "t:settings_schema.customer_accounts.settings.logged_in_url.label",
+        "info": "t:settings_schema.customer_accounts.settings.logged_in_url.info"
       }
     ]
   }

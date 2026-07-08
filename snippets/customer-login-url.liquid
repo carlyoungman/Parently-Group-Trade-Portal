@@ -1,0 +1,21 @@
+{%- comment -%}
+  Outputs the storefront sign-in URL.
+
+  When a logged-in landing page is configured (settings.customer_logged_in_url),
+  the URL carries a return_to pointing at the /pages/login-redirect router page,
+  which then forwards the customer to that account page after login.
+
+  Must use the /customer_authentication/login endpoint — the /account/login
+  endpoint drops return_to with new customer accounts.
+
+  Renders no value other than the URL (safe to use inside href="" and as a filter
+  argument).
+{%- endcomment -%}
+{%- liquid
+  if settings.customer_logged_in_url != blank
+    assign return_path = '/pages/login-redirect' | url_encode
+    echo '/customer_authentication/login?return_to=' | append: return_path
+  else
+    echo routes.account_login_url
+  endif
+-%}

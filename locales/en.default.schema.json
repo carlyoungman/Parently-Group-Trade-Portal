@@ -434,9 +434,9 @@
         "header__landing": {
           "content": "Logged-in landing page"
         },
-        "logged_in_page": {
-          "label": "Landing page after login",
-          "info": "When set, logged-in customers are redirected here (e.g. your custom dashboard) instead of the default order-history page. Leave blank to keep Shopify's default account page."
+        "logged_in_url": {
+          "label": "Customer account page URL",
+          "info": "Paste the full URL of the customer-account page customers should land on after signing in (copy it from your browser's address bar while viewing that page), e.g. https://shopify.com/<id>/account/pages/<id>. Leave blank to keep Shopify's default."
         }
       }
     },
