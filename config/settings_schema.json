@@ -3,7 +3,9 @@
     "name": "theme_info",
     "theme_name": "Parently Group",
     "theme_version": "1.0.0",
-    "theme_author": "Parently Group"
+    "theme_author": "Parently Group",
+    "theme_documentation_url": "https://parentlygroup.com",
+    "theme_support_url": "https://parentlygroup.com"
   },
   {
     "name": "t:settings_schema.logo.name",
