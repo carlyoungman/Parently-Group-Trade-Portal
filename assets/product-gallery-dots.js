@@ -1,5 +1,5 @@
 // Gallery dot pagination for the product media gallery (desktop/tablet only —
-// the mobile slider keeps Dawn's swipe + counter). Dots stay in sync with the
+// the mobile slider keeps the native swipe + counter). Dots stay in sync with the
 // active media no matter what changed it: a dot, a thumbnail, or a colour
 // preview swatch.
 

@@ -168,7 +168,7 @@
 }
 
 // -----------------------------------------------------------------------------
-// Focus styles (matching Dawn's focus system)
+// Focus styles (matching the theme's focus system)
 // -----------------------------------------------------------------------------
 
 /// Standard focus ring using CSS custom properties
@@ -323,10 +323,10 @@
 }
 
 // -----------------------------------------------------------------------------
-// Hover effects (matching Dawn animation settings)
+// Hover effects (matching the theme's animation settings)
 // -----------------------------------------------------------------------------
 
-/// Image scale on hover (Dawn's default product image hover)
+/// Image scale on hover (default product image hover)
 @mixin hover-image-scale($scale: 1.03, $duration: var(--duration-long)) {
   transition: transform #{$duration} ease;
 

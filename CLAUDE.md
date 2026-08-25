@@ -6,7 +6,7 @@ Reference for AI-assisted development. Keep the codebase consistent with these c
 
 ## Project Overview
 
-A Shopify B2B Trade Portal built on **Dawn v15.4.1** with custom React, SCSS, and Liquid enhancements.
+A custom Shopify B2B Trade Portal for **Parently Group**, built with React, SCSS, and Liquid.
 
 - **Store:** `parentlygroup.myshopify.com`
 - **Stack:** Shopify Liquid · React 18 (Vite IIFE bundle) · SCSS (Sass) · Vanilla JS · ESLint · Prettier · Stylelint

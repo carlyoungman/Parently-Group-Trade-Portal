@@ -22,7 +22,7 @@
 @use 'utilities/mixins'     as *;
 
 // -----------------------------------------------------------------------------
-// 2. Base – foundational rules split from Dawn's base.css
+// 2. Base – foundational rules split from the base stylesheet
 // -----------------------------------------------------------------------------
 @use 'base/tokens';       // CSS custom property mappings for cards/media/content
 @use 'base/layout';       // page-width, section spacing, accessibility utilities
