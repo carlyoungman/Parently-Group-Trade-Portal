@@ -9,6 +9,7 @@ $pbo-orange:       #d97706;
 $pbo-orange-light: #fef3c7;
 $pbo-red:          #c0392b;
 $pbo-red-light:    #fde8e8;
+$pbo-blue:         #2563eb;
 $pbo-border:       #e5e7eb;
 $pbo-text-muted:   #6b7280;
 $pbo-text:         #111827;
@@ -593,6 +594,11 @@ $pbo-radius-sm:    0.6rem;
 
   &--out {
     background-color: $pbo-red;
+    color: #fff;
+  }
+
+  &--due {
+    background-color: $pbo-blue;
     color: #fff;
   }
 }

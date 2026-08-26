@@ -84,12 +84,27 @@ function compareSizes(a, b) {
 function StockBadge({ variant }) {
   const status = getStockStatus(variant);
   const qty = variant?.inventory_quantity;
-  const incomingDate = variant?.next_incoming_date;
+  const dueText = variant?.next_stock_due_date?.trim();
+  const hasSellableStock = typeof qty === 'number' && qty > 0;
+
+  // Client-entered "next stock due" free text (e.g. "Early Sep") → distinct badge,
+  // shown when there is no positive sellable stock (out of stock or backordered).
+  if (dueText && !hasSellableStock) {
+    return (
+      <span className="pbo-stock pbo-stock--due">
+        <span className="visually-hidden">Next stock due: </span>
+        {dueText}
+      </span>
+    );
+  }
+
   let label;
   if (status === 'out') {
-    label = incomingDate ? `Due ${incomingDate}` : 'Out of stock';
+    label = 'Out of stock';
+  } else if (hasSellableStock) {
+    label = `${qty} in stock`;
   } else {
-    label = qty > 0 ? `${qty} in stock` : 'In stock';
+    label = 'In stock';
   }
   return <span className={`pbo-stock pbo-stock--${status}`}>{label}</span>;
 }
@@ -704,8 +719,8 @@ document.querySelectorAll('[data-product-bulk-order]').forEach((el) => {
     if (!Array.isArray(productData.variants) || productData.variants.length === 0) return;
     const inventoryData = JSON.parse(el.dataset.variantInventory ?? '[]');
     const inventoryMap = {};
-    inventoryData.forEach(({ id, inventory_quantity, inventory_management, inventory_policy, quantity_rule_increment, next_incoming_date }) => {
-      inventoryMap[id] = { inventory_quantity, inventory_management, inventory_policy, quantity_rule_increment, next_incoming_date };
+    inventoryData.forEach(({ id, inventory_quantity, inventory_management, inventory_policy, quantity_rule_increment, next_stock_due_date }) => {
+      inventoryMap[id] = { inventory_quantity, inventory_management, inventory_policy, quantity_rule_increment, next_stock_due_date };
     });
     productData.variants = productData.variants.map((v) => ({ ...v, ...inventoryMap[v.id] }));
     const swatchData = JSON.parse(el.dataset.variantSwatches ?? '[]');
