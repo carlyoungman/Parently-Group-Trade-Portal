@@ -30,7 +30,7 @@ assets/styles/    SCSS source tree — compiled to assets/theme.css
   sections/       Section-specific styles
   templates/      Template overrides
 src/              React source (product-bulk-order.jsx only)
-locales/          i18n JSON — en.default.json is primary (17 languages)
+locales/          i18n JSON — en.default.json is primary (31 storefront locales)
 config/           settings_schema.json (theme settings schema)
 blocks/           Custom theme blocks
 ```
@@ -50,8 +50,11 @@ npm run build:css     # Sass compile (compressed, production)
 npm run build:css:dev # Sass compile (expanded, for debugging)
 npm run build:js      # Vite build: src/product-bulk-order.jsx → assets/product-bulk-order.js
 npm run watch:css     # Sass watch only
-npm run lint          # stylelint + eslint
-npm run format        # Prettier — UNSAFE to run blanket; see WARNING under Formatting
+npm run lint          # Stylelint + ESLint
+npm run lint:css      # Stylelint only (assets/styles/**/*.scss)
+npm run lint:js       # ESLint only
+npm run format        # Prettier — UNSAFE (corrupts Liquid); see WARNING under Formatting
+npm run format:css    # Prettier SCSS — NO-OP (assets/ is prettier-ignored); use lint:css instead
 ```
 
 ---
@@ -70,11 +73,13 @@ npm run format        # Prettier — UNSAFE to run blanket; see WARNING under Fo
 | Arrow parens | always |
 | Line endings | LF |
 
-> ⚠️ **Do not run `npm run format` blindly.** `.prettierrc.json` maps `*.liquid` to the `html`
-> parser, which **corrupts `{% schema %}` blocks** in section/snippet files. `.prettierignore`
-> also excludes `assets/`, so the script's SCSS/JS globs are no-ops — meaning the command
-> mostly just touches (and breaks) liquid. To format safely, target a specific non-liquid
-> file: `npx prettier --write path/to/file.scss`.
+> ⚠️ **Do not run `npm run format` or `npm run format:css`.** `.prettierrc.json` maps `*.liquid` to the
+> `html` parser, which **corrupts `{% schema %}` blocks**, and `.prettierignore` excludes `assets/` — so the
+> SCSS/JS globs in both scripts are **no-ops** (verify: `npx prettier --file-info assets/styles/…/_x.scss`
+> reports `"ignored": true`), and the only files `npm run format` actually rewrites are Liquid, which it
+> breaks. Prettier therefore does **not** format this project's SCSS or asset JS: **SCSS is enforced by
+> Stylelint (`npm run lint:css`) and asset JS by ESLint (`npm run lint:js`)** — use those. The one place
+> Prettier applies cleanly is `src/*.jsx`.
 
 ### JavaScript / JSX
 
@@ -115,9 +120,9 @@ npm run format        # Prettier — UNSAFE to run blanket; see WARNING under Fo
 
   **Deprecated — do not use:** `mobile-only`, `tablet-down`, `xs-only`, `xs-sm-only`
 
-- Stylelint enforces: alphabetical properties, lowercase-with-hyphens selectors and custom property names
+- Stylelint enforces: `@use` over `@import`, **custom properties before declarations** (`order/order`), and lowercase-kebab SCSS `$variable` / `%placeholder` names. It does **not** enforce alphabetical property order or class/CSS-custom-property naming patterns — those rules are set to `null` in `.stylelintrc.json`.
+- Order each rule block as **CSS custom properties (`--x`) first, then regular declarations** (the active `order/order` rule); property order *within* each group is free — do **not** alphabetise (the codebase doesn't).
 - New SCSS files go in the relevant sub-folder and must be `@use`'d in `assets/styles/theme.scss`
-- Alphabetise CSS properties within each rule block (Stylelint will flag violations)
 
 ### File Naming
 
